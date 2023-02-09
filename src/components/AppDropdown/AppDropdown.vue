@@ -77,8 +77,10 @@ const props = defineProps({
 const emit = defineEmits(["update:options", "open:dropdown", "close:dropdown"]);
 
 // Computeds
-const dropdown = ref<HTMLElement>(null);
-const dropdownPopover = ref<HTMLElement>(null);
+// const dropdown = ref<HTMLDivElement | null>(null);
+// const dropdownPopover = ref<HTMLUListElement | null>(null);
+const dropdown = ref<HTMLElement>();
+const dropdownPopover = ref<HTMLElement>();
 const isDropdownOpen = ref<boolean>(false);
 
 const updatedOptions = ref<Option[]>([]);
