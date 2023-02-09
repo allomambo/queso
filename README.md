@@ -7,6 +7,8 @@
 
 ### Installation
 
+**1.** Install the package
+
 ```
 # With Yarn:
 yarn add @allomambo/tacos-toppings
@@ -14,6 +16,14 @@ yarn add @allomambo/tacos-toppings
 # With npm:
 npm install @allomambo/tacos-toppings
 ```
+
+**2.** Add the css styles
+
+```
+import "@allomambo/tacos-toppings/css";
+```
+
+\*If the components are used in more than one place, it's good to add it globally in your project.
 
 ### Use components in your project
 
