@@ -3,10 +3,14 @@
         // Prevent warnings coming from default HTML attributes
         "types": ["vite/client"],
         "jsx": "preserve",
+        "outDir": "dist",
+        "skipLibCheck": true,
         "paths": {
             "@/*": ["./src/*"],
             "@components/*": ["./src/components/*"]
         },
         "lib": ["es2016", "dom"]
-    }
+    },
+    "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"],
+    "exclude": ["node_modules", "src/**/*.test.ts"]
 }
