@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        // Prevent warnings coming from default HTML attributes
+        "types": ["vite/client"],
+        "jsx": "preserve",
+        "paths": {
+            "@/*": ["./src/*"],
+            "@components/*": ["./src/components/*"]
+        },
+        "lib": ["es2016", "dom"]
+    }
+}
