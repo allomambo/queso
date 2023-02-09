@@ -16,7 +16,7 @@ jobs:
             - run: yarn test:run
             - run: yarn build:lib
 
-    publish-gpr:
+    publish:
         needs: build
         runs-on: macos-latest
         steps:
@@ -25,7 +25,6 @@ jobs:
               with:
                   node-version: 16
                   registry-url: https://registry.npmjs.org/
-            - run: yarn ci
             - run: yarn publish:lib
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
