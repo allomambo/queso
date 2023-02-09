@@ -1,8 +1,4 @@
-# Tacos Toppings
-
-[![npm version](https://img.shields.io/badge/npm-0.1.10-blue)](https://github.com/allomambo/adisq-tempo) ![vue version](https://img.shields.io/badge/vue-3-brightgreen)
-
-Vue3 Components library.
+# 🌮 Toppings
 
 ##### Required
 
@@ -13,10 +9,10 @@ Vue3 Components library.
 
 ```
 # With Yarn:
-yarn add @allomambo/adisq-tempo
+yarn add @allomambo/tacos-toppings
 
 # With npm:
-npm install @allomambo/adisq-tempo
+npm install @allomambo/tacos-toppings
 ```
 
 ### Use components in your project
@@ -31,6 +27,6 @@ Import the desired component from the package like a normal component.
 </template>
 
 <script setup>
-import { TacosComponent } from "@allomambo/adisq-tempo";
+import { TacosComponent } from "@allomambo/tacos-toppings";
 </script>
 ```

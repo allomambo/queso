@@ -1,8 +1,8 @@
 // import { addons } from "@storybook/addons";
-// import tempoTheme from "./theme";
+// import tacosTheme from "./theme";
 
 // addons.setConfig({
-//     theme: tempoTheme,
+//     theme: tacosTheme,
 // });
 
 // // Favicon
