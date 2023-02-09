@@ -1,34 +1,34 @@
 <template>
-    <div class="dropdown" ref="dropdown" :class="dropdownClasses">
-        <div class="dropdown__selector" @click="toggleDropdown(!isDropdownOpen)">
+    <div class="c-dropdown" ref="dropdown" :class="dropdownClasses">
+        <div class="c-dropdown__selector" @click="toggleDropdown(!isDropdownOpen)">
             <slot name="prefix"></slot>
-            <div class="dropdown__selector__text">
-                <div v-if="activeOptions.length < 1" class="dropdown__selector__placeholder">
+            <div class="c-dropdown__selector__text">
+                <div v-if="activeOptions.length < 1" class="c-dropdown__selector__placeholder">
                     <slot name="placeholder"></slot>
                 </div>
-                <div v-else class="dropdown__selector__active-label">
+                <div v-else class="c-dropdown__selector__active-label">
                     <slot name="activeLabel" v-bind="{ activeOptions }">
                         {{ activeOptions }}
                     </slot>
                 </div>
             </div>
             <slot name="suffix"></slot>
-            <div class="dropdown__selector__icon">
+            <div class="c-dropdown__selector__icon">
                 <slot name="icon">↓</slot>
             </div>
         </div>
 
-        <div class="dropdown__popover">
-            <div v-if="$slots.popoverHeader" class="dropdown__popover__header">
+        <div class="c-dropdown__popover">
+            <div v-if="$slots.popoverHeader" class="c-dropdown__popover__header">
                 <slot name="popoverHeader" v-bind="{ openDropdown, closeDropdown }"></slot>
             </div>
-            <div class="dropdown__popover__scroll" :class="dropdownPopoverClasses">
-                <ul ref="dropdownPopover" class="dropdown__popover__options-list">
+            <div class="c-dropdown__popover__scroll" :class="dropdownPopoverClasses">
+                <ul ref="dropdownPopover" class="c-dropdown__popover__options-list">
                     <li
                         v-for="option in options"
                         :key="option.key"
                         @click="updateOption(option)"
-                        class="dropdown__popover__options-list__item"
+                        class="c-dropdown__popover__options-list__item"
                         :class="{ 'is-active': activeOptions.find((o) => o.key === option.key) }"
                     >
                         <slot name="item" v-bind="{ ...option, openDropdown, closeDropdown }">
@@ -37,7 +37,7 @@
                     </li>
                 </ul>
             </div>
-            <div v-if="$slots.popoverFooter" class="dropdown__popover__footer">
+            <div v-if="$slots.popoverFooter" class="c-dropdown__popover__footer">
                 <slot name="popoverFooter" v-bind="{ openDropdown, closeDropdown }"></slot>
             </div>
         </div>
@@ -184,7 +184,7 @@ const dropdownPopoverClasses = computed(() => ({
 </script>
 
 <style lang="scss" scoped>
-.dropdown {
+.c-dropdown {
     position: relative;
 
     /*=================================
@@ -193,8 +193,8 @@ const dropdownPopoverClasses = computed(() => ({
 
     &__selector {
         display: flex;
-        align-items: var(--dropdown-selector-align, center);
-        justify-content: var(--dropdown-selector-justify, flex-start);
+        align-items: var(--tt-dropdown-selector-align, center);
+        justify-content: var(--tt-dropdown-selector-justify, flex-start);
         cursor: pointer;
 
         &__icon {
@@ -208,23 +208,23 @@ const dropdownPopoverClasses = computed(() => ({
 
     &__popover {
         position: absolute;
-        top: var(--dropdown-popover-pos-top, 100%);
-        bottom: var(--dropdown-popover-pos-bottom, auto);
-        left: var(--dropdown-popover-pos-left, 0);
-        right: var(--dropdown-popover-pos-right, 0);
-        z-index: var(--dropdown-popover-z, 300);
+        top: var(--tt-dropdown-popover-pos-top, 100%);
+        bottom: var(--tt-dropdown-popover-pos-bottom, auto);
+        left: var(--tt-dropdown-popover-pos-left, 0);
+        right: var(--tt-dropdown-popover-pos-right, 0);
+        z-index: var(--tt-dropdown-popover-z, 300);
         overflow: hidden;
-        opacity: var(--dropdown-popover-opacity, 0);
-        pointer-events: var(--dropdown-popover-pointer-events, none);
+        opacity: var(--tt-dropdown-popover-opacity, 0);
+        pointer-events: var(--tt-dropdown-popover-pointer-events, none);
 
         // Options list
         &__options-list {
-            display: var(--dropdown-popover-display, flex);
-            flex-direction: var(--dropdown-popover-direction, column);
-            align-items: var(--dropdown-popover-align, stretch);
-            justify-content: var(--dropdown-popover-justify, flex-start);
-            flex-wrap: var(--dropdown-popover-wrap, nowrap);
-            max-height: var(--dropdown-popover-max-height, 25rem);
+            display: var(--tt-dropdown-popover-display, flex);
+            flex-direction: var(--tt-dropdown-popover-direction, column);
+            align-items: var(--tt-dropdown-popover-align, stretch);
+            justify-content: var(--tt-dropdown-popover-justify, flex-start);
+            flex-wrap: var(--tt-dropdown-popover-wrap, nowrap);
+            max-height: var(--tt-dropdown-popover-max-height, 25rem);
             overflow-x: hidden;
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
@@ -242,8 +242,8 @@ const dropdownPopoverClasses = computed(() => ({
     =================================*/
 
     &.is-open {
-        --dropdown-popover-opacity: 1;
-        --dropdown-popover-pointer-events: all;
+        --tt-dropdown-popover-opacity: 1;
+        --tt-dropdown-popover-pointer-events: all;
     }
 }
 </style>
