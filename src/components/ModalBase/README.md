@@ -6,7 +6,7 @@
 <template>
     <button @click="openModal()">Open modal</button>
 
-    <modal-base title="TITLE HERE" ref="myModal">
+    <modal-base ref="myModal">
         <!-- CONTENT HERE -->
     </modal-base>
 </template>
@@ -26,4 +26,19 @@ const closeModal = () => {
     myModal.value?.close();
 };
 </script>
+```
+
+**Available slots :**
+
+```
+<template>
+    ...
+    <modal-base ref="myModal">
+        <template #before-content></template>
+        <template #default></template>
+        <template #after-content></template>
+        <template #overlay></template>
+    </modal-base>
+    ...
+</template>
 ```
