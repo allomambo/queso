@@ -39,30 +39,24 @@ const close = () => {
 };
 
 // Lock scrolling when modal isOpen
-const isModalOpenClass = "is-scroll-locked";
-
-const toggleModalOpenClass = (bool: boolean = true) => {
-    if (bool) {
-        document.documentElement.classList.add(isModalOpenClass);
-    } else {
-        document.documentElement.classList.remove(isModalOpenClass);
-    }
+const toggleOverflowOnDocument = (bool: boolean = true) => {
+    document.documentElement.style.overflow = bool ? "hidden" : null;
 };
 
 // Update opened state
 watch(isOpen, (isOpened) => {
     if (isOpened) {
-        toggleModalOpenClass(true);
+        toggleOverflowOnDocument(true);
         emit("modal:open");
     } else {
-        toggleModalOpenClass(false);
+        toggleOverflowOnDocument(false);
         emit("modal:close");
     }
 });
 
 onMounted(() => {
     if (isOpen.value) {
-        toggleModalOpenClass(true);
+        toggleOverflowOnDocument(true);
     }
 });
 
