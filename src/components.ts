@@ -2,8 +2,6 @@
 =              Components               =
 =======================================*/
 
-import AppDropdown from "@components/AppDropdown";
+import DropdownBase from "@components/DropdownBase";
 
-export {
-    AppDropdown as TacosDropdown,
-};
+export { DropdownBase as TacosDropdown };
