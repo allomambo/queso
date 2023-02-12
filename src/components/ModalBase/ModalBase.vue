@@ -1,14 +1,17 @@
 <template>
     <Teleport to="body">
         <div class="c-modal" :class="{ 'is-open': isOpen }">
+            <slot name="before-content"></slot>
+
             <div class="c-modal__inner">
-                <modal-base-header :title="title" />
-                <modal-base-content>
-                    <slot></slot>
-                </modal-base-content>
+                <slot></slot>
             </div>
 
-            <modal-base-overlay />
+            <slot name="after-content"></slot>
+
+            <slot name="overlay">
+                <modal-base-overlay />
+            </slot>
         </div>
     </Teleport>
 </template>
@@ -20,15 +23,7 @@ import { ModalMethodsKey } from "./symbols";
 <script setup lang="ts">
 import { ref, watch, onMounted, provide } from "vue";
 
-import ModalBaseHeader from "./components/ModalBaseHeader.vue";
-import ModalBaseContent from "./components/ModalBaseContent.vue";
 import ModalBaseOverlay from "./components/ModalBaseOverlay.vue";
-
-export interface Props {
-    title?: string;
-}
-
-const props = defineProps<Props>();
 
 const emit = defineEmits(["modal:open", "modal:close"]);
 
@@ -45,6 +40,7 @@ const close = () => {
 
 // Lock scrolling when modal isOpen
 const isModalOpenClass = "is-scroll-locked";
+
 const toggleModalOpenClass = (bool: boolean = true) => {
     if (bool) {
         document.documentElement.classList.add(isModalOpenClass);
@@ -53,6 +49,7 @@ const toggleModalOpenClass = (bool: boolean = true) => {
     }
 };
 
+// Update opened state
 watch(isOpen, (isOpened) => {
     if (isOpened) {
         toggleModalOpenClass(true);
@@ -77,6 +74,10 @@ defineExpose({ open, close });
 
 <style lang="scss">
 .c-modal {
+    --tt-modal-opacity: 0;
+    --tt-modal-max-width: 80%;
+    --tt-modal-max-height: 80%;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -86,15 +87,16 @@ defineExpose({ open, close });
     top: 0;
     left: 0;
     z-index: var(--tt-modal-z, 400);
-    opacity: var(--tt-modal-opacity, 0);
+    opacity: var(--tt-modal-opacity);
     pointer-events: var(--tt-modal-pointer-events, none);
     user-select: var(--tt-modal-user-select, none);
 
     &__inner {
-        max-width: 140rem;
+        max-width: var(--tt-modal-max-width);
+        max-height: var(--tt-modal-max-height);
         position: relative;
         z-index: 2;
-        background-color: white;
+        overflow: auto;
     }
 
     &.is-open {
