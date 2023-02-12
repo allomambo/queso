@@ -1,23 +1,7 @@
 <template>
-    <button @click="openModal()">Open modal</button>
-
-    <modal-base ref="myModal"> Yo yo yo </modal-base>
+    <p>App</p>
 </template>
 
-<script setup lang="ts">
-import { ref } from "vue";
-
-import ModalBase from "@components/ModalBase";
-
-const myModal = ref<InstanceType<typeof ModalBase> | null>(null);
-
-const openModal = () => {
-    myModal.value?.open();
-};
-
-const closeModal = () => {
-    myModal.value?.close();
-};
-</script>
+<script setup lang="ts"></script>
 
 <style lang="scss" scoped></style>
