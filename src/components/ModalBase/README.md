@@ -1,7 +1,14 @@
+## How to use modal
+
+**In parent component :**
+
+```
 <template>
     <button @click="openModal()">Open modal</button>
 
-    <modal-base ref="myModal"> Yo yo yo </modal-base>
+    <modal-base title="TITLE HERE" ref="myModal">
+        <!-- CONTENT HERE -->
+    </modal-base>
 </template>
 
 <script setup lang="ts">
@@ -19,5 +26,4 @@ const closeModal = () => {
     myModal.value?.close();
 };
 </script>
-
-<style lang="scss" scoped></style>
+```
