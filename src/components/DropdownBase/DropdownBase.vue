@@ -1,5 +1,5 @@
 <template>
-    <div class="c-dropdown" ref="dropdown" :class="dropdownClasses">
+    <div v-if="options.length > 0" class="c-dropdown" ref="dropdown" :class="dropdownClasses">
         <div class="c-dropdown__selector" @click="toggleDropdown(!isDropdownOpen)">
             <slot name="prefix"></slot>
             <div class="c-dropdown__selector__text">
