@@ -1,14 +1,14 @@
 import { mount, shallowMount } from "@vue/test-utils";
 import { describe, expect, test } from "vitest";
-import AppDropdown from "./AppDropdown.vue";
+import DropdownBase from "./DropdownBase.vue";
 
-describe("AppDropdown", () => {
+describe("DropdownBase", () => {
     test("renders correctly the object", () => {
         const data = {
             string: "Un test bidon",
         };
 
-        const wrapper = shallowMount(AppDropdown, {
+        const wrapper = shallowMount(DropdownBase, {
             propsData: data,
         });
         expect(wrapper.vm).toBeTruthy();

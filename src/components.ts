@@ -2,8 +2,7 @@
 =              Components               =
 =======================================*/
 
-import AppDropdown from "@components/AppDropdown";
+import DropdownBase from "@components/DropdownBase";
+import ModalBase from "@components/ModalBase";
 
-export {
-    AppDropdown as TacosDropdown,
-};
+export { DropdownBase as TacosDropdown, ModalBase as TacosModal };
