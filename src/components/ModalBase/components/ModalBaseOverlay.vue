@@ -1,5 +1,5 @@
 <template>
-    <div class="c-modal__overlay" @click="close"></div>
+    <div class="tt-modal__overlay" @click="close"></div>
 </template>
 
 <script lang="ts">
@@ -14,7 +14,7 @@ const { close } = inject(ModalMethodsKey) as ModalMethods;
 </script>
 
 <style lang="scss">
-.c-modal__overlay {
+.tt-modal__overlay {
     position: absolute;
     top: 0;
     bottom: 0;
