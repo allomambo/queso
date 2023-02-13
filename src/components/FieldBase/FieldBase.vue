@@ -1,12 +1,10 @@
 <template>
-    <div class="field" :class="fieldClasses">
-        <slot name="label">
-            <field-base-label v-if="label" :id="fieldID" :position="labelPosition" :isRequired="isRequired">
-                {{ label }}
-            </field-base-label>
-        </slot>
+    <div class="tt-field" :class="fieldClasses">
+        <label v-if="label" :for="fieldID" class="tt-field-label">
+            <slot name="label">{{ label }}</slot>
+        </label>
 
-        <div v-if="hasFieldSlot" class="field__input">
+        <div v-if="$slots.field" class="tt-field__input">
             <slot name="beforeField"></slot>
             <slot
                 name="field"
@@ -15,15 +13,14 @@
             <slot name="afterField"></slot>
         </div>
 
-        <field-base-error v-if="isError">{{ errorMessage }}</field-base-error>
+        <div v-if="isError" class="tt-field__error">
+            <slot name="error"></slot>
+        </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import { computed, ref, useSlots } from "vue";
-
-import FieldBaseLabel from "./components/FieldBaseLabel.vue";
-import FieldBaseError from "./components/FieldBaseError.vue";
+import { computed, ref } from "vue";
 
 const props = defineProps({
     // BASE
@@ -65,21 +62,6 @@ const props = defineProps({
         required: false,
         default: false,
     },
-
-    // CUSTOMIZATION
-    labelPosition: {
-        type: String,
-        required: false,
-        default: "top",
-        validator(pos: string) {
-            return ["top", "placeholder"].includes(pos);
-        },
-    },
-    errorMessage: {
-        type: String,
-        required: false,
-        default: "Champ invalide", // TODO Translate this?
-    },
 });
 
 const emit = defineEmits(["update:modelValue"]);
@@ -116,25 +98,16 @@ const fieldClasses = computed<string[]>(() => [
     (isActive.value || isFilled.value) && "is-active",
     isHover.value && "is-hover",
     props.isReadOnly && "is-read-only",
-    // Visual
-    `has-label-${props.labelPosition}`,
 ]);
 
 const fieldID = computed<string>(() => {
     return `field-${props.id || props.name}`;
 });
-
-/**
- * SLOTS
- */
-const slots = useSlots();
-
-const hasFieldSlot = computed<boolean>(() => slots.field && slots.field().length > 0);
 </script>
 
 <style lang="scss">
-.field {
-    --field-height: 5rem;
+.tt-field {
+    --tt-field-height: 5rem;
     position: relative;
 
     &.is-active {
@@ -144,25 +117,25 @@ const hasFieldSlot = computed<boolean>(() => slots.field && slots.field().length
 
     &.is-active,
     &.is-hover {
-        --field-txt-color: var(--color-black);
-        --field-border-color: var(--color-black-pale);
+        --tt-field-txt-color: var(--color-black);
+        --tt-field-border-color: var(--color-black-pale);
     }
 
     &.is-disabled {
-        --field-txt-color: var(--color-grey);
-        --field-border-color: var(--color-grey-faded);
+        --tt-field-txt-color: var(--color-grey);
+        --tt-field-border-color: var(--color-grey-faded);
         pointer-events: none;
         user-select: none;
     }
 
     &.is-error {
-        --field-border-color: var(--color-warning);
+        --tt-field-border-color: var(--color-warning);
     }
 
     &.is-read-only {
-        --field-txt-color: var(--color-black-pale);
-        --field-bg-color: var(--color-grey-pale);
-        --field-border-color: var(--color-grey-pale);
+        --tt-field-txt-color: var(--color-black-pale);
+        --tt-field-bg-color: var(--color-grey-pale);
+        --tt-field-border-color: var(--color-grey-pale);
     }
 
     &__input {

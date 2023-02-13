@@ -79,7 +79,7 @@ const boxColor = (isReadOnly: boolean, isDisabled: boolean) => {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .checkbox-hidden-label {
     @include accessible-item;
 }
@@ -92,22 +92,22 @@ const boxColor = (isReadOnly: boolean, isDisabled: boolean) => {
     cursor: pointer;
 
     &__box {
-        --field-width: 2rem;
-        --field-height: var(--field-width);
-        --field-padding-x: 0;
-        --field-radius: var(--border-radius-xs);
+        --tt-field-width: 2rem;
+        --tt-field-height: var(--tt-field-width);
+        --tt-field-padding-x: 0;
+        --tt-field-radius: var(--border-radius-xs);
         @include field;
         flex-shrink: 0;
 
         .icon {
-            --icon-bg-width: var(--field-width);
+            --icon-bg-width: var(--tt-field-width);
             flex-shrink: 0;
             margin: -1px; // To prevent border showing
         }
     }
 
     &__label {
-        color: var(--field-txt-color);
+        color: var(--tt-field-txt-color);
         font-size: var(--fs-small);
         padding-top: 0.15em;
         user-select: none;

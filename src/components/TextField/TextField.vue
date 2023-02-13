@@ -1,5 +1,9 @@
 <template>
     <field-base>
+        <template #label>
+            <slot name="label"></slot>
+        </template>
+
         <template #field="fieldProps">
             <div class="text-field">
                 <slot name="before"></slot>
@@ -25,6 +29,10 @@
                 <slot name="after"></slot>
             </div>
         </template>
+
+        <template #error>
+            <slot name="error"></slot>
+        </template>
     </field-base>
 </template>
 
@@ -43,13 +51,13 @@ const props = defineProps({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .text-field {
-    @include field;
+    // @include field;
 
     :deep(.icon) {
         &:not(.has-txt-color) {
-            color: var(--field-txt-color);
+            color: var(--tt-field-txt-color);
         }
     }
 }

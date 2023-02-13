@@ -27,11 +27,11 @@
 import FieldBase from "@components/FieldBase";
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .text-area {
-    --field-align: flex-start;
+    --tt-field-align: flex-start;
     @include field;
-    height: var(--text-area-height, calc(var(--field-height) * 2.6));
+    height: var(--text-area-height, calc(var(--tt-field-height) * 2.6));
 
     &__input {
         height: 100%;

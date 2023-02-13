@@ -90,7 +90,7 @@ const isSelected = (values, option: Option) => {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .select {
     // Selector
     &:deep(.dropdown__selector),

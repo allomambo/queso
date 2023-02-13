@@ -47,7 +47,7 @@ const getCheckboxState = (event: any, fieldCallback: (a: boolean) => void) => {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .switch {
     --switch-padding: 0.2rem;
     --switch-circle-size: 1.2rem;
@@ -69,7 +69,7 @@ const getCheckboxState = (event: any, fieldCallback: (a: boolean) => void) => {
         --switch-circle-color: var(--switch-selected-circle-color);
         --switch-bg-color: var(--switch-selected-bg-color);
         --switch-border-color: var(--switch-selected-border-color);
-        --field-border-color: var(--switch-border-color);
+        --tt-field-border-color: var(--switch-border-color);
 
         .is-disabled & {
             --switch-bg-color: var(--color-grey-faded);
@@ -84,12 +84,12 @@ const getCheckboxState = (event: any, fieldCallback: (a: boolean) => void) => {
 
     &__box {
         @include field;
-        --field-width: calc(var(--switch-circle-size) * 2 + var(--switch-padding) * 3 + 2px);
-        --field-height: calc(var(--switch-circle-size) + var(--switch-padding) * 2 + 2px);
-        --field-padding-x: 0.3rem;
-        --field-padding-y: 0.3rem;
-        --field-bg-color: var(--switch-bg-color);
-        --field-radius: var(--switch-circle-size);
+        --tt-field-width: calc(var(--switch-circle-size) * 2 + var(--switch-padding) * 3 + 2px);
+        --tt-field-height: calc(var(--switch-circle-size) + var(--switch-padding) * 2 + 2px);
+        --tt-field-padding-x: 0.3rem;
+        --tt-field-padding-y: 0.3rem;
+        --tt-field-bg-color: var(--switch-bg-color);
+        --tt-field-radius: var(--switch-circle-size);
 
         &__circle {
             display: block;
@@ -103,7 +103,7 @@ const getCheckboxState = (event: any, fieldCallback: (a: boolean) => void) => {
     }
 
     &__label {
-        color: var(--field-txt-color);
+        color: var(--tt-field-txt-color);
         font-size: var(--fs-small);
         user-select: none;
     }

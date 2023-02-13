@@ -23,7 +23,7 @@ const props = defineProps({
 const optionsCount = computed<number>(() => props.options.length);
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .select-label-multiple {
     @include lineUp("left", "horizontal");
     --lineup-gap: var(--grid-gap-third);
