@@ -1,5 +1,5 @@
 <template>
-    <field-base ref="field">
+    <field-base>
         <template
             #field="{
                 fieldID,
@@ -36,15 +36,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-
 import FieldBase from "@components/FieldBase";
-
-const field = ref<InstanceType<typeof FieldBase> | null>(null);
-
-defineExpose({
-    ...field.value,
-});
 </script>
 
 <style lang="scss">
