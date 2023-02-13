@@ -4,36 +4,49 @@
             <span class="switch-hidden-label"></span>
         </template>
 
-        <template #field="fieldProps">
+        <template
+            #field="{
+                fieldID,
+                fieldName,
+                fieldValue,
+                fieldLabel,
+                updateValue,
+                toggleIsActive,
+                toggleIsHover,
+                isRequired,
+                isDisabled,
+                isReadOnly,
+            }"
+        >
             <component
-                :is="fieldProps?.isReadOnly ? 'div' : 'label'"
+                :is="isReadOnly ? 'div' : 'label'"
                 class="switch"
-                :for="fieldProps?.fieldID"
-                :class="{ 'is-selected': fieldProps?.fieldValue }"
-                @mouseover="fieldProps.toggleIsHover(true)"
-                @mouseleave="fieldProps.toggleIsHover(false)"
+                :for="fieldID"
+                :class="{ 'is-selected': fieldValue }"
+                @mouseover="toggleIsHover(true)"
+                @mouseleave="toggleIsHover(false)"
             >
                 <span class="switch__box">
                     <span class="switch__box__circle"></span>
                 </span>
-                <span v-if="fieldProps?.fieldLabel" class="switch__label">
-                    <span class="switch__label__text" v-html="fieldProps?.fieldLabel"></span>
-                    <span v-if="fieldProps?.isRequired" class="switch__label__required"> *</span>
+                <span v-if="fieldLabel" class="switch__label">
+                    <span class="switch__label__text" v-html="fieldLabel"></span>
+                    <span v-if="isRequired" class="switch__label__required"> *</span>
                 </span>
             </component>
 
             <input
-                v-if="!fieldProps?.isReadOnly"
+                v-if="!isReadOnly"
                 type="checkbox"
                 class="switch__native"
-                :checked="fieldProps?.fieldValue"
-                :name="fieldProps?.fieldName"
-                :id="fieldProps?.fieldID"
-                :required="fieldProps?.isRequired"
-                :disabled="fieldProps?.isDisabled"
-                @change="getCheckboxState($event, fieldProps?.updateValue)"
-                @focus="fieldProps.toggleIsActive(true)"
-                @blur="fieldProps.toggleIsActive(false)"
+                :checked="fieldValue"
+                :name="fieldName"
+                :id="fieldID"
+                :required="isRequired"
+                :disabled="isDisabled"
+                @change="getCheckboxState($event, updateValue)"
+                @focus="toggleIsActive(true)"
+                @blur="toggleIsActive(false)"
             />
         </template>
     </field-base>

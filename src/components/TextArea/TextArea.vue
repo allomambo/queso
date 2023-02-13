@@ -1,22 +1,34 @@
 <template>
-    <field-base>
-        <template #field="fieldProps">
-            <div class="text-area">
-                <span v-if="fieldProps?.isReadOnly" class="text-area__readonly" v-html="fieldProps?.fieldValue"></span>
+    <field-base ref="field">
+        <template
+            #field="{
+                fieldID,
+                fieldName,
+                fieldValue,
+                updateValue,
+                toggleIsActive,
+                toggleIsHover,
+                isRequired,
+                isDisabled,
+                isReadOnly,
+            }"
+        >
+            <div class="tt-text-area">
+                <span v-if="isReadOnly" class="tt-text-area__readonly" v-html="fieldValue"></span>
 
                 <textarea
                     v-else
-                    :name="fieldProps?.fieldName"
-                    :id="fieldProps?.fieldID"
-                    :value="fieldProps?.fieldValue"
-                    class="text-area__input"
-                    :required="fieldProps?.isRequired"
-                    :disabled="fieldProps?.isDisabled"
-                    @input="fieldProps?.updateValue"
-                    @mouseover="fieldProps.toggleIsHover(true)"
-                    @mouseleave="fieldProps.toggleIsHover(false)"
-                    @focus="fieldProps.toggleIsActive(true)"
-                    @blur="fieldProps.toggleIsActive(false)"
+                    :name="fieldName"
+                    :id="fieldID"
+                    :value="fieldValue"
+                    class="tt-text-area__input"
+                    :required="isRequired"
+                    :disabled="isDisabled"
+                    @input="updateValue"
+                    @mouseover="toggleIsHover(true)"
+                    @mouseleave="toggleIsHover(false)"
+                    @focus="toggleIsActive(true)"
+                    @blur="toggleIsActive(false)"
                 ></textarea>
             </div>
         </template>
@@ -24,22 +36,18 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
+
 import FieldBase from "@components/FieldBase";
+
+const field = ref<InstanceType<typeof FieldBase> | null>(null);
+
+defineExpose({
+    ...field.value,
+});
 </script>
 
 <style lang="scss">
-.text-area {
-    --tt-field-align: flex-start;
-    @include field;
-    height: var(--text-area-height, calc(var(--tt-field-height) * 2.6));
-
-    &__input {
-        height: 100%;
-        resize: none; // should we let use resize?
-    }
-
-    &__readonly {
-        padding: 1.4rem 0;
-    }
+.tt-text-area {
 }
 </style>

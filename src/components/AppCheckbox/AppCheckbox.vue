@@ -4,41 +4,54 @@
             <span v-if="!multiple" class="checkbox-hidden-label"></span>
         </template>
 
-        <template #field="fieldProps">
+        <template
+            #field="{
+                fieldID,
+                fieldName,
+                fieldValue,
+                fieldLabel,
+                updateValue,
+                toggleIsActive,
+                toggleIsHover,
+                isRequired,
+                isDisabled,
+                isReadOnly,
+            }"
+        >
             <component
-                :is="fieldProps?.isReadOnly ? 'div' : 'label'"
+                :is="isReadOnly ? 'div' : 'label'"
                 class="checkbox"
-                :for="fieldProps?.fieldID"
-                @mouseover="fieldProps.toggleIsHover(true)"
-                @mouseleave="fieldProps.toggleIsHover(false)"
+                :for="fieldID"
+                @mouseover="toggleIsHover(true)"
+                @mouseleave="toggleIsHover(false)"
             >
                 <span class="checkbox__box">
                     <app-icon
-                        v-if="fieldProps?.fieldValue"
+                        v-if="fieldValue"
                         name="check_mark"
                         :size="1.2"
                         txt-color="white"
-                        :bg-color="boxColor(fieldProps?.isReadOnly, fieldProps?.isDisabled)"
+                        :bg-color="boxColor(isReadOnly, isDisabled)"
                     />
                 </span>
                 <span class="checkbox__label">
-                    <span class="checkbox__label__text" v-html="fieldProps?.fieldLabel"></span>
-                    <span v-if="fieldProps?.isRequired" class="checkbox__label__required"> *</span>
+                    <span class="checkbox__label__text" v-html="fieldLabel"></span>
+                    <span v-if="isRequired" class="checkbox__label__required"> *</span>
                 </span>
             </component>
 
             <input
-                v-if="!fieldProps?.isReadOnly"
+                v-if="!isReadOnly"
                 type="checkbox"
                 class="checkbox__native"
-                :checked="fieldProps?.fieldValue"
-                :name="fieldProps?.fieldName"
-                :id="fieldProps?.fieldID"
-                :required="fieldProps?.isRequired"
-                :disabled="fieldProps?.isDisabled"
-                @change="getCheckboxState($event, fieldProps?.updateValue)"
-                @focus="fieldProps.toggleIsActive(true)"
-                @blur="fieldProps.toggleIsActive(false)"
+                :checked="fieldValue"
+                :name="fieldName"
+                :id="fieldID"
+                :required="isRequired"
+                :disabled="isDisabled"
+                @change="getCheckboxState($event, updateValue)"
+                @focus="toggleIsActive(true)"
+                @blur="toggleIsActive(false)"
             />
         </template>
     </field-base>

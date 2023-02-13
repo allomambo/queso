@@ -1,9 +1,9 @@
 <template>
     <field-base>
-        <template #field="fieldProps">
-            <div v-if="fieldProps?.isReadOnly" class="select__read-only">
+        <template #field="{ fieldID, fieldName, fieldValue, updateValue, toggleIsActive, toggleIsHover, isReadOnly }">
+            <div v-if="isReadOnly" class="select__read-only">
                 <span class="select__read-only__label">
-                    {{ fieldProps?.fieldValue[0].data.label || placeholder }}
+                    {{ fieldValue[0].data.label || placeholder }}
                 </span>
             </div>
 
@@ -11,11 +11,11 @@
                 v-else
                 class="select"
                 :options="options"
-                :default-options="fieldProps?.fieldValue || []"
+                :default-options="fieldValue || []"
                 :multiple="multiple"
-                @update:options="(v) => fieldProps?.updateValue(v)"
-                @mouseover="fieldProps.toggleIsHover(true)"
-                @mouseleave="fieldProps.toggleIsHover(false)"
+                @update:options="(v) => updateValue(v)"
+                @mouseover="toggleIsHover(true)"
+                @mouseleave="toggleIsHover(false)"
             >
                 <template #placeholder>
                     {{ placeholder }}
@@ -34,11 +34,11 @@
             </dropdown-base>
 
             <select
-                :name="fieldProps?.fieldName"
-                :id="fieldProps?.fieldID"
+                :name="fieldName"
+                :id="fieldID"
                 class="select__select-native"
-                @focus="fieldProps.toggleIsActive(true)"
-                @blur="fieldProps.toggleIsActive(false)"
+                @focus="toggleIsActive(true)"
+                @blur="toggleIsActive(false)"
                 :multiple="multiple"
             >
                 <option></option>
@@ -46,7 +46,7 @@
                     v-for="option in options"
                     :value="option.key"
                     :key="option.key"
-                    :selected="isSelected(fieldProps?.fieldValue, option)"
+                    :selected="isSelected(fieldValue, option)"
                 >
                     {{ option.data.label }}
                 </option>
