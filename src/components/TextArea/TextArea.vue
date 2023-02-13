@@ -1,5 +1,13 @@
 <template>
     <field-base>
+        <template #label="fieldProps">
+            <slot name="label" v-bind="{ ...fieldProps }"></slot>
+        </template>
+
+        <template #beforeField>
+            <slot name="beforeField"></slot>
+        </template>
+
         <template
             #field="{
                 fieldID,
@@ -31,6 +39,14 @@
                     @blur="toggleIsActive(false)"
                 ></textarea>
             </div>
+        </template>
+
+        <template #afterField>
+            <slot name="afterField"></slot>
+        </template>
+
+        <template #error="fieldProps">
+            <slot name="error" v-bind="{ ...fieldProps }"></slot>
         </template>
     </field-base>
 </template>
