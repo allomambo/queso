@@ -43,7 +43,7 @@ const emit = defineEmits(["update:modelValue"]);
  */
 const isActive = ref<boolean>(false);
 const isHover = ref<boolean>(false);
-const isFilled = computed<boolean>(() => (fieldValue.value !== null ? true : false));
+const isFilled = computed<boolean>(() => (fieldValue.value ? true : false));
 const { isRequired, isDisabled, isError, isReadOnly } = toRefs(props);
 
 const toggleIsActive = (bool: boolean = false) => {

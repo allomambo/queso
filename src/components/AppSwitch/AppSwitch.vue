@@ -35,7 +35,6 @@
                 </span>
                 <span v-if="fieldLabel" class="tt-switch__label">
                     <span class="tt-switch__label__text" v-html="fieldLabel"></span>
-                    <span v-if="isRequired" class="tt-switch__label__required"> *</span>
                 </span>
             </component>
 
@@ -108,6 +107,7 @@ const getCheckboxState = (event: any, fieldCallback: (a: boolean) => void) => {
         padding: var(--tt-switch-padding-y) var(--tt-switch-padding-x);
         background: var(--tt-switch-bg-color);
         border-radius: var(--tt-switch-radius);
+        user-select: none;
         box-sizing: border-box;
 
         &__circle {
@@ -118,10 +118,6 @@ const getCheckboxState = (event: any, fieldCallback: (a: boolean) => void) => {
             border-radius: var(--tt-switch-circle-size);
             transform: translateX(var(--tt-switch-circle-translate, 0));
         }
-    }
-
-    &__label {
-        user-select: none;
     }
 
     @at-root div#{&} {

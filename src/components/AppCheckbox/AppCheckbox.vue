@@ -1,7 +1,11 @@
 <template>
     <field-base>
         <template #label>
-            <span v-if="!multiple" class="checkbox-hidden-label"></span>
+            <span class="tt-checkbox-hidden-label"></span>
+        </template>
+
+        <template #beforeField>
+            <slot name="beforeField"></slot>
         </template>
 
         <template
@@ -20,30 +24,24 @@
         >
             <component
                 :is="isReadOnly ? 'div' : 'label'"
-                class="checkbox"
+                class="tt-checkbox"
                 :for="fieldID"
+                :class="{ 'is-checked': fieldValue }"
                 @mouseover="toggleIsHover(true)"
                 @mouseleave="toggleIsHover(false)"
             >
-                <span class="checkbox__box">
-                    <app-icon
-                        v-if="fieldValue"
-                        name="check_mark"
-                        :size="1.2"
-                        txt-color="white"
-                        :bg-color="boxColor(isReadOnly, isDisabled)"
-                    />
+                <span class="tt-checkbox__box">
+                    <span class="tt-checkbox__box__symbol">✔︎</span>
                 </span>
-                <span class="checkbox__label">
-                    <span class="checkbox__label__text" v-html="fieldLabel"></span>
-                    <span v-if="isRequired" class="checkbox__label__required"> *</span>
+                <span class="tt-checkbox__label">
+                    <span class="tt-checkbox__label__text" v-html="fieldLabel"></span>
                 </span>
             </component>
 
             <input
                 v-if="!isReadOnly"
                 type="checkbox"
-                class="checkbox__native"
+                class="tt-checkbox__native"
                 :checked="fieldValue"
                 :name="fieldName"
                 :id="fieldID"
@@ -54,68 +52,56 @@
                 @blur="toggleIsActive(false)"
             />
         </template>
+
+        <template #afterField>
+            <slot name="afterField"></slot>
+        </template>
+
+        <template #error="fieldProps">
+            <slot name="error" v-bind="{ ...fieldProps }"></slot>
+        </template>
     </field-base>
 </template>
 
 <script setup lang="ts">
-import { PropType } from "vue";
-
 import FieldBase from "@components/FieldBase";
-// import AppIcon from "@components/AppIcon";
 
-interface TypeChoice {
-    id: string | number;
-    label: string;
-}
+// * Keep for future usage
+// export interface TypeChoice {
+//     key: string | number;
+//     label: string;
+// }
 
-const props = defineProps({
-    multiple: {
-        type: Boolean,
-        required: false,
-        default: false,
-    },
-    choices: {
-        type: Array as PropType<TypeChoice[]>,
-        required: false,
-        default: () => [],
-    },
-});
+// export interface Props {
+//     multiple?: boolean;
+//     choices?: TypeChoice[];
+// }
+
+// const props = withDefaults(defineProps<Props>(), {
+//     choices: () => [],
+// });
 
 const getCheckboxState = (event: any, fieldCallback: (a: boolean) => void) => {
     fieldCallback(event.target.checked);
 };
-
-const boxColor = (isReadOnly: boolean, isDisabled: boolean) => {
-    if (isReadOnly) return "black-pale";
-    if (isDisabled) return "grey-faded";
-    return "black";
-};
 </script>
 
 <style lang="scss">
-.checkbox-hidden-label {
-    @include accessible-item;
-}
-
-.checkbox {
+.tt-checkbox {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: flex-start;
-    gap: var(--grid-gap-third);
     cursor: pointer;
 
-    &__box {
-        --tt-field-width: 2rem;
-        --tt-field-height: var(--tt-field-width);
-        --tt-field-padding-x: 0;
-        --tt-field-radius: var(--border-radius-xs);
-        @include field;
-        flex-shrink: 0;
+    &.is-checked {
+        --tt-checkbox-symbol-opacity: 1;
+    }
 
-        .icon {
-            --icon-bg-width: var(--tt-field-width);
-            flex-shrink: 0;
-            margin: -1px; // To prevent border showing
+    &__box {
+        user-select: none;
+
+        &__symbol {
+            opacity: var(--tt-checkbox-symbol-opacity, 0);
         }
     }
 
@@ -123,7 +109,6 @@ const boxColor = (isReadOnly: boolean, isDisabled: boolean) => {
         color: var(--tt-field-txt-color);
         font-size: var(--fs-small);
         padding-top: 0.15em;
-        user-select: none;
     }
 
     @at-root div#{&} {
@@ -132,7 +117,16 @@ const boxColor = (isReadOnly: boolean, isDisabled: boolean) => {
     }
 
     &__native {
-        @include accessible-item;
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        white-space: nowrap;
+        overflow: hidden;
+        clip: rect(1px, 1px, 1px, 1px);
     }
+}
+
+.tt-checkbox-hidden-label {
+    display: none !important;
 }
 </style>
