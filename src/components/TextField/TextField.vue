@@ -1,14 +1,18 @@
 <template>
-    <field-base>
+    <field-base v-bind="$props">
         <template #label>
             <slot name="label"></slot>
         </template>
 
         <template #field="fieldProps">
-            <div class="text-field">
+            <div class="tt-text-field">
                 <slot name="before"></slot>
 
-                <span v-if="fieldProps?.isReadOnly" class="text-field__readonly" v-html="fieldProps?.modelValue"></span>
+                <span
+                    v-if="fieldProps?.isReadOnly"
+                    class="tt-text-field__readonly"
+                    v-html="fieldProps?.modelValue"
+                ></span>
 
                 <input
                     v-else
@@ -16,7 +20,7 @@
                     :value="fieldProps?.fieldValue"
                     :name="fieldProps?.name"
                     :id="fieldProps?.fieldID"
-                    class="text-field__input"
+                    class="tt-text-field__input"
                     :required="fieldProps?.isRequired"
                     :disabled="fieldProps?.isDisabled"
                     @input="fieldProps?.updateValue"
@@ -39,26 +43,18 @@
 <script setup lang="ts">
 import FieldBase from "@components/FieldBase";
 
-const props = defineProps({
-    type: {
-        type: String,
-        required: false,
-        default: "text",
-        validator(t: string) {
-            return ["text", "url", "tel", "email", "password"].includes(t);
-        },
-    },
+export type FieldTypes = "text" | "url" | "tel" | "email" | "password";
+
+export interface Props {
+    type?: FieldTypes;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+    type: "text",
 });
 </script>
 
 <style lang="scss">
-.text-field {
-    // @include field;
-
-    :deep(.icon) {
-        &:not(.has-txt-color) {
-            color: var(--tt-field-txt-color);
-        }
-    }
+.tt-text-field {
 }
 </style>

@@ -1,15 +1,14 @@
 import TextField from "./TextField.vue";
-import AppIcon from "@components/AppIcon";
+// import AppIcon from "@components/AppIcon";
 
 export default {
     title: "Formulaire/TextField",
     component: TextField,
 };
 
-const Template = (args) => ({
+const Template = (args: any) => ({
     components: {
         TextField,
-        AppIcon,
     },
     setup() {
         return { args };

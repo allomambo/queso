@@ -3,8 +3,9 @@
         // Prevent warnings coming from default HTML attributes
         "types": ["vite/client"],
         "jsx": "preserve",
-        "outDir": "dist",
+        // "strict": true,
         "skipLibCheck": true,
+        "outDir": "dist",
         "paths": {
             "@/*": ["./src/*"],
             "@components/*": ["./src/components/*"]

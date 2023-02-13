@@ -7,7 +7,7 @@
                 </span>
             </div>
 
-            <app-dropdown
+            <dropdown-base
                 v-else
                 class="select"
                 :options="options"
@@ -31,7 +31,7 @@
                     <span class="text">{{ data.label }}</span>
                     <app-icon name="check_mark" txt-color="white" bg-color="black" />
                 </template>
-            </app-dropdown>
+            </dropdown-base>
 
             <select
                 :name="fieldProps?.name"
@@ -59,11 +59,11 @@
 import { PropType } from "vue";
 
 import FieldBase from "@components/FieldBase";
-import AppDropdown from "@components/AppDropdown";
-import { Option } from "@components/AppDropdown/types";
+import DropdownBase from "@components/DropdownBase";
+import { Option } from "@components/DropdownBase/types";
 import AppSelectLabelMultiple from "./components/AppSelectLabelMultiple.vue";
 
-import AppIcon from "@components/AppIcon";
+// import AppIcon from "@components/AppIcon";
 
 const props = defineProps({
     options: {

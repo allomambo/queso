@@ -1,5 +1,5 @@
 <template>
-    <text-field label="Prénom" name="firstname" is-error>
+    <text-field type="email" label="Prénom" name="firstname" is-disabled>
         <template #error> salut </template>
     </text-field>
 </template>

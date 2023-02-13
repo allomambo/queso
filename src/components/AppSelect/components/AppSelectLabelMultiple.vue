@@ -1,16 +1,14 @@
 <template>
     <div class="select-label-multiple">
-        <tag-group-item type="plain" size="regular">{{ options[0].data.label }}</tag-group-item>
-        <tag-group-item v-if="optionsCount > 1" type="border" color="grey">+{{ optionsCount - 1 }}</tag-group-item>
+        <p>{{ options[0].data.label }}</p>
+        <p>+{{ optionsCount - 1 }}</p>
     </div>
 </template>
 
 <script setup lang="ts">
 import { PropType, computed } from "vue";
 
-import TagGroupItem from "@components/TagGroup/components/TagGroupItem";
-
-import { Option } from "@components/AppDropdown/types";
+import { Option } from "@components/DropdownBase/types";
 
 const props = defineProps({
     options: {

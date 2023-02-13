@@ -20,58 +20,31 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, ref, HTMLAttributes } from "vue";
 
-const props = defineProps({
+export interface Props {
     // BASE
-    id: {
-        type: String,
-        required: false,
-        default: null,
-    },
-    name: {
-        type: String,
-        required: true,
-        default: null,
-    },
-    label: {
-        type: String,
-        required: false,
-        default: "",
-    },
-    modelValue: null,
-
+    id?: string;
+    name?: string;
+    modelValue?: any;
+    label?: string;
     // STATES
-    isRequired: {
-        type: Boolean,
-        required: false,
-        default: false,
-    },
-    isDisabled: {
-        type: Boolean,
-        required: false,
-        default: false,
-    },
-    isReadOnly: {
-        type: Boolean,
-        required: false,
-        default: false,
-    },
-    isError: {
-        type: Boolean,
-        required: false,
-        default: false,
-    },
-});
+    isRequired?: boolean;
+    isDisabled?: boolean;
+    isReadOnly?: boolean;
+    isError?: boolean;
+}
+
+const props = defineProps<Props>();
 
 const emit = defineEmits(["update:modelValue"]);
 
 /**
  * STATES
  */
-const isActive = ref(false);
-const isHover = ref(false);
-const isFilled = computed(() => (fieldValue.value ? true : false));
+const isActive = ref<boolean>(false);
+const isHover = ref<boolean>(false);
+const isFilled = computed<boolean>(() => (fieldValue.value !== null ? true : false));
 
 const toggleIsActive = (bool: boolean) => {
     isActive.value = bool;
@@ -89,20 +62,18 @@ const updateValue = (data: any) => {
 /**
  * COMPUTEDS
  */
-const fieldValue = ref(props.modelValue ?? "");
+const fieldValue = ref<any>(props.modelValue ?? null);
 
-const fieldClasses = computed<string[]>(() => [
-    // States
-    props.isDisabled && "is-disabled",
-    props.isError && "is-error",
-    (isActive.value || isFilled.value) && "is-active",
-    isHover.value && "is-hover",
-    props.isReadOnly && "is-read-only",
-]);
+const fieldClasses = computed<HTMLAttributes["class"]>(() => ({
+    "is-disabled": props.isDisabled,
+    "is-error": props.isError,
+    "has-value": isFilled.value,
+    "is-active": isActive.value,
+    "is-hover": isHover.value,
+    "is-read-only": props.isReadOnly,
+}));
 
-const fieldID = computed<string>(() => {
-    return `field-${props.id || props.name}`;
-});
+const fieldID = computed<string>(() => props.id || props.name);
 </script>
 
 <style lang="scss">

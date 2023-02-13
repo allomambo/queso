@@ -48,7 +48,7 @@
 import { PropType } from "vue";
 
 import FieldBase from "@components/FieldBase";
-import AppIcon from "@components/AppIcon";
+// import AppIcon from "@components/AppIcon";
 
 interface TypeChoice {
     id: string | number;
