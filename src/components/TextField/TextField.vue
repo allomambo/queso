@@ -1,7 +1,11 @@
 <template>
-    <field-base ref="field">
-        <template #label>
-            <slot name="label"></slot>
+    <field-base>
+        <template #label="fieldProps">
+            <slot name="label" v-bind="{ ...fieldProps }"></slot>
+        </template>
+
+        <template #beforeField>
+            <slot name="beforeField"></slot>
         </template>
 
         <template
@@ -18,8 +22,6 @@
             }"
         >
             <div class="tt-text-field">
-                <slot name="before"></slot>
-
                 <span v-if="isReadOnly" class="tt-text-field__readonly" v-html="fieldValue"></span>
 
                 <input
@@ -42,15 +44,17 @@
             </div>
         </template>
 
-        <template #error>
-            <slot name="error"></slot>
+        <template #afterField>
+            <slot name="afterField"></slot>
+        </template>
+
+        <template #error="fieldProps">
+            <slot name="error" v-bind="{ ...fieldProps }"></slot>
         </template>
     </field-base>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-
 import FieldBase from "@components/FieldBase";
 
 export type FieldTypes = "text" | "url" | "tel" | "email" | "password";
@@ -61,12 +65,6 @@ export interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
     type: "text",
-});
-
-const field = ref<InstanceType<typeof FieldBase> | null>(null);
-
-defineExpose({
-    ...field.value,
 });
 </script>
 

@@ -1,6 +1,6 @@
 <template>
     <div class="tt-field" :class="fieldClasses">
-        <slot name="label">
+        <slot name="label" v-bind="{ ...exposedData }">
             <label v-if="label" :for="fieldID" class="tt-field-label">
                 {{ label }}
             </label>
@@ -13,7 +13,7 @@
         </div>
 
         <div v-if="isError" class="tt-field__error">
-            <slot name="error"></slot>
+            <slot name="error" v-bind="{ ...exposedData }"></slot>
         </div>
     </div>
 </template>
@@ -87,10 +87,6 @@ const exposedData = reactive({
     fieldName,
     fieldValue,
     fieldLabel,
-    // Methods
-    updateValue,
-    toggleIsActive,
-    toggleIsHover,
     // States
     isRequired,
     isActive,
@@ -99,6 +95,10 @@ const exposedData = reactive({
     isDisabled,
     isError,
     isReadOnly,
+    // Methods
+    updateValue,
+    toggleIsActive,
+    toggleIsHover,
 });
 
 defineExpose({ ...exposedData });
