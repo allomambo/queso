@@ -44,7 +44,7 @@ const emit = defineEmits(["update:modelValue"]);
 const isActive = ref<boolean>(false);
 const isHover = ref<boolean>(false);
 const isFilled = computed<boolean>(() => (fieldValue.value !== null ? true : false));
-const { isRequired, isDisabled, isError, isReadOnly, label } = toRefs(props);
+const { isRequired, isDisabled, isError, isReadOnly } = toRefs(props);
 
 const toggleIsActive = (bool: boolean = false) => {
     isActive.value = bool;
@@ -66,6 +66,7 @@ const fieldValue = ref<any>(props.modelValue ?? null);
 
 const fieldID = computed<string>(() => props.id || props.name);
 const fieldName = toRef(props, "name");
+const fieldLabel = toRef(props, "label");
 
 const fieldClasses = computed<HTMLAttributes["class"]>(() => ({
     "is-disabled": isDisabled.value,
@@ -85,7 +86,7 @@ const exposedData = reactive({
     fieldID,
     fieldName,
     fieldValue,
-    label,
+    fieldLabel,
     // Methods
     updateValue,
     toggleIsActive,

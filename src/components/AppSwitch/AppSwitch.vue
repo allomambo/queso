@@ -16,8 +16,8 @@
                 <span class="switch__box">
                     <span class="switch__box__circle"></span>
                 </span>
-                <span v-if="fieldProps?.label" class="switch__label">
-                    <span class="switch__label__text" v-html="fieldProps?.label"></span>
+                <span v-if="fieldProps?.fieldLabel" class="switch__label">
+                    <span class="switch__label__text" v-html="fieldProps?.fieldLabel"></span>
                     <span v-if="fieldProps?.isRequired" class="switch__label__required"> *</span>
                 </span>
             </component>

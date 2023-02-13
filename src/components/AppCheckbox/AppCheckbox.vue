@@ -22,7 +22,7 @@
                     />
                 </span>
                 <span class="checkbox__label">
-                    <span class="checkbox__label__text" v-html="fieldProps?.label"></span>
+                    <span class="checkbox__label__text" v-html="fieldProps?.fieldLabel"></span>
                     <span v-if="fieldProps?.isRequired" class="checkbox__label__required"> *</span>
                 </span>
             </component>
