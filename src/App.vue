@@ -1,11 +1,14 @@
 <template>
-    <text-field type="email" label="Prénom" name="firstname" is-disabled>
-        <template #error> salut </template>
-    </text-field>
+    <app-switch name="test" label="allo"> </app-switch>
 </template>
 
 <script setup lang="ts">
-import TextField from "@components/TextField";
+import AppSwitch from "@components/AppSwitch";
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+input {
+    color: var(--tt-field-txt-color);
+    border: 1px solid var(--tt-field-border-color);
+}
+</style>

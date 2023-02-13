@@ -1,7 +1,11 @@
 <template>
     <field-base>
         <template #label>
-            <span class="switch-hidden-label"></span>
+            <span class="tt-switch-hidden-label"></span>
+        </template>
+
+        <template #beforeField>
+            <slot name="beforeField"></slot>
         </template>
 
         <template
@@ -20,25 +24,25 @@
         >
             <component
                 :is="isReadOnly ? 'div' : 'label'"
-                class="switch"
+                class="tt-switch"
                 :for="fieldID"
                 :class="{ 'is-selected': fieldValue }"
                 @mouseover="toggleIsHover(true)"
                 @mouseleave="toggleIsHover(false)"
             >
-                <span class="switch__box">
-                    <span class="switch__box__circle"></span>
+                <span class="tt-switch__box">
+                    <span class="tt-switch__box__circle"></span>
                 </span>
-                <span v-if="fieldLabel" class="switch__label">
-                    <span class="switch__label__text" v-html="fieldLabel"></span>
-                    <span v-if="isRequired" class="switch__label__required"> *</span>
+                <span v-if="fieldLabel" class="tt-switch__label">
+                    <span class="tt-switch__label__text" v-html="fieldLabel"></span>
+                    <span v-if="isRequired" class="tt-switch__label__required"> *</span>
                 </span>
             </component>
 
             <input
                 v-if="!isReadOnly"
                 type="checkbox"
-                class="switch__native"
+                class="tt-switch__native"
                 :checked="fieldValue"
                 :name="fieldName"
                 :id="fieldID"
@@ -48,6 +52,14 @@
                 @focus="toggleIsActive(true)"
                 @blur="toggleIsActive(false)"
             />
+        </template>
+
+        <template #afterField>
+            <slot name="afterField"></slot>
+        </template>
+
+        <template #error="fieldProps">
+            <slot name="error" v-bind="{ ...fieldProps }"></slot>
         </template>
     </field-base>
 </template>
@@ -61,63 +73,54 @@ const getCheckboxState = (event: any, fieldCallback: (a: boolean) => void) => {
 </script>
 
 <style lang="scss">
-.switch {
-    --switch-padding: 0.2rem;
-    --switch-circle-size: 1.2rem;
-    --switch-circle-color: var(--color-grey-faded);
-    --switch-bg-color: transparent;
-    --switch-border-color: var(--color-grey-faded);
-    --switch-selected-circle-color: var(--color-white);
-    --switch-selected-bg-color: var(--color-black);
-    --switch-selected-border-color: var(--color-black);
+.tt-switch {
+    --tt-switch-circle-color: white;
+    --tt-switch-bg-color: silver;
+    --tt-switch-selected-circle-color: white;
+    --tt-switch-selected-bg-color: black;
+
+    --tt-switch-padding: 3px;
+    --tt-switch-padding-x: var(--tt-switch-padding);
+    --tt-switch-padding-y: var(--tt-switch-padding);
+    --tt-switch-width: calc(var(--tt-switch-circle-size) * 2 + var(--tt-switch-padding-x) * 2);
+    --tt-switch-height: calc(var(--tt-switch-circle-size) + var(--tt-switch-padding-y) * 2);
+    --tt-switch-radius: var(--tt-switch-circle-size);
+    --tt-switch-circle-size: 20px;
+    --tt-switch-circle-radius: var(--tt-switch-circle-size);
 
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: flex-start;
-    gap: var(--grid-gap-third);
     cursor: pointer;
 
     &.is-selected {
-        --switch-circle-translate: calc(var(--switch-circle-size) + var(--switch-padding) - 1px);
-        --switch-circle-color: var(--switch-selected-circle-color);
-        --switch-bg-color: var(--switch-selected-bg-color);
-        --switch-border-color: var(--switch-selected-border-color);
-        --tt-field-border-color: var(--switch-border-color);
-
-        .is-disabled & {
-            --switch-bg-color: var(--color-grey-faded);
-            --switch-border-color: var(--color-grey-faded);
-        }
-
-        .is-read-only & {
-            --switch-bg-color: var(--color-black-pale);
-            --switch-border-color: var(--color-black-pale);
-        }
+        --tt-switch-circle-translate: var(--tt-switch-circle-size);
+        --tt-switch-circle-color: var(--tt-switch-selected-circle-color);
+        --tt-switch-bg-color: var(--tt-switch-selected-bg-color);
     }
 
     &__box {
-        @include field;
-        --tt-field-width: calc(var(--switch-circle-size) * 2 + var(--switch-padding) * 3 + 2px);
-        --tt-field-height: calc(var(--switch-circle-size) + var(--switch-padding) * 2 + 2px);
-        --tt-field-padding-x: 0.3rem;
-        --tt-field-padding-y: 0.3rem;
-        --tt-field-bg-color: var(--switch-bg-color);
-        --tt-field-radius: var(--switch-circle-size);
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        width: var(--tt-switch-width);
+        height: var(--tt-switch-height);
+        padding: var(--tt-switch-padding-y) var(--tt-switch-padding-x);
+        background: var(--tt-switch-bg-color);
+        border-radius: var(--tt-switch-radius);
+        box-sizing: border-box;
 
         &__circle {
             display: block;
-            width: var(--switch-circle-size);
-            height: var(--switch-circle-size);
-            background-color: var(--switch-circle-color);
-            border-radius: var(--switch-circle-size);
-            transform: translateX(var(--switch-circle-translate, 0));
-            transition: transform 0.2s ease;
+            width: var(--tt-switch-circle-size);
+            height: var(--tt-switch-circle-size);
+            background-color: var(--tt-switch-circle-color);
+            border-radius: var(--tt-switch-circle-size);
+            transform: translateX(var(--tt-switch-circle-translate, 0));
         }
     }
 
     &__label {
-        color: var(--tt-field-txt-color);
-        font-size: var(--fs-small);
         user-select: none;
     }
 
@@ -127,11 +130,16 @@ const getCheckboxState = (event: any, fieldCallback: (a: boolean) => void) => {
     }
 
     &__native {
-        @include accessible-item;
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        white-space: nowrap;
+        overflow: hidden;
+        clip: rect(1px, 1px, 1px, 1px);
     }
 }
 
-.switch-hidden-label {
-    display: none;
+.tt-switch-hidden-label {
+    display: none !important;
 }
 </style>
