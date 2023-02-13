@@ -2,11 +2,11 @@
     <field-base>
         <template #field="fieldProps">
             <div class="text-area">
-                <span v-if="fieldProps?.isReadOnly" class="text-area__readonly" v-html="fieldProps?.modelValue"></span>
+                <span v-if="fieldProps?.isReadOnly" class="text-area__readonly" v-html="fieldProps?.fieldValue"></span>
 
                 <textarea
                     v-else
-                    :name="fieldProps?.name"
+                    :name="fieldProps?.fieldName"
                     :id="fieldProps?.fieldID"
                     :value="fieldProps?.fieldValue"
                     class="text-area__input"

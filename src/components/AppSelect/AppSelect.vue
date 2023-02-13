@@ -34,7 +34,7 @@
             </dropdown-base>
 
             <select
-                :name="fieldProps?.name"
+                :name="fieldProps?.fieldName"
                 :id="fieldProps?.fieldID"
                 class="select__select-native"
                 @focus="fieldProps.toggleIsActive(true)"

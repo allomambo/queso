@@ -1,15 +1,14 @@
 <template>
     <div class="tt-field" :class="fieldClasses">
-        <label v-if="label" :for="fieldID" class="tt-field-label">
-            <slot name="label">{{ label }}</slot>
-        </label>
+        <slot name="label">
+            <label v-if="label" :for="fieldID" class="tt-field-label">
+                {{ label }}
+            </label>
+        </slot>
 
         <div v-if="$slots.field" class="tt-field__input">
             <slot name="beforeField"></slot>
-            <slot
-                name="field"
-                v-bind="{ ...$props, fieldID, fieldValue, updateValue, toggleIsActive, toggleIsHover }"
-            ></slot>
+            <slot name="field" v-bind="{ ...exposedData }"></slot>
             <slot name="afterField"></slot>
         </div>
 
@@ -20,15 +19,15 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, HTMLAttributes } from "vue";
+import { computed, ref, toRef, HTMLAttributes, toRefs, reactive } from "vue";
 
 export interface Props {
-    // BASE
+    // Base
     id?: string;
     name?: string;
     modelValue?: any;
     label?: string;
-    // STATES
+    // States
     isRequired?: boolean;
     isDisabled?: boolean;
     isReadOnly?: boolean;
@@ -45,12 +44,13 @@ const emit = defineEmits(["update:modelValue"]);
 const isActive = ref<boolean>(false);
 const isHover = ref<boolean>(false);
 const isFilled = computed<boolean>(() => (fieldValue.value !== null ? true : false));
+const { isRequired, isDisabled, isError, isReadOnly, label } = toRefs(props);
 
-const toggleIsActive = (bool: boolean) => {
+const toggleIsActive = (bool: boolean = false) => {
     isActive.value = bool;
 };
 
-const toggleIsHover = (bool: boolean) => {
+const toggleIsHover = (bool: boolean = false) => {
     isHover.value = bool;
 };
 
@@ -64,53 +64,78 @@ const updateValue = (data: any) => {
  */
 const fieldValue = ref<any>(props.modelValue ?? null);
 
+const fieldID = computed<string>(() => props.id || props.name);
+const fieldName = toRef(props, "name");
+
 const fieldClasses = computed<HTMLAttributes["class"]>(() => ({
-    "is-disabled": props.isDisabled,
-    "is-error": props.isError,
+    "is-disabled": isDisabled.value,
+    "is-error": isError.value,
     "has-value": isFilled.value,
     "is-active": isActive.value,
     "is-hover": isHover.value,
-    "is-read-only": props.isReadOnly,
+    "is-read-only": isReadOnly.value,
 }));
 
-const fieldID = computed<string>(() => props.id || props.name);
+/**
+ * EXPOSE REFS/METHODS/STATES
+ */
+
+const exposedData = reactive({
+    // Base
+    fieldID,
+    fieldName,
+    fieldValue,
+    label,
+    // Methods
+    updateValue,
+    toggleIsActive,
+    toggleIsHover,
+    // States
+    isRequired,
+    isActive,
+    isHover,
+    isFilled,
+    isDisabled,
+    isError,
+    isReadOnly,
+});
+
+defineExpose({ ...exposedData });
 </script>
 
 <style lang="scss">
 .tt-field {
     --tt-field-height: 5rem;
+    --tt-field-txt-color: black;
+    --tt-field-border-color: black;
     position: relative;
-
-    &.is-active {
-        --label-scale: scale(0.5);
-        --label-translate: translateY(-110%);
-    }
 
     &.is-active,
     &.is-hover {
-        --tt-field-txt-color: var(--color-black);
-        --tt-field-border-color: var(--color-black-pale);
+        --tt-field-txt-color: green;
+        --tt-field-border-color: green;
+    }
+
+    &.has-value {
+        --tt-field-txt-color: rgb(0, 192, 0);
+        --tt-field-border-color: #00c200;
     }
 
     &.is-disabled {
-        --tt-field-txt-color: var(--color-grey);
-        --tt-field-border-color: var(--color-grey-faded);
+        --tt-field-txt-color: grey;
+        --tt-field-border-color: grey;
         pointer-events: none;
         user-select: none;
     }
 
     &.is-error {
-        --tt-field-border-color: var(--color-warning);
+        --tt-field-txt-color: red;
+        --tt-field-border-color: red;
     }
 
     &.is-read-only {
-        --tt-field-txt-color: var(--color-black-pale);
-        --tt-field-bg-color: var(--color-grey-pale);
-        --tt-field-border-color: var(--color-grey-pale);
-    }
-
-    &__input {
-        position: relative;
+        --tt-field-txt-color: blue;
+        --tt-field-border-color: blue;
     }
 }
 </style>

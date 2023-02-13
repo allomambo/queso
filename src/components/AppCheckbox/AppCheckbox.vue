@@ -32,7 +32,7 @@
                 type="checkbox"
                 class="checkbox__native"
                 :checked="fieldProps?.fieldValue"
-                :name="fieldProps?.name"
+                :name="fieldProps?.fieldName"
                 :id="fieldProps?.fieldID"
                 :required="fieldProps?.isRequired"
                 :disabled="fieldProps?.isDisabled"

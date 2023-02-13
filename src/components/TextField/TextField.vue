@@ -1,33 +1,41 @@
 <template>
-    <field-base v-bind="$props">
+    <field-base ref="field">
         <template #label>
             <slot name="label"></slot>
         </template>
 
-        <template #field="fieldProps">
+        <template
+            #field="{
+                fieldID,
+                fieldName,
+                fieldValue,
+                updateValue,
+                toggleIsActive,
+                toggleIsHover,
+                isRequired,
+                isDisabled,
+                isReadOnly,
+            }"
+        >
             <div class="tt-text-field">
                 <slot name="before"></slot>
 
-                <span
-                    v-if="fieldProps?.isReadOnly"
-                    class="tt-text-field__readonly"
-                    v-html="fieldProps?.modelValue"
-                ></span>
+                <span v-if="isReadOnly" class="tt-text-field__readonly" v-html="fieldValue"></span>
 
                 <input
                     v-else
                     :type="type"
-                    :value="fieldProps?.fieldValue"
-                    :name="fieldProps?.name"
-                    :id="fieldProps?.fieldID"
+                    :value="fieldValue"
+                    :name="fieldName"
+                    :id="fieldID"
                     class="tt-text-field__input"
-                    :required="fieldProps?.isRequired"
-                    :disabled="fieldProps?.isDisabled"
-                    @input="fieldProps?.updateValue"
-                    @mouseover="fieldProps.toggleIsHover(true)"
-                    @mouseleave="fieldProps.toggleIsHover(false)"
-                    @focus="fieldProps.toggleIsActive(true)"
-                    @blur="fieldProps.toggleIsActive(false)"
+                    :required="isRequired"
+                    :disabled="isDisabled"
+                    @input="updateValue"
+                    @mouseover="toggleIsHover(true)"
+                    @mouseleave="toggleIsHover(false)"
+                    @focus="toggleIsActive(true)"
+                    @blur="toggleIsActive(false)"
                 />
 
                 <slot name="after"></slot>
@@ -41,6 +49,8 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
+
 import FieldBase from "@components/FieldBase";
 
 export type FieldTypes = "text" | "url" | "tel" | "email" | "password";
@@ -51,6 +61,12 @@ export interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
     type: "text",
+});
+
+const field = ref<InstanceType<typeof FieldBase> | null>(null);
+
+defineExpose({
+    ...field.value,
 });
 </script>
 

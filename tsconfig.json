@@ -13,5 +13,6 @@
         "lib": ["es2016", "dom"]
     },
     "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"],
-    "exclude": ["node_modules", "src/**/*.test.ts"]
+    // "exclude": ["node_modules"],
+    "exclude": ["node_modules", "src/**/*.stories.ts", "src/**/*.test.ts"] // Temporary exclude stories and tests
 }
