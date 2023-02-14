@@ -58,29 +58,18 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from "vue";
-
 import FieldBase from "@components/FieldBase";
 import DropdownBase from "@components/DropdownBase";
 import { Option } from "@components/DropdownBase/types";
-import AppSelectLabelMultiple from "./components/AppSelectLabelMultiple.vue";
 
-const props = defineProps({
-    options: {
-        type: Array as PropType<Option[]>,
-        required: true,
-        default: () => [],
-    },
-    placeholder: {
-        type: String,
-        required: false,
-        default: "Sélectionner...",
-    },
-    multiple: {
-        type: Boolean,
-        required: false,
-        default: false,
-    },
+export interface Props {
+    options: Option[];
+    multiple?: boolean;
+    placeholder?: string;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+    options: () => [],
 });
 
 // Check if option in select is in active values
@@ -92,7 +81,6 @@ const isSelected = (values, option: Option) => {
 
 <style lang="scss">
 .queso-select {
-    // Native select
     &__select-native {
         position: absolute;
         width: 1px;
