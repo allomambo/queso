@@ -7,27 +7,16 @@
 }
 
 .l-stack {
-    @include stack("left", "vertical");
-
-    &.-vertical {
-        &.-center {
-            @include stack("center", "vertical");
-        }
-        &.-right {
-            @include stack("right", "vertical");
-        }
+    &:not(.-horizontal):not(.-vertical) {
+        @include stack("horizontal");
     }
 
     &.-horizontal {
-        &.-center {
-            @include stack("center", "horizontal");
-        }
-        &.-left {
-            @include stack("left", "horizontal");
-        }
-        &.-right {
-            @include stack("right", "horizontal");
-        }
+        @include stack("horizontal");
+    }
+
+    &.-vertical {
+        @include stack("vertical");
     }
 }
 

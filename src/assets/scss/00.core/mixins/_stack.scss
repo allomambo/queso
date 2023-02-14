@@ -5,34 +5,70 @@
 /**
  * Align and space elements in a container
  * @param  {string} $orientation     Orientation. Values: 'horizontal' or 'vertical'
- * @param  {string} $alignment       Alignment of each element. Values: 'left', 'right' or 'center'
+ * @param  {string} $alignX          Alignment of each element on X axis. Values: 'left', 'right' or 'center'
+ * @param  {string} $alignY          Alignment of each element on Y axis. Values: 'left', 'right' or 'center'
  * @return {void}
  */
-@mixin stack($alignment: "left", $orientation: "vertical") {
-    @if $orientation == "vertical" {
-        --stack-direction: column;
-
-        @if $alignment == "center" {
-            --stack-align: center;
-        } @else if $alignment == "right" {
-            --stack-align: flex-end;
-        }
-    } @else {
-        --stack-direction: row;
-
-        @if $alignment == "center" {
-            --stack-justify: center;
-        } @else if $alignment == "right" {
-            --stack-justify: flex-end;
-        }
+@mixin stack($orientation: "horizontal", $alignX: "left", $alignY: "center") {
+    @if $alignX != "left" and $alignX != "right" and $alignX != "center" {
+        @error "The X axis alignment '#{$alignX}' is not allowed, choose between 'left', 'right' or 'center'.";
     }
 
-    --stack-gap: #{$stack-gap};
+    @if $alignY != "top" and $alignY != "bottom" and $alignY != "center" {
+        @error "The Y axis alignment '#{$alignY}' is not allowed, choose between 'left', 'right' or 'center'.";
+    }
+
+    $direction: row;
+    $align: flex-start;
+    $justify: flex-start;
+    $wrap: wrap;
+
+    @if $orientation == "horizontal" {
+        $direction: row;
+
+        @if $alignX == "left" {
+            $justify: flex-start;
+        } @else if $alignX == "right" {
+            $justify: flex-end;
+        } @else if $alignX == "center" {
+            $justify: center;
+        }
+
+        @if $alignY == "top" {
+            $align: flex-start;
+        } @else if $alignY == "bottom" {
+            $align: flex-end;
+        } @else if $alignY == "center" {
+            $align: center;
+        }
+    } @else if $orientation == "vertical" {
+        $direction: column;
+        $wrap: nowrap;
+
+        @if $alignX == "left" {
+            $align: flex-start;
+        } @else if $alignX == "right" {
+            $align: flex-end;
+        } @else if $alignX == "center" {
+            $align: center;
+        }
+
+        @if $alignY == "top" {
+            $justify: flex-start;
+        } @else if $alignY == "bottom" {
+            $justify: flex-end;
+        } @else if $alignY == "center" {
+            $justify: center;
+        }
+    } @else {
+        @error "The orientation '#{$orientation}' is not allowed, choose between 'horizontal' or 'vertical'.";
+    }
+
     display: flex;
-    align-items: var(--stack-align, flex-start);
-    justify-content: var(--stack-justify, flex-start);
-    flex-direction: var(--stack-direction, row);
-    column-gap: var(--stack-col-gap, var(--stack-gap));
-    row-gap: var(--stack-row-gap, var(--stack-gap));
-    flex-wrap: var(--stack-wrap, wrap);
+    align-items: var(--stack-align, #{$align});
+    justify-content: var(--stack-justify, #{$justify});
+    flex-direction: var(--stack-direction, #{$direction});
+    column-gap: var(--stack-col-gap, var(--stack-gap, #{$stack-gap}));
+    row-gap: var(--stack-row-gap, var(--stack-gap, #{$stack-gap}));
+    flex-wrap: var(--stack-wrap, #{$wrap});
 }
