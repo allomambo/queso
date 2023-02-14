@@ -17,8 +17,10 @@
             "import": "./dist/index.js",
             "require": "./dist/index.cjs"
         },
-        "./css": "./dist/style.css",
-        "./utils": "./src/utils"
+        "./styles/components": "./dist/style.css",
+        "./styles/utils": "./src/assets/main.scss",
+        "./styles/reset": "./src/assets/00.core/_ress.scss",
+        "./scripts/utils": "./src/utils/index.ts"
     },
     "engines": {
         "node": ">=16.14.2",
