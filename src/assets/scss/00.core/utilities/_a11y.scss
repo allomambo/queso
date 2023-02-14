@@ -1,0 +1,18 @@
+/*=====================================
+=            Accessibility            =
+=====================================*/
+
+/**
+ * A class to hide labels and stuff
+ * for accessibility
+ * @author Facebook Accessibility Team
+ * @source https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
+ */
+@mixin accessible-item {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    white-space: nowrap;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+}

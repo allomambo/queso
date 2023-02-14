@@ -1,0 +1,38 @@
+/*======================================
+=               Line up                =
+======================================*/
+
+/**
+ * Align and space elements in a container
+ * @param  {string} $orientation     Orientation. Values: 'horizontal' or 'vertical'
+ * @param  {string} $alignment       Alignment of each element. Values: 'left', 'right' or 'center'
+ * @return {void}
+ */
+@mixin lineUp($alignment: "left", $orientation: "vertical") {
+    @if $orientation == "vertical" {
+        --lineup-direction: column;
+
+        @if $alignment == "center" {
+            --lineup-align: center;
+        } @else if $alignment == "right" {
+            --lineup-align: flex-end;
+        }
+    } @else {
+        --lineup-direction: row;
+
+        @if $alignment == "center" {
+            --lineup-justify: center;
+        } @else if $alignment == "right" {
+            --lineup-justify: flex-end;
+        }
+    }
+
+    --lineup-gap: #{$lineup-gap};
+    display: flex;
+    align-items: var(--lineup-align, flex-start);
+    justify-content: var(--lineup-justify, flex-start);
+    flex-direction: var(--lineup-direction, row);
+    column-gap: var(--lineup-col-gap, var(--lineup-gap));
+    row-gap: var(--lineup-row-gap, var(--lineup-gap));
+    flex-wrap: var(--lineup-wrap, wrap);
+}

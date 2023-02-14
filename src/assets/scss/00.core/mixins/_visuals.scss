@@ -1,0 +1,81 @@
+/*=============================
+=          Visuals            =
+=============================*/
+
+@mixin img($width: 100%) {
+    display: block;
+    max-width: $width;
+    height: auto;
+}
+
+@mixin fit_cover {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+// Pure CSS triangle
+@mixin triangle(
+    $direction,
+    $triangle-width,
+    $triangle-height,
+    $triangle-color
+) {
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+
+    @if $direction == up {
+        border-color: transparent transparent $triangle-color;
+        border-width: 0 ($triangle-width * 0.5) $triangle-height;
+    } @else if $direction == right {
+        border-color: transparent transparent transparent $triangle-color;
+        border-width: ($triangle-height * 0.5)
+            0
+            ($triangle-height * 0.5)
+            $triangle-width;
+    } @else if $direction == down {
+        border-color: $triangle-color transparent transparent;
+        border-width: $triangle-height ($triangle-width * 0.5) 0;
+    } @else if $direction == left {
+        border-color: transparent $triangle-color transparent transparent;
+        border-width: ($triangle-height * 0.5)
+            $triangle-width
+            ($triangle-height * 0.5)
+            0;
+    } @else {
+        @error "The direction `#{$direction}` is not allowed, choose between up, right, down, left. Property omitted";
+    }
+}
+
+/**
+   * Mixin printing a linear-gradient
+   * as well as a plain color fallback
+   * and the `-webkit-` prefixed declaration
+   * @param {String | List | Angle} $direction - Linear gradient direction
+   * @param {Arglist} $color-stops - List of color-stops composing the gradient
+   */
+@mixin linear-gradient($direction, $color-stops...) {
+    @if is-direction($direction) == false {
+        $color-stops: ($direction, $color-stops);
+        $direction: 180deg;
+    }
+
+    background: nth(nth($color-stops, 1), 1);
+    background: linear-gradient($direction, $color-stops);
+}
+
+@mixin radius(
+    $radiusTop: var(--border-radius-sm),
+    $radiusRight: var(--border-radius-sm),
+    $radiusBottom: var(--border-radius-sm),
+    $radiusLeft: var(--border-radius-sm)
+) {
+    border-radius: $radiusTop $radiusRight $radiusBottom $radiusLeft; /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+}

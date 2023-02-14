@@ -1,0 +1,33 @@
+/*=====================================
+=            Miscellaneous            =
+=====================================*/
+
+@mixin no-wrap {
+    white-space: nowrap;
+}
+
+// Border radius
+@mixin rounded-corners($radius: var(--border-radius-md)) {
+    @include radius($radius, $radius, $radius, $radius);
+}
+
+// Overflow
+@mixin overflow($orientation: "vertical") {
+    $overflowX: hidden;
+    $overflowY: auto;
+
+    @if ($orientation == "horizontal") {
+        $overflowX: auto;
+        $overflowY: hidden;
+    }
+
+    overflow-x: $overflowX;
+    overflow-y: $overflowY;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none; // for Internet Explorer, Edge
+    scrollbar-width: none; // for Firefox
+
+    &::-webkit-scrollbar {
+        display: none; // for Chrome, Safari and Opera
+    }
+}

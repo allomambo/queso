@@ -1,0 +1,111 @@
+/*=======================================
+=             Directories               =
+=======================================*/
+
+$base-dir: ".";
+
+$directories: (font: "#{$base-dir}/fonts/", img: "#{$base-dir}/images/");
+
+/*=======================================
+=                Colors                 =
+=======================================*/
+
+$colors: (
+    black: #000000,
+    white: #ffffff,
+    // charcoal
+    black-faded: #666666,
+    black-pale: #737373,
+    grey: #cccccc,
+    //  silver
+    grey-faded: #e1e0e0,
+    // smoke
+    grey-pale: #f5f5f5,
+    valid: #a6d3a0,
+    warning: #f7a6a6,
+    // ADISQ
+    blue: #3388e8,
+    blue-faded: #85b8f1,
+    blue-pale: #d6e7fa,
+    // Volum
+    lavender: #a99bfa,
+    lavender-faded: #c0b9f2,
+    lavender-pale: #d9d6e9,
+    // Boite à Outils
+    salmon: #eb7b71,
+    salmon-faded: #f3b0aa,
+    salmon-pale: #fbe5e3,
+    // Guide MQF
+    sky: #93c8fa,
+    sky-faded: #bedefc,
+    sky-pale: #e9f4fe,
+);
+
+$font-color: var(--color-black);
+
+$selection-bg: var(--color-black);
+$selection-color: var(--color-accent-pale);
+
+/*=======================================
+=              Typography               =
+=======================================*/
+
+$font-families: (
+    heading: (
+        "NeueMontreal",
+        Arial,
+        sans-serif,
+    ),
+    body: (
+        "NeueMontreal",
+        Arial,
+        sans-serif,
+    ),
+);
+
+$font-sizes: (
+    small: 1.3rem,
+    regular: 1.6rem,
+    medium: 1.8rem,
+    large: 2rem,
+    x-large: 2.2rem,
+);
+
+$font-faces: (
+    // <name> <filename> <font-weight> <font-style>,
+    "NeueMontreal" "NeueMontreal-BoldItalic" 800 italic,
+    "NeueMontreal" "NeueMontreal-Bold" 800 normal,
+    "NeueMontreal" "NeueMontreal-RegularItalic" 400 italic,
+    "NeueMontreal" "NeueMontreal-Regular" 400 normal,
+    "NeueMontreal" "NeueMontreal-LightItalic" 300 italic,
+    "NeueMontreal" "NeueMontreal-Light" 300 normal
+);
+
+// <html> Font-size
+$root-fs: 10px;
+$root-max-fs: 15px;
+
+// <body> font styles
+$dflt-font-family: var(--ff-body);
+$dflt-font-size: var(--fs-regular);
+$dflt-line-height: 1.35;
+
+/*=======================================
+=            Miscellaneous              =
+=======================================*/
+
+$ease: cubic-bezier(0.42, 0, 0.21, 1);
+$shadow: 0.4rem 0.4rem 2rem rgba(black, 0.08);
+
+/*=======================================
+=            Rounded Corner              =
+=======================================*/
+
+$border-radius: (
+    xs: 0.5rem,
+    sm: 0.8rem,
+    md: 1rem,
+    lg: 2rem,
+    xl: 2.5rem,
+    xxl: 4rem,
+);

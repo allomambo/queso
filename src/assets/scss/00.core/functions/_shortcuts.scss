@@ -1,0 +1,61 @@
+/*=================================
+=           Shortcuts             =
+=================================*/
+
+/**
+ * A function helper to avoid having to type `map-get($layers, ...)`
+ * Based on http://css-tricks.com/handling-z-index/
+ * @param  {string} $layer The name of the z-index
+ * @param  {number} $var   The modifier if needed
+ * @return {number}        The corresponding z-index based on the $layers var
+ */
+@function z($layer, $var: 0) {
+    @if not map-has-key($layers, $layer) {
+        @error "No z-index found in $layers map for `#{$layer}`. Property omitted.";
+    }
+
+    $value: map-get($layers, $layer);
+    @return $value + $var;
+}
+
+/**
+ * A function helper to avoid having to type `map-get($font-families, ...)` to output a given font-family
+ * @param  {string} $font-family The name of the font-family
+ * @return {string}              The corresponding font-family declaration
+ */
+@function ff($font-family) {
+    @if not map-has-key($font-families, $font-family) {
+        @error "No font-family found in $font-families map for `#{$font-family}`. Property omitted.";
+    }
+
+    $value: map-get($font-families, $font-family);
+    @return $value;
+}
+
+/**
+ * A function helper to avoid having to type `map-get($font-sizes, ...)` to output a given font-size
+ * @param  {string} $font-size The name of the font-size
+ * @return {string}            The corresponding font-family declaration
+ */
+@function fs($font-size) {
+    @if not map-has-key($font-sizes, $font-size) {
+        @error "No font-size found in $font-sizes map for `#{$font-size}`. Property omitted.";
+    }
+
+    $value: map-get($font-sizes, $font-size);
+    @return $value;
+}
+
+/**
+ * A function helper to avoid having to type `map-get($directories, ...)` to output a given font-size
+ * @param  {string} $dir The name of the directory
+ * @return {string}      The corresponding directory path
+ */
+@function dir($dir) {
+    @if not map-has-key($directories, $dir) {
+        @error "No directory found in $directories map for `#{$dir}`. Property omitted.";
+    }
+
+    $value: map-get($directories, $dir);
+    @return $value;
+}

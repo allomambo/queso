@@ -1,0 +1,18 @@
+/*=========================
+=     Global styles       =
+=========================*/
+
+// Reset
+@import "00.core/ress";
+
+@import "02.base/global";
+@import "02.base/layout";
+@import "02.base/typography";
+@import "02.base/root-var";
+
+/*=========================
+=         Debug           =
+=========================*/
+
+// Uncomment line below if needed
+// @import "00.core/tools/debug-outline";

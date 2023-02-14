@@ -1,0 +1,47 @@
+/*======================================
+=             Containers               =
+======================================*/
+
+/**
+ * Container(s) styles generator
+ * @param  {string} $variant     What size variant to generate.
+ *                               Use 'all' to generate default base styles and all other keys as modifier classes
+ * @return {void}
+ */
+@mixin container($variant: "default") {
+    @if $variant == "all" {
+        @each $name, $props in $containers {
+            $width: nth($props, 1);
+            $gutter: nth($props, 2);
+
+            @if $name == "default" {
+                @include container-styles($width, $gutter);
+            } @else {
+                &.-#{$name} {
+                    --container-width: #{$width};
+                    --container-gutter: #{$gutter};
+                }
+            }
+        }
+    } @else {
+        @if not map-has-key($containers, $variant) {
+            @error "No key found in $containers map for `#{$variant}`. Property omitted.";
+        }
+
+        $props: map-get($containers, $variant);
+        @include container-styles(nth($props, 1), nth($props, 2));
+    }
+}
+
+@mixin container-styles($width, $gutter) {
+    --container-width: #{$width};
+    --container-gutter: #{$gutter};
+    width: var(--container-width);
+    max-width: calc(100% - (var(--container-gutter) * 2));
+    margin-right: auto;
+    margin-left: auto;
+
+    @include max(md) {
+        --container-gutter: var(--grid-gap);
+    }
+}

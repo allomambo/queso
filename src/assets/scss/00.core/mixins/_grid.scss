@@ -1,0 +1,52 @@
+/*=======================================
+=                 Grid                  =
+=======================================*/
+
+@mixin make-cssgrid($columns: $grid-columns, $bps: $breakpoints) {
+    @each $breakpoint in map-keys($bps) {
+        $infix: breakpoint-infix($breakpoint, $bps);
+
+        @include min($breakpoint, $bps) {
+            @if $columns > 0 {
+                @for $i from 1 through $columns {
+                    .col-#{$i}#{$infix} {
+                        grid-column: auto / span $i;
+                    }
+                }
+
+                // Start with `1` because `0` is and invalid value.
+                // Ends with `$columns - 1` because offsetting by the width of an entire row isn't possible.
+                @for $i from 1 through ($columns - 1) {
+                    .start-#{$i}#{$infix} {
+                        grid-column-start: $i;
+                    }
+                    .end-#{$i}#{$infix} {
+                        grid-column-end: $i * -1;
+                    }
+                }
+
+                .col-all#{$infix} {
+                    grid-column: 1 / -1;
+                }
+
+                .col-half#{$infix} {
+                    grid-column: auto / span calc(var(--grid-columns) / 2);
+                }
+
+                .col-third#{$infix} {
+                    grid-column: auto / span calc(var(--grid-columns) / 3);
+                }
+            }
+        }
+    }
+}
+
+@mixin grid {
+    display: grid;
+    grid-template-rows: repeat(var(--grid-rows, 1), 1fr);
+    grid-template-columns: repeat(var(--grid-columns, #{$grid-columns}), 1fr);
+    column-gap: var(--grid-col-gap, var(--grid-gap));
+    row-gap: var(--grid-row-gap, var(--grid-gap));
+
+    @include make-cssgrid();
+}

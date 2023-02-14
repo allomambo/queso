@@ -1,0 +1,38 @@
+/*=======================================
+=            Global settings            =
+=======================================*/
+
+html {
+    font-size: $root-fs;
+
+    // https://mambomambo-team.atlassian.net/browse/ADISQTMPO-180
+    // @include min(2xl) {
+    //     $min-bp: breakpoint-min(2xl);
+    //     $ratio: strip-units(divide($root-fs, $min-bp)) * 100vw;
+    //     font-size: clamp($root-fs, $ratio, $root-max-fs);
+    // }
+
+    // Better font rendering for mac
+    @include antialiased;
+}
+
+body {
+    background: var(--color-white);
+}
+
+// Selection
+::-moz-selection {
+    text-shadow: none;
+    color: $selection-color;
+    background: $selection-bg;
+}
+
+::selection {
+    text-shadow: none;
+    color: $selection-color;
+    background: $selection-bg;
+}
+
+ul {
+    @include reset-list;
+}

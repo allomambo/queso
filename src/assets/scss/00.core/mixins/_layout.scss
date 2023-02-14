@@ -1,0 +1,55 @@
+/*======================================
+=            Viewport width            =
+======================================*/
+
+@mixin full-screen-dom(
+    $position: fixed,
+    $top: 0,
+    $right: 0,
+    $bottom: 0,
+    $left: 0
+) {
+    position: $position;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+}
+
+@mixin fullscreen {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+@mixin center-viewport($width: 100vw) {
+    left: calc(50% - #{$width});
+    width: $width;
+}
+
+@mixin clearfix {
+    &:after {
+        content: "";
+        clear: both;
+        display: block;
+    }
+}
+
+/*======================================
+=            Hide scrollbar            =
+======================================*/
+
+@mixin hide-scrollbar {
+    scrollbar-width: none;
+    scrollbar-height: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+        background-color: transparent;
+    }
+}

@@ -1,0 +1,50 @@
+/*=================================
+=         Size variations         =
+=================================*/
+
+/**
+ * Generate variants of a size in a root css variables format
+ * @param  {string}  $name           The name of the variable
+ * @param  {number}  $size           The size to decline
+ * @param  {boolean} $advanced       If true, generate more precise variants
+ * @param  {boolean} $minus          If true, generate negative variants
+ * @return {void}
+ */
+@mixin make-variations($name, $size, $advanced: false, $minus: false) {
+    --#{$name}: #{$size};
+
+    --#{$name}-half: calc(var(--#{$name}) / 2);
+    --#{$name}-third: calc(var(--#{$name}) / 3);
+    --#{$name}-2X: calc(var(--#{$name}) * 2);
+    --#{$name}-4X: calc(var(--#{$name}) * 4);
+
+    @if $advanced {
+        --#{$name}-two-third: calc((var(--#{$name}) / 3) * 2);
+        --#{$name}-quarter: calc(var(--#{$name}) / 4);
+        --#{$name}-sixth: calc(var(--#{$name}) / 6);
+        --#{$name}-1-25X: calc(var(--#{$name}) * 1.25);
+        --#{$name}-1-5X: calc(var(--#{$name}) * 1.5);
+        --#{$name}-1-75X: calc(var(--#{$name}) * 1.75);
+        --#{$name}-3X: calc(var(--#{$name}) * 3);
+        --#{$name}-5X: calc(var(--#{$name}) * 5);
+        --#{$name}-6X: calc(var(--#{$name}) * 6);
+    }
+
+    @if $minus {
+        --#{$name}-minus: calc(var(--#{$name}) * -1);
+        --#{$name}-minus-half: calc(var(--#{$name}) / -2);
+        --#{$name}-minus-third: calc(var(--#{$name}) / -3);
+        --#{$name}-minus-2X: calc(var(--#{$name}) * -2);
+        --#{$name}-minus-4X: calc(var(--#{$name}) * -4);
+
+        @if $advanced {
+            --#{$name}-minus-quarter: calc(var(--#{$name}) / -4);
+            --#{$name}-minus-1-25X: calc(var(--#{$name}) * -1.25);
+            --#{$name}-minus-1-5X: calc(var(--#{$name}) * -1.5);
+            --#{$name}-minus-1-75X: calc(var(--#{$name}) * -1.75);
+            --#{$name}-minus-3X: calc(var(--#{$name}) * -3);
+            --#{$name}-minus-5X: calc(var(--#{$name}) * -5);
+            --#{$name}-minus-6X: calc(var(--#{$name}) * -6);
+        }
+    }
+}

@@ -1,0 +1,32 @@
+/*=========================================
+=            Default animation            =
+=========================================*/
+
+@mixin anim-reveal-hide {
+    opacity: 0;
+    transform: translate(0, 2rem);
+    transition: transform var(--a-out-duration, 0.4s)
+            var(--a-out-ease, #{$in-sine}) var(--a-out-delay, 0s),
+        opacity var(--a-out-duration, 0.4s) var(--a-out-ease, #{$in-sine})
+            calc(var(--a-out-duration, 0.4s) + var(--a-out-delay, 0s));
+    // will-change: opacity, transform;
+}
+
+@mixin anim-reveal-show {
+    opacity: 1;
+    transform: translate(0);
+    transition: transform var(--a-in-duration, 0.4s)
+            var(--a-in-ease, #{$out-quad}) var(--a-in-delay, 0s),
+        opacity var(--a-in-duration, 0.4s) var(--a-in-ease, #{$out-quad})
+            var(--a-in-delay, 0s);
+}
+
+@mixin anim-reveal-default {
+    &.js-reveal {
+        @include anim-reveal-hide;
+
+        &.is-visible {
+            @include anim-reveal-show;
+        }
+    }
+}
