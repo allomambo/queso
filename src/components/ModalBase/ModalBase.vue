@@ -72,6 +72,7 @@ defineExpose({ open, close });
     --queso-modal-max-width: 80%;
     --queso-modal-max-height: 80%;
 
+    @include unselectable;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -82,8 +83,6 @@ defineExpose({ open, close });
     left: 0;
     z-index: var(--queso-modal-z, 400);
     opacity: var(--queso-modal-opacity);
-    pointer-events: var(--queso-modal-pointer-events, none);
-    user-select: var(--queso-modal-user-select, none);
 
     &__inner {
         max-width: var(--queso-modal-max-width);
@@ -94,9 +93,8 @@ defineExpose({ open, close });
     }
 
     &.is-open {
-        --queso-modal-pointer-events: auto;
-        --queso-modal-user-select: auto;
         --queso-modal-opacity: 1;
+        @include unselectable(false);
     }
 }
 </style>

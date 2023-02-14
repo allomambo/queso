@@ -82,12 +82,7 @@ const isSelected = (values, option: Option) => {
 <style lang="scss">
 .queso-select {
     &__select-native {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        white-space: nowrap;
-        overflow: hidden;
-        clip: rect(1px, 1px, 1px, 1px);
+        @include accessible-item;
     }
 }
 </style>
