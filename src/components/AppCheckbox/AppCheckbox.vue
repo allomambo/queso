@@ -31,7 +31,9 @@
                 @mouseleave="toggleIsHover(false)"
             >
                 <span class="tt-checkbox__box">
-                    <span class="tt-checkbox__box__symbol">✔︎</span>
+                    <span class="tt-checkbox__box__symbol">
+                        <slot name="symbol">✔︎</slot>
+                    </span>
                 </span>
                 <span class="tt-checkbox__label">
                     <span class="tt-checkbox__label__text" v-html="fieldLabel"></span>
