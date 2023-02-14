@@ -1,33 +1,27 @@
 {
-    "name": "@allomambo/tacos-toppings",
-    "description": "",
-    "public": true,
-    "version": "0.0.2",
-    "engines": {
-        "node": ">=16.14.2",
-        "npm": ">=8.0.0"
-    },
-    "repository": "https://github.com/allomambo/tacos-toppings.git",
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/allomambo/tacos-toppings/issues"
-    },
-    "homepage": "https://github.com/allomambo/tacos-toppings#readme",
+    "name": "@allomambo/queso",
+    "version": "0.0.3",
+    "description": "VueJS component library to use in conjunction with Arepa",
+    "repository": "https://github.com/allomambo/queso.git",
+    "author": "MamboMambo <allo@mambomambo.ca> (https://mambomambo.ca)",
+    "license": "MIT",
     "type": "module",
+    "main": "./dist/index.umd.cjs",
+    "module": "./dist/index.js",
     "files": [
         "dist/*",
         "src/*"
     ],
-    "main": "./dist/index.umd.cjs",
-    "module": "./dist/index.js",
     "exports": {
         ".": {
             "import": "./dist/index.js",
             "require": "./dist/index.cjs"
         },
         "./css": "./dist/style.css"
+    },
+    "engines": {
+        "node": ">=16.14.2",
+        "npm": ">=8.0.0"
     },
     "scripts": {
         "ci": "yarn install --immutable --immutable-cache --check-cache",
@@ -37,8 +31,6 @@
         "build:lib": "vite build",
         "publish:lib": "npm publish --access public",
         "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src",
-        "storybook": "start-storybook -p 6006",
-        "build:storybook": "build-storybook -o ./docs -c ./.storybook",
         "test:coverage": "vitest run --coverage",
         "test:run": "vitest --run",
         "test": "vitest"
@@ -48,7 +40,6 @@
         "vue": "^3.2.45"
     },
     "devDependencies": {
-        "@storybook/builder-vite": "^0.4.0",
         "@types/node": "^18.11.18",
         "@typescript-eslint/eslint-plugin": "^5.4.0",
         "@typescript-eslint/parser": "^5.4.0",
