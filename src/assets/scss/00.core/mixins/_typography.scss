@@ -16,6 +16,22 @@
 }
 
 /*=================================
+=         Selected Text           =
+=================================*/
+
+@mixin selection {
+    ::-moz-selection {
+        text-shadow: none;
+        @content;
+    }
+
+    ::selection {
+        text-shadow: none;
+        @content;
+    }
+}
+
+/*=================================
 =              Misc               =
 =================================*/
 

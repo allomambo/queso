@@ -14,18 +14,7 @@ body {
 }
 
 // Selection
-::-moz-selection {
-    text-shadow: none;
+@include selection {
     color: $selection-color;
     background: $selection-bg;
-}
-
-::selection {
-    text-shadow: none;
-    color: $selection-color;
-    background: $selection-bg;
-}
-
-ul {
-    @include reset-list;
 }
