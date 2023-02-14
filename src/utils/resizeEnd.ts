@@ -1,3 +1,16 @@
+/*
+ * Custom resizeEnd event
+ *
+ * Usage:
+ * 1. Initialize at global load
+ * import { resizeEnd } from "@/utils";
+ * resizeEnd();
+ *
+ * 2. Then you can use the event listener
+ * window.addEventListener("resizeEnd", ...);
+ *
+ */
+
 import { useDebounceFn } from "@vueuse/core";
 
 const resizeEnd = () => {
