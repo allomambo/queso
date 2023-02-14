@@ -1,18 +1,18 @@
 <template>
-    <div class="tt-field" :class="fieldClasses">
+    <div class="queso-field" :class="fieldClasses">
         <slot name="label" v-bind="{ ...exposedData }">
-            <label v-if="label" :for="fieldID" class="tt-field-label">
+            <label v-if="label" :for="fieldID" class="queso-field-label">
                 {{ label }}
             </label>
         </slot>
 
-        <div v-if="$slots.field" class="tt-field__input">
+        <div v-if="$slots.field" class="queso-field__input">
             <slot name="beforeField"></slot>
             <slot name="field" v-bind="{ ...exposedData }"></slot>
             <slot name="afterField"></slot>
         </div>
 
-        <div v-if="isError" class="tt-field__error">
+        <div v-if="isError" class="queso-field__error">
             <slot name="error" v-bind="{ ...exposedData }"></slot>
         </div>
     </div>
@@ -105,38 +105,12 @@ defineExpose({ ...exposedData });
 </script>
 
 <style lang="scss">
-.tt-field {
-    --tt-field-height: 5rem;
-    --tt-field-txt-color: black;
-    --tt-field-border-color: black;
+.queso-field {
     position: relative;
 
-    &.is-active,
-    &.is-hover {
-        --tt-field-txt-color: green;
-        --tt-field-border-color: green;
-    }
-
-    &.has-value {
-        --tt-field-txt-color: rgb(0, 192, 0);
-        --tt-field-border-color: #00c200;
-    }
-
     &.is-disabled {
-        --tt-field-txt-color: grey;
-        --tt-field-border-color: grey;
         pointer-events: none;
         user-select: none;
-    }
-
-    &.is-error {
-        --tt-field-txt-color: red;
-        --tt-field-border-color: red;
-    }
-
-    &.is-read-only {
-        --tt-field-txt-color: blue;
-        --tt-field-border-color: blue;
     }
 }
 </style>

@@ -21,15 +21,15 @@
                 isReadOnly,
             }"
         >
-            <div class="tt-text-area">
-                <span v-if="isReadOnly" class="tt-text-area__readonly" v-html="fieldValue"></span>
+            <div class="queso-text-area">
+                <span v-if="isReadOnly" class="queso-text-area__readonly" v-html="fieldValue"></span>
 
                 <textarea
                     v-else
                     :name="fieldName"
                     :id="fieldID"
                     :value="fieldValue"
-                    class="tt-text-area__input"
+                    class="queso-text-area__input"
                     :required="isRequired"
                     :disabled="isDisabled"
                     @input="updateValue"
@@ -56,6 +56,6 @@ import FieldBase from "@components/FieldBase";
 </script>
 
 <style lang="scss">
-.tt-text-area {
+.queso-text-area {
 }
 </style>

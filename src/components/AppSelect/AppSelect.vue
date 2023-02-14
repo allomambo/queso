@@ -1,15 +1,15 @@
 <template>
     <field-base>
         <template #field="{ fieldID, fieldName, fieldValue, updateValue, toggleIsActive, toggleIsHover, isReadOnly }">
-            <div v-if="isReadOnly" class="tt-select__read-only">
-                <span class="tt-select__read-only__label">
+            <div v-if="isReadOnly" class="queso-select__read-only">
+                <span class="queso-select__read-only__label">
                     {{ fieldValue[0].data.label || placeholder }}
                 </span>
             </div>
 
             <dropdown-base
                 v-else
-                class="tt-select"
+                class="queso-select"
                 :options="options"
                 :default-options="fieldValue || []"
                 :multiple="multiple"
@@ -38,7 +38,7 @@
             <select
                 :name="fieldName"
                 :id="fieldID"
-                class="tt-select__select-native"
+                class="queso-select__select-native"
                 @focus="toggleIsActive(true)"
                 @blur="toggleIsActive(false)"
                 :multiple="multiple"
@@ -91,7 +91,7 @@ const isSelected = (values, option: Option) => {
 </script>
 
 <style lang="scss">
-.tt-select {
+.queso-select {
     // Native select
     &__select-native {
         position: absolute;
