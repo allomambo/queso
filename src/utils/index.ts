@@ -21,15 +21,15 @@ const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matc
 const isTouch = "ontouchstart" in document.documentElement;
 
 export {
+    typeCheck,
     arrayToGraphQL,
-    capitalize,
     checkStatus,
-    isTouch,
-    mailTo,
     mutateState,
-    reducedMotion,
     resizeEnd,
+    mailTo,
     tel,
     toKebab,
-    typeCheck,
+    capitalize,
+    isTouch,
+    reducedMotion,
 };

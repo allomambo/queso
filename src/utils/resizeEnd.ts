@@ -1,15 +1,7 @@
 import { useDebounceFn } from "@vueuse/core";
 
-function resizeEnd() {
+const resizeEnd = () => {
     const resizeEnd = new Event("resizeEnd");
-
-    // window.addEventListener(
-    //     "resize",
-    //     debounce(() => {
-    //         window.dispatchEvent(resizeEnd);
-    //         // console.log("::resizeEnd");
-    //     }, 200)
-    // );
 
     window.addEventListener(
         "resize",
@@ -17,6 +9,6 @@ function resizeEnd() {
             window.dispatchEvent(resizeEnd);
         }, 200)
     );
-}
+};
 
 export default resizeEnd;
