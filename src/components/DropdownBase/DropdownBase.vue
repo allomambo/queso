@@ -51,27 +51,16 @@ import { onClickOutside, useScroll } from "@vueuse/core";
 import { Option } from "./types";
 
 // Props / Emits
-const props = defineProps({
-    defaultOptions: {
-        type: Array as PropType<Option[]>,
-        required: false,
-        default: () => [],
-    },
-    options: {
-        type: Array as PropType<Option[]>,
-        required: true,
-        default: () => [],
-    },
-    multiple: {
-        type: Boolean,
-        required: false,
-        default: false,
-    },
-    stayOpenOnSelection: {
-        type: Boolean,
-        required: false,
-        default: false,
-    },
+export interface Props {
+    defaultOptions?: Option[];
+    options: Option[];
+    multiple?: boolean;
+    stayOpenOnSelection?: boolean;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+    defaultOptions: () => [],
+    options: () => [],
 });
 
 const emit = defineEmits(["update:options", "open:dropdown", "close:dropdown"]);
