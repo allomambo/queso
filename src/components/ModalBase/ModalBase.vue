@@ -1,9 +1,9 @@
 <template>
     <Teleport to="body">
-        <div class="tt-modal" :class="{ 'is-open': isOpen }">
+        <div class="queso-modal" :class="{ 'is-open': isOpen }">
             <slot name="before-content"></slot>
 
-            <div class="tt-modal__inner">
+            <div class="queso-modal__inner">
                 <slot></slot>
             </div>
 
@@ -67,10 +67,10 @@ defineExpose({ open, close });
 </script>
 
 <style lang="scss">
-.tt-modal {
-    --tt-modal-opacity: 0;
-    --tt-modal-max-width: 80%;
-    --tt-modal-max-height: 80%;
+.queso-modal {
+    --queso-modal-opacity: 0;
+    --queso-modal-max-width: 80%;
+    --queso-modal-max-height: 80%;
 
     display: flex;
     align-items: center;
@@ -80,23 +80,23 @@ defineExpose({ open, close });
     position: fixed;
     top: 0;
     left: 0;
-    z-index: var(--tt-modal-z, 400);
-    opacity: var(--tt-modal-opacity);
-    pointer-events: var(--tt-modal-pointer-events, none);
-    user-select: var(--tt-modal-user-select, none);
+    z-index: var(--queso-modal-z, 400);
+    opacity: var(--queso-modal-opacity);
+    pointer-events: var(--queso-modal-pointer-events, none);
+    user-select: var(--queso-modal-user-select, none);
 
     &__inner {
-        max-width: var(--tt-modal-max-width);
-        max-height: var(--tt-modal-max-height);
+        max-width: var(--queso-modal-max-width);
+        max-height: var(--queso-modal-max-height);
         position: relative;
         z-index: 2;
         overflow: auto;
     }
 
     &.is-open {
-        --tt-modal-pointer-events: auto;
-        --tt-modal-user-select: auto;
-        --tt-modal-opacity: 1;
+        --queso-modal-pointer-events: auto;
+        --queso-modal-user-select: auto;
+        --queso-modal-opacity: 1;
     }
 }
 </style>

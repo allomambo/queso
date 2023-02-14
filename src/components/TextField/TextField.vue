@@ -21,8 +21,8 @@
                 isReadOnly,
             }"
         >
-            <div class="tt-text-field">
-                <span v-if="isReadOnly" class="tt-text-field__readonly" v-html="fieldValue"></span>
+            <div class="queso-text-field">
+                <span v-if="isReadOnly" class="queso-text-field__readonly" v-html="fieldValue"></span>
 
                 <input
                     v-else
@@ -30,7 +30,7 @@
                     :value="fieldValue"
                     :name="fieldName"
                     :id="fieldID"
-                    class="tt-text-field__input"
+                    class="queso-text-field__input"
                     :required="isRequired"
                     :disabled="isDisabled"
                     @input="updateValue"
@@ -69,6 +69,6 @@ const props = withDefaults(defineProps<Props>(), {
 </script>
 
 <style lang="scss">
-.tt-text-field {
+.queso-text-field {
 }
 </style>

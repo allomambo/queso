@@ -25,7 +25,7 @@ Default.args = {
 Default.parameters = {
     docs: {
         source: {
-            code: `<tempo-text-area id="${Default.args.id}" name="${Default.args.name}" label="${Default.args.label}" model-value="${Default.args.modelValue}" />`,
+            code: `<queso-text-area id="${Default.args.id}" name="${Default.args.name}" label="${Default.args.label}" model-value="${Default.args.modelValue}" />`,
         },
     },
 };

@@ -1,7 +1,7 @@
 <template>
     <field-base>
         <template #label>
-            <span class="tt-checkbox-hidden-label"></span>
+            <span class="queso-checkbox__hidden-label"></span>
         </template>
 
         <template #beforeField>
@@ -24,26 +24,26 @@
         >
             <component
                 :is="isReadOnly ? 'div' : 'label'"
-                class="tt-checkbox"
+                class="queso-checkbox"
                 :for="fieldID"
                 :class="{ 'is-checked': fieldValue }"
                 @mouseover="toggleIsHover(true)"
                 @mouseleave="toggleIsHover(false)"
             >
-                <span class="tt-checkbox__box">
-                    <span class="tt-checkbox__box__symbol">
+                <span class="queso-checkbox__box">
+                    <span class="queso-checkbox__box__symbol">
                         <slot name="symbol">✔︎</slot>
                     </span>
                 </span>
-                <span class="tt-checkbox__label">
-                    <span class="tt-checkbox__label__text" v-html="fieldLabel"></span>
+                <span class="queso-checkbox__label">
+                    <span class="queso-checkbox__label__text" v-html="fieldLabel"></span>
                 </span>
             </component>
 
             <input
                 v-if="!isReadOnly"
                 type="checkbox"
-                class="tt-checkbox__native"
+                class="queso-checkbox__native"
                 :checked="fieldValue"
                 :name="fieldName"
                 :id="fieldID"
@@ -89,26 +89,26 @@ const getCheckboxState = (event: any, fieldCallback: (a: boolean) => void) => {
 </script>
 
 <style lang="scss">
-.tt-checkbox {
+.queso-checkbox {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     cursor: pointer;
 
     &.is-checked {
-        --tt-checkbox-symbol-opacity: 1;
+        --queso-checkbox-symbol-opacity: 1;
     }
 
     &__box {
         user-select: none;
 
         &__symbol {
-            opacity: var(--tt-checkbox-symbol-opacity, 0);
+            opacity: var(--queso-checkbox-symbol-opacity, 0);
         }
     }
 
     &__label {
-        color: var(--tt-field-txt-color);
+        color: var(--queso-field-txt-color);
         font-size: var(--fs-small);
         padding-top: 0.15em;
     }
@@ -126,9 +126,9 @@ const getCheckboxState = (event: any, fieldCallback: (a: boolean) => void) => {
         overflow: hidden;
         clip: rect(1px, 1px, 1px, 1px);
     }
-}
 
-.tt-checkbox-hidden-label {
-    display: none !important;
+    &__hidden-label {
+        display: none !important;
+    }
 }
 </style>

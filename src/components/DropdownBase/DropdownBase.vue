@@ -1,34 +1,34 @@
 <template>
-    <div v-if="options.length > 0" class="tt-dropdown" ref="dropdown" :class="dropdownClasses">
-        <div class="tt-dropdown__selector" @click="toggleDropdown(!isDropdownOpen)">
+    <div v-if="options.length > 0" class="queso-dropdown" ref="dropdown" :class="dropdownClasses">
+        <div class="queso-dropdown__selector" @click="toggleDropdown(!isDropdownOpen)">
             <slot name="prefix"></slot>
-            <div class="tt-dropdown__selector__text">
-                <div v-if="activeOptions.length < 1" class="tt-dropdown__selector__placeholder">
+            <div class="queso-dropdown__selector__text">
+                <div v-if="activeOptions.length < 1" class="queso-dropdown__selector__placeholder">
                     <slot name="placeholder"></slot>
                 </div>
-                <div v-else class="tt-dropdown__selector__active-label">
+                <div v-else class="queso-dropdown__selector__active-label">
                     <slot name="selector" v-bind="{ activeOptions }">
                         {{ activeOptions }}
                     </slot>
                 </div>
             </div>
             <slot name="suffix"></slot>
-            <div class="tt-dropdown__selector__icon">
+            <div class="queso-dropdown__selector__icon">
                 <slot name="icon">↓</slot>
             </div>
         </div>
 
-        <div class="tt-dropdown__popover">
-            <div v-if="$slots.popoverHeader" class="tt-dropdown__popover__header">
+        <div class="queso-dropdown__popover">
+            <div v-if="$slots.popoverHeader" class="queso-dropdown__popover__header">
                 <slot name="popoverHeader" v-bind="{ openDropdown, closeDropdown }"></slot>
             </div>
-            <div class="tt-dropdown__popover__scroll" :class="dropdownPopoverClasses">
-                <ul ref="dropdownPopover" class="tt-dropdown__popover__options-list">
+            <div class="queso-dropdown__popover__scroll" :class="dropdownPopoverClasses">
+                <ul ref="dropdownPopover" class="queso-dropdown__popover__options-list">
                     <li
                         v-for="option in options"
                         :key="option.key"
                         @click="updateOption(option)"
-                        class="tt-dropdown__popover__options-list__item"
+                        class="queso-dropdown__popover__options-list__item"
                         :class="{ 'is-active': activeOptions.find((o) => o.key === option.key) }"
                     >
                         <slot name="item" v-bind="{ ...option, openDropdown, closeDropdown }">
@@ -37,7 +37,7 @@
                     </li>
                 </ul>
             </div>
-            <div v-if="$slots.popoverFooter" class="tt-dropdown__popover__footer">
+            <div v-if="$slots.popoverFooter" class="queso-dropdown__popover__footer">
                 <slot name="popoverFooter" v-bind="{ openDropdown, closeDropdown }"></slot>
             </div>
         </div>
@@ -51,27 +51,16 @@ import { onClickOutside, useScroll } from "@vueuse/core";
 import { Option } from "./types";
 
 // Props / Emits
-const props = defineProps({
-    defaultOptions: {
-        type: Array as PropType<Option[]>,
-        required: false,
-        default: () => [],
-    },
-    options: {
-        type: Array as PropType<Option[]>,
-        required: true,
-        default: () => [],
-    },
-    multiple: {
-        type: Boolean,
-        required: false,
-        default: false,
-    },
-    stayOpenOnSelection: {
-        type: Boolean,
-        required: false,
-        default: false,
-    },
+export interface Props {
+    defaultOptions?: Option[];
+    options: Option[];
+    multiple?: boolean;
+    stayOpenOnSelection?: boolean;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+    defaultOptions: () => [],
+    options: () => [],
 });
 
 const emit = defineEmits(["update:options", "open:dropdown", "close:dropdown"]);
@@ -184,7 +173,7 @@ const dropdownPopoverClasses = computed(() => ({
 </script>
 
 <style lang="scss">
-.tt-dropdown {
+.queso-dropdown {
     position: relative;
 
     /*=================================
@@ -193,8 +182,8 @@ const dropdownPopoverClasses = computed(() => ({
 
     &__selector {
         display: flex;
-        align-items: var(--tt-dropdown-selector-align, center);
-        justify-content: var(--tt-dropdown-selector-justify, flex-start);
+        align-items: var(--queso-dropdown-selector-align, center);
+        justify-content: var(--queso-dropdown-selector-justify, flex-start);
         cursor: pointer;
 
         &__icon {
@@ -208,23 +197,23 @@ const dropdownPopoverClasses = computed(() => ({
 
     &__popover {
         position: absolute;
-        top: var(--tt-dropdown-popover-pos-top, 100%);
-        bottom: var(--tt-dropdown-popover-pos-bottom, auto);
-        left: var(--tt-dropdown-popover-pos-left, 0);
-        right: var(--tt-dropdown-popover-pos-right, 0);
-        z-index: var(--tt-dropdown-popover-z, 300);
+        top: var(--queso-dropdown-popover-pos-top, 100%);
+        bottom: var(--queso-dropdown-popover-pos-bottom, auto);
+        left: var(--queso-dropdown-popover-pos-left, 0);
+        right: var(--queso-dropdown-popover-pos-right, 0);
+        z-index: var(--queso-dropdown-popover-z, 300);
         overflow: hidden;
-        opacity: var(--tt-dropdown-popover-opacity, 0);
-        pointer-events: var(--tt-dropdown-popover-pointer-events, none);
+        opacity: var(--queso-dropdown-popover-opacity, 0);
+        pointer-events: var(--queso-dropdown-popover-pointer-events, none);
 
         // Options list
         &__options-list {
-            display: var(--tt-dropdown-popover-display, flex);
-            flex-direction: var(--tt-dropdown-popover-direction, column);
-            align-items: var(--tt-dropdown-popover-align, stretch);
-            justify-content: var(--tt-dropdown-popover-justify, flex-start);
-            flex-wrap: var(--tt-dropdown-popover-wrap, nowrap);
-            max-height: var(--tt-dropdown-popover-max-height, 25rem);
+            display: var(--queso-dropdown-popover-display, flex);
+            flex-direction: var(--queso-dropdown-popover-direction, column);
+            align-items: var(--queso-dropdown-popover-align, stretch);
+            justify-content: var(--queso-dropdown-popover-justify, flex-start);
+            flex-wrap: var(--queso-dropdown-popover-wrap, nowrap);
+            max-height: var(--queso-dropdown-popover-max-height, 25rem);
             overflow-x: hidden;
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
@@ -242,8 +231,8 @@ const dropdownPopoverClasses = computed(() => ({
     =================================*/
 
     &.is-open {
-        --tt-dropdown-popover-opacity: 1;
-        --tt-dropdown-popover-pointer-events: all;
+        --queso-dropdown-popover-opacity: 1;
+        --queso-dropdown-popover-pointer-events: all;
     }
 }
 </style>

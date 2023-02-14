@@ -1,15 +1,15 @@
 <template>
     <field-base>
         <template #field="{ fieldID, fieldName, fieldValue, updateValue, toggleIsActive, toggleIsHover, isReadOnly }">
-            <div v-if="isReadOnly" class="tt-select__read-only">
-                <span class="tt-select__read-only__label">
+            <div v-if="isReadOnly" class="queso-select__read-only">
+                <span class="queso-select__read-only__label">
                     {{ fieldValue[0].data.label || placeholder }}
                 </span>
             </div>
 
             <dropdown-base
                 v-else
-                class="tt-select"
+                class="queso-select"
                 :options="options"
                 :default-options="fieldValue || []"
                 :multiple="multiple"
@@ -18,7 +18,7 @@
                 @mouseleave="toggleIsHover(false)"
             >
                 <template #placeholder>
-                    {{ placeholder }}
+                    <slot name="placeholder" v-bind="{ placeholder }">{{ placeholder }}</slot>
                 </template>
                 <template #selector="{ activeOptions }">
                     <slot name="selector" v-bind="{ activeOptions }">
@@ -38,7 +38,7 @@
             <select
                 :name="fieldName"
                 :id="fieldID"
-                class="tt-select__select-native"
+                class="queso-select__select-native"
                 @focus="toggleIsActive(true)"
                 @blur="toggleIsActive(false)"
                 :multiple="multiple"
@@ -58,29 +58,18 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from "vue";
-
 import FieldBase from "@components/FieldBase";
 import DropdownBase from "@components/DropdownBase";
 import { Option } from "@components/DropdownBase/types";
-import AppSelectLabelMultiple from "./components/AppSelectLabelMultiple.vue";
 
-const props = defineProps({
-    options: {
-        type: Array as PropType<Option[]>,
-        required: true,
-        default: () => [],
-    },
-    placeholder: {
-        type: String,
-        required: false,
-        default: "Sélectionner...",
-    },
-    multiple: {
-        type: Boolean,
-        required: false,
-        default: false,
-    },
+export interface Props {
+    options: Option[];
+    multiple?: boolean;
+    placeholder?: string;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+    options: () => [],
 });
 
 // Check if option in select is in active values
@@ -91,8 +80,7 @@ const isSelected = (values, option: Option) => {
 </script>
 
 <style lang="scss">
-.tt-select {
-    // Native select
+.queso-select {
     &__select-native {
         position: absolute;
         width: 1px;

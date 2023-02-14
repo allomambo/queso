@@ -78,7 +78,7 @@ Default.args = {
 Default.parameters = {
     docs: {
         source: {
-            code: `<tacos-dropdown :options="${Default.args.options}" />`,
+            code: `<queso-dropdown :options="${Default.args.options}" />`,
         },
     },
 };
@@ -93,7 +93,7 @@ Multiple.args = {
 Multiple.parameters = {
     docs: {
         source: {
-            code: `<tacos-dropdown :options="[...]" multiple />`,
+            code: `<queso-dropdown :options="[...]" multiple />`,
         },
     },
 };
@@ -108,7 +108,7 @@ StayOpenOnSelection.args = {
 StayOpenOnSelection.parameters = {
     docs: {
         source: {
-            code: `<tacos-dropdown :options="[...]" stay-open-on-selection />`,
+            code: `<queso-dropdown :options="[...]" stay-open-on-selection />`,
         },
     },
 };
@@ -123,9 +123,9 @@ PlaceholderSlot.args = {
 PlaceholderSlot.parameters = {
     docs: {
         source: {
-            code: `<tacos-dropdown :options="[...]">
+            code: `<queso-dropdown :options="[...]">
     <template #placeholder>A placeholder</template>
-</tacos-dropdown>`,
+</queso-dropdown>`,
         },
     },
 };
@@ -141,10 +141,10 @@ PopoverSlots.args = {
 PopoverSlots.parameters = {
     docs: {
         source: {
-            code: `<tacos-dropdown :options="[...]">
+            code: `<queso-dropdown :options="[...]">
     <template #popoverHeader>Popover Header</template>
     <template #popoverFooter>Popover Footer</template>
-</tacos-dropdown>`,
+</queso-dropdown>`,
         },
     },
 };
@@ -160,10 +160,10 @@ LabelSlots.args = {
 LabelSlots.parameters = {
     docs: {
         source: {
-            code: `<tacos-dropdown :options="[...]">
+            code: `<queso-dropdown :options="[...]">
     <template #prefix>Prefix</template>
     <template #suffix>Suffix</template>
-</tacos-dropdown>`,
+</queso-dropdown>`,
         },
     },
 };

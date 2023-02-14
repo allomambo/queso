@@ -1,7 +1,7 @@
 <template>
     <field-base>
         <template #label>
-            <span class="tt-switch-hidden-label"></span>
+            <span class="queso-switch__hidden-label"></span>
         </template>
 
         <template #beforeField>
@@ -24,24 +24,24 @@
         >
             <component
                 :is="isReadOnly ? 'div' : 'label'"
-                class="tt-switch"
+                class="queso-switch"
                 :for="fieldID"
                 :class="{ 'is-selected': fieldValue }"
                 @mouseover="toggleIsHover(true)"
                 @mouseleave="toggleIsHover(false)"
             >
-                <span class="tt-switch__box">
-                    <span class="tt-switch__box__circle"></span>
+                <span class="queso-switch__box">
+                    <span class="queso-switch__box__circle"></span>
                 </span>
-                <span v-if="fieldLabel" class="tt-switch__label">
-                    <span class="tt-switch__label__text" v-html="fieldLabel"></span>
+                <span v-if="fieldLabel" class="queso-switch__label">
+                    <span class="queso-switch__label__text" v-html="fieldLabel"></span>
                 </span>
             </component>
 
             <input
                 v-if="!isReadOnly"
                 type="checkbox"
-                class="tt-switch__native"
+                class="queso-switch__native"
                 :checked="fieldValue"
                 :name="fieldName"
                 :id="fieldID"
@@ -72,20 +72,20 @@ const getCheckboxState = (event: any, fieldCallback: (a: boolean) => void) => {
 </script>
 
 <style lang="scss">
-.tt-switch {
-    --tt-switch-circle-color: white;
-    --tt-switch-bg-color: silver;
-    --tt-switch-selected-circle-color: white;
-    --tt-switch-selected-bg-color: black;
+.queso-switch {
+    --queso-switch-circle-color: white;
+    --queso-switch-bg-color: silver;
+    --queso-switch-selected-circle-color: white;
+    --queso-switch-selected-bg-color: black;
 
-    --tt-switch-padding: 3px;
-    --tt-switch-padding-x: var(--tt-switch-padding);
-    --tt-switch-padding-y: var(--tt-switch-padding);
-    --tt-switch-width: calc(var(--tt-switch-circle-size) * 2 + var(--tt-switch-padding-x) * 2);
-    --tt-switch-height: calc(var(--tt-switch-circle-size) + var(--tt-switch-padding-y) * 2);
-    --tt-switch-radius: var(--tt-switch-circle-size);
-    --tt-switch-circle-size: 20px;
-    --tt-switch-circle-radius: var(--tt-switch-circle-size);
+    --queso-switch-padding: 3px;
+    --queso-switch-padding-x: var(--queso-switch-padding);
+    --queso-switch-padding-y: var(--queso-switch-padding);
+    --queso-switch-width: calc(var(--queso-switch-circle-size) * 2 + var(--queso-switch-padding-x) * 2);
+    --queso-switch-height: calc(var(--queso-switch-circle-size) + var(--queso-switch-padding-y) * 2);
+    --queso-switch-radius: var(--queso-switch-circle-size);
+    --queso-switch-circle-size: 20px;
+    --queso-switch-circle-radius: var(--queso-switch-circle-size);
 
     display: flex;
     align-items: center;
@@ -93,30 +93,30 @@ const getCheckboxState = (event: any, fieldCallback: (a: boolean) => void) => {
     cursor: pointer;
 
     &.is-selected {
-        --tt-switch-circle-translate: var(--tt-switch-circle-size);
-        --tt-switch-circle-color: var(--tt-switch-selected-circle-color);
-        --tt-switch-bg-color: var(--tt-switch-selected-bg-color);
+        --queso-switch-circle-translate: var(--queso-switch-circle-size);
+        --queso-switch-circle-color: var(--queso-switch-selected-circle-color);
+        --queso-switch-bg-color: var(--queso-switch-selected-bg-color);
     }
 
     &__box {
         display: flex;
         align-items: flex-start;
         justify-content: flex-start;
-        width: var(--tt-switch-width);
-        height: var(--tt-switch-height);
-        padding: var(--tt-switch-padding-y) var(--tt-switch-padding-x);
-        background: var(--tt-switch-bg-color);
-        border-radius: var(--tt-switch-radius);
+        width: var(--queso-switch-width);
+        height: var(--queso-switch-height);
+        padding: var(--queso-switch-padding-y) var(--queso-switch-padding-x);
+        background: var(--queso-switch-bg-color);
+        border-radius: var(--queso-switch-radius);
         user-select: none;
         box-sizing: border-box;
 
         &__circle {
             display: block;
-            width: var(--tt-switch-circle-size);
-            height: var(--tt-switch-circle-size);
-            background-color: var(--tt-switch-circle-color);
-            border-radius: var(--tt-switch-circle-size);
-            transform: translateX(var(--tt-switch-circle-translate, 0));
+            width: var(--queso-switch-circle-size);
+            height: var(--queso-switch-circle-size);
+            background-color: var(--queso-switch-circle-color);
+            border-radius: var(--queso-switch-circle-size);
+            transform: translateX(var(--queso-switch-circle-translate, 0));
         }
     }
 
@@ -133,9 +133,9 @@ const getCheckboxState = (event: any, fieldCallback: (a: boolean) => void) => {
         overflow: hidden;
         clip: rect(1px, 1px, 1px, 1px);
     }
-}
 
-.tt-switch-hidden-label {
-    display: none !important;
+    &__hidden-label {
+        display: none !important;
+    }
 }
 </style>
