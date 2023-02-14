@@ -11,16 +11,16 @@ const Template = (args) => ({
         return { args };
     },
     template: `
-    <dropdown-base v-bind="args">
+    <app-dropdown v-bind="args">
         <template v-if="${"slotPrefix" in args}" #prefix>${args.slotPrefix}</template>
         <template v-if="${"slotPlaceholder" in args}" #placeholder>${args.slotPlaceholder}</template>
-        <template v-if="${"slotActiveLabel" in args}" #activeLabel>${args.slotActiveLabel}</template>
+        <template v-if="${"slotSelector" in args}" #selector>${args.slotSelector}</template>
         <template v-if="${"slotSuffix" in args}" #suffix>${args.slotSuffix}</template>
         <template v-if="${"slotIcon" in args}" #icon>${args.slotIcon}</template>
         <template v-if="${"slotPopoverHeader" in args}" #popoverHeader>${args.slotPopoverHeader}</template>
         <template v-if="${"slotItem" in args}" #item>${args.slotItem}</template>
         <template v-if="${"slotPopoverFooter" in args}" #popoverFooter>${args.slotPopoverFooter}</template>
-    </dropdown-base>
+    </app-dropdown>
     `,
 });
 

@@ -1,9 +1,9 @@
 <template>
     <Teleport to="body">
-        <div class="c-modal" :class="{ 'is-open': isOpen }">
+        <div class="tt-modal" :class="{ 'is-open': isOpen }">
             <slot name="before-content"></slot>
 
-            <div class="c-modal__inner">
+            <div class="tt-modal__inner">
                 <slot></slot>
             </div>
 
@@ -67,7 +67,7 @@ defineExpose({ open, close });
 </script>
 
 <style lang="scss">
-.c-modal {
+.tt-modal {
     --tt-modal-opacity: 0;
     --tt-modal-max-width: 80%;
     --tt-modal-max-height: 80%;

@@ -3,8 +3,9 @@
         // Prevent warnings coming from default HTML attributes
         "types": ["vite/client"],
         "jsx": "preserve",
-        "outDir": "dist",
+        // "strict": true,
         "skipLibCheck": true,
+        "outDir": "dist",
         "paths": {
             "@/*": ["./src/*"],
             "@components/*": ["./src/components/*"]
@@ -12,5 +13,6 @@
         "lib": ["es2016", "dom"]
     },
     "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"],
-    "exclude": ["node_modules", "src/**/*.test.ts"]
+    // "exclude": ["node_modules"],
+    "exclude": ["node_modules", "src/**/*.stories.ts", "src/**/*.test.ts"] // Temporary exclude stories and tests
 }

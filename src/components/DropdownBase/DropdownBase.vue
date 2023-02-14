@@ -1,34 +1,34 @@
 <template>
-    <div v-if="options.length > 0" class="c-dropdown" ref="dropdown" :class="dropdownClasses">
-        <div class="c-dropdown__selector" @click="toggleDropdown(!isDropdownOpen)">
+    <div v-if="options.length > 0" class="tt-dropdown" ref="dropdown" :class="dropdownClasses">
+        <div class="tt-dropdown__selector" @click="toggleDropdown(!isDropdownOpen)">
             <slot name="prefix"></slot>
-            <div class="c-dropdown__selector__text">
-                <div v-if="activeOptions.length < 1" class="c-dropdown__selector__placeholder">
+            <div class="tt-dropdown__selector__text">
+                <div v-if="activeOptions.length < 1" class="tt-dropdown__selector__placeholder">
                     <slot name="placeholder"></slot>
                 </div>
-                <div v-else class="c-dropdown__selector__active-label">
-                    <slot name="activeLabel" v-bind="{ activeOptions }">
+                <div v-else class="tt-dropdown__selector__active-label">
+                    <slot name="selector" v-bind="{ activeOptions }">
                         {{ activeOptions }}
                     </slot>
                 </div>
             </div>
             <slot name="suffix"></slot>
-            <div class="c-dropdown__selector__icon">
+            <div class="tt-dropdown__selector__icon">
                 <slot name="icon">↓</slot>
             </div>
         </div>
 
-        <div class="c-dropdown__popover">
-            <div v-if="$slots.popoverHeader" class="c-dropdown__popover__header">
+        <div class="tt-dropdown__popover">
+            <div v-if="$slots.popoverHeader" class="tt-dropdown__popover__header">
                 <slot name="popoverHeader" v-bind="{ openDropdown, closeDropdown }"></slot>
             </div>
-            <div class="c-dropdown__popover__scroll" :class="dropdownPopoverClasses">
-                <ul ref="dropdownPopover" class="c-dropdown__popover__options-list">
+            <div class="tt-dropdown__popover__scroll" :class="dropdownPopoverClasses">
+                <ul ref="dropdownPopover" class="tt-dropdown__popover__options-list">
                     <li
                         v-for="option in options"
                         :key="option.key"
                         @click="updateOption(option)"
-                        class="c-dropdown__popover__options-list__item"
+                        class="tt-dropdown__popover__options-list__item"
                         :class="{ 'is-active': activeOptions.find((o) => o.key === option.key) }"
                     >
                         <slot name="item" v-bind="{ ...option, openDropdown, closeDropdown }">
@@ -37,7 +37,7 @@
                     </li>
                 </ul>
             </div>
-            <div v-if="$slots.popoverFooter" class="c-dropdown__popover__footer">
+            <div v-if="$slots.popoverFooter" class="tt-dropdown__popover__footer">
                 <slot name="popoverFooter" v-bind="{ openDropdown, closeDropdown }"></slot>
             </div>
         </div>
@@ -183,8 +183,8 @@ const dropdownPopoverClasses = computed(() => ({
 }));
 </script>
 
-<style lang="scss" scoped>
-.c-dropdown {
+<style lang="scss">
+.tt-dropdown {
     position: relative;
 
     /*=================================
