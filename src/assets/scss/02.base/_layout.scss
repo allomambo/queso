@@ -6,27 +6,27 @@
     @include container("all");
 }
 
-.l-line-up {
-    @include lineUp("left", "vertical");
+.l-stack {
+    @include stack("left", "vertical");
 
     &.-vertical {
         &.-center {
-            @include lineUp("center", "vertical");
+            @include stack("center", "vertical");
         }
         &.-right {
-            @include lineUp("right", "vertical");
+            @include stack("right", "vertical");
         }
     }
 
     &.-horizontal {
         &.-center {
-            @include lineUp("center", "horizontal");
+            @include stack("center", "horizontal");
         }
         &.-left {
-            @include lineUp("left", "horizontal");
+            @include stack("left", "horizontal");
         }
         &.-right {
-            @include lineUp("right", "horizontal");
+            @include stack("right", "horizontal");
         }
     }
 }

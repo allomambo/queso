@@ -8,31 +8,31 @@
  * @param  {string} $alignment       Alignment of each element. Values: 'left', 'right' or 'center'
  * @return {void}
  */
-@mixin lineUp($alignment: "left", $orientation: "vertical") {
+@mixin stack($alignment: "left", $orientation: "vertical") {
     @if $orientation == "vertical" {
-        --lineup-direction: column;
+        --stack-direction: column;
 
         @if $alignment == "center" {
-            --lineup-align: center;
+            --stack-align: center;
         } @else if $alignment == "right" {
-            --lineup-align: flex-end;
+            --stack-align: flex-end;
         }
     } @else {
-        --lineup-direction: row;
+        --stack-direction: row;
 
         @if $alignment == "center" {
-            --lineup-justify: center;
+            --stack-justify: center;
         } @else if $alignment == "right" {
-            --lineup-justify: flex-end;
+            --stack-justify: flex-end;
         }
     }
 
-    --lineup-gap: #{$lineup-gap};
+    --stack-gap: #{$stack-gap};
     display: flex;
-    align-items: var(--lineup-align, flex-start);
-    justify-content: var(--lineup-justify, flex-start);
-    flex-direction: var(--lineup-direction, row);
-    column-gap: var(--lineup-col-gap, var(--lineup-gap));
-    row-gap: var(--lineup-row-gap, var(--lineup-gap));
-    flex-wrap: var(--lineup-wrap, wrap);
+    align-items: var(--stack-align, flex-start);
+    justify-content: var(--stack-justify, flex-start);
+    flex-direction: var(--stack-direction, row);
+    column-gap: var(--stack-col-gap, var(--stack-gap));
+    row-gap: var(--stack-row-gap, var(--stack-gap));
+    flex-wrap: var(--stack-wrap, wrap);
 }
