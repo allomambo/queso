@@ -208,10 +208,8 @@ const dropdownPopoverClasses = computed(() => ({
         opacity: var(--queso-dropdown-popover-opacity, 0);
 
         &__scroll {
-            @include hide-scrollbar;
+            @include overflow;
             max-height: var(--queso-dropdown-popover-max-height, 20rem);
-            overflow-x: hidden;
-            overflow-y: auto;
         }
 
         &__options-list {

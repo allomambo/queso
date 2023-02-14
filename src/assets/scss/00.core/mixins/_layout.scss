@@ -30,7 +30,7 @@
 }
 
 /*======================================
-=            Hide scrollbar            =
+=              Overflow                =
 ======================================*/
 
 @mixin hide-scrollbar {
@@ -44,4 +44,18 @@
         height: 0;
         background-color: transparent;
     }
+}
+
+@mixin overflow($orientation: "vertical") {
+    $overflowX: hidden;
+    $overflowY: auto;
+
+    @if ($orientation == "horizontal") {
+        $overflowX: auto;
+        $overflowY: hidden;
+    }
+
+    overflow-x: $overflowX;
+    overflow-y: $overflowY;
+    @include hide-scrollbar;
 }
