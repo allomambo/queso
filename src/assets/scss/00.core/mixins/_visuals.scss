@@ -67,10 +67,10 @@
 }
 
 @mixin radius(
-    $radiusTop: var(--border-radius-sm),
-    $radiusRight: var(--border-radius-sm),
-    $radiusBottom: var(--border-radius-sm),
-    $radiusLeft: var(--border-radius-sm)
+    $radiusTop: 1em,
+    $radiusRight: 1em,
+    $radiusBottom: 1em,
+    $radiusLeft: 1em
 ) {
     border-radius: $radiusTop $radiusRight $radiusBottom $radiusLeft; /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
 

@@ -7,7 +7,7 @@
 }
 
 // Border radius
-@mixin rounded-corners($radius: var(--border-radius-md)) {
+@mixin rounded-corners($radius: 1em) {
     @include radius($radius, $radius, $radius, $radius);
 }
 
