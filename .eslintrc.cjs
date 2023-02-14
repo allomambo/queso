@@ -11,7 +11,6 @@ module.exports = {
         "@vue/typescript/recommended",
         "plugin:vue/vue3-essential",
         "plugin:markdown/recommended",
-        "plugin:storybook/recommended",
     ],
     parserOptions: {
         ecmaVersion: 2020,

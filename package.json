@@ -31,8 +31,6 @@
         "build:lib": "vite build",
         "publish:lib": "npm publish --access public",
         "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src",
-        "storybook": "start-storybook -p 6006",
-        "build:storybook": "build-storybook -o ./docs -c ./.storybook",
         "test:coverage": "vitest run --coverage",
         "test:run": "vitest --run",
         "test": "vitest"
@@ -42,7 +40,6 @@
         "vue": "^3.2.45"
     },
     "devDependencies": {
-        "@storybook/builder-vite": "^0.4.0",
         "@types/node": "^18.11.18",
         "@typescript-eslint/eslint-plugin": "^5.4.0",
         "@typescript-eslint/parser": "^5.4.0",
