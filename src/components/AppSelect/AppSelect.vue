@@ -18,7 +18,7 @@
                 @mouseleave="toggleIsHover(false)"
             >
                 <template #placeholder>
-                    {{ placeholder }}
+                    <slot name="placeholder" v-bind="{ placeholder }">{{ placeholder }}</slot>
                 </template>
                 <template #selector="{ activeOptions }">
                     <slot name="selector" v-bind="{ activeOptions }">
