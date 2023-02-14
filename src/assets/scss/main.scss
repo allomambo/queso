@@ -9,7 +9,6 @@
 @import "00.core/functions/shortcuts";
 
 // Mixins
-@import "00.core/mixins/anims";
 @import "00.core/mixins/breakpoints";
 @import "00.core/mixins/containers";
 @import "00.core/mixins/grid";
@@ -21,8 +20,9 @@
 @import "00.core/mixins/shortcuts";
 @import "00.core/mixins/typography";
 @import "00.core/mixins/visuals";
-@import "00.core/mixins/form";
-@import "00.core/mixins/footer";
+
+// Tools
+@import "00.core/tools/debug-outline";
 
 // Utilities
 @import "00.core/utilities/a11y";

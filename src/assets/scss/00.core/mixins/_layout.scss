@@ -2,8 +2,8 @@
 =            Viewport width            =
 ======================================*/
 
-@mixin full-screen-dom(
-    $position: fixed,
+@mixin fullscreen(
+    $position: absolute,
     $top: 0,
     $right: 0,
     $bottom: 0,
@@ -14,14 +14,6 @@
     right: $right;
     bottom: $bottom;
     left: $left;
-}
-
-@mixin fullscreen {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
 }
 
 @mixin center-viewport($width: 100vw) {

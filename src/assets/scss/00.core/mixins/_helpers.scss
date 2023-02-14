@@ -32,7 +32,7 @@
 }
 
 /*=================================
-=           Shorthands            =
+=             States              =
 =================================*/
 
 // Disable anything
@@ -61,14 +61,4 @@
             @content;
         }
     }
-}
-
-/*=================================
-=        Legal style       =
-=================================*/
-
-@mixin legal-style($color: var(--color-black-faded)) {
-    font-size: var(--fs-small);
-    line-height: normal;
-    color: $color;
 }

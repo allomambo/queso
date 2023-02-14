@@ -6,9 +6,9 @@
 
 body {
     color: $font-color;
-    font-family: $dflt-font-family;
-    font-size: $dflt-font-size;
-    line-height: $dflt-line-height;
+    font-family: $default-font-family;
+    font-size: $default-font-size;
+    line-height: $default-line-height;
 }
 
 // Generate headings
@@ -26,26 +26,4 @@ body {
 
 .t-rte {
     @include rte;
-}
-
-.t-legal {
-    @include legal-style;
-}
-
-/*=====================================
-=            Miscellaneous            =
-=====================================*/
-
-small {
-    font-size: var(--fs-small, 0.8em);
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-p {
-    font-family: var(--ff-body);
-    font-size: var(--fs-regular);
 }
