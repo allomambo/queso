@@ -21,9 +21,9 @@ const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matc
 const isTouch = "ontouchstart" in document.documentElement;
 
 export {
-    typeCheck,
-    arrayToGraphQL,
     checkStatus,
+    arrayToGraphQL,
+    typeCheck,
     mutateState,
     resizeEnd,
     mailTo,

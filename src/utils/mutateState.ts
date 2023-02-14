@@ -1,6 +1,6 @@
-import typeCheck from "./typeCheck.js";
+import typeCheck from "./typeCheck";
 
-function mutateState(state, payload) {
+const mutateState = (state: any, payload: any) => {
     if (typeCheck(state) === "[object Object]" && typeCheck(payload) === "[object Object]") {
         for (const key in payload) {
             state[key] = payload[key];
@@ -8,6 +8,6 @@ function mutateState(state, payload) {
     } else {
         console.error("expected plain Object");
     }
-}
+};
 
 export default mutateState;
