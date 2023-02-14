@@ -3,14 +3,7 @@
 =======================================*/
 
 html {
-    font-size: $root-fs;
-
-    // https://mambomambo-team.atlassian.net/browse/ADISQTMPO-180
-    // @include min(2xl) {
-    //     $min-bp: breakpoint-min(2xl);
-    //     $ratio: strip-units(divide($root-fs, $min-bp)) * 100vw;
-    //     font-size: clamp($root-fs, $ratio, $root-max-fs);
-    // }
+    font-size: $html-fs; // 10px by default
 
     // Better font rendering for mac
     @include antialiased;

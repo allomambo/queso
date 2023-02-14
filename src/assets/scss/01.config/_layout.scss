@@ -12,18 +12,10 @@ $breakpoints: (
     2xl: 1440px,
     3xl: 1600px,
     4xl: 1900px,
-);
-
-// Alternative breakpoints
-$screens: (
-    mobile: 0,
-    tablet: 740px,
-    laptop: 1200px,
-    desktop: 1600px,
-);
+) !default;
 
 /*============================
-=         Container          =
+=         Containers         =
 ============================*/
 
 $containers: (
@@ -32,21 +24,22 @@ $containers: (
     small: 42rem 6rem,
     medium: 87rem 6rem,
     full: none 6rem
-);
+) !default;
 
-$stack-gap: var(--grid-gap);
+$stack-gap: var(--queso-grid-gap) !default;
 
-$rte-gap: $default-line-height * 1em;
+$rte-gap: ($body-line-height * 1em) !default;
 
 /*============================
 =            Grid            =
 ============================*/
 
-$grid-columns: 12;
+$grid-columns: 12 !default;
+
 $grid-gaps: (
     xs: 2rem,
     xl: 3rem,
-);
+) !default;
 
 /*=================================
 =            Z-indexes            =
@@ -55,8 +48,8 @@ $grid-gaps: (
 $layers: (
     default: 1,
     loader: 500,
+    modal: 300,
     header: 200,
     dropdown: 100,
-    modal: 300,
     limbo: -100,
-);
+) !default;

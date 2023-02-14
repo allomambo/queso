@@ -1,11 +1,46 @@
 /*=================================
+=           Font sizes            =
+=================================*/
+
+$font-sizes: (
+    small: 1.3rem,
+    regular: 1.6rem,
+    medium: 1.8rem,
+    large: 2rem,
+    x-large: 2.2rem,
+) !default;
+
+/*=================================
+=           Font faces            =
+=================================*/
+
+// Files (woff + woff2 required)
+$fonts-directory: "./fonts/" !default;
+
+$font-faces: (
+    // <name> <filename> <font-weight> <font-style>,
+) !default; // prettier-ignore
+
+// Font families
+$font-families: (
+    heading: (
+        Georgia,
+        serif,
+    ),
+    body: (
+        Arial,
+        sans-serif,
+    ),
+) !default;
+
+/*=================================
 =            Headings             =
 =================================*/
 
 // Used by mixin h()
 $headings: (
     shared: (
-        font-family: var(--ff-heading),
+        font-family: var(--queso-ff-heading),
         line-height: 1,
         font-weight: bold,
     ),
@@ -17,7 +52,7 @@ $headings: (
     ),
     h2: (
         font-size: (
-            xs: 38 fluid,
+            xs: 32 fluid,
             2xl: 52,
         ),
     ),
@@ -45,162 +80,4 @@ $headings: (
         font-size: 16,
         line-height: 1.25,
     ),
-);
-
-/*=================================
-=        Rich text editor         =
-=================================*/
-
-// The mixin is here to avoid putting editable styles in core folder
-@mixin rte {
-    // Spacing applied like this to prevent margin top/bottom when not direct child
-    $toApplySpacing: p, ul, ol, blockquote;
-    @each $elem in $toApplySpacing {
-        #{$elem} {
-            @each $elem in $toApplySpacing {
-                & + #{$elem} {
-                    margin-top: var(--rte-gap, 1em);
-                }
-            }
-        }
-    }
-
-    a:not(.primary-button) {
-        color: var(--color-black);
-        font-weight: bold;
-        transition: color 0.25s ease;
-
-        &[target="_blank"]:after {
-            content: url('data:image/svg+xml; utf8,<svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.375 8.4314L8.625 2.1814" stroke="%23000000" stroke-linecap="square" stroke-linejoin="round" stroke-width="2"/><path d="M3 1.5564H9.25V7.8064" stroke="%23000000" stroke-linecap="square" stroke-linejoin="round" stroke-width="2"/></svg>');
-            padding-left: 0.2em;
-            vertical-align: bottom;
-        }
-
-        &:hover {
-            color: var(--color-accent);
-        }
-    }
-
-    blockquote {
-        font-style: italic;
-        padding-left: var(--rte-gap, 1em);
-        border-left: var(--rte-gap-third, 0.5em) solid
-            var(--color-grey, lightgrey);
-    }
-
-    hr {
-        width: 100%;
-        height: 1px;
-        margin: var(--rte-gap-2X, 2em) auto;
-        background-color: var(--color-grey, lightgrey);
-        border: none;
-    }
-
-    // Titles
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        margin-top: var(--rte-gap, 1em);
-        margin-bottom: var(--rte-gap-half, 1rem);
-    }
-
-    @each $name, $attr in $headings {
-        @if $name != "shared" {
-            #{$name} {
-                @include h(#{$name});
-            }
-        }
-    }
-
-    // Lists
-    ul,
-    ol {
-        list-style: none;
-
-        li {
-            padding-left: var(--rte-gap);
-            position: relative;
-
-            &:not(:first-child) {
-                margin-top: var(--rte-gap-half);
-            }
-        }
-
-        ul,
-        ol {
-            margin-top: var(--rte-gap-half);
-            margin-bottom: 0;
-        }
-    }
-
-    ul {
-        > li {
-            &:before {
-                content: "";
-                width: 0.5rem;
-                height: 0.5rem;
-                position: absolute;
-                top: 0.9rem;
-                left: 0.3rem;
-                background: var(--color-black);
-                border-radius: 1rem;
-            }
-        }
-    }
-
-    ol {
-        counter-reset: ol;
-
-        > li {
-            &:before {
-                counter-increment: ol;
-                content: counter(ol) ".";
-                font-weight: bold;
-                position: absolute;
-                top: 0;
-                left: 0;
-            }
-        }
-    }
-
-    // Medias
-    figure {
-        margin-top: var(--rte-gap, 1em);
-        margin-bottom: var(--rte-gap, 1em);
-
-        img {
-            @include img;
-            @include rounded-corners(var(--border-radius-lg));
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        iframe {
-            @include rounded-corners(var(--border-radius-lg));
-            display: block;
-            width: 100% !important;
-            height: auto !important;
-            aspect-ratio: 16 / 9;
-        }
-
-        figcaption,
-        caption {
-            display: block;
-            font-size: var(--fs-small);
-            font-style: italic;
-            margin-top: 0.5em;
-        }
-    }
-
-    // No margin at start and end of container
-    > *:first-child {
-        margin-top: 0;
-    }
-
-    > *:last-child {
-        margin-bottom: 0;
-    }
-}
+) !default;

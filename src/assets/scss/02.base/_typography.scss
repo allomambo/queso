@@ -2,13 +2,15 @@
 =           Typography            =
 =================================*/
 
-// @include fontfaces($font-faces, dir("font"));
+@if length($font-faces) > 0 {
+    @include fontfaces($font-faces, $fonts-directory);
+}
 
 body {
-    color: $font-color;
-    font-family: $default-font-family;
-    font-size: $default-font-size;
-    line-height: $default-line-height;
+    color: $body-font-color;
+    font-family: $body-font-family;
+    font-size: $body-font-size;
+    line-height: $body-line-height;
 }
 
 // Generate headings

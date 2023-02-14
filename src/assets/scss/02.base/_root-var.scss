@@ -5,20 +5,16 @@
 :root {
     // Colors
     @each $name, $hex in $colors {
-        --color-#{"" + $name}: #{$hex}; // '"" + ' required to compile since a color can be a value (ex: blue)
+        --queso-color-#{"" + $name}: #{$hex}; // '"" + ' required to compile since a color can be a value (ex: blue)
     }
-
-    --color-accent: var(--color-blue);
-    --color-accent-faded: var(--color-blue-faded);
-    --color-accent-pale: var(--color-blue-pale);
 
     // Typography
     @each $name, $families in $font-families {
-        --ff-#{$name}: #{$families};
+        --queso-ff-#{$name}: #{$families};
     }
 
     @each $name, $size in $font-sizes {
-        --fs-#{$name}: #{$size};
+        --queso-fs-#{$name}: #{$size};
     }
 
     // Grid gap
@@ -26,37 +22,32 @@
         $index: index($grid-gaps, $bp $gap);
 
         @if $index == 1 {
-            @include make-variations("grid-gap", $gap, true);
+            @include make-variations("queso-grid-gap", $gap, true);
         } @else {
             @include min($bp) {
-                --grid-gap: #{$gap};
+                --queso-grid-gap: #{$gap};
             }
         }
     }
 
-    --grid-columns: #{$grid-columns};
-    --grid-column-width: calc(
-        (100% - (var(--grid-gap) * (var(--grid-columns) - 1))) /
-            var(--grid-columns)
+    --queso-grid-columns: #{$grid-columns};
+    --queso-grid-column-width: calc(
+        (100% - (var(--queso-grid-gap) * (var(--queso-grid-columns) - 1))) /
+            var(--queso-grid-columns)
     ); // Size of 1 column
-    --grid-offset: calc(
-        var(--grid-column-width) + var(--grid-gap)
+    --queso-grid-offset: calc(
+        var(--queso-grid-column-width) + var(--queso-grid-gap)
     ); // Size of a column + gap
 
     @include max(sm) {
-        --grid-columns: 1;
+        --queso-grid-columns: 1;
     }
 
     // Rich text editor gap
-    @include make-variations("rte-gap", $rte-gap);
+    @include make-variations("queso-rte-gap", $rte-gap);
 
     // Layers
     @each $name, $layer in $layers {
-        --z-#{$name}: #{$layer};
-    }
-
-    // radius
-    @each $name, $radius in $border-radius {
-        --border-radius-#{$name}: #{$radius};
+        --queso-z-#{$name}: #{$layer};
     }
 }
