@@ -64,7 +64,7 @@ Default.args = {
 Default.parameters = {
     docs: {
         source: {
-            code: `<tempo-select label="${Default.args.label}" options='${JSON.stringify(
+            code: `<queso-select label="${Default.args.label}" options='${JSON.stringify(
                 Default.args.options
             )}' placeholder="${Default.args.placeholder}" />`,
         },
@@ -84,7 +84,7 @@ Multiple.args = {
 Multiple.parameters = {
     docs: {
         source: {
-            code: `<tempo-select name="${Default.args.name}" label="${Default.args.label}" options="[{...}, {...}]" placeholder="${Default.args.placeholder}" multiple />`,
+            code: `<queso-select name="${Default.args.name}" label="${Default.args.label}" options="[{...}, {...}]" placeholder="${Default.args.placeholder}" multiple />`,
         },
     },
 };
@@ -102,7 +102,7 @@ LabelAsPlaceholder.args = {
 LabelAsPlaceholder.parameters = {
     docs: {
         source: {
-            code: `<tempo-select ... label-position="${LabelAsPlaceholder.args.labelPosition}" />`,
+            code: `<queso-select ... label-position="${LabelAsPlaceholder.args.labelPosition}" />`,
         },
     },
 };
@@ -121,7 +121,7 @@ ReadOnly.args = {
 ReadOnly.parameters = {
     docs: {
         source: {
-            code: `<tempo-select ... :is-read-only="${ReadOnly.args.isReadOnly}" />`,
+            code: `<queso-select ... :is-read-only="${ReadOnly.args.isReadOnly}" />`,
         },
     },
 };

@@ -24,7 +24,7 @@ Default.args = {
 Default.parameters = {
     docs: {
         source: {
-            code: `<tempo-checkbox name="${Default.args.name}" label="${Default.args.label}" />`,
+            code: `<queso-checkbox name="${Default.args.name}" label="${Default.args.label}" />`,
         },
     },
 };
@@ -40,7 +40,7 @@ ElaborateLabel.args = {
 ElaborateLabel.parameters = {
     docs: {
         source: {
-            code: `<tempo-checkbox name="${ElaborateLabel.args.name}" label="${ElaborateLabel.args.label}" modelValue="${ElaborateLabel.args.modelValue}" />`,
+            code: `<queso-checkbox name="${ElaborateLabel.args.name}" label="${ElaborateLabel.args.label}" modelValue="${ElaborateLabel.args.modelValue}" />`,
         },
     },
 };
@@ -58,7 +58,7 @@ Invalid.args = {
 Invalid.parameters = {
     docs: {
         source: {
-            code: `<tempo-checkbox ... :is-error="${Invalid.args.isError}" error-message="${Invalid.args.errorMessage}" />`,
+            code: `<queso-checkbox ... :is-error="${Invalid.args.isError}" error-message="${Invalid.args.errorMessage}" />`,
         },
     },
 };
@@ -75,7 +75,7 @@ Disabled.args = {
 Disabled.parameters = {
     docs: {
         source: {
-            code: `<tempo-checkbox ... :is-read-only="${Disabled.args.isDisabled}" />`,
+            code: `<queso-checkbox ... :is-read-only="${Disabled.args.isDisabled}" />`,
         },
     },
 };
@@ -92,7 +92,7 @@ ReadOnly.args = {
 ReadOnly.parameters = {
     docs: {
         source: {
-            code: `<tempo-checkbox ... :is-read-only="${ReadOnly.args.isReadOnly}" />`,
+            code: `<queso-checkbox ... :is-read-only="${ReadOnly.args.isReadOnly}" />`,
         },
     },
 };

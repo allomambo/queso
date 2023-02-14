@@ -24,7 +24,7 @@ Default.args = {
 Default.parameters = {
     docs: {
         source: {
-            code: `<tempo-switch name="${Default.args.name}" label="${Default.args.label}" />`,
+            code: `<queso-switch name="${Default.args.name}" label="${Default.args.label}" />`,
         },
     },
 };
@@ -41,7 +41,7 @@ Disabled.args = {
 Disabled.parameters = {
     docs: {
         source: {
-            code: `<tempo-switch ... :is-read-only="${Disabled.args.isDisabled}" />`,
+            code: `<queso-switch ... :is-read-only="${Disabled.args.isDisabled}" />`,
         },
     },
 };
@@ -58,7 +58,7 @@ ReadOnly.args = {
 ReadOnly.parameters = {
     docs: {
         source: {
-            code: `<tempo-switch ... :is-read-only="${ReadOnly.args.isReadOnly}" />`,
+            code: `<queso-switch ... :is-read-only="${ReadOnly.args.isReadOnly}" />`,
         },
     },
 };

@@ -31,7 +31,7 @@ Default.args = {
 Default.parameters = {
     docs: {
         source: {
-            code: `<tempo-text-field type="${Default.args.type}" id="${Default.args.id}" name="${Default.args.name}" label="${Default.args.label}" />`,
+            code: `<queso-text-field type="${Default.args.type}" id="${Default.args.id}" name="${Default.args.name}" label="${Default.args.label}" />`,
         },
     },
 };
@@ -48,7 +48,7 @@ LabelAsPlaceholder.args = {
 LabelAsPlaceholder.parameters = {
     docs: {
         source: {
-            code: `<tempo-text-field ... label="${LabelAsPlaceholder.args.label}" label-position="${LabelAsPlaceholder.args.labelPosition}" />`,
+            code: `<queso-text-field ... label="${LabelAsPlaceholder.args.label}" label-position="${LabelAsPlaceholder.args.labelPosition}" />`,
         },
     },
 };
@@ -67,7 +67,7 @@ Invalid.args = {
 Invalid.parameters = {
     docs: {
         source: {
-            code: `<tempo-text-field ... :is-error="${Invalid.args.isError}" error-message="${Invalid.args.errorMessage}" />`,
+            code: `<queso-text-field ... :is-error="${Invalid.args.isError}" error-message="${Invalid.args.errorMessage}" />`,
         },
     },
 };
@@ -84,7 +84,7 @@ ReadOnly.args = {
 ReadOnly.parameters = {
     docs: {
         source: {
-            code: `<tempo-text-field ... :is-read-only="${ReadOnly.args.isReadOnly}" />`,
+            code: `<queso-text-field ... :is-read-only="${ReadOnly.args.isReadOnly}" />`,
         },
     },
 };
@@ -101,11 +101,11 @@ IconBefore.args = {
 IconBefore.parameters = {
     docs: {
         source: {
-            code: `<tempo-text-field>
+            code: `<queso-text-field>
     <template #before>
-        <tempo-icon name="youtube" :size="2.4" />
+        <queso-icon name="youtube" :size="2.4" />
     </template>
-</tempo-text-field>`,
+</queso-text-field>`,
         },
     },
 };
@@ -121,11 +121,11 @@ IconAfter.args = {
 IconAfter.parameters = {
     docs: {
         source: {
-            code: `<tempo-text-field>
+            code: `<queso-text-field>
     <template #after>
-        <tempo-icon name="magnify_glass" txt-color="black" bg-color="grey-faded" />
+        <queso-icon name="magnify_glass" txt-color="black" bg-color="grey-faded" />
     </template>
-</tempo-text-field>`,
+</queso-text-field>`,
         },
     },
 };
