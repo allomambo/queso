@@ -14,7 +14,7 @@ const Template = (args) => ({
     <app-dropdown v-bind="args">
         <template v-if="${"slotPrefix" in args}" #prefix>${args.slotPrefix}</template>
         <template v-if="${"slotPlaceholder" in args}" #placeholder>${args.slotPlaceholder}</template>
-        <template v-if="${"slotActiveLabel" in args}" #activeLabel>${args.slotActiveLabel}</template>
+        <template v-if="${"slotSelector" in args}" #selector>${args.slotSelector}</template>
         <template v-if="${"slotSuffix" in args}" #suffix>${args.slotSuffix}</template>
         <template v-if="${"slotIcon" in args}" #icon>${args.slotIcon}</template>
         <template v-if="${"slotPopoverHeader" in args}" #popoverHeader>${args.slotPopoverHeader}</template>

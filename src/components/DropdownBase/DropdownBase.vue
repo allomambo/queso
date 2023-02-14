@@ -7,7 +7,7 @@
                     <slot name="placeholder"></slot>
                 </div>
                 <div v-else class="tt-dropdown__selector__active-label">
-                    <slot name="activeLabel" v-bind="{ activeOptions }">
+                    <slot name="selector" v-bind="{ activeOptions }">
                         {{ activeOptions }}
                     </slot>
                 </div>

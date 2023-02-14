@@ -1,15 +1,15 @@
 <template>
     <field-base>
         <template #field="{ fieldID, fieldName, fieldValue, updateValue, toggleIsActive, toggleIsHover, isReadOnly }">
-            <div v-if="isReadOnly" class="select__read-only">
-                <span class="select__read-only__label">
+            <div v-if="isReadOnly" class="tt-select__read-only">
+                <span class="tt-select__read-only__label">
                     {{ fieldValue[0].data.label || placeholder }}
                 </span>
             </div>
 
             <dropdown-base
                 v-else
-                class="select"
+                class="tt-select"
                 :options="options"
                 :default-options="fieldValue || []"
                 :multiple="multiple"
@@ -20,23 +20,25 @@
                 <template #placeholder>
                     {{ placeholder }}
                 </template>
-                <template #activeLabel="{ activeOptions }">
-                    <app-select-label-multiple v-if="multiple" :options="activeOptions" />
-                    <span v-else>{{ activeOptions[0].data.label }}</span>
+                <template #selector="{ activeOptions }">
+                    <slot name="selector" v-bind="{ activeOptions }">
+                        <span v-for="active in activeOptions" :key="active.key">{{ active.data.label }}</span>
+                    </slot>
                 </template>
                 <template #icon>
-                    <app-icon name="chevron" :rotate="90" bg-color="grey" />
+                    <slot name="icon">↓</slot>
                 </template>
                 <template #item="{ key, data }">
-                    <span class="text">{{ data.label }}</span>
-                    <app-icon name="check_mark" txt-color="white" bg-color="black" />
+                    <slot name="item" v-bind="{ key, data }">
+                        <span class="text">{{ data.label }}</span>
+                    </slot>
                 </template>
             </dropdown-base>
 
             <select
                 :name="fieldName"
                 :id="fieldID"
-                class="select__select-native"
+                class="tt-select__select-native"
                 @focus="toggleIsActive(true)"
                 @blur="toggleIsActive(false)"
                 :multiple="multiple"
@@ -62,8 +64,6 @@ import FieldBase from "@components/FieldBase";
 import DropdownBase from "@components/DropdownBase";
 import { Option } from "@components/DropdownBase/types";
 import AppSelectLabelMultiple from "./components/AppSelectLabelMultiple.vue";
-
-// import AppIcon from "@components/AppIcon";
 
 const props = defineProps({
     options: {
@@ -91,52 +91,15 @@ const isSelected = (values, option: Option) => {
 </script>
 
 <style lang="scss">
-.select {
-    // Selector
-    &:deep(.dropdown__selector),
-    &__read-only {
-        @include field;
-    }
-
-    &:deep(.dropdown__selector__placeholder) {
-        color: var(--color-black-pale);
-
-        .has-label-placeholder:not(.is-active) & {
-            opacity: 0;
-        }
-    }
-
-    // Popover Item
-    &:deep(.dropdown__popover__options-list__item) {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        .text {
-            color: var(--choice-txt-color, var(--color-black-pale));
-            transition: color 0.2s ease;
-        }
-
-        .icon {
-            opacity: var(--choice-icon-opacity, 0);
-        }
-
-        &.is-active,
-        &:hover {
-            --choice-txt-color: var(--color-black);
-        }
-
-        &.is-active {
-            --choice-icon-opacity: 1;
-        }
-    }
-
+.tt-select {
     // Native select
     &__select-native {
-        opacity: 0;
-        pointer-events: none;
         position: absolute;
-        z-index: 1;
+        width: 1px;
+        height: 1px;
+        white-space: nowrap;
+        overflow: hidden;
+        clip: rect(1px, 1px, 1px, 1px);
     }
 }
 </style>
