@@ -19,7 +19,7 @@
         },
         "./styles/components": "./dist/style.css",
         "./styles/core": "./src/assets/scss/main.scss",
-        "./styles/reset": "./src/assets/scss/resets/ress.scss",
+        "./styles/reset": "./src/assets/scss/ress.scss",
         "./scripts/utils": "./src/utils/index.ts"
     },
     "engines": {
