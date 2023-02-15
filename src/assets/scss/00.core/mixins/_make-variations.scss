@@ -21,6 +21,7 @@
     @if $advanced {
         --#{$name}-two-third: calc((var(--#{$name}) / 3) * 2);
         --#{$name}-quarter: calc(var(--#{$name}) / 4);
+        --#{$name}-fifth: calc(var(--#{$name}) / 5);
         --#{$name}-sixth: calc(var(--#{$name}) / 6);
         --#{$name}-1-25X: calc(var(--#{$name}) * 1.25);
         --#{$name}-1-5X: calc(var(--#{$name}) * 1.5);
