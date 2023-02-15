@@ -109,8 +109,7 @@ defineExpose({ ...exposedData });
     position: relative;
 
     &.is-disabled {
-        pointer-events: none;
-        user-select: none;
+        @include unselectable;
     }
 }
 </style>

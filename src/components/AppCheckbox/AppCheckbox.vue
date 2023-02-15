@@ -107,24 +107,13 @@ const getCheckboxState = (event: any, fieldCallback: (a: boolean) => void) => {
         }
     }
 
-    &__label {
-        color: var(--queso-field-txt-color);
-        font-size: var(--fs-small);
-        padding-top: 0.15em;
-    }
-
     @at-root div#{&} {
         cursor: auto;
         pointer-events: none;
     }
 
     &__native {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        white-space: nowrap;
-        overflow: hidden;
-        clip: rect(1px, 1px, 1px, 1px);
+        @include accessible-item;
     }
 
     &__hidden-label {

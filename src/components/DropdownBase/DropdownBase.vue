@@ -22,8 +22,8 @@
             <div v-if="$slots.popoverHeader" class="queso-dropdown__popover__header">
                 <slot name="popoverHeader" v-bind="{ openDropdown, closeDropdown }"></slot>
             </div>
-            <div class="queso-dropdown__popover__scroll" :class="dropdownPopoverClasses">
-                <ul ref="dropdownPopover" class="queso-dropdown__popover__options-list">
+            <div class="queso-dropdown__popover__scroll" ref="dropdownPopover" :class="dropdownPopoverClasses">
+                <ul class="queso-dropdown__popover__options-list">
                     <li
                         v-for="option in options"
                         :key="option.key"
@@ -174,6 +174,7 @@ const dropdownPopoverClasses = computed(() => ({
 
 <style lang="scss">
 .queso-dropdown {
+    $_: &;
     position: relative;
 
     /*=================================
@@ -196,6 +197,7 @@ const dropdownPopoverClasses = computed(() => ({
     =================================*/
 
     &__popover {
+        @include unselectable;
         position: absolute;
         top: var(--queso-dropdown-popover-pos-top, 100%);
         bottom: var(--queso-dropdown-popover-pos-bottom, auto);
@@ -204,21 +206,18 @@ const dropdownPopoverClasses = computed(() => ({
         z-index: var(--queso-dropdown-popover-z, 300);
         overflow: hidden;
         opacity: var(--queso-dropdown-popover-opacity, 0);
-        pointer-events: var(--queso-dropdown-popover-pointer-events, none);
 
-        // Options list
+        &__scroll {
+            @include overflow;
+            max-height: var(--queso-dropdown-popover-max-height, 20rem);
+        }
+
         &__options-list {
             display: var(--queso-dropdown-popover-display, flex);
             flex-direction: var(--queso-dropdown-popover-direction, column);
             align-items: var(--queso-dropdown-popover-align, stretch);
             justify-content: var(--queso-dropdown-popover-justify, flex-start);
             flex-wrap: var(--queso-dropdown-popover-wrap, nowrap);
-            max-height: var(--queso-dropdown-popover-max-height, 25rem);
-            overflow-x: hidden;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-            -ms-overflow-style: none;
-            scrollbar-width: none;
 
             &__item {
                 cursor: pointer;
@@ -232,7 +231,10 @@ const dropdownPopoverClasses = computed(() => ({
 
     &.is-open {
         --queso-dropdown-popover-opacity: 1;
-        --queso-dropdown-popover-pointer-events: all;
+
+        #{$_}__popover {
+            @include unselectable(false);
+        }
     }
 }
 </style>

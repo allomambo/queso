@@ -8,6 +8,7 @@
         "outDir": "dist",
         "paths": {
             "@/*": ["./src/*"],
+            "@assets/*": ["./src/assets/*"],
             "@components/*": ["./src/components/*"]
         },
         "lib": ["es2016", "dom"]

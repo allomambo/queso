@@ -1,0 +1,36 @@
+/*=================================
+=        SASS map helpers         =
+=================================*/
+
+@function getLargestValue($values, $sub-value: 0, $return: "value") {
+    $largestKey: "";
+    $largestValue: 0;
+    $largestValues: 0;
+
+    @each $key, $value in $values {
+        $valueToCheck: $value;
+        @if $sub-value {
+            $valueToCheck: nth($value, $sub-value);
+        }
+
+        @if $valueToCheck > $largestValue {
+            $largestKey: $key;
+            $largestValue: $valueToCheck;
+            $largestValues: $value;
+        }
+    }
+
+    @if $return == "value" {
+        @return $largestValue;
+    } @else if $return == "key" {
+        @return $largestKey;
+    } @else {
+        @return join($largestKey, $largestValues);
+    }
+}
+
+@function getFirstKey($values) {
+    $keys: map-keys($values);
+
+    @return nth($keys, 1);
+}

@@ -10,7 +10,7 @@ export default defineConfig(({ command, mode }) => {
             emptyOutDir: true,
             lib: {
                 entry: resolve(__dirname, "src/components.ts"),
-                name: "TacosToppings",
+                name: "Queso",
                 fileName: "index",
             },
             rollupOptions: {
@@ -23,9 +23,18 @@ export default defineConfig(({ command, mode }) => {
             },
         },
         publicDir: "src/static",
+        css: {
+            preprocessorOptions: {
+                scss: {
+                    additionalData: `@import "@assets/scss/main.scss";`,
+                },
+            },
+            devSourcemap: true,
+        },
         resolve: {
             alias: {
                 "@": resolve(__dirname, "./src"),
+                "@assets": resolve(__dirname, "./src/assets"),
                 "@components": resolve(__dirname, "./src/components"),
             },
         },

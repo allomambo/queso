@@ -1,0 +1,132 @@
+/*=================================
+=         Heading styles          =
+=================================*/
+
+/**
+ * Print typographic styles of an element from a map
+ * @param  {string}   $t            The name of the element
+ * @param  {sass-map} $titles       The map to loop through
+ * @return {void}
+ *
+ * @format {sass-map}
+ *      $titles: (
+ *          shared: (
+ *              <property>: <value>,
+ *              ...
+ *          ),
+ *          <element>: (
+ *              font-size: (
+ *                  <breakpoint>: <font-size-w/o-unit> <fluid-or-not>,
+ *                  ...
+ *              )
+ *          ),
+ *          <element>: (
+ *              font-size: <size-w/o-unit>,
+ *              <property>: <value>,
+ *              ...
+ *          )
+ *      )
+ */
+@mixin h($t, $titles: $headings) {
+    @if not map-has-key($titles, $t) {
+        @error "No key found for `#{$t}`. Property omitted.";
+    }
+
+    // Specific properties
+    $title: map-get($titles, $t);
+    @each $prop, $val in $title {
+        @if $prop == "font-size" {
+            @if is-map($val) {
+                @include fluid-type($val);
+            } @else {
+                font-size: rem($val);
+            }
+        } @else {
+            #{$prop}: #{$val};
+        }
+    }
+
+    // Shared properties
+    @if map-has-key($titles, "shared") {
+        $shared: map-get($titles, "shared");
+        @each $prop, $value in $shared {
+            @if not map-has-key($title, $prop) {
+                #{$prop}: #{$value};
+            }
+        }
+    }
+}
+
+/**
+ * Responsive typography
+ * @param  {sass-map} $sizes      The map containing the breakpoint, font-size and if fluid or not.
+ *                                (For sass map format, view mixin h() documentation above)
+ * @return {void}
+ */
+@mixin fluid-type($sizes) {
+    @each $bp, $props in $sizes {
+        $index: index($sizes, $bp $props);
+        $size: nth($props, 1);
+        $fluid: index-exists($props, fluid);
+        $min-bp: breakpoint-min($bp);
+        $next-bp: breakpoint-next($bp, $sizes);
+        $fs: ""; // Declare here to prevent error
+
+        @if $fluid {
+            @if $next-bp {
+                @if not $min-bp {
+                    $min-bp: 0;
+                }
+                $fs: calc-fluid-type(
+                    $size,
+                    map-get($sizes, $next-bp),
+                    $min-bp,
+                    breakpoint-min($next-bp)
+                );
+            } @else {
+                @if not $min-bp {
+                    // If current breakpoint is null, get next one instead
+                    $min-bp: breakpoint-min(breakpoint-next($bp));
+                }
+                $ratio: strip-units(divide($size, $min-bp)) * 100vw;
+                $fs: max(rem($size), $ratio);
+            }
+        } @else {
+            $fs: rem($size);
+        }
+
+        @if $index == 1 {
+            font-size: $fs;
+        } @else {
+            @include min($bp) {
+                font-size: $fs;
+            }
+        }
+    }
+}
+
+/**
+ * Generate calculation for a responsive size based on viewport width
+ * All sizes must be in pixels
+ * @author Based on Mike Riethmuller http://codepen.io/MadeByMike/pen/YPJJYv
+ * @param  {integer} $min-size        The minimum size for the element
+ * @param  {integer} $max-size        The maximum size for the element
+ * @param  {integer} $min-width       The breakpoint minimum to activate the responsive typography
+ * @param  {integer} $max-width       The breakpoint maximum to activate th responsive typography
+ * @return {string}  $ratio           The calculation
+ */
+@function calc-fluid-type($min-size, $max-size, $min-width, $max-width) {
+    // Makes sure values don't have unit to prevent miscalculation
+    $min-size: strip-units($min-size);
+    $max-size: strip-units($max-size);
+    $min-width: strip-units($min-width);
+    $max-width: strip-units($max-width);
+
+    // Ratio calculation
+    $ratio: calc(
+        #{$min-size}px + (#{$max-size} - #{$min-size}) *
+            ((100vw - #{$min-width}px) / (#{$max-width} - #{$min-width}))
+    );
+
+    @return $ratio;
+}

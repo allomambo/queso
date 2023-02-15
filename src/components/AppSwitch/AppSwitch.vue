@@ -126,12 +126,7 @@ const getCheckboxState = (event: any, fieldCallback: (a: boolean) => void) => {
     }
 
     &__native {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        white-space: nowrap;
-        overflow: hidden;
-        clip: rect(1px, 1px, 1px, 1px);
+        @include accessible-item;
     }
 
     &__hidden-label {

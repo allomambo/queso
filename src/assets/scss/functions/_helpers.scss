@@ -1,0 +1,32 @@
+/*=================================
+=            Helpers              =
+=================================*/
+
+@use "sass:math";
+
+// Value in negative
+@function minus($value) {
+    @return calc($value * -1);
+}
+
+// Pixel to rem
+@function rem($value, $ratio: 10) {
+    @return math.div($value, $ratio) + rem;
+}
+
+// Pixel to em
+@function em($value, $ratio: 10) {
+    @return math.div($value, $ratio) + em;
+}
+
+// Check if value is a sass:map
+// @return {boolean}
+@function is-map($var) {
+    @return type-of($var) == "map";
+}
+
+// Check if value exist in map
+// @return {boolean}
+@function index-exists($map, $val) {
+    @return index($map, $val) != null;
+}

@@ -1,0 +1,47 @@
+/*=======================================
+=                Colors                 =
+=======================================*/
+
+$colors: (
+    black: #000000,
+    white: #ffffff,
+    grey: #999999,
+    valid: #a6d3a0,
+    warning: #f7a6a6,
+    yellow: #fef17b,
+    blue: #274ee5,
+) !default;
+
+/*=======================================
+=         Document Typography           =
+=======================================*/
+
+// <html> Font size
+$html-fs: 10px !default;
+
+// <body> Font styles
+$body-font-color: var(--color-black) !default;
+$body-font-family: var(--ff-body) !default;
+$body-font-size: var(--fs-regular) !default;
+$body-line-height: 1.35 !default;
+$body-bg-color: var(--color-white) !default;
+
+/*=======================================
+=            Selected Text              =
+=======================================*/
+
+$selection-bg: var(--color-black) !default;
+$selection-color: var(--color-white) !default;
+
+/*=================================
+=            Z-indexes            =
+=================================*/
+
+$layers: (
+    default: 1,
+    loader: 500,
+    modal: 300,
+    header: 200,
+    dropdown: 100,
+    limbo: -100,
+) !default;
