@@ -18,8 +18,8 @@
             "require": "./dist/index.cjs"
         },
         "./styles/components": "./dist/style.css",
-        "./styles/utils": "./src/assets/main.scss",
-        "./styles/reset": "./src/assets/00.core/_ress.scss",
+        "./styles/core": "./src/assets/scss/main.scss",
+        "./styles/reset": "./src/assets/scss/resets/ress.scss",
         "./scripts/utils": "./src/utils/index.ts"
     },
     "engines": {

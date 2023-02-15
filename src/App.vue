@@ -2,8 +2,6 @@
     <p>App</p>
 </template>
 
-<script setup lang="ts">
-import "@assets/scss/global.scss";
-</script>
+<script setup lang="ts"></script>
 
 <style lang="scss" scoped></style>
