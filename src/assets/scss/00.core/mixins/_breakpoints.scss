@@ -2,6 +2,18 @@
 =             Breakpoints               =
 =======================================*/
 
+$breakpoints: (
+    // <name>: <screen-size>
+    xxs: 0,
+    xs: 420px,
+    sm: 576px,
+    md: 768px,
+    lg: 1024px,
+    xl: 1280px,
+    2xl: 1536px,
+    3xl: 1920px
+) !default;
+
 // Breakpoint viewport sizes and media queries.
 //
 // Breakpoints are defined as a map of (name: minimum width), order from small to large:

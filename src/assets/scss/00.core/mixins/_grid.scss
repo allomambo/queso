@@ -2,7 +2,18 @@
 =                 Grid                  =
 =======================================*/
 
-@mixin make-cssgrid($columns: $grid-columns, $bps: $breakpoints) {
+$grid: (
+    // <breakpoint>: <gap-size> <columns>
+    xs: 20px 4,
+    lg: 30px 8,
+    xl: 30px 12
+) !default;
+
+$largestGrid: getLargestValue($grid, 2, "complete");
+$largestGridGap: nth($largestGrid, 2);
+$largestGridColumns: nth($largestGrid, 3);
+
+@mixin make-cssgrid($columns: $largestGridColumns, $bps: $breakpoints) {
     @each $breakpoint in map-keys($bps) {
         $infix: breakpoint-infix($breakpoint, $bps);
 
@@ -30,11 +41,15 @@
                 }
 
                 .col-half#{$infix} {
-                    grid-column: auto / span calc(var(--grid-columns) / 2);
+                    grid-column: auto /
+                        span
+                        calc(var(--grid-columns, $largestGridColumns) / 2);
                 }
 
                 .col-third#{$infix} {
-                    grid-column: auto / span calc(var(--grid-columns) / 3);
+                    grid-column: auto /
+                        span
+                        calc(var(--grid-columns, $largestGridColumns) / 3);
                 }
             }
         }
@@ -44,9 +59,12 @@
 @mixin grid {
     display: grid;
     grid-template-rows: repeat(var(--grid-rows, 1), 1fr);
-    grid-template-columns: repeat(var(--grid-columns, #{$grid-columns}), 1fr);
-    column-gap: var(--grid-col-gap, var(--grid-gap));
-    row-gap: var(--grid-row-gap, var(--grid-gap));
+    grid-template-columns: repeat(
+        var(--grid-columns, $largestGridColumns),
+        1fr
+    );
+    column-gap: var(--grid-col-gap, var(--grid-gap, $largestGridGap));
+    row-gap: var(--grid-row-gap, var(--grid-gap, $largestGridGap));
 
     @include make-cssgrid();
 }

@@ -2,6 +2,8 @@
 =               Line up                =
 ======================================*/
 
+$stack-gap: 30px !default;
+
 /**
  * Align and space elements in a container
  * @param  {string} $orientation     Orientation. Values: 'horizontal' or 'vertical'

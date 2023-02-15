@@ -20,15 +20,28 @@ $colors: (
 $html-fs: 10px !default;
 
 // <body> Font styles
-$body-font-color: var(--queso-color-black) !default;
-$body-font-family: var(--queso-ff-body) !default;
-$body-font-size: var(--queso-fs-regular) !default;
+$body-font-color: var(--color-black) !default;
+$body-font-family: var(--ff-body) !default;
+$body-font-size: var(--fs-regular) !default;
 $body-line-height: 1.35 !default;
-$body-bg-color: var(--queso-color-white) !default;
+$body-bg-color: var(--color-white) !default;
 
 /*=======================================
 =            Selected Text              =
 =======================================*/
 
-$selection-bg: var(--queso-color-black) !default;
-$selection-color: var(--queso-color-white) !default;
+$selection-bg: var(--color-black) !default;
+$selection-color: var(--color-white) !default;
+
+/*=================================
+=            Z-indexes            =
+=================================*/
+
+$layers: (
+    default: 1,
+    loader: 500,
+    modal: 300,
+    header: 200,
+    dropdown: 100,
+    limbo: -100,
+) !default;

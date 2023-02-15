@@ -2,6 +2,14 @@
 =             Containers               =
 ======================================*/
 
+$containers: (
+    // <name>: <width> <gutters>
+    default: 1920px 60px,
+    small: 420px 60px,
+    medium: 870px 60px,
+    full: none 60px
+) !default;
+
 /**
  * Container(s) styles generator
  * @param  {string} $variant     What size variant to generate.
@@ -34,14 +42,9 @@
 }
 
 @mixin container-styles($width, $gutter) {
-    --container-width: #{$width};
-    --container-gutter: #{$gutter};
-    width: var(--container-width);
-    max-width: calc(100% - (var(--container-gutter) * 2));
-    margin-right: auto;
-    margin-left: auto;
-
-    @include max(md) {
-        --container-gutter: var(--grid-gap);
-    }
+    display: block;
+    width: var(--container-width, #{$width});
+    max-width: calc(100% - (var(--container-gutter, #{$gutter}) * 2));
+    margin-left: var(--container-margin-left, auto);
+    margin-right: var(--container-margin-right, auto);
 }

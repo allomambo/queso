@@ -40,7 +40,7 @@ $font-families: (
 // Used by mixin h()
 $headings: (
     shared: (
-        font-family: var(--queso-ff-heading),
+        font-family: var(--ff-heading),
         line-height: 1,
         font-weight: bold,
     ),
