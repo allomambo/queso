@@ -43,9 +43,6 @@
         --queso-grid-columns: 1;
     }
 
-    // Rich text editor gap
-    @include make-variations("queso-rte-gap", $rte-gap);
-
     // Layers
     @each $name, $layer in $layers {
         --queso-z-#{$name}: #{$layer};
