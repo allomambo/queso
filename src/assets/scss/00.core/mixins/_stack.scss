@@ -10,14 +10,23 @@
  * @return {void}
  */
 @mixin stack($orientation: "horizontal", $alignX: "left", $alignY: "center") {
-    @if $alignX != "left" and $alignX != "right" and $alignX != "center" {
-        @error "The X axis alignment '#{$alignX}' is not allowed, choose between 'left', 'right' or 'center'.";
+    // Validation
+    $valid-orientation: horizontal, vertical;
+    @if not index($valid-orientation, $orientation) {
+        @error "'#{$orientation}' is not a valid orientation. Choose between : #{$valid-orientation}.";
     }
 
-    @if $alignY != "top" and $alignY != "bottom" and $alignY != "center" {
-        @error "The Y axis alignment '#{$alignY}' is not allowed, choose between 'left', 'right' or 'center'.";
+    $valid-alignX: left, right, center;
+    @if not index($valid-alignX, $alignX) {
+        @error "'#{$alignX}' is not a valid X axis alignment. Choose between : #{$valid-alignX}.";
     }
 
+    $valid-alignY: top, bottom, center;
+    @if not index($valid-alignY, $alignY) {
+        @error "'#{alignY}' is not a valid Y axis alignment. Choose between : #{$valid-alignY}.";
+    }
+
+    // Flexbox params depending on chosen orientation and alignments
     $direction: row;
     $align: flex-start;
     $justify: flex-start;
@@ -60,10 +69,9 @@
         } @else if $alignY == "center" {
             $justify: center;
         }
-    } @else {
-        @error "The orientation '#{$orientation}' is not allowed, choose between 'horizontal' or 'vertical'.";
     }
 
+    // Apply styles
     display: flex;
     align-items: var(--stack-align, #{$align});
     justify-content: var(--stack-justify, #{$justify});
