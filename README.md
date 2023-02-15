@@ -1,4 +1,4 @@
-# 🌮 Toppings
+# 🧀 Queso
 
 ##### Required
 
@@ -11,16 +11,16 @@
 
 ```
 # With Yarn:
-yarn add @allomambo/tacos-toppings
+yarn add @allomambo/queso
 
 # With npm:
-npm install @allomambo/tacos-toppings
+npm install @allomambo/queso
 ```
 
 **2.** Add the css styles
 
 ```
-import "@allomambo/tacos-toppings/css";
+import "@allomambo/queso/css";
 ```
 
 \*If the components are used in more than one place, it's good to add it globally in your project.
@@ -32,11 +32,11 @@ Import the desired component from the package like a normal component.
 ```
 <template>
     ...
-    <tacos-component />
+    <queso-component />
     ...
 </template>
 
 <script setup>
-import { TacosComponent } from "@allomambo/tacos-toppings";
+import { QuesoComponent } from "@allomambo/queso";
 </script>
 ```

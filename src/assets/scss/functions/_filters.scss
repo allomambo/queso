@@ -1,0 +1,25 @@
+/*=================================
+=            Filters              =
+=================================*/
+
+/**
+ * Slightly lighten a color
+ * @access public
+ * @param {Color} $color - color to tint
+ * @param {Number} $percentage - percentage of `$color` in returned color
+ * @return {Color}
+ */
+@function tint($color, $percentage) {
+    @return mix($color, #fff, $percentage);
+}
+
+/**
+ * Slightly darken a color
+ * @access public
+ * @param  {color}  $color       color to shade
+ * @param  {number} $percentage  percentage of `$color` in returned color
+ * @return {Color}
+ */
+@function shade($color, $percentage) {
+    @return mix($color, #000, $percentage);
+}

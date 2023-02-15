@@ -1,0 +1,23 @@
+/*=================================
+=           Typography            =
+=================================*/
+
+@if length($font-faces) > 0 {
+    @include fontfaces($font-faces, $fonts-directory);
+}
+
+body {
+    color: $body-font-color;
+    font-family: $body-font-family;
+    font-size: $body-font-size;
+    line-height: $body-line-height;
+}
+
+// Generate headings
+@each $name, $attr in $headings {
+    @if $name != "shared" {
+        .t-#{$name} {
+            @include h(#{$name});
+        }
+    }
+}

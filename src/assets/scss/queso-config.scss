@@ -1,0 +1,36 @@
+/*============================
+=    Queso mixins' config     =
+============================*/
+
+// Breakpoints
+$breakpoints: (
+    // <name>: <screen-size>
+    xxs: 0,
+    xs: 420px,
+    sm: 576px,
+    md: 768px,
+    lg: 1024px,
+    xl: 1280px,
+    2xl: 1536px,
+    3xl: 1920px
+);
+
+// Containers
+$containers: (
+    // <name>: <width> <gutter>
+    default: 1920px 60px,
+    small: 420px 60px,
+    medium: 870px 60px,
+    full: none 60px
+);
+
+// Stack
+$stack-gap: 20px;
+
+// Grid
+$grid: (
+    // <breakpoint>: <gap-size> <columns>
+    xs: 20px 4,
+    lg: 30px 8,
+    xl: 30px 12
+);

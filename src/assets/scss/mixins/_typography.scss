@@ -1,0 +1,77 @@
+/*=================================
+=           Font-faces            =
+=================================*/
+
+@mixin fontfaces($webfonts, $dir) {
+    @each $webfont in $webfonts {
+        @font-face {
+            font-family: nth($webfont, 1);
+            src: url("#{$dir}#{nth($webfont, 2)}.woff2") format("woff2"),
+                url("#{$dir}#{nth($webfont, 2)}.woff") format("woff");
+            font-weight: #{nth($webfont, 3)};
+            font-style: #{nth($webfont, 4)};
+            font-display: swap;
+        }
+    }
+}
+
+/*=================================
+=         Selected Text           =
+=================================*/
+
+@mixin selection {
+    ::-moz-selection {
+        text-shadow: none;
+        @content;
+    }
+
+    ::selection {
+        text-shadow: none;
+        @content;
+    }
+}
+
+/*=================================
+=              Misc               =
+=================================*/
+
+@mixin ellipsis {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+// Nicely hyphenate long words
+// cf. https://justmarkup.com/log/2015/07/31/dealing-with-long-words-in-css/
+@mixin hyphenate {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+@mixin underline(
+    $line-display: none,
+    $color-line: $color-light,
+    $padding: 2em,
+    $margin-bottom: 0.4em
+) {
+    &:after {
+        display: $line-display;
+        content: " ";
+        position: absolute;
+        height: 1px;
+        background-color: $color-line;
+        left: $padding;
+        bottom: $margin-bottom;
+        right: $padding;
+    }
+}
+
+// Better font rendering
+@mixin antialiased {
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -moz-osx-font-smoothing: antialiased;
+}
