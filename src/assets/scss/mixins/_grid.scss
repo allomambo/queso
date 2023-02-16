@@ -9,7 +9,7 @@ $grid: (
     xl: 12 30px
 ) !default;
 
-$largestGrid: getLargestValue($grid, 2, "complete");
+$largestGrid: getLargestValue($grid, 1, "complete");
 $largestGridColumns: nth($largestGrid, 2);
 $largestGridGap: nth($largestGrid, 3);
 
