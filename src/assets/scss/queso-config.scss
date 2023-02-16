@@ -29,8 +29,8 @@ $stack-gap: 20px;
 
 // Grid
 $grid: (
-    // <breakpoint>: <gap-size> <columns>
-    xs: 20px 4,
-    lg: 30px 8,
-    xl: 30px 12
+    // <breakpoint>: <columns> <gap-size>
+    xs: 4 20px,
+    lg: 8 30px,
+    xl: 12 30px
 );
