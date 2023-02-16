@@ -1,14 +1,14 @@
 <template>
     <component
         :is="tag"
-        :href="btnHref"
-        :to="btnTo"
-        :rel="tag == 'a' ? 'noopener' : null"
         class="queso-button"
         :class="buttonClasses"
-        :aria-disabled="isDisabled ? true : null"
-        :disabled="isDisabled ? true : null"
+        :rel="btnRel"
+        :href="btnHref"
+        :to="btnTo"
         :target="btnTarget"
+        :aria-disabled="btnDisabled"
+        :disabled="btnDisabled"
     >
         <slot></slot>
     </component>
@@ -31,17 +31,20 @@ const props = withDefaults(defineProps<Props>(), {
     tag: "button",
 });
 
+// Computeds
 const buttonClasses = computed(() => ({
     "is-disabled": props.isDisabled,
 }));
 
-const btnHref = computed(() =>
-    (props.tag == "a" || props.tag == "router-link") && props.href !== null ? props.href : null
-);
-const btnTo = computed(() => (props.tag == "router-link" && props.href !== null ? props.href : null));
+const btnHref = computed(() => (props.tag === "a" ? props.href : null));
+const btnTo = computed(() => (props.tag === "router-link" ? props.href : null));
 
 const isTargetBlank = computed(() => (props.isTargetBlank ? "_blank" : "_self"));
 const btnTarget = computed(() => (props.tag === "a" ? isTargetBlank.value : null));
+
+const btnDisabled = computed(() => (props.isDisabled ? true : null));
+
+const btnRel = computed(() => (props.tag === "a" ? "noopener" : null));
 </script>
 
 <style lang="scss">
