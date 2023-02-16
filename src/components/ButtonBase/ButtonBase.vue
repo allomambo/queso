@@ -7,8 +7,9 @@
         :href="btnHref"
         :to="btnTo"
         :target="btnTarget"
-        :aria-disabled="btnDisabled"
         :disabled="btnDisabled"
+        :aria-disabled="btnDisabled"
+        :aria-label="ariaLabel"
     >
         <slot></slot>
     </component>
@@ -25,6 +26,7 @@ interface Props {
     href?: string;
     isDisabled?: boolean;
     isTargetBlank?: boolean;
+    ariaLabel?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
