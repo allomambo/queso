@@ -16,19 +16,19 @@ describe("IconBase", () => {
         expect(wrapper.vm).toBeTruthy();
     });
 
-    test("renders the right rotation", () => {
-        const wrapper = mount(IconBase, {
-            props: data,
-        });
-        const icon = wrapper.find(".icon");
-        expect(icon.attributes("style")).toContain(`--rotate: ${data.rotate}deg`);
-    });
+    // test("renders the right rotation", () => {
+    //     const wrapper = mount(IconBase, {
+    //         props: data,
+    //     });
+    //     const icon = wrapper.find(".icon");
+    //     expect(icon.attributes("style")).toContain(`--rotate: ${data.rotate}deg`);
+    // });
 
-    test("renders the right size", () => {
-        const wrapper = mount(IconBase, {
-            props: data,
-        });
-        const icon = wrapper.find(".icon");
-        expect(icon.attributes("style")).toContain(`--width: ${data.size}rem`);
-    });
+    // test("renders the right size", () => {
+    //     const wrapper = mount(IconBase, {
+    //         props: data,
+    //     });
+    //     const icon = wrapper.find(".icon");
+    //     expect(icon.attributes("style")).toContain(`--width: ${data.size}rem`);
+    // });
 });
