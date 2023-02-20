@@ -13,10 +13,11 @@
     "type": "module",
     "main": "./dist/index.umd.cjs",
     "module": "./dist/index.js",
-    "types": "declaration/components.d.ts",
+    "types": "./declaration/components.d.ts",
     "files": [
         "dist/*",
-        "src/*"
+        "src/*",
+        "declaration/*"
     ],
     "exports": {
         ".": {
