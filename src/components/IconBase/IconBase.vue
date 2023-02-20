@@ -9,7 +9,9 @@
     </span>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
+import { computed } from "vue";
+
 interface Props {
     svg?: SVGElement | string;
     name?: string;
@@ -17,10 +19,6 @@ interface Props {
     size?: number;
     rotation?: number;
 }
-</script>
-
-<script setup lang="ts">
-import { computed } from "vue";
 
 const props = withDefaults(defineProps<Props>(), {
     size: 1,
