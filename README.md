@@ -1,6 +1,6 @@
 # 🧀 Queso
 
-##### Required
+#### Required
 
 -   Node 16.14.2
 -   VueJS 3.2.37
@@ -8,7 +8,7 @@
 > **Note**  
 > Complete documentation in progress
 
-### Installation
+## Installation
 
 **1.** Install the package
 
@@ -48,7 +48,7 @@ import { QuesoSimpleComponent, QuesoComplexComponent } from "@allomambo/queso";
 </script>
 ```
 
-### Use sass mixins, functions and utils
+## Use sass mixins, functions and utils
 
 **1.** Import the sass core from the package
 
@@ -58,11 +58,11 @@ import "@allomambo/queso/styles/core";
 
 **2.** You can update the config of some mixins by re-declaring variables in your own sass base. All the configs available are in this [config file](.config/queso-config.scss).
 
-##### Frontend tooling
+#### Frontend tooling
 
 If you use a frontend tool like Vite or Webpack, we recommend that you import as additional data the sass core and your configs.
 
-### JS utils
+## JS utils
 
 ```
 import {
