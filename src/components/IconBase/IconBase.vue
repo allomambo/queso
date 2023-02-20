@@ -1,14 +1,21 @@
 <template>
-    <span :class="iconClasses" :style="iconCssVars" v-html="iconSVG" aria-hidden="true"></span>
+    <span v-if="svg" :class="iconClasses" aria-hidden="true" v-html="svg"></span>
+    <span v-else :class="iconClasses" aria-hidden="true">
+        <slot v-bind="{ ...props, width, rotation, iconID }">
+            <svg>
+                <use :href="iconID" />
+            </svg>
+        </slot>
+    </span>
 </template>
 
 <script setup lang="ts">
 import { computed } from "vue";
 
-import * as icons from "@/static/svg";
-
 interface Props {
+    svg?: SVGElement | string;
     name?: string;
+    prefix?: string;
     size?: number;
     rotation?: number;
 }
@@ -18,16 +25,16 @@ const props = withDefaults(defineProps<Props>(), {
     rotation: 0,
 });
 
-const iconSVG = computed<SVGElement>(() => icons[props.name]);
-
-const iconClasses = computed<string[]>(() => ["queso-icon", `-${props.name}`]);
-
-const iconCssVars = computed<any>(() => {
-    return {
-        "--rotation": `${props.rotation}deg`,
-        "--width": `${props.size}rem`,
-    };
+const iconID = computed(() => {
+    const prefix = props.prefix ? `${props.prefix}-` : "";
+    return `#${prefix}${props.name}`;
 });
+
+const iconClasses = computed<string[]>(() => ["queso-icon", props.name && `-${props.name}`]);
+
+// Visual
+const width = computed<string>(() => `${props.size}rem`);
+const rotation = computed<string>(() => `${props.rotation}deg`);
 </script>
 
 <style lang="scss">
@@ -39,23 +46,10 @@ const iconCssVars = computed<any>(() => {
 
     svg {
         display: block;
-        width: var(--icon-width, var(--width));
-        height: calc(var(--icon-height, var(--icon-width, var(--width))) * var(--icon-ratio, 1));
+        width: var(--queso-icon-width, v-bind("width"));
+        height: calc(var(--queso-icon-height, var(--queso-icon-width, v-bind("width"))) * var(--queso-icon-ratio, 1));
         fill: currentColor;
-        transform: rotate(var(--icon-rotation, var(--rotation)));
-    }
-
-    //--- Visual variations ---//
-
-    &.has-txt-color {
-        color: var(--icon-txt-color, var(--txt-color));
-    }
-
-    &.has-bg-color {
-        width: var(--icon-bg-width, var(--bg-width));
-        height: calc(var(--icon-bg-height, var(--icon-bg-width, var(--bg-width))) * var(--icon-bg-ratio, 1));
-        background-color: var(--icon-bg-color, var(--bg-color));
-        border-radius: var(--icon-bg-radius, var(--border-radius-xs));
+        transform: rotate(var(--queso-icon-rotation, v-bind("rotation")));
     }
 }
 </style>
