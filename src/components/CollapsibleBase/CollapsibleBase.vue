@@ -32,7 +32,7 @@ import { useElementBounding } from "@vueuse/core";
 
 // Props / Emits
 export interface Props {
-    isExpanded?: boolean;
+    expandOnMount?: boolean;
 }
 
 const props = defineProps<Props>();
@@ -42,7 +42,7 @@ const emit = defineEmits(["open:collapsible", "close:collapsible"]);
 // Computeds
 const collapsibleContent = ref<HTMLElement>();
 const isCollapsibleOpen = ref<boolean>(false);
-const isCollapsibleExpanded = ref<boolean>(props.isExpanded);
+const isCollapsibleExpanded = ref<boolean>(props.expandOnMount);
 
 onBeforeMount(() => {
     if (isCollapsibleExpanded.value) {
@@ -125,7 +125,7 @@ defineExpose({ open, close, toggle });
         transition: max-height var(--queso-collapsible-duration, 0.5s) var(--queso-collapsible-ease, ease);
 
         &__inner {
-            @include clearfix;
+            @include clearfix; // Prevent hidden content from margin or float
         }
     }
 
