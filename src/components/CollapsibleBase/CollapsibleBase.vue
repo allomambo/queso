@@ -1,6 +1,6 @@
 <template>
     <div class="queso-collapsible" :class="collapsibleClasses">
-        <div class="queso-collapsible__header" @click="toggleCollapsible(!isCollapsibleOpen)">
+        <div class="queso-collapsible__header" @click="toggle(!isCollapsibleOpen)">
             <slot name="headerPrefix"></slot>
             <div class="queso-collapsible__header__text">
                 <slot name="headerText"></slot>
@@ -33,7 +33,6 @@ const props = defineProps<Props>();
 const emit = defineEmits(["open:collapsible", "close:collapsible"]);
 
 // Computeds
-// const collapsibleContent = ref<HTMLDivElement | null>(null);
 const collapsibleContent = ref<HTMLElement>();
 const isCollapsibleOpen = ref<boolean>(false);
 
@@ -49,29 +48,32 @@ const collapsibleClasses = computed(() => ({
 }));
 
 /**
- * OPEN/CLOSE DROPDOWN
+ * OPEN/CLOSE CONTENT
  */
 
-const openCollapsible = () => {
+const open = () => {
     isCollapsibleOpen.value = true;
     emit("open:collapsible");
 };
 
-const closeCollapsible = () => {
+const close = () => {
     isCollapsibleOpen.value = false;
     emit("close:collapsible");
 };
 
-const toggleCollapsible = (bool: boolean = false) => {
-    if (bool) openCollapsible();
-    else closeCollapsible();
+const toggle = (bool: boolean = false) => {
+    if (bool) open();
+    else close();
 };
 
-/**
- * CHOICES OVERFLOW
- */
-const { width, height } = useElementBounding(collapsibleContent);
+// Calculate height
+const { height } = useElementBounding(collapsibleContent);
 const contentHeight = computed<string>(() => (isCollapsibleOpen.value ? `${height.value}px` : "0px"));
+
+/**
+ * EXPOSE METHODS
+ */
+defineExpose({ open, close, toggle });
 </script>
 
 <style lang="scss">
@@ -96,7 +98,7 @@ const contentHeight = computed<string>(() => (isCollapsibleOpen.value ? `${heigh
     }
 
     /*=================================
-    =             Popover             =
+    =             Content             =
     =================================*/
 
     &__content {
@@ -109,9 +111,8 @@ const contentHeight = computed<string>(() => (isCollapsibleOpen.value ? `${heigh
         transition: max-height var(--queso-collapsible-duration, 0.5s) var(--queso-collapsible-ease, ease);
         background-color: rgb(59, 217, 164);
 
-        &__scroll {
-            @include overflow;
-            max-height: var(--queso-collapsible-popover-max-height, 20rem);
+        &__inner {
+            @include clearfix;
         }
     }
 
@@ -119,9 +120,7 @@ const contentHeight = computed<string>(() => (isCollapsibleOpen.value ? `${heigh
     =             States              =
     =================================*/
 
-    &.is-open {
-        --queso-collapsible-popover-opacity: 1;
-
+    &.is-collapsible-open {
         #{$_}__content {
             @include unselectable(false);
         }
