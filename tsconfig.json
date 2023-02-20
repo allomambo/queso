@@ -2,8 +2,10 @@
     "compilerOptions": {
         // Prevent warnings coming from default HTML attributes
         "types": ["vite/client"],
+        "target": "es2016",
+        "moduleResolution": "node",
         "jsx": "preserve",
-        // "strict": true,
+        "strict": false,
         "skipLibCheck": true,
         "outDir": "dist",
         "paths": {

@@ -5,7 +5,7 @@
 -   Node 16.14.2
 -   VueJS 3.2.37
 
-> **Note**
+> **Note**  
 > Complete documentation in progress
 
 ### Installation
