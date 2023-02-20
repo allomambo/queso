@@ -20,10 +20,11 @@
 
         <div class="queso-dropdown__popover">
             <div v-if="$slots.popoverHeader" class="queso-dropdown__popover__header">
-                <slot name="popoverHeader" v-bind="{ openDropdown, closeDropdown }"></slot>
+                <slot name="popoverHeader"></slot>
             </div>
             <div class="queso-dropdown__popover__scroll" ref="dropdownPopover" :class="dropdownPopoverClasses">
                 <ul class="queso-dropdown__popover__options-list">
+                    <slot name="beforeItems"></slot>
                     <li
                         v-for="option in options"
                         :key="option.key"
@@ -35,17 +36,18 @@
                             {{ option }}
                         </slot>
                     </li>
+                    <slot name="afterItems"></slot>
                 </ul>
             </div>
             <div v-if="$slots.popoverFooter" class="queso-dropdown__popover__footer">
-                <slot name="popoverFooter" v-bind="{ openDropdown, closeDropdown }"></slot>
+                <slot name="popoverFooter"></slot>
             </div>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import { PropType, computed, ref, onMounted } from "vue";
+import { computed, ref, onMounted } from "vue";
 import { onClickOutside, useScroll } from "@vueuse/core";
 
 import { Option } from "./types";
@@ -66,8 +68,6 @@ const props = withDefaults(defineProps<Props>(), {
 const emit = defineEmits(["update:options", "open:dropdown", "close:dropdown"]);
 
 // Computeds
-// const dropdown = ref<HTMLDivElement | null>(null);
-// const dropdownPopover = ref<HTMLUListElement | null>(null);
 const dropdown = ref<HTMLElement>();
 const dropdownPopover = ref<HTMLElement>();
 const isDropdownOpen = ref<boolean>(false);
@@ -85,8 +85,8 @@ onMounted(() => {
 });
 
 const dropdownClasses = computed(() => ({
-    "is-open": isDropdownOpen.value,
-    "is-close": !isDropdownOpen.value,
+    "is-dropdown-open": isDropdownOpen.value,
+    "is-dropdown-close": !isDropdownOpen.value,
     "has-value": activeOptions.value.length >= 1,
     "has-no-value": activeOptions.value.length < 1,
     "is-multiple": props.multiple,
@@ -229,7 +229,7 @@ const dropdownPopoverClasses = computed(() => ({
     =             States              =
     =================================*/
 
-    &.is-open {
+    &.is-dropdown-open {
         --queso-dropdown-popover-opacity: 1;
 
         #{$_}__popover {

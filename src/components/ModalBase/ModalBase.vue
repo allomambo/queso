@@ -1,6 +1,6 @@
 <template>
     <Teleport to="body">
-        <div class="queso-modal" :class="{ 'is-open': isOpen }">
+        <div class="queso-modal" :class="{ 'is-modal-open': isOpen }">
             <slot name="before-content"></slot>
 
             <div class="queso-modal__inner">
@@ -92,7 +92,7 @@ defineExpose({ open, close });
         overflow: auto;
     }
 
-    &.is-open {
+    &.is-modal-open {
         --queso-modal-opacity: 1;
         @include unselectable(false);
     }
