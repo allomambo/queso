@@ -35,9 +35,10 @@ const emit = defineEmits(["open:collapsible", "close:collapsible"]);
 // Computeds
 const collapsibleContent = ref<HTMLElement>();
 const isCollapsibleOpen = ref<boolean>(false);
+const isCollapsibleExpanded = ref<boolean>(props.isExpanded);
 
 onBeforeMount(() => {
-    if (props.isExpanded) {
+    if (isCollapsibleExpanded.value) {
         isCollapsibleOpen.value = true;
     }
 });
@@ -57,8 +58,12 @@ const open = () => {
 };
 
 const close = () => {
-    isCollapsibleOpen.value = false;
-    emit("close:collapsible");
+    isCollapsibleExpanded.value = false;
+
+    setTimeout(() => {
+        isCollapsibleOpen.value = false;
+        emit("close:collapsible");
+    }, 1); // If expanded, need to set height before going to 0px
 };
 
 const toggle = (bool: boolean = false) => {
@@ -68,7 +73,10 @@ const toggle = (bool: boolean = false) => {
 
 // Calculate height
 const { height } = useElementBounding(collapsibleContent);
-const contentHeight = computed<string>(() => (isCollapsibleOpen.value ? `${height.value}px` : "0px"));
+const contentHeight = computed<string>(() => {
+    if (isCollapsibleExpanded.value) return "none";
+    return isCollapsibleOpen.value ? `${height.value}px` : "0px";
+});
 
 /**
  * EXPOSE METHODS
