@@ -3,15 +3,15 @@
 =======================================*/
 
 $grid: (
-    // <breakpoint>: <gap-size> <columns>
-    xs: 20px 4,
-    lg: 30px 8,
-    xl: 30px 12
+    // <breakpoint>: <columns> <gap-size>
+    xs: 4 20px,
+    lg: 8 30px,
+    xl: 12 30px
 ) !default;
 
-$largestGrid: getLargestValue($grid, 2, "complete");
-$largestGridGap: nth($largestGrid, 2);
-$largestGridColumns: nth($largestGrid, 3);
+$largestGrid: getLargestValue($grid, 1, "complete");
+$largestGridColumns: nth($largestGrid, 2);
+$largestGridGap: nth($largestGrid, 3);
 
 @mixin make-cssgrid($columns: $largestGridColumns, $bps: $breakpoints) {
     @each $breakpoint in map-keys($bps) {
