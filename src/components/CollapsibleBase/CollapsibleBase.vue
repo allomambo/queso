@@ -1,5 +1,7 @@
 <template>
     <div class="queso-collapsible" :class="collapsibleClasses">
+        <slot name="beforeHeader"></slot>
+
         <div class="queso-collapsible__header" @click="toggle(!isCollapsibleOpen)">
             <slot name="headerPrefix"></slot>
             <div class="queso-collapsible__header__text">
@@ -11,11 +13,16 @@
             </div>
         </div>
 
+        <slot name="afterHeader"></slot>
+        <slot name="beforeContent"></slot>
+
         <div class="queso-collapsible__content">
             <div ref="collapsibleContent" class="queso-collapsible__content__inner">
                 <slot name="content"></slot>
             </div>
         </div>
+
+        <slot name="afterContent"></slot>
     </div>
 </template>
 
@@ -98,7 +105,6 @@ defineExpose({ open, close, toggle });
         align-items: var(--queso-collapsible-header-align, center);
         justify-content: var(--queso-collapsible-header-justify, flex-start);
         cursor: pointer;
-        background-color: aquamarine;
 
         &__icon {
             margin-left: auto;
@@ -117,7 +123,6 @@ defineExpose({ open, close, toggle });
         backface-visibility: hidden;
         will-change: max-height;
         transition: max-height var(--queso-collapsible-duration, 0.5s) var(--queso-collapsible-ease, ease);
-        background-color: rgb(59, 217, 164);
 
         &__inner {
             @include clearfix;
