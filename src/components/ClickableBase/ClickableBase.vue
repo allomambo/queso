@@ -15,10 +15,7 @@
     </component>
 </template>
 
-<script setup lang="ts">
-import { computed } from "vue";
-
-// Props
+<script lang="ts">
 type TagOptions = "button" | "a" | "router-link" | "div" | "span";
 
 interface Props {
@@ -28,7 +25,12 @@ interface Props {
     isTargetBlank?: boolean;
     ariaLabel?: string;
 }
+</script>
 
+<script setup lang="ts">
+import { computed } from "vue";
+
+// Props
 const props = withDefaults(defineProps<Props>(), {
     tag: "button",
 });
