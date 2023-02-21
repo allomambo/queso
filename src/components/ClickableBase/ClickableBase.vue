@@ -7,6 +7,7 @@
         :href="clickableHref"
         :to="clickableTo"
         :target="clickableTarget"
+        :download="clickableDownload"
         :disabled="clickableDisabled"
         :aria-disabled="clickableDisabled"
         :aria-label="ariaLabel"
@@ -26,6 +27,7 @@ interface Props {
     url?: string;
     isDisabled?: boolean;
     isExternal?: boolean;
+    isDownload?: boolean;
     ariaLabel?: string;
 }
 
@@ -38,15 +40,15 @@ const clickableClasses = computed(() => ({
     "is-disabled": props.isDisabled,
 }));
 
+const clickableDisabled = computed(() => (props.isDisabled ? true : null));
+
 const clickableHref = computed(() => (props.tag === "a" ? props.url : null));
 const clickableTo = computed(() => (props.tag === "router-link" ? props.url : null));
 
 const isExternal = computed(() => (props.isExternal ? "_blank" : "_self"));
 const clickableTarget = computed(() => (props.tag === "a" ? isExternal.value : null));
-
-const clickableDisabled = computed(() => (props.isDisabled ? true : null));
-
 const clickableRel = computed(() => (props.tag === "a" ? "noopener" : null));
+const clickableDownload = computed(() => (props.tag === "a" && props.isDownload ? "" : null));
 </script>
 
 <style lang="scss">
