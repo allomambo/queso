@@ -25,7 +25,7 @@ interface Props {
     tag?: TagOptions;
     url?: string;
     isDisabled?: boolean;
-    isTargetBlank?: boolean;
+    isExternal?: boolean;
     ariaLabel?: string;
 }
 
@@ -41,8 +41,8 @@ const clickableClasses = computed(() => ({
 const clickableHref = computed(() => (props.tag === "a" ? props.url : null));
 const clickableTo = computed(() => (props.tag === "router-link" ? props.url : null));
 
-const isTargetBlank = computed(() => (props.isTargetBlank ? "_blank" : "_self"));
-const clickableTarget = computed(() => (props.tag === "a" ? isTargetBlank.value : null));
+const isExternal = computed(() => (props.isExternal ? "_blank" : "_self"));
+const clickableTarget = computed(() => (props.tag === "a" ? isExternal.value : null));
 
 const clickableDisabled = computed(() => (props.isDisabled ? true : null));
 
