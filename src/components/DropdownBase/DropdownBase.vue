@@ -170,6 +170,11 @@ const dropdownPopoverClasses = computed(() => ({
     "is-scrolled-top": arrivedState.top,
     "is-scrolled-bottom": arrivedState.bottom || !dropdownPopoverIsOverflowing.value,
 }));
+
+/**
+ * EXPOSE
+ */
+defineExpose({ isDropdownOpen, openDropdown, closeDropdown });
 </script>
 
 <style lang="scss">
