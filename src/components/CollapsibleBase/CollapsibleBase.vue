@@ -16,7 +16,7 @@
         <slot name="afterHeader"></slot>
         <slot name="beforeContent"></slot>
 
-        <div class="queso-collapsible__content">
+        <div class="queso-collapsible__content" :aria-expanded="isCollapsibleOpen">
             <div ref="collapsibleContent" class="queso-collapsible__content__inner">
                 <slot name="content"></slot>
             </div>
