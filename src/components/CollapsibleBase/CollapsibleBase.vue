@@ -88,7 +88,7 @@ const contentHeight = computed<string>(() => {
 /**
  * EXPOSE METHODS
  */
-defineExpose({ open, close, toggle });
+defineExpose({ isCollapsibleOpen, open, close, toggle });
 </script>
 
 <style lang="scss">
