@@ -1,7 +1,7 @@
 <template>
     <div class="queso-field" :class="fieldClasses">
         <slot name="label" v-bind="{ ...exposedData }">
-            <label v-if="label" :for="fieldID" class="queso-field-label">
+            <label v-if="label" :for="fieldID" class="queso-field__label">
                 {{ label }}
             </label>
         </slot>
