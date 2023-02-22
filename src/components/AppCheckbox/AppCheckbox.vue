@@ -103,6 +103,7 @@ const getCheckboxState = (event: any, fieldCallback: (a: boolean) => void) => {
         user-select: none;
 
         &__symbol {
+            line-height: 0;
             opacity: var(--queso-checkbox-symbol-opacity, 0);
         }
     }
