@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <div class="queso-dropdown__popover">
+        <div class="queso-dropdown__popover" :aria-expanded="isDropdownOpen">
             <div v-if="$slots.popoverHeader" class="queso-dropdown__popover__header">
                 <slot name="popoverHeader"></slot>
             </div>
