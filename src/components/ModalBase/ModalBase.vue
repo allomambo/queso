@@ -1,6 +1,6 @@
 <template>
     <Teleport to="body">
-        <div class="queso-modal" :class="{ 'is-modal-open': isOpen }">
+        <div class="queso-modal" :class="{ 'is-modal-open': isOpen }" v-bind="$attrs">
             <slot name="before-content"></slot>
 
             <div class="queso-modal__inner">
