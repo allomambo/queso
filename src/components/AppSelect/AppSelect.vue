@@ -1,6 +1,18 @@
 <template>
     <field-base>
-        <template #field="{ fieldID, fieldName, fieldValue, updateValue, toggleIsActive, toggleIsHover, isReadOnly }">
+        <template
+            #field="{
+                fieldID,
+                fieldName,
+                fieldValue,
+                fieldAutocomplete,
+                updateValue,
+                toggleIsActive,
+                toggleIsHover,
+                isRequired,
+                isReadOnly,
+            }"
+        >
             <div v-if="isReadOnly" class="queso-select__read-only">
                 <span class="queso-select__read-only__label">
                     {{ fieldValue[0].data.label || placeholder }}
@@ -41,6 +53,8 @@
                 class="queso-select__select-native"
                 @focus="toggleIsActive(true)"
                 @blur="toggleIsActive(false)"
+                :required="isRequired"
+                :autocomplete="fieldAutocomplete"
                 :multiple="multiple"
             >
                 <option></option>

@@ -1,6 +1,6 @@
 <template>
     <Teleport to="body">
-        <div class="queso-modal" :class="{ 'is-modal-open': isOpen }">
+        <div class="queso-modal" :class="{ 'is-modal-open': isModalOpen }" :aria-expanded="isModalOpen" v-bind="$attrs">
             <slot name="before-content"></slot>
 
             <div class="queso-modal__inner">
@@ -28,24 +28,24 @@ import ModalBaseOverlay from "./components/ModalBaseOverlay.vue";
 const emit = defineEmits(["modal:open", "modal:close"]);
 
 // Open/Close modal
-const isOpen = ref<boolean>(false);
+const isModalOpen = ref<boolean>(false);
 
 const open = () => {
-    isOpen.value = true;
+    isModalOpen.value = true;
 };
 
 const close = () => {
-    isOpen.value = false;
+    isModalOpen.value = false;
 };
 
-// Lock scrolling when modal isOpen
+// Lock scrolling when modal is open
 const toggleOverflowOnDocument = (bool: boolean = true) => {
     document.documentElement.style.overflow = bool ? "hidden" : null;
 };
 
 // Update opened state
-watch(isOpen, (isOpened) => {
-    if (isOpened) {
+watch(isModalOpen, (isOpen) => {
+    if (isOpen) {
         toggleOverflowOnDocument(true);
         emit("modal:open");
     } else {
@@ -55,7 +55,7 @@ watch(isOpen, (isOpened) => {
 });
 
 onMounted(() => {
-    if (isOpen.value) {
+    if (isModalOpen.value) {
         toggleOverflowOnDocument(true);
     }
 });
@@ -63,7 +63,7 @@ onMounted(() => {
 // Provide and Expose open/close methods
 provide(ModalMethodsKey, { open, close });
 
-defineExpose({ open, close });
+defineExpose({ isModalOpen, open, close });
 </script>
 
 <style lang="scss">

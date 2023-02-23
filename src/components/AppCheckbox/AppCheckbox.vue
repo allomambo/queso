@@ -14,6 +14,7 @@
                 fieldName,
                 fieldValue,
                 fieldLabel,
+                fieldAutocomplete,
                 updateValue,
                 toggleIsActive,
                 toggleIsHover,
@@ -48,6 +49,7 @@
                 :name="fieldName"
                 :id="fieldID"
                 :required="isRequired"
+                :autocomplete="fieldAutocomplete"
                 :disabled="isDisabled"
                 @change="getCheckboxState($event, updateValue)"
                 @focus="toggleIsActive(true)"
@@ -103,6 +105,7 @@ const getCheckboxState = (event: any, fieldCallback: (a: boolean) => void) => {
         user-select: none;
 
         &__symbol {
+            line-height: 0;
             opacity: var(--queso-checkbox-symbol-opacity, 0);
         }
     }

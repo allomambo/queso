@@ -1,5 +1,5 @@
 /*======================================
-=               Line up                =
+=                Stack                 =
 ======================================*/
 
 $stack-gap: 30px !default;
@@ -8,7 +8,7 @@ $stack-gap: 30px !default;
  * Align and space elements in a container
  * @param  {string} $orientation     Orientation. Values: 'horizontal' or 'vertical'
  * @param  {string} $alignX          Alignment of each element on X axis. Values: 'left', 'right' or 'center'
- * @param  {string} $alignY          Alignment of each element on Y axis. Values: 'left', 'right' or 'center'
+ * @param  {string} $alignY          Alignment of each element on Y axis. Values: 'top', 'bottom' or 'center'
  * @return {void}
  */
 @mixin stack($orientation: "horizontal", $alignX: "left", $alignY: "center") {

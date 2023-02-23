@@ -18,12 +18,12 @@
             </div>
         </div>
 
-        <div class="queso-dropdown__popover">
+        <div class="queso-dropdown__popover" :aria-expanded="isDropdownOpen">
             <div v-if="$slots.popoverHeader" class="queso-dropdown__popover__header">
                 <slot name="popoverHeader"></slot>
             </div>
-            <div class="queso-dropdown__popover__scroll" ref="dropdownPopover" :class="dropdownPopoverClasses">
-                <ul class="queso-dropdown__popover__options-list">
+            <div class="queso-dropdown__popover__scroll" :class="dropdownPopoverClasses">
+                <ul ref="dropdownPopover" class="queso-dropdown__popover__options-list">
                     <slot name="beforeItems"></slot>
                     <li
                         v-for="option in options"
@@ -170,6 +170,11 @@ const dropdownPopoverClasses = computed(() => ({
     "is-scrolled-top": arrivedState.top,
     "is-scrolled-bottom": arrivedState.bottom || !dropdownPopoverIsOverflowing.value,
 }));
+
+/**
+ * EXPOSE
+ */
+defineExpose({ isDropdownOpen, openDropdown, closeDropdown });
 </script>
 
 <style lang="scss">
@@ -207,17 +212,14 @@ const dropdownPopoverClasses = computed(() => ({
         overflow: hidden;
         opacity: var(--queso-dropdown-popover-opacity, 0);
 
-        &__scroll {
-            @include overflow;
-            max-height: var(--queso-dropdown-popover-max-height, 20rem);
-        }
-
         &__options-list {
+            @include overflow;
             display: var(--queso-dropdown-popover-display, flex);
             flex-direction: var(--queso-dropdown-popover-direction, column);
             align-items: var(--queso-dropdown-popover-align, stretch);
             justify-content: var(--queso-dropdown-popover-justify, flex-start);
             flex-wrap: var(--queso-dropdown-popover-wrap, nowrap);
+            max-height: var(--queso-dropdown-popover-max-height, 20rem);
 
             &__item {
                 cursor: pointer;
