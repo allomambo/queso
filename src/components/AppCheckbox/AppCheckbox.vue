@@ -14,6 +14,7 @@
                 fieldName,
                 fieldValue,
                 fieldLabel,
+                fieldAutocomplete,
                 updateValue,
                 toggleIsActive,
                 toggleIsHover,
@@ -48,6 +49,7 @@
                 :name="fieldName"
                 :id="fieldID"
                 :required="isRequired"
+                :autocomplete="fieldAutocomplete"
                 :disabled="isDisabled"
                 @change="getCheckboxState($event, updateValue)"
                 @focus="toggleIsActive(true)"

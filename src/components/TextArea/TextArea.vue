@@ -13,6 +13,7 @@
                 fieldID,
                 fieldName,
                 fieldValue,
+                fieldAutocomplete,
                 updateValue,
                 toggleIsActive,
                 toggleIsHover,
@@ -31,6 +32,7 @@
                     :value="fieldValue"
                     class="queso-text-area__input"
                     :required="isRequired"
+                    :autocomplete="fieldAutocomplete"
                     :disabled="isDisabled"
                     @input="updateValue"
                     @mouseover="toggleIsHover(true)"

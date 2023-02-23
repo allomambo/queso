@@ -5,6 +5,7 @@
                 fieldID,
                 fieldName,
                 fieldValue,
+                fieldAutocomplete,
                 updateValue,
                 toggleIsActive,
                 toggleIsHover,
@@ -53,6 +54,7 @@
                 @focus="toggleIsActive(true)"
                 @blur="toggleIsActive(false)"
                 :required="isRequired"
+                :autocomplete="fieldAutocomplete"
                 :multiple="multiple"
             >
                 <option></option>
