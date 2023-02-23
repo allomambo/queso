@@ -8,6 +8,7 @@ declare const _sfc_main: import("vue").DefineComponent<{
         required: false;
     };
 }, {
+    isCollapsibleOpen: import("vue").Ref<boolean>;
     open: () => void;
     close: () => void;
     toggle: (bool?: boolean) => void;

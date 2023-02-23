@@ -1,58 +1,52 @@
 import type { PropType as __PropType } from 'vue';
-type TagOptions = "button" | "a" | "router-link" | "div" | "span";
 declare const _sfc_main: import("vue").DefineComponent<{
-    tag: {
-        type: __PropType<TagOptions>;
+    svg: {
+        type: __PropType<string | SVGElement>;
         required: false;
-        default: string;
     };
-    url: {
+    name: {
         type: __PropType<string>;
         required: false;
     };
-    isDisabled: {
-        type: __PropType<boolean>;
-        required: false;
-    };
-    isExternal: {
-        type: __PropType<boolean>;
-        required: false;
-    };
-    isDownload: {
-        type: __PropType<boolean>;
-        required: false;
-    };
-    ariaLabel: {
+    prefix: {
         type: __PropType<string>;
         required: false;
+    };
+    size: {
+        type: __PropType<number>;
+        required: false;
+        default: number;
+    };
+    rotation: {
+        type: __PropType<number>;
+        required: false;
+        default: number;
     };
 }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
-    tag: {
-        type: __PropType<TagOptions>;
+    svg: {
+        type: __PropType<string | SVGElement>;
         required: false;
-        default: string;
     };
-    url: {
+    name: {
         type: __PropType<string>;
         required: false;
     };
-    isDisabled: {
-        type: __PropType<boolean>;
-        required: false;
-    };
-    isExternal: {
-        type: __PropType<boolean>;
-        required: false;
-    };
-    isDownload: {
-        type: __PropType<boolean>;
-        required: false;
-    };
-    ariaLabel: {
+    prefix: {
         type: __PropType<string>;
         required: false;
+    };
+    size: {
+        type: __PropType<number>;
+        required: false;
+        default: number;
+    };
+    rotation: {
+        type: __PropType<number>;
+        required: false;
+        default: number;
     };
 }>>, {
-    tag: TagOptions;
+    size: number;
+    rotation: number;
 }>;
 export default _sfc_main;
