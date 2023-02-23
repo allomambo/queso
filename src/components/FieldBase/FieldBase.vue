@@ -32,6 +32,7 @@ export interface Props {
     isDisabled?: boolean;
     isReadOnly?: boolean;
     isError?: boolean;
+    isAutocomplete?: boolean;
 }
 
 const props = defineProps<Props>();
@@ -44,7 +45,7 @@ const emit = defineEmits(["update:modelValue"]);
 const isActive = ref<boolean>(false);
 const isHover = ref<boolean>(false);
 const isFilled = computed<boolean>(() => (fieldValue.value ? true : false));
-const { isRequired, isDisabled, isError, isReadOnly } = toRefs(props);
+const { isRequired, isDisabled, isError, isReadOnly, isAutocomplete } = toRefs(props);
 
 const toggleIsActive = (bool: boolean = false) => {
     isActive.value = bool;
@@ -67,6 +68,7 @@ const fieldValue = ref<any>(props.modelValue ?? null);
 const fieldID = computed<string>(() => props.id || props.name);
 const fieldName = toRef(props, "name");
 const fieldLabel = toRef(props, "label");
+const fieldAutocomplete = computed<string>(() => (isAutocomplete.value ? "on" : null));
 
 const fieldClasses = computed<HTMLAttributes["class"]>(() => ({
     "is-disabled": isDisabled.value,
@@ -87,6 +89,7 @@ const exposedData = reactive({
     fieldName,
     fieldValue,
     fieldLabel,
+    fieldAutocomplete,
     // States
     isRequired,
     isActive,
