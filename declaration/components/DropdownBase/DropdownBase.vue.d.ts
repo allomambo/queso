@@ -25,7 +25,11 @@ declare const _sfc_main: import("vue").DefineComponent<{
         type: __PropType<boolean>;
         required: false;
     };
-}, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("update:options" | "open:dropdown" | "close:dropdown")[], "update:options" | "open:dropdown" | "close:dropdown", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+}, {
+    isDropdownOpen: import("vue").Ref<boolean>;
+    openDropdown: () => void;
+    closeDropdown: () => void;
+}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("update:options" | "open:dropdown" | "close:dropdown")[], "update:options" | "open:dropdown" | "close:dropdown", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     defaultOptions: {
         type: __PropType<Option[]>;
         required: false;

@@ -8,6 +8,7 @@ export interface Props {
     isDisabled?: boolean;
     isReadOnly?: boolean;
     isError?: boolean;
+    isAutocomplete?: boolean;
 }
 declare const _sfc_main: import("vue").DefineComponent<{
     id: {
@@ -42,11 +43,16 @@ declare const _sfc_main: import("vue").DefineComponent<{
         type: __PropType<boolean>;
         required: false;
     };
+    isAutocomplete: {
+        type: __PropType<boolean>;
+        required: false;
+    };
 }, {
     fieldID: string;
     fieldName: string;
     fieldValue: any;
     fieldLabel: string;
+    fieldAutocomplete: string;
     isRequired: boolean;
     isActive: boolean;
     isHover: boolean;
@@ -87,6 +93,10 @@ declare const _sfc_main: import("vue").DefineComponent<{
         required: false;
     };
     isError: {
+        type: __PropType<boolean>;
+        required: false;
+    };
+    isAutocomplete: {
         type: __PropType<boolean>;
         required: false;
     };
