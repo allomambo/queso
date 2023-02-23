@@ -8,7 +8,7 @@ describe("ClickableBase", () => {
         label: "label test",
         href: "https://www.google.ca/",
         tag: "a",
-        isTargetBlank: true,
+        isExternal: true,
     };
 
     it("renders correctly", () => {
