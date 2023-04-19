@@ -3,6 +3,24 @@
 =================================*/
 
 /**
+ * Shortcut to avoid having to type a css variable and its default with the same name everytime
+ *
+ * @param  {string} $var The name of the variable
+ * @return {string}      The variable with a default var()
+ *
+ * @example 
+ *     font-size: dvar(heading-font-size); ↴
+ *     font-size: var(--heading-font-size, var(--heading-font-size-default));
+ */
+@function dvar($var) {
+    @if not $var {
+        @error "You must pass a variable name.";
+    }
+
+    @return var(--#{$var}, var(--#{$var}-default));
+}
+
+/**
  * A function helper to avoid having to type `map-get($layers, ...)`
  * Based on http://css-tricks.com/handling-z-index/
  * @param  {string} $layer The name of the z-index
