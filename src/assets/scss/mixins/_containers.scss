@@ -2,6 +2,10 @@
 =             Containers               =
 ======================================*/
 
+@use "sass:math";
+
+$container-screen-base-ratio: 1440px !default;
+
 $containers: (
     // <name>: <width> <gutters>
     default: 1920px 60px,
@@ -41,9 +45,18 @@ $containers: (
     }
 }
 
-@mixin container-styles($width, $gutter) {
+@mixin container-styles($width, $gutter, $fluid: false) {
+    $container-width: $width;
+    @if $fluid != false {
+        $container-width-fluid: strip-units(
+                math.div($width, $container-screen-base-ratio)
+            ) *
+            100vw;
+        $container-width: max(#{$width}, #{$container-width-fluid});
+    }
+
     display: block;
-    width: var(--container-width, #{$width});
+    width: var(--container-width, #{$container-width});
     max-width: calc(100% - (var(--container-gutter, #{$gutter}) * 2));
     margin-left: var(--container-margin-left, auto);
     margin-right: var(--container-margin-right, auto);
