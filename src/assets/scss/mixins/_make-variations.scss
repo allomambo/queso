@@ -40,7 +40,9 @@
         --#{$name}-minus-4X: calc(var(--#{$name}) * -4);
 
         @if $advanced {
+            --#{$name}-minus-two-third: calc((var(--#{$name}) / 3) * -2);
             --#{$name}-minus-quarter: calc(var(--#{$name}) / -4);
+            --#{$name}-minus-three-quarter: calc((var(--#{$name}) / 4) * -3);
             --#{$name}-minus-1-25X: calc(var(--#{$name}) * -1.25);
             --#{$name}-minus-1-5X: calc(var(--#{$name}) * -1.5);
             --#{$name}-minus-1-75X: calc(var(--#{$name}) * -1.75);
