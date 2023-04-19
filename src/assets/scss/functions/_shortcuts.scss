@@ -6,7 +6,7 @@
  * Shortcut to avoid having to type a css variable and its default with the same name everytime
  *
  * @param  {string} $var The name of the variable
- * @return {string}      The variable with a default var()
+ * @return {string}      A css variable with a default var() of the same name
  *
  * @example 
  *     font-size: dvar(heading-font-size); ↴
