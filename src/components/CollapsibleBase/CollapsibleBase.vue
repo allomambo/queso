@@ -30,14 +30,14 @@
 import { computed, ref, onBeforeMount, watch } from "vue";
 import { useElementBounding } from "@vueuse/core";
 
-// Props / Emits
+// Define Props/Emits
 export interface Props {
     expandOnMount?: boolean;
 }
 
 const props = defineProps<Props>();
 
-const emit = defineEmits(["open:collapsible", "close:collapsible", "toggle:collapsible"]);
+const emit = defineEmits(["open", "close", "toggle"]);
 
 // Computeds
 const collapsibleContent = ref<HTMLElement>();
@@ -54,6 +54,14 @@ const collapsibleClasses = computed(() => ({
     "is-collapsible-open": isCollapsibleOpen.value,
     "is-collapsible-close": !isCollapsibleOpen.value,
 }));
+
+// Calculate height
+const { height } = useElementBounding(collapsibleContent);
+
+const contentHeight = computed<string>(() => {
+    if (isCollapsibleExpanded.value) return "none";
+    return isCollapsibleOpen.value ? `${height.value}px` : "0px";
+});
 
 /**
  * OPEN/CLOSE CONTENT
@@ -81,16 +89,16 @@ const toggle = (bool: boolean = false) => {
  */
 watch(isCollapsibleOpen, (newValue: boolean) => {
     if (newValue) {
-        emit("open:collapsible");
+        emit("open");
     } else {
-        emit("close:collapsible");
+        emit("close");
     }
 
-    emit("toggle:collapsible", newValue);
+    emit("toggle", newValue);
 });
 
 /**
- * EXPOSE METHODS
+ * EXPOSE REF/METHODS
  */
 defineExpose({ isCollapsibleOpen, open, close, toggle });
 </script>
