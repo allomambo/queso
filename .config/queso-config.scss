@@ -16,13 +16,16 @@ $breakpoints: (
 );
 
 // Containers
+$containers-screen-size-base: 1440px !default;
+
 $containers: (
-    // <name>: <width> <gutter>
+    // <name>: <container-width> <gutter-width> <fluid>
     default: 1920px 60px,
+    fluid: 1920px 60px fluid,
     small: 420px 60px,
     medium: 870px 60px,
     full: none 60px
-);
+) !default;
 
 // Stack
 $stack-gap: 20px;

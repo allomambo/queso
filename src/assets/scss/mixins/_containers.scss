@@ -2,9 +2,14 @@
 =             Containers               =
 ======================================*/
 
+@use "sass:math";
+
+$containers-screen-size-base: 1440px !default;
+
 $containers: (
-    // <name>: <width> <gutters>
+    // <name>: <container-width> <gutter-width> <fluid>
     default: 1920px 60px,
+    fluid: 1920px 60px fluid,
     small: 420px 60px,
     medium: 870px 60px,
     full: none 60px
@@ -21,9 +26,10 @@ $containers: (
         @each $name, $props in $containers {
             $width: nth($props, 1);
             $gutter: nth($props, 2);
+            $fluid: index-exists($props, fluid);
 
             @if $name == "default" {
-                @include container-styles($width, $gutter);
+                @include container-styles($width, $gutter, $fluid);
             } @else {
                 &.-#{$name} {
                     --container-width: #{$width};
@@ -37,13 +43,26 @@ $containers: (
         }
 
         $props: map-get($containers, $variant);
-        @include container-styles(nth($props, 1), nth($props, 2));
+        $width: nth($props, 1);
+        $gutter: nth($props, 2);
+        $fluid: index-exists($props, fluid);
+
+        @include container-styles($width, $gutter, $fluid);
     }
 }
 
-@mixin container-styles($width, $gutter) {
+@mixin container-styles($width, $gutter, $fluid: false) {
+    $container-width: $width;
+    @if $fluid != false {
+        $container-width-fluid: strip-units(
+                math.div($width, $containers-screen-size-base)
+            ) *
+            100vw;
+        $container-width: max(#{$width}, #{$container-width-fluid});
+    }
+
     display: block;
-    width: var(--container-width, #{$width});
+    width: var(--container-width, #{$container-width});
     max-width: calc(100% - (var(--container-gutter, #{$gutter}) * 2));
     margin-left: var(--container-margin-left, auto);
     margin-right: var(--container-margin-right, auto);
