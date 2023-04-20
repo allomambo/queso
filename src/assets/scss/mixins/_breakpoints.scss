@@ -153,3 +153,51 @@ $breakpoints: (
         }
     }
 }
+
+/*=======================================
+=          Custom breakpoints           =
+=======================================*/
+
+// Media of at least the minimum breakpoint width. No query for the smallest breakpoint.
+// Makes the @content apply to the given breakpoint and wider.
+@mixin min-custom($min) {
+    @if $min {
+        @media (min-width: $min) {
+            @content;
+        }
+    } @else {
+        @content;
+    }
+}
+
+// Media of at most the maximum breakpoint width. No query for the largest breakpoint.
+// Makes the @content apply to the given breakpoint and narrower.
+@mixin max-custom($max) {
+    @if $max {
+        @media (max-width: $max) {
+            @content;
+        }
+    } @else {
+        @content;
+    }
+}
+
+// Media that spans multiple breakpoint widths.
+// Makes the @content apply between the min and max breakpoints
+@mixin between-custom($min, $max) {
+    @if $min != null and $max != null {
+        @media (min-width: $min) and (max-width: ($max - 1px)) {
+            @content;
+        }
+    } @else if $max == null {
+        @include min-custom($min) {
+            @content;
+        }
+    } @else if $min == null {
+        @include max-custom($max) {
+            @content;
+        }
+    } @else {
+        @content;
+    }
+}
