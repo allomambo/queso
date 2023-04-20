@@ -12,6 +12,7 @@ import { useScroll, useResizeObserver } from "@vueuse/core";
 
 // Props / Emits
 export interface Props {
+    shadows?: boolean;
     offset?: number;
 }
 
@@ -40,6 +41,7 @@ const contentIsOverflowing = computed<boolean>(() => {
 });
 
 const scrollableClasses = computed(() => ({
+    "has-shadows": props.shadows,
     "is-scrolled-top": arrivedState.top,
     "is-scrolled-bottom": arrivedState.bottom || !contentIsOverflowing.value,
 }));
@@ -55,6 +57,18 @@ const scrollableClasses = computed(() => ({
         @include clearfix;
         @include overflow;
         height: var(--queso-scrollable-content-height, 100%);
+    }
+
+    //--- SHADOWS ---//
+    &.has-shadows {
+        @include overflow-shadows;
+
+        &.is-scrolled-top {
+            --overflow-shadow-before-opacity: 0;
+        }
+        &.is-scrolled-bottom {
+            --overflow-shadow-after-opacity: 0;
+        }
     }
 }
 </style>
