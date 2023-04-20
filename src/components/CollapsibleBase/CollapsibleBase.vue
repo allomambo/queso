@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, onBeforeMount } from "vue";
+import { computed, ref, onBeforeMount, watch } from "vue";
 import { useElementBounding } from "@vueuse/core";
 
 // Props / Emits
@@ -37,7 +37,7 @@ export interface Props {
 
 const props = defineProps<Props>();
 
-const emit = defineEmits(["open:collapsible", "close:collapsible"]);
+const emit = defineEmits(["open:collapsible", "close:collapsible", "toggle:collapsible"]);
 
 // Computeds
 const collapsibleContent = ref<HTMLElement>();
@@ -61,7 +61,6 @@ const collapsibleClasses = computed(() => ({
 
 const open = () => {
     isCollapsibleOpen.value = true;
-    emit("open:collapsible");
 };
 
 const close = () => {
@@ -69,7 +68,6 @@ const close = () => {
 
     setTimeout(() => {
         isCollapsibleOpen.value = false;
-        emit("close:collapsible");
     }, 1); // If expanded, need to set height before going to 0px
 };
 
@@ -78,11 +76,17 @@ const toggle = (bool: boolean = false) => {
     else close();
 };
 
-// Calculate height
-const { height } = useElementBounding(collapsibleContent);
-const contentHeight = computed<string>(() => {
-    if (isCollapsibleExpanded.value) return "none";
-    return isCollapsibleOpen.value ? `${height.value}px` : "0px";
+/**
+ * EMITS
+ */
+watch(isCollapsibleOpen, (newValue: boolean) => {
+    if (newValue) {
+        emit("open:collapsible");
+    } else {
+        emit("close:collapsible");
+    }
+
+    emit("toggle:collapsible", newValue);
 });
 
 /**
