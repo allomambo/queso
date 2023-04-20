@@ -12,13 +12,14 @@ declare const _sfc_main: import("vue").DefineComponent<{
     open: () => void;
     close: () => void;
     toggle: (bool?: boolean) => void;
-}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("open:collapsible" | "close:collapsible")[], "open:collapsible" | "close:collapsible", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("open" | "close" | "toggle")[], "open" | "close" | "toggle", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     expandOnMount: {
         type: __PropType<boolean>;
         required: false;
     };
 }>> & {
-    "onOpen:collapsible"?: (...args: any[]) => any;
-    "onClose:collapsible"?: (...args: any[]) => any;
+    onOpen?: (...args: any[]) => any;
+    onClose?: (...args: any[]) => any;
+    onToggle?: (...args: any[]) => any;
 }, {}>;
 export default _sfc_main;
