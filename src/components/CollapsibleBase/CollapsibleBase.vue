@@ -1,8 +1,6 @@
 <template>
-    <div class="queso-collapsible" :class="collapsibleClasses">
-        <slot name="beforeHeader"></slot>
-
-        <div class="queso-collapsible__header" @click="toggle(!isCollapsibleOpen)">
+    <details class="queso-collapsible" :class="collapsibleClasses">
+        <summary class="queso-collapsible__header" @click="toggle(!isCollapsibleOpen)">
             <slot name="headerPrefix"></slot>
             <div class="queso-collapsible__header__text">
                 <slot name="headerText"></slot>
@@ -11,19 +9,18 @@
             <div class="queso-collapsible__header__icon">
                 <slot name="headerIcon">↓</slot>
             </div>
-        </div>
+        </summary>
 
-        <slot name="afterHeader"></slot>
         <slot name="beforeContent"></slot>
 
-        <div class="queso-collapsible__content" :aria-expanded="isCollapsibleOpen">
+        <div class="queso-collapsible__content">
             <div ref="collapsibleContent" class="queso-collapsible__content__inner">
                 <slot name="content"></slot>
             </div>
         </div>
 
         <slot name="afterContent"></slot>
-    </div>
+    </details>
 </template>
 
 <script setup lang="ts">
@@ -104,10 +101,16 @@ defineExpose({ isCollapsibleOpen, open, close, toggle });
         display: flex;
         align-items: var(--queso-collapsible-header-align, center);
         justify-content: var(--queso-collapsible-header-justify, flex-start);
+        list-style: none;
         cursor: pointer;
 
         &__icon {
             margin-left: auto;
+        }
+
+        // Hide browser summary arrow
+        ::-webkit-details-marker {
+            display: none;
         }
     }
 
@@ -133,7 +136,7 @@ defineExpose({ isCollapsibleOpen, open, close, toggle });
     =             States              =
     =================================*/
 
-    &.is-collapsible-open {
+    &[open] {
         #{$_}__content {
             @include unselectable(false);
         }
