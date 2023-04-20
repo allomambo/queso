@@ -1,0 +1,58 @@
+/**
+   * Add inner shadows on element to make overflow more obvious.
+   * 
+   * @param {string} $color         Color of shadow
+   * @param {string} $orientation   Position of gradients in parent top/bottom or left/right. Values: vertical | horizontal
+   * @param {string} $size          Size of the shadow. Applied on width or height according to orientation.
+   * 
+   */
+@mixin overflow-shadows($color: white, $orientation: vertical, $size: 4rem) {
+    $valid-orientation: horizontal, vertical;
+    @if not index($valid-orientation, $orientation) {
+        @error "'#{$orientation}' is not a valid orientation. Choose between : #{$valid-orientation}.";
+    }
+
+    &:before,
+    &:after {
+        @include unselectable;
+        content: "";
+        position: absolute;
+        z-index: var(--overflow-shadow-z, 9);
+        background: linear-gradient(
+            var(--overflow-shadow-direction),
+            var(--overflow-shadow-color, #{$color}),
+            transparent
+        );
+        @if $orientation == "vertical" {
+            width: 100%;
+            height: var(--overflow-shadow-size, #{$size});
+            left: 0;
+        } @else {
+            width: var(--overflow-shadow-size, #{$size});
+            height: 100%;
+            top: 0;
+        }
+    }
+
+    &:before {
+        @if $orientation == "vertical" {
+            --overflow-shadow-direction: 180deg;
+            top: 0;
+        } @else {
+            --overflow-shadow-direction: 90deg;
+            left: 0;
+        }
+        opacity: var(--overflow-shadow-before-opacity, 1);
+    }
+
+    &:after {
+        @if $orientation == "vertical" {
+            --overflow-shadow-direction: 0deg;
+            bottom: 0;
+        } @else {
+            --overflow-shadow-direction: -90deg;
+            right: 0;
+        }
+        opacity: var(--overflow-shadow-after-opacity, 1);
+    }
+}
