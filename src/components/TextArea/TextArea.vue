@@ -31,6 +31,7 @@
                     :id="fieldID"
                     :value="fieldValue"
                     class="queso-text-area__input"
+                    :placeholder="placeholder"
                     :required="isRequired"
                     :autocomplete="fieldAutocomplete"
                     :disabled="isDisabled"
@@ -55,6 +56,14 @@
 
 <script setup lang="ts">
 import FieldBase from "@components/FieldBase";
+
+export interface Props {
+    placeholder?: string;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+    placeholder: "",
+});
 </script>
 
 <style lang="scss">
