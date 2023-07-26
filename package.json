@@ -12,6 +12,9 @@
     "license": "MIT",
     "type": "module",
     "main": "./dist/index.umd.cjs",
+    "sideEffects": [
+        "**/*.css"
+    ],
     "module": "./dist/index.js",
     "types": "./declaration/components.d.ts",
     "files": [
@@ -47,6 +50,7 @@
     },
     "dependencies": {
         "@vueuse/core": "^9.12.0",
+        "vite-plugin-lib-inject-css": "^1.2.0",
         "vue": "^3.2.45"
     },
     "devDependencies": {

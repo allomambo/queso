@@ -1,7 +1,11 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import dts from "vite-plugin-dts";
-import { resolve } from "path";
+import { libInjectCss } from "vite-plugin-lib-inject-css";
+import { resolve, dirname, sep } from "path";
+
+const libEntryFile = resolve(__dirname, "src/components.ts");
+const libEntryFileDir = dirname(libEntryFile);
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
@@ -10,7 +14,8 @@ export default defineConfig(({ command, mode }) => {
             outDir: "dist",
             emptyOutDir: true,
             lib: {
-                entry: resolve(__dirname, "src/components.ts"),
+                formats: ["es"],
+                entry: libEntryFile,
                 name: "Queso",
                 fileName: "index",
             },
@@ -20,6 +25,18 @@ export default defineConfig(({ command, mode }) => {
                     globals: {
                         vue: "Vue",
                     },
+                    inlineDynamicImports: false,
+                    manualChunks(id, { getModuleInfo }) {
+                        const entryModuleInfo = getModuleInfo(libEntryFile);
+                        if (entryModuleInfo) {
+                            const entryModuleImportedIds = entryModuleInfo.importedIds;
+                            console.log(id);
+                            if (entryModuleImportedIds.includes(id)) {
+                                return dirname(id).replace(libEntryFileDir + sep, "");
+                            }
+                        }
+                    },
+                    assetFileNames: "assets/[name][extname]",
                 },
             },
         },
@@ -41,6 +58,7 @@ export default defineConfig(({ command, mode }) => {
         },
         plugins: [
             vue(),
+            libInjectCss(),
             dts({
                 outputDir: "declaration",
             }),
