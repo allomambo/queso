@@ -7,23 +7,41 @@ $stack-gap: 30px !default;
 /**
  * Align and space elements in a container
  * @param  {string} $orientation     Orientation. Values: 'horizontal' or 'vertical'
- * @param  {string} $alignX          Alignment of each element on X axis. Values: 'left', 'right' or 'center'
- * @param  {string} $alignY          Alignment of each element on Y axis. Values: 'top', 'bottom' or 'center'
+ * @param  {string} $alignX          Alignment of each element on X axis. Values: 'left', 'right', 'center' or adaptative according to orientation.
+ * @param  {string} $alignY          Alignment of each element on Y axis. Values: 'top', 'bottom', 'center' or adaptative according to orientation.
+ * @param  {string} $var-prefix      If needed, change prefix of all var(). Default: 'stack'
  * @return {void}
  */
-@mixin stack($orientation: "horizontal", $alignX: "left", $alignY: "center") {
-    // Validation
+@mixin stack(
+    $orientation: "horizontal",
+    $alignX: "center",
+    $alignY: "center",
+    $var-prefix: "stack"
+) {
+    // Validations
     $valid-orientation: horizontal, vertical;
     @if not index($valid-orientation, $orientation) {
         @error "'#{$orientation}' is not a valid orientation. Choose between : #{$valid-orientation}.";
     }
 
+    $valid-align: stretch;
+    $valid-justify: space-around, space-between, space-evenly;
     $valid-alignX: left, right, center;
+    $valid-alignY: top, bottom, center;
+    @if $orientation == "horizontal" {
+        $valid-alignX: join($valid-alignX, $valid-justify);
+        $valid-alignY: join($valid-alignY, $valid-align);
+    } @else if $orientation == "vertical" {
+        $valid-alignX: join($valid-alignX, $valid-align);
+        $valid-alignY: join($valid-alignY, $valid-justify);
+    }
+    @debug "X: #{$valid-alignX}";
+    @debug "Y: #{$valid-alignY}";
+
     @if not index($valid-alignX, $alignX) {
         @error "'#{$alignX}' is not a valid X axis alignment. Choose between : #{$valid-alignX}.";
     }
 
-    $valid-alignY: top, bottom, center;
     @if not index($valid-alignY, $alignY) {
         @error "'#{alignY}' is not a valid Y axis alignment. Choose between : #{$valid-alignY}.";
     }
@@ -41,16 +59,16 @@ $stack-gap: 30px !default;
             $justify: flex-start;
         } @else if $alignX == "right" {
             $justify: flex-end;
-        } @else if $alignX == "center" {
-            $justify: center;
+        } @else {
+            $justify: $alignX;
         }
 
         @if $alignY == "top" {
             $align: flex-start;
         } @else if $alignY == "bottom" {
             $align: flex-end;
-        } @else if $alignY == "center" {
-            $align: center;
+        } @else {
+            $align: $alignY;
         }
     } @else if $orientation == "vertical" {
         $direction: column;
@@ -60,25 +78,31 @@ $stack-gap: 30px !default;
             $align: flex-start;
         } @else if $alignX == "right" {
             $align: flex-end;
-        } @else if $alignX == "center" {
-            $align: center;
+        } @else {
+            $align: $alignX;
         }
 
         @if $alignY == "top" {
             $justify: flex-start;
         } @else if $alignY == "bottom" {
             $justify: flex-end;
-        } @else if $alignY == "center" {
-            $justify: center;
+        } @else {
+            $justify: $alignY;
         }
     }
 
     // Apply styles
     display: flex;
-    align-items: var(--stack-align, #{$align});
-    justify-content: var(--stack-justify, #{$justify});
-    flex-direction: var(--stack-direction, #{$direction});
-    column-gap: var(--stack-col-gap, var(--stack-gap, #{$stack-gap}));
-    row-gap: var(--stack-row-gap, var(--stack-gap, #{$stack-gap}));
-    flex-wrap: var(--stack-wrap, #{$wrap});
+    align-items: var(--#{$var-prefix}-align, #{$align});
+    justify-content: var(--#{$var-prefix}-justify, #{$justify});
+    flex-direction: var(--#{$var-prefix}-direction, #{$direction});
+    column-gap: var(
+        --#{$var-prefix}-col-gap,
+        var(--#{$var-prefix}-gap, #{$stack-gap})
+    );
+    row-gap: var(
+        --#{$var-prefix}-row-gap,
+        var(--#{$var-prefix}-gap, #{$stack-gap})
+    );
+    flex-wrap: var(--#{$var-prefix}-wrap, #{$wrap});
 }
