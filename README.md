@@ -20,15 +20,7 @@ yarn add @allomambo/queso
 npm install @allomambo/queso
 ```
 
-**2.** Add components' css styles
-
-```
-import "@allomambo/queso/styles/components";
-```
-
-\*If the components are used in more than one place, it's good to add it globally in your project.
-
-**3.** Use components in your project
+**2.** Use components in your project
 
 ```
 <template>
