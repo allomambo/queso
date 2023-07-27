@@ -54,6 +54,37 @@ import "@allomambo/queso/styles/core";
 
 If you use a frontend tool like Vite or Webpack, we recommend that you import as additional data the sass core and your configs.
 
+```
+# Vite
+export default defineConfig({
+    ...
+    css: {
+        preprocessorOptions: {
+            scss: {
+                additionalData: `@import "@assets/scss/main.scss";`,
+            },
+        },
+    },
+    ...
+});
+```
+
+```
+# Webpackw
+module.exports = {
+    ...
+    css: {
+        loaderOptions: {
+            sass: {
+                data: `@import "@assets/scss/main.scss";`,
+            },
+        },
+    },
+    ...
+};
+
+```
+
 ## JS utils
 
 ```
