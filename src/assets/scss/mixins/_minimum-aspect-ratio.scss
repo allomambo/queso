@@ -1,0 +1,19 @@
+/**
+   * Minimum aspect-ratio hack
+   * @param {number} $min
+   */
+@mixin min-aspect-ratio($min: 1) {
+    $minPercent: $min * 100%;
+
+    &:before {
+        content: "";
+        float: left;
+        padding-bottom: var(--min-aspect-ratio, #{$minPercent});
+    }
+
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
