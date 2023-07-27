@@ -39,8 +39,6 @@ $stack-gap: 30px !default;
         $valid-alignX: join($valid-alignX, $valid-align);
         $valid-alignY: join($valid-alignY, $valid-justify);
     }
-    @debug "X: #{$valid-alignX}";
-    @debug "Y: #{$valid-alignY}";
 
     @if not index($valid-alignX, $alignX) {
         @error "'#{$alignX}' is not a valid X axis alignment. Choose between : #{$valid-alignX}.";
