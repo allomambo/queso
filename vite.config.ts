@@ -14,7 +14,7 @@ export default defineConfig(({ command, mode }) => {
             outDir: "dist",
             emptyOutDir: true,
             lib: {
-                formats: ["es"],
+                formats: ["es", "cjs"],
                 entry: libEntryFile,
                 name: "Queso",
                 fileName: "index",

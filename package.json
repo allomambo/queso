@@ -11,10 +11,7 @@
     ],
     "license": "MIT",
     "type": "module",
-    "main": "./dist/index.umd.cjs",
-    "sideEffects": [
-        "**/*.css"
-    ],
+    "main": "./dist/index.cjs",
     "module": "./dist/index.js",
     "types": "./declaration/components.d.ts",
     "files": [
@@ -27,7 +24,6 @@
             "import": "./dist/index.js",
             "require": "./dist/index.cjs"
         },
-        "./styles/components": "./dist/style.css",
         "./styles/core": "./src/assets/scss/main.scss",
         "./styles/reset": "./src/assets/scss/ress.scss",
         "./scripts/utils": "./src/utils/index.ts"
