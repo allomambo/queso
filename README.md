@@ -20,15 +20,7 @@ yarn add @allomambo/queso
 npm install @allomambo/queso
 ```
 
-**2.** Add components' css styles
-
-```
-import "@allomambo/queso/styles/components";
-```
-
-\*If the components are used in more than one place, it's good to add it globally in your project.
-
-**3.** Use components in your project
+**2.** Use components in your project
 
 ```
 <template>
@@ -61,6 +53,37 @@ import "@allomambo/queso/styles/core";
 #### Frontend tooling
 
 If you use a frontend tool like Vite or Webpack, we recommend that you import as additional data the sass core and your configs.
+
+```
+# Vite
+export default defineConfig({
+    ...
+    css: {
+        preprocessorOptions: {
+            scss: {
+                additionalData: `@import "@assets/scss/main.scss";`,
+            },
+        },
+    },
+    ...
+});
+```
+
+```
+# Webpackw
+module.exports = {
+    ...
+    css: {
+        loaderOptions: {
+            sass: {
+                data: `@import "@assets/scss/main.scss";`,
+            },
+        },
+    },
+    ...
+};
+
+```
 
 ## JS utils
 
