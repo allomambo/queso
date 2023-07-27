@@ -14,7 +14,7 @@ export default defineConfig(({ command, mode }) => {
             outDir: "dist",
             emptyOutDir: true,
             lib: {
-                formats: ["es"],
+                formats: ["es", "cjs"],
                 entry: libEntryFile,
                 name: "Queso",
                 fileName: "index",
@@ -30,7 +30,6 @@ export default defineConfig(({ command, mode }) => {
                         const entryModuleInfo = getModuleInfo(libEntryFile);
                         if (entryModuleInfo) {
                             const entryModuleImportedIds = entryModuleInfo.importedIds;
-                            console.log(id);
                             if (entryModuleImportedIds.includes(id)) {
                                 return dirname(id).replace(libEntryFileDir + sep, "");
                             }

@@ -2,10 +2,16 @@ import type { PropType as __PropType } from 'vue';
 export type FieldTypes = "text" | "url" | "tel" | "email" | "password";
 export interface Props {
     type?: FieldTypes;
+    placeholder?: string;
 }
 declare const _sfc_main: import("vue").DefineComponent<{
     type: {
         type: __PropType<FieldTypes>;
+        required: false;
+        default: string;
+    };
+    placeholder: {
+        type: __PropType<string>;
         required: false;
         default: string;
     };
@@ -15,7 +21,13 @@ declare const _sfc_main: import("vue").DefineComponent<{
         required: false;
         default: string;
     };
+    placeholder: {
+        type: __PropType<string>;
+        required: false;
+        default: string;
+    };
 }>>, {
     type: FieldTypes;
+    placeholder: string;
 }>;
 export default _sfc_main;
