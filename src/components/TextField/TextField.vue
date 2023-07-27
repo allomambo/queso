@@ -31,6 +31,7 @@
                     :value="fieldValue"
                     :name="fieldName"
                     :id="fieldID"
+                    :placeholder="placeholder"
                     class="queso-text-field__input"
                     :required="isRequired"
                     :autocomplete="fieldAutocomplete"
@@ -63,10 +64,12 @@ export type FieldTypes = "text" | "url" | "tel" | "email" | "password";
 
 export interface Props {
     type?: FieldTypes;
+    placeholder?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
     type: "text",
+    placeholder: "",
 });
 </script>
 

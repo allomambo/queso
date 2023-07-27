@@ -57,13 +57,19 @@ const toggleIsHover = (bool: boolean = false) => {
 
 const updateValue = (data: any) => {
     fieldValue.value = data.target ? data.target.value : data;
-    emit("update:modelValue", fieldValue.value);
 };
 
 /**
  * COMPUTEDS
  */
-const fieldValue = ref<any>(props.modelValue ?? null);
+const fieldValue = computed<any>({
+    get() {
+        return props.modelValue;
+    },
+    set(value) {
+        emit("update:modelValue", value);
+    },
+});
 
 const fieldID = computed<string>(() => props.id || props.name);
 const fieldName = toRef(props, "name");

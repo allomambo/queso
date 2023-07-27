@@ -1,6 +1,6 @@
 {
     "name": "@allomambo/queso",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "description": "VueJS component library to use in conjunction with Arepa",
     "repository": "https://github.com/allomambo/queso.git",
     "author": "MamboMambo <allo@mambomambo.ca> (https://mambomambo.ca)",
@@ -11,7 +11,7 @@
     ],
     "license": "MIT",
     "type": "module",
-    "main": "./dist/index.umd.cjs",
+    "main": "./dist/index.cjs",
     "module": "./dist/index.js",
     "types": "./declaration/components.d.ts",
     "files": [
@@ -24,7 +24,6 @@
             "import": "./dist/index.js",
             "require": "./dist/index.cjs"
         },
-        "./styles/components": "./dist/style.css",
         "./styles/core": "./src/assets/scss/main.scss",
         "./styles/reset": "./src/assets/scss/ress.scss",
         "./scripts/utils": "./src/utils/index.ts"
@@ -47,6 +46,7 @@
     },
     "dependencies": {
         "@vueuse/core": "^9.12.0",
+        "vite-plugin-lib-inject-css": "^1.2.0",
         "vue": "^3.2.45"
     },
     "devDependencies": {
@@ -77,11 +77,5 @@
         "vitest": "^0.27.2",
         "vue-eslint-parser": "^9.1.0",
         "vue-tsc": "^1.0.11"
-    },
-    "overrides": {
-        "@mdx-js/react": {
-            "react": "^18.2.0",
-            "react-dom": "^18.2.0"
-        }
     }
 }

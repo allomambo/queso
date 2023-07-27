@@ -1,0 +1,1 @@
+@charset "UTF-8";.queso-icon{display:inline-flex;align-items:center;justify-content:center;vertical-align:middle}.queso-icon svg{display:block;width:var(--queso-icon-width, var(--8e742796));height:calc(var(--queso-icon-height, var(--queso-icon-width, var(--8e742796))) * var(--queso-icon-ratio, 1));fill:currentColor;transform:rotate(var(--queso-icon-rotation, var(--de79f2a2)))}

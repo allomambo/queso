@@ -8,31 +8,8 @@
     list-style: none;
 }
 
-/*=======================================
-=            Pseudo elements            =
-=======================================*/
-
-@mixin pseudo-el(
-    $content: "",
-    $display: block,
-    $width: 100%,
-    $height: 100%,
-    $bg: none
-) {
-    content: $content;
-    display: $display;
-    width: $width;
-    height: $height;
-
-    @if type-of($bg) == color {
-        background-color: $bg;
-    } @else {
-        background: $bg;
-    }
-}
-
 /*=================================
-=             States              =
+=           Shorthands            =
 =================================*/
 
 // Disable anything
@@ -60,5 +37,24 @@
         &:focus {
             @content;
         }
+    }
+}
+
+// Placeholders
+@mixin placeholder() {
+    &::placeholder {
+        @content;
+    }
+    // Edge
+    &::-webkit-input-placeholder {
+        @content;
+    }
+    // Internet Explorer 10-11
+    &:-ms-input-placeholder {
+        @content;
+    }
+    // Firefox 19+
+    &::-moz-placeholder {
+        @content;
     }
 }
