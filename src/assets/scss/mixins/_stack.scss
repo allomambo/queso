@@ -9,6 +9,8 @@ $stack-gap: 30px !default;
  * @param  {string} $orientation     Orientation. Values: 'horizontal' or 'vertical'
  * @param  {string} $alignX          Alignment of each element on X axis. Values: 'left', 'right', 'center' or adaptative according to orientation.
  * @param  {string} $alignY          Alignment of each element on Y axis. Values: 'top', 'bottom', 'center' or adaptative according to orientation.
+ * @param  {number} $gap             Width of the gap between elements.
+ * @param  {boolean} $wrap           If element can go onto multiple lines. Values: true or false
  * @param  {string} $var-prefix      If needed, change prefix of all var(). Default: 'stack'
  * @return {void}
  */
@@ -16,6 +18,8 @@ $stack-gap: 30px !default;
     $orientation: "horizontal",
     $alignX: "center",
     $alignY: "center",
+    $gap: $stack-gap,
+    $wrap: true,
     $var-prefix: "stack"
 ) {
     // Validations
@@ -50,7 +54,6 @@ $stack-gap: 30px !default;
     $direction: row;
     $align: flex-start;
     $justify: flex-start;
-    $wrap: wrap;
 
     @if $orientation == "horizontal" {
         $direction: row;
@@ -72,7 +75,6 @@ $stack-gap: 30px !default;
         }
     } @else if $orientation == "vertical" {
         $direction: column;
-        $wrap: nowrap;
 
         @if $alignX == "left" {
             $align: flex-start;
@@ -91,6 +93,12 @@ $stack-gap: 30px !default;
         }
     }
 
+    @if $wrap == true {
+        $wrap: wrap;
+    } @else {
+        $wrap: nowrap;
+    }
+
     // Apply styles
     display: flex;
     align-items: var(--#{$var-prefix}-align, #{$align});
@@ -98,11 +106,8 @@ $stack-gap: 30px !default;
     flex-direction: var(--#{$var-prefix}-direction, #{$direction});
     column-gap: var(
         --#{$var-prefix}-col-gap,
-        var(--#{$var-prefix}-gap, #{$stack-gap})
+        var(--#{$var-prefix}-gap, #{$gap})
     );
-    row-gap: var(
-        --#{$var-prefix}-row-gap,
-        var(--#{$var-prefix}-gap, #{$stack-gap})
-    );
+    row-gap: var(--#{$var-prefix}-row-gap, var(--#{$var-prefix}-gap, #{$gap}));
     flex-wrap: var(--#{$var-prefix}-wrap, #{$wrap});
 }
