@@ -30,7 +30,6 @@ export default defineConfig(({ command, mode }) => {
                         const entryModuleInfo = getModuleInfo(libEntryFile);
                         if (entryModuleInfo) {
                             const entryModuleImportedIds = entryModuleInfo.importedIds;
-                            console.log(id);
                             if (entryModuleImportedIds.includes(id)) {
                                 return dirname(id).replace(libEntryFileDir + sep, "");
                             }
