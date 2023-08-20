@@ -26,7 +26,8 @@
         },
         "./styles/core": "./src/assets/scss/main.scss",
         "./styles/reset": "./src/assets/scss/ress.scss",
-        "./scripts/utils": "./src/utils/index.ts"
+        "./scripts/utils": "./src/utils/index.ts",
+        "./*": "./dist/*"
     },
     "engines": {
         "node": ">=16.14.2",
