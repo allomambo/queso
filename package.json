@@ -13,11 +13,10 @@
     "type": "module",
     "main": "./dist/index.cjs",
     "module": "./dist/index.js",
-    "types": "./declaration/components.d.ts",
+    "types": "./dist/components.d.ts",
     "files": [
         "dist/*",
-        "src/*",
-        "declaration/*"
+        "src/*"
     ],
     "exports": {
         ".": {

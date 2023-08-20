@@ -55,13 +55,7 @@ export default defineConfig(({ command, mode }) => {
                 "@components": resolve(__dirname, "./src/components"),
             },
         },
-        plugins: [
-            vue(),
-            libInjectCss(),
-            dts({
-                outputDir: "declaration",
-            }),
-        ],
+        plugins: [vue(), libInjectCss(), dts()],
         optimizeDeps: {
             include: ["vue"],
             exclude: [],
