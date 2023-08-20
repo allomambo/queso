@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "declaration": true,
         // Prevent warnings coming from default HTML attributes
         "types": ["vite/client"],
         "target": "es2016",
