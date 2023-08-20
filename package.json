@@ -13,20 +13,21 @@
     "type": "module",
     "main": "./dist/index.cjs",
     "module": "./dist/index.js",
-    "types": "./declaration/components.d.ts",
+    "types": "./dist/components.d.ts",
     "files": [
         "dist/*",
-        "src/*",
-        "declaration/*"
+        "src/*"
     ],
     "exports": {
         ".": {
+            "types": "./dist/components.d.ts",
             "import": "./dist/index.js",
             "require": "./dist/index.cjs"
         },
         "./styles/core": "./src/assets/scss/main.scss",
         "./styles/reset": "./src/assets/scss/ress.scss",
-        "./scripts/utils": "./src/utils/index.ts"
+        "./scripts/utils": "./src/utils/index.ts",
+        "./*": "./dist/*"
     },
     "engines": {
         "node": ">=16.14.2",
@@ -70,7 +71,7 @@
         "terser": "^5.16.1",
         "typescript": "^4.9.3",
         "vite": "^4.0.0",
-        "vite-plugin-dts": "^2.0.0-beta.2",
+        "vite-plugin-dts": "^3.5.2",
         "vite-plugin-eslint": "^1.8.1",
         "vite-plugin-html": "^3.2.0",
         "vite-plugin-restart": "^0.3.0",
