@@ -48,15 +48,11 @@
 }
 
 @mixin overflow($orientation: "vertical") {
-    $overflowX: hidden;
-    $overflowY: auto;
+    overflow-y: auto;
 
     @if ($orientation == "horizontal") {
-        $overflowX: auto;
-        $overflowY: hidden;
+        overflow-x: auto;
     }
 
-    overflow-x: $overflowX;
-    overflow-y: $overflowY;
     @include hide-scrollbar;
 }
