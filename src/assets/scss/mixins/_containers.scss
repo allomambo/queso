@@ -32,7 +32,19 @@ $containers: (
                 @include container-styles($width, $gutter, $fluid);
             } @else {
                 &.-#{$name} {
-                    --container-width: #{$width};
+                    $container-width: $width;
+                    @if $fluid != false {
+                        $container-width-fluid: strip-units(
+                                math.div($width, $containers-screen-size-base)
+                            ) *
+                            100vw;
+                        $container-width: max(
+                            #{$width},
+                            #{$container-width-fluid}
+                        );
+                    }
+
+                    --container-width: #{$container-width};
                     --container-gutter: #{$gutter};
                 }
             }
