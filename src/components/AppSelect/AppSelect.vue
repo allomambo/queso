@@ -1,5 +1,9 @@
 <template>
     <field-base>
+        <template #label="fieldProps">
+            <slot name="label" v-bind="{ ...fieldProps }"></slot>
+        </template>
+
         <template
             #field="{
                 fieldID,
