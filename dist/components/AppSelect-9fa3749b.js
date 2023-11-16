@@ -1,11 +1,11 @@
 import "../assets/AppSelect.css";
-import { defineComponent as x, openBlock as o, createBlock as f, unref as k, withCtx as s, createElementBlock as a, createElementVNode as u, toDisplayString as r, renderSlot as c, normalizeProps as p, guardReactiveProps as m, createTextVNode as v, Fragment as $, renderList as q } from "vue";
-import { _ as C } from "./FieldBase-03e4e23e.js";
-import { _ as E } from "./DropdownBase-7175699c.js";
-const N = {
+import { defineComponent as C, openBlock as o, createBlock as f, unref as k, withCtx as s, renderSlot as a, createElementBlock as r, createElementVNode as u, toDisplayString as c, normalizeProps as p, guardReactiveProps as m, createTextVNode as $, Fragment as v, renderList as b } from "vue";
+import { _ as E } from "./FieldBase-03e4e23e.js";
+import { _ as N } from "./DropdownBase-7175699c.js";
+const P = {
   key: 0,
   class: "queso-select__read-only"
-}, P = { class: "queso-select__read-only__label" }, U = { class: "text" }, w = ["name", "id", "onFocus", "onBlur", "required", "autocomplete", "multiple"], z = /* @__PURE__ */ u("option", null, null, -1), D = ["value", "selected"], j = /* @__PURE__ */ x({
+}, U = { class: "queso-select__read-only__label" }, w = { class: "text" }, x = ["name", "id", "onFocus", "onBlur", "required", "autocomplete", "multiple"], z = /* @__PURE__ */ u("option", null, null, -1), D = ["value", "selected"], j = /* @__PURE__ */ C({
   __name: "AppSelect",
   props: {
     options: { default: () => [] },
@@ -13,14 +13,17 @@ const N = {
     placeholder: null
   },
   setup(t) {
-    const B = (l, _) => {
+    const q = (l, _) => {
       if (Array.isArray(l))
         return l.find((i) => i.key === _.key);
     };
-    return (l, _) => (o(), f(k(C), null, {
+    return (l, _) => (o(), f(k(E), null, {
+      label: s(() => [
+        a(l.$slots, "label")
+      ]),
       field: s(({
         fieldID: i,
-        fieldName: b,
+        fieldName: B,
         fieldValue: d,
         fieldAutocomplete: S,
         updateValue: M,
@@ -29,9 +32,9 @@ const N = {
         isRequired: A,
         isReadOnly: F
       }) => [
-        F ? (o(), a("div", N, [
-          u("span", P, r(d[0].data.label || t.placeholder), 1)
-        ])) : (o(), f(k(E), {
+        F ? (o(), r("div", P, [
+          u("span", U, c(d[0].data.label || t.placeholder), 1)
+        ])) : (o(), f(k(N), {
           key: 1,
           class: "queso-select",
           options: t.options,
@@ -42,31 +45,31 @@ const N = {
           onMouseleave: (e) => h(!1)
         }, {
           placeholder: s(() => [
-            c(l.$slots, "placeholder", p(m({ placeholder: t.placeholder })), () => [
-              v(r(t.placeholder), 1)
+            a(l.$slots, "placeholder", p(m({ placeholder: t.placeholder })), () => [
+              $(c(t.placeholder), 1)
             ])
           ]),
           selector: s(({ activeOptions: e }) => [
-            c(l.$slots, "selector", p(m({ activeOptions: e })), () => [
-              (o(!0), a($, null, q(e, (n) => (o(), a("span", {
+            a(l.$slots, "selector", p(m({ activeOptions: e })), () => [
+              (o(!0), r(v, null, b(e, (n) => (o(), r("span", {
                 key: n.key
-              }, r(n.data.label), 1))), 128))
+              }, c(n.data.label), 1))), 128))
             ])
           ]),
           icon: s(() => [
-            c(l.$slots, "icon", {}, () => [
-              v("↓")
+            a(l.$slots, "icon", {}, () => [
+              $("↓")
             ])
           ]),
           item: s(({ key: e, data: n }) => [
-            c(l.$slots, "item", p(m({ key: e, data: n })), () => [
-              u("span", U, r(n.label), 1)
+            a(l.$slots, "item", p(m({ key: e, data: n })), () => [
+              u("span", w, c(n.label), 1)
             ])
           ]),
           _: 2
         }, 1032, ["options", "default-options", "multiple", "onUpdate:options", "onMouseover", "onMouseleave"])),
         u("select", {
-          name: b,
+          name: B,
           id: i,
           class: "queso-select__select-native",
           onFocus: (e) => y(!0),
@@ -76,12 +79,12 @@ const N = {
           multiple: t.multiple
         }, [
           z,
-          (o(!0), a($, null, q(t.options, (e) => (o(), a("option", {
+          (o(!0), r(v, null, b(t.options, (e) => (o(), r("option", {
             value: e.key,
             key: e.key,
-            selected: B(d, e)
-          }, r(e.data.label), 9, D))), 128))
-        ], 40, w)
+            selected: q(d, e)
+          }, c(e.data.label), 9, D))), 128))
+        ], 40, x)
       ]),
       _: 3
     }));
