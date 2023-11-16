@@ -1,5 +1,9 @@
 <template>
     <field-base>
+        <template #label>
+            <slot name="label"></slot>
+        </template>
+
         <template
             #field="{
                 fieldID,
