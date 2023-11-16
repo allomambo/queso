@@ -86,8 +86,6 @@ export interface Props {
     placeholder?: string;
 }
 
-// const props = defineProps<Props>();
-
 const props = withDefaults(defineProps<Props>(), {
     options: () => [],
 });
