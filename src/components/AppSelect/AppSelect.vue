@@ -1,7 +1,7 @@
 <template>
     <field-base>
-        <template #label="fieldProps">
-            <slot name="label" v-bind="{ ...fieldProps }"></slot>
+        <template #label>
+            <slot name="label"></slot>
         </template>
 
         <template
@@ -85,6 +85,8 @@ export interface Props {
     multiple?: boolean;
     placeholder?: string;
 }
+
+// const props = defineProps<Props>();
 
 const props = withDefaults(defineProps<Props>(), {
     options: () => [],
