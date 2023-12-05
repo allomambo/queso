@@ -80,8 +80,8 @@
     <hr />
 
     <h3>Fields</h3>
-    <h5>QuesoTextField</h5>
-    <QuesoTextField name="textfield" v-model="TextField" />
+    <QuesoTextField name="textfield" label="QuesoTextField" v-model="TextField" />
+    <QuesoTextArea name="textarea" label="QuesoTextArea" v-model="TextArea" />
 </template>
 
 <script setup lang="ts">
@@ -94,6 +94,7 @@ import {
     QuesoIcon,
     QuesoModal,
     QuesoScrollable,
+    QuesoTextArea,
     QuesoTextField,
 } from "./components";
 
@@ -142,13 +143,16 @@ const dataOptions = [
     },
 ];
 
+// Modal
 const myModal = ref<InstanceType<typeof QuesoModal> | null>(null);
 
 const openModal = () => {
     myModal.value?.open();
 };
 
-const TextField = ref("text value");
+// Fields
+const TextField = ref("text field value");
+const TextArea = ref("text area value");
 </script>
 
 <style lang="scss">

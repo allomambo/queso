@@ -1,16 +1,16 @@
-import TextArea from "./TextArea.vue";
+import QuesoTextArea from "./QuesoTextArea.vue";
 
 export default {
-    title: "Formulaire/TextArea",
-    component: TextArea,
+    title: "Formulaire/QuesoTextArea",
+    component: QuesoTextArea,
 };
 
 const Template = (args) => ({
-    components: { TextArea },
+    components: { QuesoTextArea },
     setup() {
         return { args };
     },
-    template: `<TextArea v-bind="args" />`,
+    template: `<QuesoTextArea v-bind="args" />`,
 });
 
 export const Default = Template.bind({});
