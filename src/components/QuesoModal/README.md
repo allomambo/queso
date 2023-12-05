@@ -6,17 +6,17 @@
 <template>
     <button @click="openModal()">Open modal</button>
 
-    <modal-base ref="myModal">
+    <queso-modal ref="myModal">
         <!-- CONTENT HERE -->
-    </modal-base>
+    </queso-modal>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
 
-import ModalBase from "@components/ModalBase";
+import QuesoModal from "@components/QuesoModal";
 
-const myModal = ref<InstanceType<typeof ModalBase> | null>(null);
+const myModal = ref<InstanceType<typeof QuesoModal> | null>(null);
 
 const openModal = () => {
     myModal.value?.open();
@@ -33,12 +33,12 @@ const closeModal = () => {
 ```
 <template>
     ...
-    <modal-base ref="myModal">
+    <queso-modal ref="myModal">
         <template #before-content></template>
         <template #default></template>
         <template #after-content></template>
         <template #overlay></template>
-    </modal-base>
+    </queso-modal>
     ...
 </template>
 ```

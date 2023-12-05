@@ -10,7 +10,7 @@
             <slot name="after-content"></slot>
 
             <slot name="overlay">
-                <modal-base-overlay />
+                <queso-modal-overlay />
             </slot>
         </div>
     </Teleport>
@@ -23,7 +23,7 @@ import { ModalMethodsKey } from "./symbols";
 <script setup lang="ts">
 import { ref, watch, onMounted, provide } from "vue";
 
-import ModalBaseOverlay from "./components/ModalBaseOverlay.vue";
+import QuesoModalOverlay from "./components/QuesoModalOverlay.vue";
 
 const emit = defineEmits(["modal:open", "modal:close"]);
 

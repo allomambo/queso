@@ -7,10 +7,18 @@
     <QuesoDropdown :options="dataOptions" />
     <h5>Multiple choice</h5>
     <QuesoDropdown :options="dataOptions" multiple />
+
+    <h3>QuesoModal</h3>
+    <button @click="openModal()">Open modal</button>
+    <QuesoModal ref="myModal">
+        <p>CONTENT HERE</p>
+    </QuesoModal>
 </template>
 
 <script setup lang="ts">
-import { QuesoClickable, QuesoDropdown } from "./components";
+import { ref } from "vue";
+
+import { QuesoClickable, QuesoDropdown, QuesoModal } from "./components";
 
 const dataOptions = [
     {
@@ -56,6 +64,12 @@ const dataOptions = [
         },
     },
 ];
+
+const myModal = ref<InstanceType<typeof QuesoModal> | null>(null);
+
+const openModal = () => {
+    myModal.value?.open();
+};
 </script>
 
 <style lang="scss" scoped></style>
