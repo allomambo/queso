@@ -77,12 +77,25 @@
 
     <h3>QuesoIcon</h3>
     <QuesoIcon name="chevron" :size="6" :rotation="90" />
+    <hr />
+
+    <h3>Fields</h3>
+    <h5>QuesoTextField</h5>
+    <QuesoTextField name="textfield" v-model="TextField" />
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { QuesoClickable, QuesoCollapsible, QuesoDropdown, QuesoIcon, QuesoModal, QuesoScrollable } from "./components";
+import {
+    QuesoClickable,
+    QuesoCollapsible,
+    QuesoDropdown,
+    QuesoIcon,
+    QuesoModal,
+    QuesoScrollable,
+    QuesoTextField,
+} from "./components";
 
 const dataOptions = [
     {
@@ -134,6 +147,8 @@ const myModal = ref<InstanceType<typeof QuesoModal> | null>(null);
 const openModal = () => {
     myModal.value?.open();
 };
+
+const TextField = ref("text value");
 </script>
 
 <style lang="scss">

@@ -1,22 +1,22 @@
-import TextField from "./TextField.vue";
+import QuesoTextField from "./QuesoTextField.vue";
 // import AppIcon from "@components/AppIcon";
 
 export default {
-    title: "Formulaire/TextField",
-    component: TextField,
+    title: "Formulaire/QuesoTextField",
+    component: QuesoTextField,
 };
 
 const Template = (args: any) => ({
     components: {
-        TextField,
+        QuesoTextField,
     },
     setup() {
         return { args };
     },
-    template: `<TextField v-bind="args">
+    template: `<QuesoTextField v-bind="args">
         <template v-if="${"slotBefore" in args}" #before>${args.slotBefore}</template>
         <template v-if="${"slotAfter" in args}" #after>${args.slotAfter}</template>
-    </TextField>`,
+    </QuesoTextField>`,
 });
 
 export const Default = Template.bind({});

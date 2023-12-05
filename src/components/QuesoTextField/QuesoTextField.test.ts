@@ -1,14 +1,14 @@
 import { mount, shallowMount } from "@vue/test-utils";
 import { describe, expect, test } from "vitest";
-import TextField from "./TextField.vue";
+import QuesoTextField from "./QuesoTextField.vue";
 
-describe("TextField", () => {
+describe("QuesoTextField", () => {
     test("renders correctly the object", () => {
         const data = {
             name: "field-name",
         };
 
-        const wrapper = shallowMount(TextField, {
+        const wrapper = shallowMount(QuesoTextField, {
             propsData: data,
         });
         expect(wrapper.vm).toBeTruthy();
