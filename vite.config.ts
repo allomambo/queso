@@ -64,10 +64,12 @@ export default defineConfig(({ command, mode }) => {
             /* for example, use global to avoid globals imports (describe, test, expect): */
             // globals: true,
             environment: "happy-dom",
-            deps: {
-                inline: ["@vue/test-utils"],
+            server: {
+                deps: {
+                    inline: ["@vue/test-utils"],
+                },
             },
-            exclude: ["**/*.spec.ts", "node_modules"],
+            exclude: ["**/*.spec.ts", "dist", "node_modules"],
         },
     };
 });
