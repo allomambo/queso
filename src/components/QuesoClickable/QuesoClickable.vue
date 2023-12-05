@@ -42,7 +42,7 @@ const clickableClasses = computed(() => ({
 
 const clickableDisabled = computed(() => (props.isDisabled ? true : null));
 
-const clickableHref = computed(() => (props.tag === "a" ? props.url : null));
+const clickableHref = computed(() => (props.tag === "a" || props.tag === "router-link" ? props.url : null));
 const clickableTo = computed(() => (props.tag === "router-link" ? props.url : null));
 
 const isExternal = computed(() => (props.isExternal ? "_blank" : "_self"));
