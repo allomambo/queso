@@ -1,14 +1,14 @@
 import { mount, shallowMount } from "@vue/test-utils";
 import { describe, expect, test } from "vitest";
-import FieldBase from "./FieldBase.vue";
+import QuesoField from "./QuesoField.vue";
 
-describe("FieldBase", () => {
+describe("QuesoField", () => {
     test("renders correctly the object", () => {
         const data = {
             string: "Un test bidon",
         };
 
-        const wrapper = shallowMount(FieldBase, {
+        const wrapper = shallowMount(QuesoField, {
             propsData: data,
         });
         expect(wrapper.vm).toBeTruthy();

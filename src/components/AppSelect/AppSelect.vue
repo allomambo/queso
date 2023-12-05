@@ -1,5 +1,5 @@
 <template>
-    <field-base>
+    <queso-field>
         <template #label>
             <slot name="label"></slot>
         </template>
@@ -72,11 +72,11 @@
                 </option>
             </select>
         </template>
-    </field-base>
+    </queso-field>
 </template>
 
 <script setup lang="ts">
-import FieldBase from "@components/FieldBase";
+import QuesoField from "@components/QuesoField";
 import QuesoDropdown from "@components/QuesoDropdown";
 import { Option } from "@components/QuesoDropdown/types";
 

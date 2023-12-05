@@ -1,5 +1,5 @@
 <template>
-    <field-base>
+    <queso-field>
         <template #label>
             <span class="queso-checkbox__hidden-label"></span>
         </template>
@@ -64,11 +64,11 @@
         <template #error="fieldProps">
             <slot name="error" v-bind="{ ...fieldProps }"></slot>
         </template>
-    </field-base>
+    </queso-field>
 </template>
 
 <script setup lang="ts">
-import FieldBase from "@components/FieldBase";
+import QuesoField from "@components/QuesoField";
 
 // * Keep for future usage
 // export interface TypeChoice {

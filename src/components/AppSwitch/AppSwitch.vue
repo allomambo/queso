@@ -1,5 +1,5 @@
 <template>
-    <field-base>
+    <queso-field>
         <template #label>
             <span class="queso-switch__hidden-label"></span>
         </template>
@@ -62,11 +62,11 @@
         <template #error="fieldProps">
             <slot name="error" v-bind="{ ...fieldProps }"></slot>
         </template>
-    </field-base>
+    </queso-field>
 </template>
 
 <script setup lang="ts">
-import FieldBase from "@components/FieldBase";
+import QuesoField from "@components/QuesoField";
 
 const getCheckboxState = (event: any, fieldCallback: (a: boolean) => void) => {
     fieldCallback(event.target.checked);

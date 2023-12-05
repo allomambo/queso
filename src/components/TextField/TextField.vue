@@ -1,5 +1,5 @@
 <template>
-    <field-base>
+    <queso-field>
         <template #label="fieldProps">
             <slot name="label" v-bind="{ ...fieldProps }"></slot>
         </template>
@@ -54,11 +54,11 @@
         <template #error="fieldProps">
             <slot name="error" v-bind="{ ...fieldProps }"></slot>
         </template>
-    </field-base>
+    </queso-field>
 </template>
 
 <script setup lang="ts">
-import FieldBase from "@components/FieldBase";
+import QuesoField from "@components/QuesoField";
 
 export type FieldTypes = "text" | "url" | "tel" | "email" | "password";
 

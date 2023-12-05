@@ -1,7 +1,7 @@
 // Bases
 import QuesoClickable from "@components/QuesoClickable";
 import QuesoDropdown from "@components/QuesoDropdown";
-import FieldBase from "@components/FieldBase";
+import QuesoField from "@components/QuesoField";
 import QuesoModal from "@components/QuesoModal";
 import QuesoCollapsible from "@components/QuesoCollapsible";
 import QuesoScrollable from "@components/QuesoScrollable";
@@ -22,7 +22,7 @@ export {
     // Bases
     QuesoClickable,
     QuesoDropdown,
-    FieldBase as QuesoField,
+    QuesoField,
     QuesoModal,
     QuesoCollapsible,
     QuesoScrollable,
