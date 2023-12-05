@@ -1,18 +1,21 @@
 <template>
     <h3>QuesoClickable</h3>
     <QuesoClickable>Clickable</QuesoClickable>
+    <hr />
 
     <h3>QuesoDropdown</h3>
     <h5>Single choice</h5>
     <QuesoDropdown :options="dataOptions" />
     <h5>Multiple choice</h5>
     <QuesoDropdown :options="dataOptions" multiple />
+    <hr />
 
     <h3>QuesoModal</h3>
     <button @click="openModal()">Open modal</button>
     <QuesoModal ref="myModal">
         <p>CONTENT HERE</p>
     </QuesoModal>
+    <hr />
 
     <h3>QuesoCollapsible</h3>
     <QuesoCollapsible expand-on-mount>
@@ -53,6 +56,7 @@
             </p>
         </template>
     </QuesoCollapsible>
+    <hr />
 
     <h3>QuesoScrollable</h3>
     <QuesoScrollable>
@@ -69,6 +73,7 @@
             maximus.
         </p>
     </QuesoScrollable>
+    <hr />
 
     <h3>QuesoIcon</h3>
     <QuesoIcon name="chevron" :size="6" :rotation="90" />
