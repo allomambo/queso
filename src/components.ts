@@ -4,7 +4,7 @@ import QuesoDropdown from "@components/QuesoDropdown";
 import FieldBase from "@components/FieldBase";
 import QuesoModal from "@components/QuesoModal";
 import QuesoCollapsible from "@components/QuesoCollapsible";
-import ScrollableBase from "@components/ScrollableBase";
+import QuesoScrollable from "@components/QuesoScrollable";
 import IconBase from "@components/IconBase";
 
 // Fields
@@ -25,7 +25,7 @@ export {
     FieldBase as QuesoField,
     QuesoModal,
     QuesoCollapsible,
-    ScrollableBase as QuesoScrollable,
+    QuesoScrollable,
     IconBase as QuesoIcon,
 
     // Fields
