@@ -13,12 +13,52 @@
     <QuesoModal ref="myModal">
         <p>CONTENT HERE</p>
     </QuesoModal>
+
+    <h3>QuesoCollapsible</h3>
+    <QuesoCollapsible expand-on-mount>
+        <template #headerText>
+            <p>expand-on-mount Lorem ipsum dolor sit amet</p>
+        </template>
+        <template #content>
+            <p>
+                Consectetur adipiscing elit. Vivamus sed neque quis magna maximus finibus vel vitae mi. Lorem ipsum
+                dolor sit amet, consectetur adipiscing elit. Integer aliquet libero imperdiet, imperdiet sem vel, tempor
+                justo. Nam malesuada nunc quam, at auctor erat tincidunt at. In luctus purus sit amet nibh pretium, sed
+                tincidunt tortor dignissim. Mauris elit risus, pretium ut mattis eu, faucibus eu nulla. Donec congue
+                ante vitae odio egestas bibendum. Donec maximus maximus lorem, non imperdiet mi fringilla vel. Donec
+                dictum, nunc sed porttitor tempus, ante nibh vestibulum elit, at interdum magna est et dui. Sed at nibh
+                neque. Vivamus mauris justo, eleifend eu metus ut, pellentesque molestie tellus. Nam accumsan lorem at
+                enim consectetur, vel dapibus justo egestas. Vivamus vitae pretium dui. Vivamus non tortor ut neque
+                tristique efficitur id eget nulla. Sed dui sapien, convallis sed tempus vel, pulvinar vitae nibh. Morbi
+                hendrerit accumsan purus ac maximus.
+            </p>
+        </template>
+    </QuesoCollapsible>
+    <QuesoCollapsible>
+        <template #headerText>
+            <p>Lorem ipsum dolor sit amet</p>
+        </template>
+        <template #content>
+            <p>
+                Consectetur adipiscing elit. Vivamus sed neque quis magna maximus finibus vel vitae mi. Lorem ipsum
+                dolor sit amet, consectetur adipiscing elit. Integer aliquet libero imperdiet, imperdiet sem vel, tempor
+                justo. Nam malesuada nunc quam, at auctor erat tincidunt at. In luctus purus sit amet nibh pretium, sed
+                tincidunt tortor dignissim. Mauris elit risus, pretium ut mattis eu, faucibus eu nulla. Donec congue
+                ante vitae odio egestas bibendum. Donec maximus maximus lorem, non imperdiet mi fringilla vel. Donec
+                dictum, nunc sed porttitor tempus, ante nibh vestibulum elit, at interdum magna est et dui. Sed at nibh
+                neque. Vivamus mauris justo, eleifend eu metus ut, pellentesque molestie tellus. Nam accumsan lorem at
+                enim consectetur, vel dapibus justo egestas. Vivamus vitae pretium dui. Vivamus non tortor ut neque
+                tristique efficitur id eget nulla. Sed dui sapien, convallis sed tempus vel, pulvinar vitae nibh. Morbi
+                hendrerit accumsan purus ac maximus.
+            </p>
+        </template>
+    </QuesoCollapsible>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { QuesoClickable, QuesoDropdown, QuesoModal } from "./components";
+import { QuesoClickable, QuesoCollapsible, QuesoDropdown, QuesoModal } from "./components";
 
 const dataOptions = [
     {
