@@ -1,8 +1,8 @@
 import { mount, shallowMount } from "@vue/test-utils";
 import { describe, expect, test } from "vitest";
-import AppSelect from "./AppSelect.vue";
+import QuesoSelect from "./QuesoSelect.vue";
 
-describe("AppSelect", () => {
+describe("QuesoSelect", () => {
     const data = {
         name: "select-name",
         label: "Genre musical",
@@ -29,7 +29,7 @@ describe("AppSelect", () => {
     };
 
     test("renders correctly the object", () => {
-        const wrapper = shallowMount(AppSelect, {
+        const wrapper = shallowMount(QuesoSelect, {
             propsData: data,
         });
         expect(wrapper.vm).toBeTruthy();
@@ -37,7 +37,7 @@ describe("AppSelect", () => {
 
     // Hiding it for now
     // test("renders correctly the label", () => {
-    //     const wrapper = shallowMount(AppSelect, {
+    //     const wrapper = shallowMount(QuesoSelect, {
     //         propsData: data,
     //     });
     //     const label = wrapper.findComponent(".dropdown__popover__options-list__item:first-child");

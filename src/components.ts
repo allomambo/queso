@@ -11,7 +11,7 @@ import QuesoIcon from "@components/QuesoIcon";
 import QuesoTextField from "@components/QuesoTextField";
 import QuesoTextArea from "@components/QuesoTextArea";
 import QuesoCheckbox from "@components/QuesoCheckbox";
-import AppSelect from "@components/AppSelect";
+import QuesoSelect from "@components/QuesoSelect";
 import AppSwitch from "@components/AppSwitch";
 
 /*====================================
@@ -32,6 +32,6 @@ export {
     QuesoTextField,
     QuesoTextArea,
     QuesoCheckbox,
-    AppSelect as QuesoSelect,
+    QuesoSelect,
     AppSwitch as QuesoSwitch,
 };

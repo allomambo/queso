@@ -83,6 +83,7 @@
     <QuesoTextField name="textfield" label="QuesoTextField" v-model="TextField" />
     <QuesoTextArea name="textarea" label="QuesoTextArea" v-model="TextArea" />
     <QuesoCheckbox name="checkbox" label="QuesoCheckbox" v-model="Checkbox" />
+    <QuesoSelect name="select" label="QuesoSelect" :options="dataOptions" v-model="Select" />
 </template>
 
 <script setup lang="ts">
@@ -96,6 +97,7 @@ import {
     QuesoIcon,
     QuesoModal,
     QuesoScrollable,
+    QuesoSelect,
     QuesoTextArea,
     QuesoTextField,
 } from "./components";
@@ -156,6 +158,7 @@ const openModal = () => {
 const TextField = ref("text field value");
 const TextArea = ref("text area value");
 const Checkbox = ref(true);
+const Select = ref([]);
 </script>
 
 <style lang="scss">

@@ -1,16 +1,16 @@
-import AppSelect from "./AppSelect.vue";
+import QuesoSelect from "./QuesoSelect.vue";
 
 export default {
     title: "Formulaire/Select",
-    component: AppSelect,
+    component: QuesoSelect,
 };
 
 const Template = (args) => ({
-    components: { AppSelect },
+    components: { QuesoSelect },
     setup() {
         return { args };
     },
-    template: `<AppSelect v-bind="args" />`,
+    template: `<QuesoSelect v-bind="args" />`,
 });
 
 const dataOptions = [
