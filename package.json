@@ -30,8 +30,8 @@
         "./*": "./dist/*"
     },
     "engines": {
-        "node": ">=16.14.2",
-        "npm": ">=8.0.0"
+        "node": ">=20.0.0",
+        "npm": ">=10.0.0"
     },
     "scripts": {
         "ci": "yarn install --immutable --immutable-cache --check-cache",
