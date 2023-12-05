@@ -1,10 +1,16 @@
 <template>
-    <h2>QuesoDropdown</h2>
-    <QuesoDropdown :options="dataOptions" multiple>test</QuesoDropdown>
+    <h3>QuesoClickable</h3>
+    <QuesoClickable>Clickable</QuesoClickable>
+
+    <h3>QuesoDropdown</h3>
+    <h5>Single choice</h5>
+    <QuesoDropdown :options="dataOptions" />
+    <h5>Multiple choice</h5>
+    <QuesoDropdown :options="dataOptions" multiple />
 </template>
 
 <script setup lang="ts">
-import { QuesoDropdown } from "./components";
+import { QuesoClickable, QuesoDropdown } from "./components";
 
 const dataOptions = [
     {
