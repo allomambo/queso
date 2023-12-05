@@ -42,6 +42,6 @@ describe("QuesoClickable", () => {
         const wrapper = shallowMount(QuesoClickable, {
             propsData: { isDisabled: true },
         });
-        expect(wrapper.attributes("disabled")).toBeTruthy();
+        expect(wrapper.attributes('disabled')).toBe("");
     });
 });

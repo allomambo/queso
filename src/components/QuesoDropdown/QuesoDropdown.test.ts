@@ -5,7 +5,26 @@ import QuesoDropdown from "./QuesoDropdown.vue";
 describe("QuesoDropdown", () => {
     test("renders correctly the object", () => {
         const data = {
-            string: "Un test bidon",
+            options: [
+                {
+                    key: 1,
+                    data: {
+                        label: "Heavy Metal",
+                    },
+                },
+                {
+                    key: 2,
+                    data: {
+                        label: "Classique",
+                    },
+                },
+                {
+                    key: 3,
+                    data: {
+                        label: "Funk and Disco",
+                    },
+                },
+            ],
         };
 
         const wrapper = shallowMount(QuesoDropdown, {
