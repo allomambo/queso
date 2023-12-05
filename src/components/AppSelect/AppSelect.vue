@@ -23,7 +23,7 @@
                 </span>
             </div>
 
-            <dropdown-base
+            <queso-dropdown
                 v-else
                 class="queso-select"
                 :options="options"
@@ -49,7 +49,7 @@
                         <span class="text">{{ data.label }}</span>
                     </slot>
                 </template>
-            </dropdown-base>
+            </queso-dropdown>
 
             <select
                 :name="fieldName"
@@ -77,8 +77,8 @@
 
 <script setup lang="ts">
 import FieldBase from "@components/FieldBase";
-import DropdownBase from "@components/DropdownBase";
-import { Option } from "@components/DropdownBase/types";
+import QuesoDropdown from "@components/QuesoDropdown";
+import { Option } from "@components/QuesoDropdown/types";
 
 export interface Props {
     options: Option[];

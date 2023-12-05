@@ -1,6 +1,6 @@
 // Bases
 import QuesoClickable from "@components/QuesoClickable";
-import DropdownBase from "@components/DropdownBase";
+import QuesoDropdown from "@components/QuesoDropdown";
 import FieldBase from "@components/FieldBase";
 import ModalBase from "@components/ModalBase";
 import CollapsibleBase from "@components/CollapsibleBase";
@@ -21,7 +21,7 @@ import AppSwitch from "@components/AppSwitch";
 export {
     // Bases
     QuesoClickable,
-    DropdownBase as QuesoDropdown,
+    QuesoDropdown,
     FieldBase as QuesoField,
     ModalBase as QuesoModal,
     CollapsibleBase as QuesoCollapsible,

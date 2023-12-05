@@ -1,17 +1,17 @@
-import DropdownBase from "./DropdownBase.vue";
+import QuesoDropdown from "./QuesoDropdown.vue";
 
 export default {
     title: "Components/Dropdown",
-    component: DropdownBase,
+    component: QuesoDropdown,
 };
 
 const Template = (args) => ({
-    components: { DropdownBase },
+    components: { QuesoDropdown },
     setup() {
         return { args };
     },
     template: `
-    <app-dropdown v-bind="args">
+    <queso-dropdown v-bind="args">
         <template v-if="${"slotPrefix" in args}" #prefix>${args.slotPrefix}</template>
         <template v-if="${"slotPlaceholder" in args}" #placeholder>${args.slotPlaceholder}</template>
         <template v-if="${"slotSelector" in args}" #selector>${args.slotSelector}</template>
@@ -20,7 +20,7 @@ const Template = (args) => ({
         <template v-if="${"slotPopoverHeader" in args}" #popoverHeader>${args.slotPopoverHeader}</template>
         <template v-if="${"slotItem" in args}" #item>${args.slotItem}</template>
         <template v-if="${"slotPopoverFooter" in args}" #popoverFooter>${args.slotPopoverFooter}</template>
-    </app-dropdown>
+    </queso-dropdown>
     `,
 });
 
