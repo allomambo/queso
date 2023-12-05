@@ -1,6 +1,6 @@
 import { mount } from "@vue/test-utils";
 import { describe, expect, test } from "vitest";
-import IconBase from "./IconBase.vue";
+import QuesoIcon from "./QuesoIcon.vue";
 
 const data = {
     name: "chevron",
@@ -8,16 +8,16 @@ const data = {
     rotate: 90,
 };
 
-describe("IconBase", () => {
+describe("QuesoIcon", () => {
     test("renders correctly the object", () => {
-        const wrapper = mount(IconBase, {
+        const wrapper = mount(QuesoIcon, {
             props: data,
         });
         expect(wrapper.vm).toBeTruthy();
     });
 
     // test("renders the right rotation", () => {
-    //     const wrapper = mount(IconBase, {
+    //     const wrapper = mount(QuesoIcon, {
     //         props: data,
     //     });
     //     const icon = wrapper.find(".icon");
@@ -25,7 +25,7 @@ describe("IconBase", () => {
     // });
 
     // test("renders the right size", () => {
-    //     const wrapper = mount(IconBase, {
+    //     const wrapper = mount(QuesoIcon, {
     //         props: data,
     //     });
     //     const icon = wrapper.find(".icon");

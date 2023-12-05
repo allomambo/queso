@@ -69,12 +69,15 @@
             maximus.
         </p>
     </QuesoScrollable>
+
+    <h3>QuesoIcon</h3>
+    <QuesoIcon name="chevron" :size="6" :rotation="90" />
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { QuesoClickable, QuesoCollapsible, QuesoDropdown, QuesoModal, QuesoScrollable } from "./components";
+import { QuesoClickable, QuesoCollapsible, QuesoDropdown, QuesoIcon, QuesoModal, QuesoScrollable } from "./components";
 
 const dataOptions = [
     {

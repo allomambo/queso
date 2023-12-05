@@ -1,8 +1,8 @@
-import IconBase from "./IconBase.vue";
+import QuesoIcon from "./QuesoIcon.vue";
 
 export default {
     title: "Components/Icon",
-    component: IconBase,
+    component: QuesoIcon,
     parameters: {
         docs: {
             description: {
@@ -15,7 +15,7 @@ export default {
 };
 
 const Template = (args: any) => ({
-    components: { IconBase },
+    components: { QuesoIcon },
     setup() {
         return { args };
     },
