@@ -1,16 +1,16 @@
-import AppCheckbox from "./AppCheckbox.vue";
+import QuesoCheckbox from "./QuesoCheckbox.vue";
 
 export default {
     title: "Formulaire/Checkbox",
-    component: AppCheckbox,
+    component: QuesoCheckbox,
 };
 
 const Template = (args) => ({
-    components: { AppCheckbox },
+    components: { QuesoCheckbox },
     setup() {
         return { args };
     },
-    template: `<AppCheckbox v-bind="args" />`,
+    template: `<QuesoCheckbox v-bind="args" />`,
 });
 
 export const Default = Template.bind({});

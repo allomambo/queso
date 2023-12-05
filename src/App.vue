@@ -82,12 +82,14 @@
     <h3>Fields</h3>
     <QuesoTextField name="textfield" label="QuesoTextField" v-model="TextField" />
     <QuesoTextArea name="textarea" label="QuesoTextArea" v-model="TextArea" />
+    <QuesoCheckbox name="checkbox" label="QuesoCheckbox" v-model="Checkbox" />
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
 
 import {
+    QuesoCheckbox,
     QuesoClickable,
     QuesoCollapsible,
     QuesoDropdown,
@@ -153,6 +155,7 @@ const openModal = () => {
 // Fields
 const TextField = ref("text field value");
 const TextArea = ref("text area value");
+const Checkbox = ref(true);
 </script>
 
 <style lang="scss">
