@@ -1,16 +1,16 @@
-import AppSwitch from "./AppSwitch.vue";
+import QuesoSwitch from "./QuesoSwitch.vue";
 
 export default {
     title: "Formulaire/Switch",
-    component: AppSwitch,
+    component: QuesoSwitch,
 };
 
 const Template = (args) => ({
-    components: { AppSwitch },
+    components: { QuesoSwitch },
     setup() {
         return { args };
     },
-    template: `<AppSwitch v-bind="args" />`,
+    template: `<QuesoSwitch v-bind="args" />`,
 });
 
 export const Default = Template.bind({});
