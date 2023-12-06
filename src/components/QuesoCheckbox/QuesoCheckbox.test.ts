@@ -9,7 +9,7 @@ describe("QuesoCheckbox", () => {
         };
 
         const wrapper = shallowMount(QuesoCheckbox, {
-            propsData: data,
+            props: data,
         });
         expect(wrapper.vm).toBeTruthy();
     });
@@ -20,7 +20,7 @@ describe("QuesoCheckbox", () => {
         };
 
         const wrapper = mount(QuesoCheckbox, {
-            propsData: data,
+            props: data,
         });
         expect(wrapper.find(".queso-checkbox__label__text").text()).toBe(data.label);
     });
@@ -31,7 +31,7 @@ describe("QuesoCheckbox", () => {
         };
 
         const wrapper = mount(QuesoCheckbox, {
-            propsData: data,
+            props: data,
         });
         expect(wrapper.find(".queso-checkbox__box__symbol").exists()).toBe(true);
     });
