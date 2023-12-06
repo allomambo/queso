@@ -14,7 +14,6 @@ describe("QuesoTextField", () => {
         expect(wrapper.vm).toBeTruthy();
     });
 
-    // test if the label is rendered correctly
     test("renders correctly the label", () => {
         const data = {
             label: "field-label",
@@ -26,7 +25,6 @@ describe("QuesoTextField", () => {
         expect(wrapper.find(".queso-field__label").text()).toBe(data.label);
     });
 
-    // test if the input is rendered correctly
     test("renders correctly the input", () => {
         const data = {
             name: "field-name",
