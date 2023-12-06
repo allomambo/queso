@@ -13,4 +13,22 @@ describe("QuesoCollapsible", () => {
         });
         expect(wrapper.vm).toBeTruthy();
     });
+
+    test("closed by default", () => {
+        const data = {
+            string: "Un test bidon",
+        };
+
+        const wrapper = shallowMount(QuesoCollapsible, {
+            propsData: data,
+        });
+        expect(wrapper.classes()).toContain("is-collapsible-close");
+    });
+
+    test("user open the collapsible by click", async () => {
+        const wrapper = mount(QuesoCollapsible, {});
+        await wrapper.find(".queso-collapsible__header").trigger("click");
+
+        expect(wrapper.classes()).toContain("is-collapsible-open");
+    });
 });

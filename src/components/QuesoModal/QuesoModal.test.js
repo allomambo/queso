@@ -1,16 +1,12 @@
 import { mount } from "@vue/test-utils";
 import { describe, expect, test } from "vitest";
-import QuesoIcon from "./QuesoIcon.vue";
+import QuesoModal from "./QuesoModal.vue";
 
-const data = {
-    name: "chevron",
-    size: 6,
-    rotate: 90,
-};
+const data = {};
 
-describe("QuesoIcon", () => {
+describe("QuesoModal", () => {
     test("renders correctly the object", () => {
-        const wrapper = mount(QuesoIcon, {
+        const wrapper = mount(QuesoModal, {
             props: data,
         });
         expect(wrapper.vm).toBeTruthy();
