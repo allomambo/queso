@@ -9,8 +9,32 @@ describe("QuesoTextField", () => {
         };
 
         const wrapper = shallowMount(QuesoTextField, {
-            propsData: data,
+            props: data,
         });
         expect(wrapper.vm).toBeTruthy();
+    });
+
+    // test if the label is rendered correctly
+    test("renders correctly the label", () => {
+        const data = {
+            label: "field-label",
+        };
+
+        const wrapper = mount(QuesoTextField, {
+            props: data,
+        });
+        expect(wrapper.find(".queso-field__label").text()).toBe(data.label);
+    });
+
+    // test if the input is rendered correctly
+    test("renders correctly the input", () => {
+        const data = {
+            name: "field-name",
+        };
+
+        const wrapper = mount(QuesoTextField, {
+            props: data,
+        });
+        expect(wrapper.find(".queso-field__input").exists()).toBe(true);
     });
 });
