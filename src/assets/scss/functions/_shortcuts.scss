@@ -21,6 +21,21 @@
 }
 
 /**
+ * Shortcut for multiplications based on a factor and a variable.
+ * 
+ * @param  {string} $factor Multiplier to adjust the value (default: 1)
+ * @param  {string} $var    Customizable variable representing the base value (default: var(--spacer))
+ * @return {string}         The multiplied value using the formula: calc($var * $factor)
+ * 
+ * @example
+ *      margin: multiply(2); // Calculates 2 times the default value
+ *      padding: multiply(0.5, var(--custom)); // Calculates half of a custom variable
+ */
+@function multiply($factor: 1, $var: var(--spacer)) {
+    @return calc(#{$var} * $factor);
+}
+
+/**
  * A function helper to avoid having to type `map-get($layers, ...)`
  * Based on http://css-tricks.com/handling-z-index/
  * @param  {string} $layer The name of the z-index

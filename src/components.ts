@@ -1,18 +1,18 @@
 // Bases
-import ClickableBase from "@components/ClickableBase";
-import DropdownBase from "@components/DropdownBase";
-import FieldBase from "@components/FieldBase";
-import ModalBase from "@components/ModalBase";
-import CollapsibleBase from "@components/CollapsibleBase";
-import ScrollableBase from "@components/ScrollableBase";
-import IconBase from "@components/IconBase";
+import QuesoClickable from "@components/QuesoClickable";
+import QuesoDropdown from "@components/QuesoDropdown";
+import QuesoField from "@components/QuesoField";
+import QuesoModal from "@components/QuesoModal";
+import QuesoCollapsible from "@components/QuesoCollapsible";
+import QuesoScrollable from "@components/QuesoScrollable";
+import QuesoIcon from "@components/QuesoIcon";
 
 // Fields
-import TextField from "@components/TextField";
-import TextArea from "@components/TextArea";
-import AppCheckbox from "@components/AppCheckbox";
-import AppSelect from "@components/AppSelect";
-import AppSwitch from "@components/AppSwitch";
+import QuesoTextField from "@components/QuesoTextField";
+import QuesoTextArea from "@components/QuesoTextArea";
+import QuesoCheckbox from "@components/QuesoCheckbox";
+import QuesoSelect from "@components/QuesoSelect";
+import QuesoSwitch from "@components/QuesoSwitch";
 
 /*====================================
 =              EXPORTS               =
@@ -20,18 +20,18 @@ import AppSwitch from "@components/AppSwitch";
 
 export {
     // Bases
-    ClickableBase as QuesoClickable,
-    DropdownBase as QuesoDropdown,
-    FieldBase as QuesoField,
-    ModalBase as QuesoModal,
-    CollapsibleBase as QuesoCollapsible,
-    ScrollableBase as QuesoScrollable,
-    IconBase as QuesoIcon,
+    QuesoClickable,
+    QuesoDropdown,
+    QuesoField,
+    QuesoModal,
+    QuesoCollapsible,
+    QuesoScrollable,
+    QuesoIcon,
 
     // Fields
-    TextField as QuesoTextField,
-    TextArea as QuesoTextArea,
-    AppCheckbox as QuesoCheckbox,
-    AppSelect as QuesoSelect,
-    AppSwitch as QuesoSwitch,
+    QuesoTextField,
+    QuesoTextArea,
+    QuesoCheckbox,
+    QuesoSelect,
+    QuesoSwitch,
 };
