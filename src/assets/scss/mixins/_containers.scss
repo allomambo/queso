@@ -17,31 +17,34 @@ $containers: (
 
 /**
  * Container(s) styles generator
+ *
  * @param  {string} $variant     What size variant to generate.
  *                               Use 'all' to generate default base styles and all other keys as modifier classes
  * @return {void}
  */
 @mixin container($variant: "default") {
+    // Generate styles for all variants if 'all' is specified
     @if $variant == "all" {
         @each $name, $props in $containers {
             $width: nth($props, 1);
             $gap: nth($props, 2);
             $fluid: index-exists($props, fluid);
 
+            // Include base container styles for the 'default' variant
             @if $name == "default" {
                 @include container-styles($width, $gap, $fluid);
             } @else {
+                // Generate modifier class styles for other variants
                 &.-#{$name} {
                     $container-width: $width;
-                    @if $fluid != false {
-                        $container-width-fluid: strip-units(
+
+                    // Calculate fluid container width if specified
+                    @if $fluid {
+                        $container-ratio: 100vw *
+                            strip-units(
                                 math.div($width, $containers-screen-size-base)
-                            ) *
-                            100vw;
-                        $container-width: max(
-                            #{$width},
-                            #{$container-width-fluid}
-                        );
+                            );
+                        $container-width: max(#{$width}, #{$container-ratio});
                     }
 
                     --container-width: #{$container-width};
@@ -50,6 +53,7 @@ $containers: (
             }
         }
     } @else {
+        // Generate styles for the specified variant
         @if not map-has-key($containers, $variant) {
             @error "No key found in $containers map for `#{$variant}`. Property omitted.";
         }
@@ -65,18 +69,21 @@ $containers: (
 
 @mixin container-styles($width, $gap, $fluid: false) {
     $container-width: $width;
-    @if $fluid != false {
-        $container-width-fluid: strip-units(
-                math.div($width, $containers-screen-size-base)
-            ) *
-            100vw;
-        $container-width: max(#{$width}, #{$container-width-fluid});
+
+    // Calculate fluid container width if specified
+    @if $fluid {
+        $container-ratio: 100vw *
+            strip-units(math.div($width, $containers-screen-size-base));
+        $container-width: max(#{$width}, #{$container-ratio});
     }
+
+    // Set CSS custom properties
     --container-width-default: #{$container-width};
     --container-gap-default: #{$gap};
     --container-margin-left-default: auto;
     --container-margin-right-default: auto;
 
+    // Apply styles
     display: block;
     width: dvar(container-width);
     max-width: calc(100% - (#{dvar(container-gap)} * 2));
