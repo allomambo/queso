@@ -40,7 +40,7 @@ const close = () => {
 
 // Lock scrolling when modal is open
 const toggleOverflowOnDocument = (bool: boolean = true) => {
-    document.documentElement.style.overflow = bool ? "hidden" : null;
+    document.documentElement.style.overflow = bool ? "hidden" : "";
 };
 
 // Update opened state
