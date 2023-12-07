@@ -91,7 +91,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 // Check if option in select is in active values
-const isSelected = (values, option: Option) => {
+const isSelected = (values: any, option: Option) => {
     if (!Array.isArray(values)) return;
     return values.find((o: Option) => o.key === option.key);
 };
