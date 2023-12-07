@@ -30,7 +30,13 @@ const iconID = computed(() => {
     return `#${prefix}${props.name}`;
 });
 
-const iconClasses = computed<string[]>(() => ["queso-icon", props.name && `-${props.name}`]);
+const iconClasses = computed(() => {
+    let classes: string[] = ["queso-icon"];
+
+    if (props.name) classes.push(`-${props.name}`);
+
+    return classes;
+});
 
 // Visual
 const width = computed<string>(() => `${props.size}rem`);
