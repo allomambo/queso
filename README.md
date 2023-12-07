@@ -2,7 +2,7 @@
 
 #### Required
 
--   Node 16.14.2
+-   Node 20.10.0
 -   VueJS 3.2.37
 
 > **Note**  

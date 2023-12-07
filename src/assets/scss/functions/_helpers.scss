@@ -30,3 +30,20 @@
 @function index-exists($map, $val) {
     @return index($map, $val) != null;
 }
+
+// Determines whether two values have the same units
+// @return {boolean}
+@function units-are-same($value1, $value2) {
+    // Get the units of both values
+    $unit1: unit($value1);
+    $unit2: unit($value2);
+
+    // Check if both values have units
+    @if $unit1 and $unit2 {
+        // Compare the units
+        @return $unit1 == $unit2;
+    } @else {
+        // One or both values don't have units
+        @return false;
+    }
+}
