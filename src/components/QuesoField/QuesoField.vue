@@ -71,10 +71,10 @@ const fieldValue = computed<any>({
     },
 });
 
-const fieldID = computed<string>(() => props.id || props.name);
+const fieldID = computed<string>(() => props.id || props.name || "");
 const fieldName = toRef(props, "name");
 const fieldLabel = toRef(props, "label");
-const fieldAutocomplete = computed<string>(() => (isAutocomplete.value ? "on" : null));
+const fieldAutocomplete = computed<string | undefined>(() => (isAutocomplete.value ? "on" : undefined));
 
 const fieldClasses = computed<HTMLAttributes["class"]>(() => ({
     "is-disabled": isDisabled.value,
