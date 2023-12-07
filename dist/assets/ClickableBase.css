@@ -1,1 +1,0 @@
-@charset "UTF-8";.queso-clickable{display:var(--queso-clickable-display, inline-flex);align-items:var(--queso-clickable-align, center);justify-content:var(--queso-clickable-justify, center);cursor:pointer}.queso-clickable[disabled],.queso-clickable[aria-disabled=true]{pointer-events:none;user-select:none}
