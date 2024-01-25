@@ -3,14 +3,16 @@
         <slot name="beforeHeader"></slot>
 
         <div class="queso-collapsible__header" @click="toggle(!isCollapsibleOpen)">
-            <slot name="headerPrefix"></slot>
-            <div class="queso-collapsible__header__text">
-                <slot name="headerText"></slot>
-            </div>
-            <slot name="headerSuffix"></slot>
-            <div class="queso-collapsible__header__icon">
-                <slot name="headerIcon">↓</slot>
-            </div>
+            <slot name="header" v-bind="{ isCollapsibleOpen }">
+                <slot name="headerPrefix"></slot>
+                <div class="queso-collapsible__header__text">
+                    <slot name="headerText" v-bind="{ isCollapsibleOpen }"></slot>
+                </div>
+                <slot name="headerSuffix"></slot>
+                <div class="queso-collapsible__header__icon">
+                    <slot name="headerIcon" v-bind="{ isCollapsibleOpen }">↓</slot>
+                </div>
+            </slot>
         </div>
 
         <slot name="afterHeader"></slot>
