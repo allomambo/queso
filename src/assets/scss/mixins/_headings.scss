@@ -38,8 +38,10 @@
         @if $prop == "font-size" {
             @if is-map($val) {
                 @include fluid-type($val);
-            } @else {
+            } @else if type-of($val) == number {
                 font-size: rem($val);
+            } @else {
+                font-size: #{$val};
             }
         } @else {
             #{$prop}: #{$val};
