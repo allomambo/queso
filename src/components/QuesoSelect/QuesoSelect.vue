@@ -72,6 +72,10 @@
                 </option>
             </select>
         </template>
+
+        <template #error="fieldProps">
+            <slot name="error" v-bind="{ ...fieldProps }"></slot>
+        </template>
     </queso-field>
 </template>
 
