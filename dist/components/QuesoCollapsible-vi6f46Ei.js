@@ -1,20 +1,20 @@
 import "../assets/components/QuesoCollapsible.css";
-import { getCurrentScope as U, onScopeDispose as Z, unref as ee, onMounted as N, nextTick as te, getCurrentInstance as G, computed as M, watch as $, ref as g, reactive as z, defineComponent as oe, useCssVars as ne, onBeforeMount as se, openBlock as le, createElementBlock as re, normalizeClass as ie, renderSlot as E, createElementVNode as L, createTextVNode as ue } from "vue";
-function X(e) {
-  return U() ? (Z(e), !0) : !1;
+import { getCurrentScope as ee, onScopeDispose as te, unref as oe, onMounted as X, nextTick as ne, getCurrentInstance as Q, computed as M, watch as $, ref as g, reactive as V, defineComponent as se, useCssVars as le, onBeforeMount as re, openBlock as ie, createElementBlock as ue, normalizeClass as ae, renderSlot as y, createElementVNode as L, normalizeProps as I, guardReactiveProps as W, createTextVNode as ce } from "vue";
+function Y(e) {
+  return ee() ? (te(e), !0) : !1;
 }
 function _(e) {
-  return typeof e == "function" ? e() : ee(e);
+  return typeof e == "function" ? e() : oe(e);
 }
-const Q = typeof window < "u" && typeof document < "u";
+const J = typeof window < "u" && typeof document < "u";
 typeof WorkerGlobalScope < "u" && globalThis instanceof WorkerGlobalScope;
-const ae = Object.prototype.toString, ce = (e) => ae.call(e) === "[object Object]", C = () => {
-}, fe = /* @__PURE__ */ de();
-function de() {
+const fe = Object.prototype.toString, de = (e) => fe.call(e) === "[object Object]", C = () => {
+}, pe = /* @__PURE__ */ ve();
+function ve() {
   var e, l;
-  return Q && ((e = window == null ? void 0 : window.navigator) == null ? void 0 : e.userAgent) && (/iP(ad|hone|od)/.test(window.navigator.userAgent) || ((l = window == null ? void 0 : window.navigator) == null ? void 0 : l.maxTouchPoints) > 2 && /iPad|Macintosh/.test(window == null ? void 0 : window.navigator.userAgent));
+  return J && ((e = window == null ? void 0 : window.navigator) == null ? void 0 : e.userAgent) && (/iP(ad|hone|od)/.test(window.navigator.userAgent) || ((l = window == null ? void 0 : window.navigator) == null ? void 0 : l.maxTouchPoints) > 2 && /iPad|Macintosh/.test(window == null ? void 0 : window.navigator.userAgent));
 }
-function Y(e, l) {
+function K(e, l) {
   function s(...t) {
     return new Promise((c, i) => {
       Promise.resolve(e(() => l.apply(this, t), { fn: l, thisArg: this, args: t })).then(c).catch(i);
@@ -22,7 +22,7 @@ function Y(e, l) {
   }
   return s;
 }
-function pe(e, l = {}) {
+function me(e, l = {}) {
   let s, t, c = C;
   const i = (a) => {
     clearTimeout(a), c(), c = C;
@@ -38,7 +38,7 @@ function pe(e, l = {}) {
     });
   };
 }
-function ve(e, l = !0, s = !0, t = !1) {
+function he(e, l = !0, s = !0, t = !1) {
   let c = 0, i, r = !0, a = C, m;
   const d = () => {
     i && (clearTimeout(i), i = void 0, a(), a = C);
@@ -52,34 +52,34 @@ function ve(e, l = !0, s = !0, t = !1) {
     })), !s && !i && (i = setTimeout(() => r = !0, o)), r = !1, m);
   };
 }
-function me(e) {
-  return e || G();
+function be(e) {
+  return e || Q();
 }
-function he(e, l = 200, s = {}) {
-  return Y(
-    pe(l, s),
+function ge(e, l = 200, s = {}) {
+  return K(
+    me(l, s),
     e
   );
 }
-function be(e, l = 200, s = !1, t = !0, c = !1) {
-  return Y(
-    ve(l, s, t, c),
+function we(e, l = 200, s = !1, t = !0, c = !1) {
+  return K(
+    he(l, s, t, c),
     e
   );
 }
-function J(e, l = !0, s) {
-  const t = me(s);
-  t ? N(e, t) : l ? e() : te(e);
+function U(e, l = !0, s) {
+  const t = be(s);
+  t ? X(e, t) : l ? e() : ne(e);
 }
 function T(e) {
   var l;
   const s = _(e);
   return (l = s == null ? void 0 : s.$el) != null ? l : s;
 }
-const k = Q ? window : void 0;
-function O(...e) {
+const R = J ? window : void 0;
+function A(...e) {
   let l, s, t, c;
-  if (typeof e[0] == "string" || Array.isArray(e[0]) ? ([s, t, c] = e, l = k) : [l, s, t, c] = e, !l)
+  if (typeof e[0] == "string" || Array.isArray(e[0]) ? ([s, t, c] = e, l = R) : [l, s, t, c] = e, !l)
     return C;
   Array.isArray(s) || (s = [s]), Array.isArray(t) || (t = [t]);
   const i = [], r = () => {
@@ -89,7 +89,7 @@ function O(...e) {
     ([f, p]) => {
       if (r(), !f)
         return;
-      const o = ce(p) ? { ...p } : p;
+      const o = de(p) ? { ...p } : p;
       i.push(
         ...s.flatMap((u) => t.map((n) => a(f, u, n, o)))
       );
@@ -98,14 +98,14 @@ function O(...e) {
   ), d = () => {
     m(), r();
   };
-  return X(d), d;
+  return Y(d), d;
 }
-let F = !1;
-function Ae(e, l, s = {}) {
-  const { window: t = k, ignore: c = [], capture: i = !0, detectIframe: r = !1 } = s;
+let N = !1;
+function Me(e, l, s = {}) {
+  const { window: t = R, ignore: c = [], capture: i = !0, detectIframe: r = !1 } = s;
   if (!t)
     return;
-  fe && !F && (F = !0, Array.from(t.document.body.children).forEach((o) => o.addEventListener("click", C)), t.document.documentElement.addEventListener("click", C));
+  pe && !N && (N = !0, Array.from(t.document.body.children).forEach((o) => o.addEventListener("click", C)), t.document.documentElement.addEventListener("click", C));
   let a = !0;
   const m = (o) => c.some((u) => {
     if (typeof u == "string")
@@ -115,7 +115,7 @@ function Ae(e, l, s = {}) {
       return n && (o.target === n || o.composedPath().includes(n));
     }
   }), f = [
-    O(t, "click", (o) => {
+    A(t, "click", (o) => {
       const u = T(e);
       if (!(!u || u === o.target || o.composedPath().includes(u))) {
         if (o.detail === 0 && (a = !m(o)), !a) {
@@ -125,11 +125,11 @@ function Ae(e, l, s = {}) {
         l(o);
       }
     }, { passive: !0, capture: i }),
-    O(t, "pointerdown", (o) => {
+    A(t, "pointerdown", (o) => {
       const u = T(e);
       a = !m(o) && !!(u && !o.composedPath().includes(u));
     }, { passive: !0 }),
-    r && O(t, "blur", (o) => {
+    r && A(t, "blur", (o) => {
       setTimeout(() => {
         var u;
         const n = T(e);
@@ -139,20 +139,20 @@ function Ae(e, l, s = {}) {
   ].filter(Boolean);
   return () => f.forEach((o) => o());
 }
-function ge() {
+function _e() {
   const e = g(!1);
-  return G() && N(() => {
+  return Q() && X(() => {
     e.value = !0;
   }), e;
 }
-function we(e) {
-  const l = ge();
+function ye(e) {
+  const l = _e();
   return M(() => (l.value, !!e()));
 }
-function _e(e, l, s = {}) {
-  const { window: t = k, ...c } = s;
+function Se(e, l, s = {}) {
+  const { window: t = R, ...c } = s;
   let i;
-  const r = we(() => t && "ResizeObserver" in t), a = () => {
+  const r = ye(() => t && "ResizeObserver" in t), a = () => {
     i && (i.disconnect(), i = void 0);
   }, m = M(() => Array.isArray(e) ? e.map((p) => T(p)) : [T(e)]), d = $(
     m,
@@ -167,12 +167,12 @@ function _e(e, l, s = {}) {
   ), f = () => {
     a(), d();
   };
-  return X(f), {
+  return Y(f), {
     isSupported: r,
     stop: f
   };
 }
-function ye(e, l = {}) {
+function Ee(e, l = {}) {
   const {
     reset: s = !0,
     windowResize: t = !0,
@@ -188,7 +188,7 @@ function ye(e, l = {}) {
     const h = b.getBoundingClientRect();
     r.value = h.height, a.value = h.bottom, m.value = h.left, d.value = h.right, f.value = h.top, p.value = h.width, o.value = h.x, u.value = h.y;
   }
-  return _e(e, n), $(() => T(e), (b) => !b && n()), c && O("scroll", n, { capture: !0, passive: !0 }), t && O("resize", n, { passive: !0 }), J(() => {
+  return Se(e, n), $(() => T(e), (b) => !b && n()), c && A("scroll", n, { capture: !0, passive: !0 }), t && A("resize", n, { passive: !0 }), U(() => {
     i && n();
   }), {
     height: r,
@@ -202,8 +202,8 @@ function ye(e, l = {}) {
     update: n
   };
 }
-const V = 1;
-function Oe(e, l = {}) {
+const G = 1;
+function Pe(e, l = {}) {
   const {
     throttle: s = 0,
     idle: t = 200,
@@ -220,7 +220,7 @@ function Oe(e, l = {}) {
       passive: !0
     },
     behavior: m = "auto",
-    window: d = k
+    window: d = R
   } = l, f = g(0), p = g(0), o = M({
     get() {
       return f.value;
@@ -236,91 +236,91 @@ function Oe(e, l = {}) {
       n(void 0, v);
     }
   });
-  function n(v, x) {
+  function n(v, O) {
     var w, P, D;
     if (!d)
       return;
-    const S = _(e);
-    S && ((D = S instanceof Document ? d.document.body : S) == null || D.scrollTo({
-      top: (w = _(x)) != null ? w : u.value,
+    const E = _(e);
+    E && ((D = E instanceof Document ? d.document.body : E) == null || D.scrollTo({
+      top: (w = _(O)) != null ? w : u.value,
       left: (P = _(v)) != null ? P : o.value,
       behavior: _(m)
     }));
   }
-  const b = g(!1), h = z({
+  const b = g(!1), h = V({
     left: !0,
     right: !1,
     top: !0,
     bottom: !1
-  }), y = z({
+  }), S = V({
     left: !1,
     right: !1,
     top: !1,
     bottom: !1
-  }), I = (v) => {
-    b.value && (b.value = !1, y.left = !1, y.right = !1, y.top = !1, y.bottom = !1, c(v));
-  }, K = he(I, s + t), R = (v) => {
-    var x;
+  }), B = (v) => {
+    b.value && (b.value = !1, S.left = !1, S.right = !1, S.top = !1, S.bottom = !1, c(v));
+  }, Z = ge(B, s + t), k = (v) => {
+    var O;
     if (!d)
       return;
-    const w = v.document ? v.document.documentElement : (x = v.documentElement) != null ? x : v, { display: P, flexDirection: D } = getComputedStyle(w), S = w.scrollLeft;
-    y.left = S < f.value, y.right = S > f.value;
-    const B = Math.abs(S) <= 0 + (r.left || 0), H = Math.abs(S) + w.clientWidth >= w.scrollWidth - (r.right || 0) - V;
-    P === "flex" && D === "row-reverse" ? (h.left = H, h.right = B) : (h.left = B, h.right = H), f.value = S;
-    let A = w.scrollTop;
-    v === d.document && !A && (A = d.document.body.scrollTop), y.top = A < p.value, y.bottom = A > p.value;
-    const j = Math.abs(A) <= 0 + (r.top || 0), q = Math.abs(A) + w.clientHeight >= w.scrollHeight - (r.bottom || 0) - V;
-    P === "flex" && D === "column-reverse" ? (h.top = q, h.bottom = j) : (h.top = j, h.bottom = q), p.value = A;
-  }, W = (v) => {
-    var x;
+    const w = v.document ? v.document.documentElement : (O = v.documentElement) != null ? O : v, { display: P, flexDirection: D } = getComputedStyle(w), E = w.scrollLeft;
+    S.left = E < f.value, S.right = E > f.value;
+    const j = Math.abs(E) <= 0 + (r.left || 0), q = Math.abs(E) + w.clientWidth >= w.scrollWidth - (r.right || 0) - G;
+    P === "flex" && D === "row-reverse" ? (h.left = q, h.right = j) : (h.left = j, h.right = q), f.value = E;
+    let x = w.scrollTop;
+    v === d.document && !x && (x = d.document.body.scrollTop), S.top = x < p.value, S.bottom = x > p.value;
+    const z = Math.abs(x) <= 0 + (r.top || 0), F = Math.abs(x) + w.clientHeight >= w.scrollHeight - (r.bottom || 0) - G;
+    P === "flex" && D === "column-reverse" ? (h.top = F, h.bottom = z) : (h.top = z, h.bottom = F), p.value = x;
+  }, H = (v) => {
+    var O;
     if (!d)
       return;
-    const w = (x = v.target.documentElement) != null ? x : v.target;
-    R(w), b.value = !0, K(v), i(v);
+    const w = (O = v.target.documentElement) != null ? O : v.target;
+    k(w), b.value = !0, Z(v), i(v);
   };
-  return O(
+  return A(
     e,
     "scroll",
-    s ? be(W, s, !0, !1) : W,
+    s ? we(H, s, !0, !1) : H,
     a
-  ), J(() => {
+  ), U(() => {
     const v = _(e);
-    v && R(v);
-  }), O(
+    v && k(v);
+  }), A(
     e,
     "scrollend",
-    I,
+    B,
     a
   ), {
     x: o,
     y: u,
     isScrolling: b,
     arrivedState: h,
-    directions: y,
+    directions: S,
     measure() {
       const v = _(e);
-      d && v && R(v);
+      d && v && k(v);
     }
   };
 }
-const Se = { class: "queso-collapsible__header__text" }, Ee = { class: "queso-collapsible__header__icon" }, Te = ["aria-expanded"], Me = /* @__PURE__ */ oe({
+const Te = { class: "queso-collapsible__header__text" }, Ce = { class: "queso-collapsible__header__icon" }, Oe = ["aria-expanded"], De = /* @__PURE__ */ se({
   __name: "QuesoCollapsible",
   props: {
     expandOnMount: { type: Boolean }
   },
   emits: ["open", "close", "toggle"],
   setup(e, { expose: l, emit: s }) {
-    ne((n) => ({
-      "3263d5a2": f.value
+    le((n) => ({
+      "78b86712": f.value
     }));
     const t = e, c = s, i = g(), r = g(!1), a = g(t.expandOnMount);
-    se(() => {
+    re(() => {
       a.value && (r.value = !0);
     });
     const m = M(() => ({
       "is-collapsible-open": r.value,
       "is-collapsible-close": !r.value
-    })), { height: d } = ye(i), f = M(() => a.value ? "none" : r.value ? `${d.value}px` : "0px"), p = () => {
+    })), { height: d } = Ee(i), f = M(() => a.value ? "none" : r.value ? `${d.value}px` : "0px"), p = () => {
       r.value = !0;
     }, o = () => {
       a.value = !1, setTimeout(() => {
@@ -331,27 +331,29 @@ const Se = { class: "queso-collapsible__header__text" }, Ee = { class: "queso-co
     };
     return $(r, (n) => {
       c(n ? "open" : "close"), c("toggle", n);
-    }), l({ isCollapsibleOpen: r, open: p, close: o, toggle: u }), (n, b) => (le(), re("div", {
-      class: ie(["queso-collapsible", m.value])
+    }), l({ isCollapsibleOpen: r, open: p, close: o, toggle: u }), (n, b) => (ie(), ue("div", {
+      class: ae(["queso-collapsible", m.value])
     }, [
-      E(n.$slots, "beforeHeader"),
+      y(n.$slots, "beforeHeader"),
       L("div", {
         class: "queso-collapsible__header",
         onClick: b[0] || (b[0] = (h) => u(!r.value))
       }, [
-        E(n.$slots, "headerPrefix"),
-        L("div", Se, [
-          E(n.$slots, "headerText")
-        ]),
-        E(n.$slots, "headerSuffix"),
-        L("div", Ee, [
-          E(n.$slots, "headerIcon", {}, () => [
-            ue("↓")
+        y(n.$slots, "header", I(W({ isCollapsibleOpen: r.value })), () => [
+          y(n.$slots, "headerPrefix"),
+          L("div", Te, [
+            y(n.$slots, "headerText", I(W({ isCollapsibleOpen: r.value })))
+          ]),
+          y(n.$slots, "headerSuffix"),
+          L("div", Ce, [
+            y(n.$slots, "headerIcon", I(W({ isCollapsibleOpen: r.value })), () => [
+              ce("↓")
+            ])
           ])
         ])
       ]),
-      E(n.$slots, "afterHeader"),
-      E(n.$slots, "beforeContent"),
+      y(n.$slots, "afterHeader"),
+      y(n.$slots, "beforeContent"),
       L("div", {
         class: "queso-collapsible__content",
         "aria-expanded": r.value
@@ -361,16 +363,16 @@ const Se = { class: "queso-collapsible__header__text" }, Ee = { class: "queso-co
           ref: i,
           class: "queso-collapsible__content__inner"
         }, [
-          E(n.$slots, "content")
+          y(n.$slots, "content")
         ], 512)
-      ], 8, Te),
-      E(n.$slots, "afterContent")
+      ], 8, Oe),
+      y(n.$slots, "afterContent")
     ], 2));
   }
 });
 export {
-  Me as _,
-  _e as a,
-  Ae as o,
-  Oe as u
+  De as _,
+  Se as a,
+  Me as o,
+  Pe as u
 };

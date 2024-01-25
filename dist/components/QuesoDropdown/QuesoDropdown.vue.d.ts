@@ -27,6 +27,9 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__
     defaultOptions: Option[];
     options: Option[];
 }, {}>, {
+    header?(_: {
+        activeOptions: Option[];
+    }): any;
     prefix?(_: {}): any;
     placeholder?(_: {}): any;
     selector?(_: {

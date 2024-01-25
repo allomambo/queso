@@ -16,10 +16,17 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__
     onToggle?: ((...args: any[]) => any) | undefined;
 }, {}, {}>, {
     beforeHeader?(_: {}): any;
+    header?(_: {
+        isCollapsibleOpen: boolean;
+    }): any;
     headerPrefix?(_: {}): any;
-    headerText?(_: {}): any;
+    headerText?(_: {
+        isCollapsibleOpen: boolean;
+    }): any;
     headerSuffix?(_: {}): any;
-    headerIcon?(_: {}): any;
+    headerIcon?(_: {
+        isCollapsibleOpen: boolean;
+    }): any;
     afterHeader?(_: {}): any;
     beforeContent?(_: {}): any;
     content?(_: {}): any;

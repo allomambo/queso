@@ -23,6 +23,23 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__
         key: string | number;
         data: any;
     }): any;
+    error?(_: {
+        fieldID: string;
+        fieldName: string | undefined;
+        fieldValue: any;
+        fieldLabel: string | undefined;
+        fieldAutocomplete: string | undefined;
+        isRequired: boolean;
+        isActive: boolean;
+        isHover: boolean;
+        isFilled: boolean;
+        isDisabled: boolean;
+        isError: boolean;
+        isReadOnly: boolean;
+        updateValue: (data: any) => void;
+        toggleIsActive: (bool?: boolean) => void;
+        toggleIsHover: (bool?: boolean) => void;
+    }): any;
 }>;
 export default _default;
 type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;
