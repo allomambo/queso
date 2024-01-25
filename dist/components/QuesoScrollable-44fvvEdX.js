@@ -1,6 +1,6 @@
 import "../assets/components/QuesoScrollable.css";
 import { defineComponent as p, ref as l, computed as c, openBlock as m, createElementBlock as d, normalizeClass as v, createElementVNode as h, renderSlot as _ } from "vue";
-import { u as b, a as g } from "./QuesoCollapsible-EgPPam5S.js";
+import { u as b, a as g } from "./QuesoCollapsible-vi6f46Ei.js";
 const H = /* @__PURE__ */ p({
   __name: "QuesoScrollable",
   props: {

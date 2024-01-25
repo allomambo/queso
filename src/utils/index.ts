@@ -12,7 +12,10 @@ import capitalize from "./capitalize";
 import checkStatus from "./checkStatus";
 import mutateState from "./mutateState";
 import resizeEnd from "./resizeEnd";
-import toKebab from "./toKebab";
+import toCamelCase from "./toCamelCase";
+import toKebabCase from "./toKebabCase";
+import toPascalCase from "./toPascalCase";
+import toSnakeCase from "./toSnakeCase";
 import mailTo from "./mailTo";
 import tel from "./tel";
 import typeCheck from "./typeCheck";
@@ -28,7 +31,10 @@ export {
     resizeEnd,
     mailTo,
     tel,
-    toKebab,
+    toCamelCase,
+    toKebabCase,
+    toPascalCase,
+    toSnakeCase,
     capitalize,
     isTouch,
     reducedMotion,

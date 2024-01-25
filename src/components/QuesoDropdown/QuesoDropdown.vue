@@ -1,21 +1,23 @@
 <template>
     <div v-if="options.length > 0" class="queso-dropdown" ref="dropdown" :class="dropdownClasses">
         <div class="queso-dropdown__selector" @click="toggleDropdown(!isDropdownOpen)">
-            <slot name="prefix"></slot>
-            <div class="queso-dropdown__selector__text">
-                <div v-if="activeOptions.length < 1" class="queso-dropdown__selector__placeholder">
-                    <slot name="placeholder"></slot>
+            <slot name="header" v-bind="{ activeOptions }">
+                <slot name="prefix"></slot>
+                <div class="queso-dropdown__selector__text">
+                    <div v-if="activeOptions.length < 1" class="queso-dropdown__selector__placeholder">
+                        <slot name="placeholder"></slot>
+                    </div>
+                    <div v-else class="queso-dropdown__selector__active-label">
+                        <slot name="selector" v-bind="{ activeOptions }">
+                            {{ activeOptions }}
+                        </slot>
+                    </div>
                 </div>
-                <div v-else class="queso-dropdown__selector__active-label">
-                    <slot name="selector" v-bind="{ activeOptions }">
-                        {{ activeOptions }}
-                    </slot>
+                <slot name="suffix"></slot>
+                <div class="queso-dropdown__selector__icon">
+                    <slot name="icon">↓</slot>
                 </div>
-            </div>
-            <slot name="suffix"></slot>
-            <div class="queso-dropdown__selector__icon">
-                <slot name="icon">↓</slot>
-            </div>
+            </slot>
         </div>
 
         <div class="queso-dropdown__popover" :aria-expanded="isDropdownOpen">
