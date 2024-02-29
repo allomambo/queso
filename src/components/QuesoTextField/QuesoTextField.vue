@@ -23,7 +23,6 @@
             }"
         >
             <div class="queso-text-field">
-                <!-- <div class="queso-text-field__inner"> -->
                 <span v-if="isReadOnly" class="queso-text-field__readonly" v-html="fieldValue"></span>
 
                 <input
@@ -52,7 +51,6 @@
                 >
                     <slot name="passwordToggle">x</slot>
                 </button>
-                <!-- </div> -->
             </div>
         </template>
 
@@ -91,16 +89,31 @@ const togglePasswordVisibility = () => {
 
 <style lang="scss">
 .queso-text-field {
+    --queso-text-field-password-toggle-top: 0rem;
+    --queso-text-field-password-toggle-right: 0rem;
+    --queso-text-field-password-toggle-bottom: auto;
+    --queso-text-field-password-toggle-left: auto;
+    --queso-text-field-password-toggle-height: 100%;
+    --queso-text-field-password-toggle-padding: 0.3rem;
+
     position: relative;
     width: fit-content;
 
     &__password-toggle {
-        border: 0rem;
-        background: none;
+        display: flex;
+        align-items: center;
         position: absolute;
-        right: 0rem;
-        height: 100%;
-        padding: 0rem;
+
+        top: var(--queso-text-field-password-toggle-top);
+        right: var(--queso-text-field-password-toggle-right);
+        bottom: var(--queso-text-field-password-toggle-bottom);
+        left: var(--queso-text-field-password-toggle-left);
+        height: var(--queso-text-field-password-toggle-height);
+        padding: var(--queso-text-field-password-toggle-padding);
+
+        cursor: pointer;
+        background: none;
+        border: 0rem;
     }
 }
 </style>
