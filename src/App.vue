@@ -164,7 +164,7 @@ const openModal = () => {
 
 // Fields
 const TextField = ref("text field value");
-const TextFieldPassword = ref("text field password value");
+const TextFieldPassword = ref("password value");
 const TextArea = ref("text area value");
 const Checkbox = ref(true);
 const Select = ref([]);
