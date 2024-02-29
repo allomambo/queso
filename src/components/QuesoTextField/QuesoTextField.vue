@@ -50,7 +50,7 @@
                     class="queso-text-field__password-toggle"
                     @click="togglePasswordVisibility"
                 >
-                    <slot name="passwordToggle">x</slot>
+                    <slot name="passwordToggle">✔︎</slot>
                 </button>
             </div>
         </template>
@@ -112,7 +112,6 @@ const togglePasswordVisibility = () => {
         height: var(--queso-text-field-password-toggle-height);
         padding: var(--queso-text-field-password-toggle-padding);
 
-        cursor: pointer;
         background: none;
         border: 0rem;
     }
