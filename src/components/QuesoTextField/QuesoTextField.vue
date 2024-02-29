@@ -44,6 +44,7 @@
                 />
 
                 <slot name="after"></slot>
+
                 <button
                     v-if="type === 'password'"
                     class="queso-text-field__password-toggle"
