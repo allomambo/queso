@@ -48,4 +48,18 @@ describe("QuesoTextField", () => {
 
         expect(wrapper.vm.localType.value).toBe("text");
     });
+
+    test("updates input type when .queso-text-field__password-toggle is clicked", async () => {
+        const wrapper = mount(QuesoTextField, {
+            props: {
+                type: "password",
+            },
+        });
+
+        const toggle = wrapper.find(".queso-text-field__password-toggle");
+        await toggle.trigger("click");
+
+        const input = wrapper.find(".queso-text-field__input");
+        expect(input.attributes("type")).toBe("text");
+    });
 });
