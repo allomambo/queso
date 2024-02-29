@@ -81,6 +81,12 @@
 
     <h3>Fields</h3>
     <QuesoTextField name="textfield" label="QuesoTextField" v-model="TextField" />
+    <QuesoTextField
+        name="textfieldPassword"
+        label="QuesoTextFieldPassword"
+        type="password"
+        v-model="TextFieldPassword"
+    />
     <QuesoTextArea name="textarea" label="QuesoTextArea" v-model="TextArea" />
     <QuesoCheckbox name="checkbox" label="QuesoCheckbox" v-model="Checkbox" />
     <QuesoSelect name="select" label="QuesoSelect" :options="dataOptions" v-model="Select" />
@@ -158,6 +164,7 @@ const openModal = () => {
 
 // Fields
 const TextField = ref("text field value");
+const TextFieldPassword = ref("text field password value");
 const TextArea = ref("text area value");
 const Checkbox = ref(true);
 const Select = ref([]);

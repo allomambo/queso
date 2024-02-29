@@ -27,7 +27,7 @@
 
                 <input
                     v-else
-                    :type="type"
+                    :type="localType.value"
                     :value="fieldValue"
                     :name="fieldName"
                     :id="fieldID"
@@ -44,6 +44,9 @@
                 />
 
                 <slot name="after"></slot>
+                <button v-if="type === 'password'" @click="togglePasswordVisibility">
+                    <slot name="passwordToggle">x</slot>
+                </button>
             </div>
         </template>
 
@@ -58,6 +61,7 @@
 </template>
 
 <script setup lang="ts">
+import { reactive } from "vue";
 import QuesoField from "@components/QuesoField";
 
 export type FieldTypes = "text" | "url" | "tel" | "email" | "password";
@@ -71,6 +75,12 @@ const props = withDefaults(defineProps<Props>(), {
     type: "text",
     placeholder: "",
 });
+
+const localType = reactive({ value: props.type });
+
+const togglePasswordVisibility = () => {
+    localType.value = localType.value === "password" ? "text" : "password";
+};
 </script>
 
 <style lang="scss">
