@@ -81,12 +81,9 @@
 
     <h3>Fields</h3>
     <QuesoTextField name="textfield" label="QuesoTextField" v-model="TextField" />
-    <QuesoTextField
-        name="textfieldPassword"
-        label="QuesoTextFieldPassword"
-        type="password"
-        v-model="TextFieldPassword"
-    />
+    <QuesoTextField name="textfieldPassword" label="QuesoTextFieldPassword" type="password" v-model="TextFieldPassword"
+        ><template #passwordToggle>Z</template></QuesoTextField
+    >
     <QuesoTextArea name="textarea" label="QuesoTextArea" v-model="TextArea" />
     <QuesoCheckbox name="checkbox" label="QuesoCheckbox" v-model="Checkbox" />
     <QuesoSelect name="select" label="QuesoSelect" :options="dataOptions" v-model="Select" />
