@@ -105,6 +105,7 @@ const emitPasswordVisibilityState = () => {
     --queso-text-field-password-toggle-left: auto;
     --queso-text-field-password-toggle-height: 100%;
     --queso-text-field-password-toggle-padding: 0.3rem;
+    --queso-text-field-password-cursor: pointer;
 
     position: relative;
     width: fit-content;
@@ -123,6 +124,7 @@ const emitPasswordVisibilityState = () => {
 
         background: none;
         border: 0rem;
+        cursor: var(--queso-text-field-password-cursor);
     }
 }
 </style>
