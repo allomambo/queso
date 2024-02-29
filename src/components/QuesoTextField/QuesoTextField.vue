@@ -50,7 +50,7 @@
                     class="queso-text-field__password-toggle"
                     @click="togglePasswordVisibility"
                 >
-                    <slot name="passwordToggle">✔︎</slot>
+                    <slot name="passwordToggle">✎</slot>
                 </button>
             </div>
         </template>
@@ -69,6 +69,7 @@
 import { reactive } from "vue";
 import QuesoField from "@components/QuesoField";
 
+const emit = defineEmits(["togglePasswordVisibility"]);
 export type FieldTypes = "text" | "url" | "tel" | "email" | "password";
 
 export interface Props {
@@ -84,7 +85,15 @@ const props = withDefaults(defineProps<Props>(), {
 const localType = reactive({ value: props.type });
 
 const togglePasswordVisibility = () => {
+    udatePasswordVisibility();
+    emitPasswordVisibilityState();
+};
+const udatePasswordVisibility = () => {
     localType.value = localType.value === "password" ? "text" : "password";
+};
+
+const emitPasswordVisibilityState = () => {
+    emit("togglePasswordVisibility");
 };
 </script>
 
