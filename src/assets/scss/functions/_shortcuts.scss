@@ -12,15 +12,21 @@
  *     font-size: dvar(heading-font-size); ↴
  *     font-size: var(--heading-font-size, var(--heading-font-size-default));
  */
-@function dvar($var, $default) {
+@function dvar($var, $default: null) {
     @if not $var {
         @error "You must pass a variable name.";
     }
 
+    // Check if the variable starts with double dash
+    @if str-index($var, "--") != 1 {
+        $var: "--#{$var}";
+    }
+
+    // Return
     @if not $default {
-        @return var(--#{$var}, var(--#{$var}-default));
+        @return var(#{$var}, var(#{$var}-default));
     } @else {
-        @return var(--#{$var}, var(--#{$var}-default, #{$default}));
+        @return var(#{$var}, var(#{$var}-default, #{$default}));
     }
 }
 
