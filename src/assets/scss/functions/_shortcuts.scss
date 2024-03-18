@@ -12,12 +12,16 @@
  *     font-size: dvar(heading-font-size); ↴
  *     font-size: var(--heading-font-size, var(--heading-font-size-default));
  */
-@function dvar($var) {
+@function dvar($var, $default) {
     @if not $var {
         @error "You must pass a variable name.";
     }
 
-    @return var(--#{$var}, var(--#{$var}-default));
+    @if not $default {
+        @return var(--#{$var}, var(--#{$var}-default));
+    } @else {
+        @return var(--#{$var}, var(--#{$var}-default, #{$default}));
+    }
 }
 
 /**
