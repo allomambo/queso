@@ -58,10 +58,10 @@ $largestGridGap: nth($largestGrid, 3);
 
 @mixin grid {
     display: grid;
-    grid-template-rows: repeat(var(--grid-rows, 1), 1fr);
+    grid-template-rows: repeat(var(--grid-rows, 1), minmax(0, 1fr));
     grid-template-columns: repeat(
         var(--grid-columns, $largestGridColumns),
-        1fr
+        minmax(0, 1fr)
     );
     column-gap: var(--grid-col-gap, var(--grid-gap, $largestGridGap));
     row-gap: var(--grid-row-gap, var(--grid-gap, $largestGridGap));
