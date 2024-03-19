@@ -27,7 +27,7 @@
 
                 <input
                     v-else
-                    :type="type"
+                    :type="localType.value"
                     :value="fieldValue"
                     :name="fieldName"
                     :id="fieldID"
@@ -44,6 +44,14 @@
                 />
 
                 <slot name="after"></slot>
+
+                <button
+                    v-if="type === 'password'"
+                    class="queso-text-field__password-toggle"
+                    @click="togglePasswordVisibility"
+                >
+                    <slot name="passwordToggle">✎</slot>
+                </button>
             </div>
         </template>
 
@@ -58,8 +66,10 @@
 </template>
 
 <script setup lang="ts">
+import { reactive } from "vue";
 import QuesoField from "@components/QuesoField";
 
+const emit = defineEmits(["togglePasswordVisibility"]);
 export type FieldTypes = "text" | "url" | "tel" | "email" | "password";
 
 export interface Props {
@@ -71,9 +81,50 @@ const props = withDefaults(defineProps<Props>(), {
     type: "text",
     placeholder: "",
 });
+
+const localType = reactive({ value: props.type });
+
+const togglePasswordVisibility = () => {
+    udatePasswordVisibility();
+    emitPasswordVisibilityState();
+};
+const udatePasswordVisibility = () => {
+    localType.value = localType.value === "password" ? "text" : "password";
+};
+
+const emitPasswordVisibilityState = () => {
+    emit("togglePasswordVisibility");
+};
 </script>
 
 <style lang="scss">
 .queso-text-field {
+    --queso-text-field-password-toggle-top: 0rem;
+    --queso-text-field-password-toggle-right: 0rem;
+    --queso-text-field-password-toggle-bottom: auto;
+    --queso-text-field-password-toggle-left: auto;
+    --queso-text-field-password-toggle-height: 100%;
+    --queso-text-field-password-toggle-padding: 0.3rem;
+    --queso-text-field-password-cursor: pointer;
+
+    position: relative;
+    width: fit-content;
+
+    &__password-toggle {
+        display: flex;
+        align-items: center;
+        position: absolute;
+
+        top: var(--queso-text-field-password-toggle-top);
+        right: var(--queso-text-field-password-toggle-right);
+        bottom: var(--queso-text-field-password-toggle-bottom);
+        left: var(--queso-text-field-password-toggle-left);
+        height: var(--queso-text-field-password-toggle-height);
+        padding: var(--queso-text-field-password-toggle-padding);
+
+        background: none;
+        border: 0rem;
+        cursor: var(--queso-text-field-password-cursor);
+    }
 }
 </style>
