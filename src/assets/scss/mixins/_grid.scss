@@ -9,11 +9,7 @@ $grid: (
     xl: 12 30px
 ) !default;
 
-$largestGrid: getLargestValue($grid, 1, "complete");
-$largestGridColumns: nth($largestGrid, 2);
-$largestGridGap: nth($largestGrid, 3);
-
-@mixin make-cssgrid($columns: $largestGridColumns, $bps: $breakpoints) {
+@mixin make-cssgrid($columns: 12, $bps: $breakpoints) {
     @each $breakpoint in map-keys($bps) {
         $infix: breakpoint-infix($breakpoint, $bps);
 
@@ -21,7 +17,8 @@ $largestGridGap: nth($largestGrid, 3);
             @if $columns > 0 {
                 @for $i from 1 through $columns {
                     .col-#{$i}#{$infix} {
-                        grid-column: auto / span $i;
+                        --grid-col-start-default: auto;
+                        --grid-col-end-default: span #{$i};
                     }
                 }
 
@@ -29,27 +26,28 @@ $largestGridGap: nth($largestGrid, 3);
                 // Ends with `$columns - 1` because offsetting by the width of an entire row isn't possible.
                 @for $i from 1 through ($columns - 1) {
                     .start-#{$i}#{$infix} {
-                        grid-column-start: $i;
+                        --grid-col-start-default: $i;
                     }
                     .end-#{$i}#{$infix} {
-                        grid-column-end: $i * -1;
+                        --grid-col-end-default: $i * -1;
                     }
                 }
 
-                .col-all#{$infix} {
-                    grid-column: 1 / -1;
+                .col-full#{$infix} {
+                    --grid-col-start-default: 1;
+                    --grid-col-end-default: -1;
                 }
 
                 .col-half#{$infix} {
-                    grid-column: auto /
-                        span
-                        calc(var(--grid-columns, $largestGridColumns) / 2);
+                    --grid-col-start-default: auto;
+                    --grid-col-end-default: span
+                        calc(var(--grid-columns, #{$columns}) / 2);
                 }
 
                 .col-third#{$infix} {
-                    grid-column: auto /
-                        span
-                        calc(var(--grid-columns, $largestGridColumns) / 3);
+                    --grid-col-start-default: auto;
+                    --grid-col-end-default: span
+                        calc(var(--grid-columns, #{$columns}) / 3);
                 }
             }
         }
@@ -57,14 +55,23 @@ $largestGridGap: nth($largestGrid, 3);
 }
 
 @mixin grid {
+    $largestGrid: getLargestValue($grid, 1, "complete");
+    $largestGridColumns: nth($largestGrid, 2);
+    $largestGridGap: nth($largestGrid, 3);
+
     display: grid;
-    grid-template-rows: repeat(var(--grid-rows, 1), 1fr);
+    grid-template-rows: repeat(var(--grid-rows, 1), minmax(0, 1fr));
     grid-template-columns: repeat(
         var(--grid-columns, $largestGridColumns),
-        1fr
+        minmax(0, 1fr)
     );
     column-gap: var(--grid-col-gap, var(--grid-gap, $largestGridGap));
     row-gap: var(--grid-row-gap, var(--grid-gap, $largestGridGap));
 
-    @include make-cssgrid();
+    > * {
+        grid-column-start: dvar(--grid-col-start, 1);
+        grid-column-end: dvar(--grid-col-end, -1);
+    }
+
+    @include make-cssgrid($largestGridColumns);
 }
