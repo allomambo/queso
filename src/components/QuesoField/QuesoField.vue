@@ -37,7 +37,7 @@ export interface Props {
 
 const props = defineProps<Props>();
 
-const emit = defineEmits(["update:modelValue"]);
+const emit = defineEmits(["update:modelValue", "update:active", "update:hover"]);
 
 /**
  * STATES
@@ -49,10 +49,12 @@ const { isRequired, isDisabled, isError, isReadOnly, isAutocomplete } = toRefs(p
 
 const toggleIsActive = (bool: boolean = false) => {
     isActive.value = bool;
+    emit("update:active", bool);
 };
 
 const toggleIsHover = (bool: boolean = false) => {
     isHover.value = bool;
+    emit("update:hover", bool);
 };
 
 const updateValue = (data: any) => {
