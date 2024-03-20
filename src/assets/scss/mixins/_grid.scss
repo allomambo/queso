@@ -26,10 +26,10 @@ $grid: (
                 // Ends with `$columns - 1` because offsetting by the width of an entire row isn't possible.
                 @for $i from 1 through ($columns - 1) {
                     .start-#{$i}#{$infix} {
-                        --grid-col-start-default: $i;
+                        --grid-col-start-default: #{$i};
                     }
                     .end-#{$i}#{$infix} {
-                        --grid-col-end-default: $i * -1;
+                        --grid-col-end-default: #{$i * -1};
                     }
                 }
 
