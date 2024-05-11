@@ -1,5 +1,5 @@
 <template>
-    <queso-field class="-text-field" :id="id" :name="name" :label="label">
+    <queso-field class="-text-field" v-bind="extendedProps">
         <template #beforeLabel>
             <slot name="beforeLabel"></slot>
         </template>
@@ -64,6 +64,8 @@
 </template>
 
 <script setup lang="ts">
+import { useExtendedFieldProps } from "@composables/fields";
+
 import type { QuesoTextFieldProps } from "./types";
 
 import QuesoField from "@components/QuesoField";
@@ -73,6 +75,8 @@ const props = withDefaults(defineProps<QuesoTextFieldProps>(), {
 });
 
 const model = defineModel<string>({ required: true, default: "" });
+
+const extendedProps = useExtendedFieldProps(props);
 </script>
 
 <style lang="scss">
