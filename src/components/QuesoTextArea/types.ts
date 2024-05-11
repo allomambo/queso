@@ -1,5 +1,5 @@
-import type { QuesoFieldProps } from "@components/QuesoField";
+import type { QuesoFieldProps, QuesoFieldBase } from "@components/QuesoField";
 
-export interface QuesoTextAreaProps extends QuesoFieldProps {
+export interface QuesoTextAreaProps extends QuesoFieldProps, QuesoFieldBase {
     placeholder?: string;
 }

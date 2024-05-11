@@ -1,3 +1,3 @@
-import type { QuesoFieldProps } from "@components/QuesoField";
+import type { QuesoFieldProps, QuesoFieldBase } from "@components/QuesoField";
 
-export interface QuesoSwitchProps extends QuesoFieldProps {}
+export interface QuesoSwitchProps extends QuesoFieldProps, QuesoFieldBase {}

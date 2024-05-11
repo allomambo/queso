@@ -1,4 +1,4 @@
-import type { QuesoFieldProps } from "@components/QuesoField";
+import type { QuesoFieldProps, QuesoFieldBase } from "@components/QuesoField";
 
 export interface QuesoCheckboxChoice {
     key: string | number;
@@ -7,6 +7,6 @@ export interface QuesoCheckboxChoice {
 
 export type QuesoCheckboxChoices = QuesoCheckboxChoice[];
 
-export interface QuesoCheckboxProps extends QuesoFieldProps {
+export interface QuesoCheckboxProps extends QuesoFieldProps, QuesoFieldBase {
     choices?: QuesoCheckboxChoices;
 }
