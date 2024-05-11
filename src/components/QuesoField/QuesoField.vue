@@ -5,6 +5,9 @@
             <slot name="label" v-bind="{ label }">
                 <span class="queso-field__label__text">{{ label }}</span>
             </slot>
+            <slot v-if="isRequired" name="required" v-bind="{ isRequired }">
+                <span class="queso-field__label__required">*</span>
+            </slot>
             <slot name="afterLabel"></slot>
         </label>
 

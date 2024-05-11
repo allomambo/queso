@@ -6,6 +6,9 @@
         <template #label="exposedData">
             <slot name="label" v-bind="{ ...exposedData }"></slot>
         </template>
+        <template #required="exposedData">
+            <slot name="required" v-bind="{ ...exposedData }"></slot>
+        </template>
         <template #afterLabel>
             <slot name="afterLabel"></slot>
         </template>
@@ -18,15 +21,15 @@
                 fieldID,
                 fieldName,
                 fieldValue,
-                toggleIsActive,
-                toggleIsHover,
                 isRequired,
                 isDisabled,
                 isReadOnly,
+                toggleIsActive,
+                toggleIsHover,
             }"
         >
             <div class="queso-text-field">
-                <slot name="beforeTextField"></slot>
+                <slot name="beforeTextFieldInput"></slot>
 
                 <span v-if="isReadOnly" class="queso-text-field__readonly" v-html="fieldValue"></span>
 
@@ -47,16 +50,15 @@
                     v-model="model"
                 />
 
-                <slot name="afterTextField"></slot>
+                <slot name="afterTextFieldInput"></slot>
             </div>
         </template>
-
         <template #afterInput>
             <slot name="afterInput"></slot>
         </template>
 
-        <template #error="fieldProps">
-            <slot name="error" v-bind="{ ...fieldProps }"></slot>
+        <template #error="exposedData">
+            <slot name="error" v-bind="{ ...exposedData }"></slot>
         </template>
     </queso-field>
 </template>
