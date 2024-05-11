@@ -26,28 +26,57 @@ import { computed, ref, toRef, toRefs, reactive } from "vue";
 import type { HTMLAttributes } from "vue";
 import type { QuesoFieldProps } from "./types";
 
+// Props
 const props = defineProps<QuesoFieldProps>();
 
 const emit = defineEmits(["update:modelValue"]);
 
+// Emits
+const emits = defineEmits<{
+    "input:hover": [boolean];
+    "input:hover:enter": [];
+    "input:hover:leave": [];
+    "input:active": [boolean];
+    "input:active:focus": [];
+    "input:active:blur": [];
+}>();
+
 /**
  * STATES
  */
-const isActive = ref<boolean>(false);
-const isHover = ref<boolean>(false);
-const isFilled = computed<boolean>(() => (fieldValue.value ? true : false));
 const { isRequired, isDisabled, isError, isReadOnly } = toRefs(props);
+
+const isFilled = computed<boolean>(() => (fieldValue.value ? true : false));
+const updateValue = (data: any): void => {
+    fieldValue.value = data.target ? data.target.value : data;
+};
+
+// Active
+const isActive = ref<boolean>(false);
 
 const toggleIsActive = (bool: boolean = false): void => {
     isActive.value = bool;
+    emits("input:active", bool);
+
+    if (bool) {
+        emits("input:active:focus");
+    } else {
+        emits("input:active:blur");
+    }
 };
+
+// Hover
+const isHover = ref<boolean>(false);
 
 const toggleIsHover = (bool: boolean = false): void => {
     isHover.value = bool;
-};
+    emits("input:hover", bool);
 
-const updateValue = (data: any): void => {
-    fieldValue.value = data.target ? data.target.value : data;
+    if (bool) {
+        emits("input:hover:enter");
+    } else {
+        emits("input:hover:leave");
+    }
 };
 
 /**
