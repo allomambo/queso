@@ -46,9 +46,9 @@
         "test": "vitest"
     },
     "dependencies": {
-        "@vueuse/core": "^10.7.0",
+        "@vueuse/core": "^10.9.0",
         "vite-plugin-lib-inject-css": "^1.3.0",
-        "vue": "^3.3.10"
+        "vue": "^3.4.27"
     },
     "devDependencies": {
         "@types/node": "^20.10.3",
