@@ -32,10 +32,10 @@ import type { QuesoFieldProps } from "./types";
 // Props
 const props = defineProps<QuesoFieldProps>();
 
-const emit = defineEmits(["update:modelValue"]);
+// const emit = defineemit(["update:modelValue"]);
 
 // Emits
-const emits = defineEmits<{
+const emit = defineEmits<{
     "input:hover": [boolean];
     "input:hover:enter": [];
     "input:hover:leave": [];
@@ -59,12 +59,12 @@ const isActive = ref<boolean>(false);
 
 const toggleIsActive = (bool: boolean = false): void => {
     isActive.value = bool;
-    emits("input:active", bool);
+    emit("input:active", bool);
 
     if (bool) {
-        emits("input:active:focus");
+        emit("input:active:focus");
     } else {
-        emits("input:active:blur");
+        emit("input:active:blur");
     }
 };
 
@@ -73,12 +73,12 @@ const isHover = ref<boolean>(false);
 
 const toggleIsHover = (bool: boolean = false): void => {
     isHover.value = bool;
-    emits("input:hover", bool);
+    emit("input:hover", bool);
 
     if (bool) {
-        emits("input:hover:enter");
+        emit("input:hover:enter");
     } else {
-        emits("input:hover:leave");
+        emit("input:hover:leave");
     }
 };
 
@@ -90,7 +90,7 @@ const fieldValue = computed<any>({
         return props.modelValue;
     },
     set(value) {
-        emit("update:modelValue", value);
+        // emit("update:modelValue", value);
     },
 });
 
