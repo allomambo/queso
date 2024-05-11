@@ -16,5 +16,4 @@ export interface QuesoFieldProps {
     isRequired?: boolean;
     isDisabled?: boolean;
     isReadOnly?: boolean;
-    isAutocomplete?: boolean;
 }

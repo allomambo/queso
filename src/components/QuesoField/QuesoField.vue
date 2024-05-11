@@ -2,7 +2,7 @@
     <div class="queso-field" :class="fieldClasses">
         <label v-if="label" :for="fieldID" class="queso-field__label">
             <slot name="beforeLabel"></slot>
-            <slot name="label" v-bind="{ ...exposedData }">
+            <slot name="label" v-bind="{ label }">
                 <span class="queso-field__label__text">{{ label }}</span>
             </slot>
             <slot name="afterLabel"></slot>
@@ -21,8 +21,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, toRef, HTMLAttributes, toRefs, reactive } from "vue";
+import { computed, ref, toRef, toRefs, reactive } from "vue";
 
+import type { HTMLAttributes } from "vue";
 import type { QuesoFieldProps } from "./types";
 
 const props = defineProps<QuesoFieldProps>();
@@ -35,17 +36,17 @@ const emit = defineEmits(["update:modelValue"]);
 const isActive = ref<boolean>(false);
 const isHover = ref<boolean>(false);
 const isFilled = computed<boolean>(() => (fieldValue.value ? true : false));
-const { isRequired, isDisabled, isError, isReadOnly, isAutocomplete } = toRefs(props);
+const { isRequired, isDisabled, isError, isReadOnly } = toRefs(props);
 
-const toggleIsActive = (bool: boolean = false) => {
+const toggleIsActive = (bool: boolean = false): void => {
     isActive.value = bool;
 };
 
-const toggleIsHover = (bool: boolean = false) => {
+const toggleIsHover = (bool: boolean = false): void => {
     isHover.value = bool;
 };
 
-const updateValue = (data: any) => {
+const updateValue = (data: any): void => {
     fieldValue.value = data.target ? data.target.value : data;
 };
 
@@ -64,7 +65,6 @@ const fieldValue = computed<any>({
 const fieldID = computed<string>(() => props.id || props.name || "");
 const fieldName = toRef(props, "name");
 const fieldLabel = toRef(props, "label");
-const fieldAutocomplete = computed<string | undefined>(() => (isAutocomplete.value ? "on" : undefined));
 
 const fieldClasses = computed<HTMLAttributes["class"]>(() => ({
     "is-disabled": isDisabled.value,
@@ -85,7 +85,6 @@ const exposedData = reactive({
     fieldName,
     fieldValue,
     fieldLabel,
-    fieldAutocomplete,
     // States
     isRequired,
     isActive,
