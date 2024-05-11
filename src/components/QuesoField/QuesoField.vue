@@ -21,21 +21,9 @@
 <script setup lang="ts">
 import { computed, ref, toRef, HTMLAttributes, toRefs, reactive } from "vue";
 
-export interface Props {
-    // Base
-    id?: string;
-    name?: string;
-    modelValue?: any;
-    label?: string;
-    // States
-    isRequired?: boolean;
-    isDisabled?: boolean;
-    isReadOnly?: boolean;
-    isError?: boolean;
-    isAutocomplete?: boolean;
-}
+import type { QuesoFieldProps } from "./types";
 
-const props = defineProps<Props>();
+const props = defineProps<QuesoFieldProps>();
 
 const emit = defineEmits(["update:modelValue"]);
 

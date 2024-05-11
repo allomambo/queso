@@ -1,5 +1,5 @@
 <template>
-    <queso-field>
+    <queso-field v-bind="$props">
         <template #label>
             <span class="queso-checkbox__hidden-label"></span>
         </template>
@@ -68,22 +68,11 @@
 </template>
 
 <script setup lang="ts">
+import type { QuesoCheckboxProps } from "./types";
+
 import QuesoField from "@components/QuesoField";
 
-// * Keep for future usage
-// export interface TypeChoice {
-//     key: string | number;
-//     label: string;
-// }
-
-// export interface Props {
-//     multiple?: boolean;
-//     choices?: TypeChoice[];
-// }
-
-// const props = withDefaults(defineProps<Props>(), {
-//     choices: () => [],
-// });
+const props = defineProps<QuesoCheckboxProps>();
 
 const getCheckboxState = (event: any, fieldCallback: (a: boolean) => void) => {
     fieldCallback(event.target.checked);

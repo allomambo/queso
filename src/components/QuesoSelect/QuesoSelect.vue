@@ -1,5 +1,5 @@
 <template>
-    <queso-field>
+    <queso-field v-bind="$props">
         <template #label>
             <slot name="label"></slot>
         </template>
@@ -80,17 +80,13 @@
 </template>
 
 <script setup lang="ts">
-import QuesoField from "@components/QuesoField";
-import QuesoDropdown from "@components/QuesoDropdown";
+import type { QuesoSelectProps } from "./types";
 import { Option } from "@components/QuesoDropdown/types";
 
-export interface Props {
-    options: Option[];
-    multiple?: boolean;
-    placeholder?: string;
-}
+import QuesoField from "@components/QuesoField";
+import QuesoDropdown from "@components/QuesoDropdown";
 
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<QuesoSelectProps>(), {
     options: () => [],
 });
 

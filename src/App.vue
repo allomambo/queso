@@ -1,4 +1,12 @@
 <template>
+    <h3>Fields</h3>
+    <QuesoTextField name="textfield" label="QuesoTextField" v-model="TextField" />
+    <QuesoTextArea name="textarea" label="QuesoTextArea" v-model="TextArea" />
+    <QuesoCheckbox name="checkbox" label="QuesoCheckbox" v-model="Checkbox" />
+    <QuesoSelect name="select" label="QuesoSelect" :options="dataOptions" v-model="Select" />
+    <QuesoSwitch name="switch" label="QuesoSwitch" v-model="Switch" />
+    <hr />
+
     <h3>QuesoClickable</h3>
     <QuesoClickable>Clickable</QuesoClickable>
     <hr />
@@ -77,14 +85,6 @@
 
     <h3>QuesoIcon</h3>
     <QuesoIcon name="chevron" :size="6" :rotation="90" />
-    <hr />
-
-    <h3>Fields</h3>
-    <QuesoTextField name="textfield" label="QuesoTextField" v-model="TextField" />
-    <QuesoTextArea name="textarea" label="QuesoTextArea" v-model="TextArea" />
-    <QuesoCheckbox name="checkbox" label="QuesoCheckbox" v-model="Checkbox" />
-    <QuesoSelect name="select" label="QuesoSelect" :options="dataOptions" v-model="Select" />
-    <QuesoSwitch name="switch" label="QuesoSwitch" v-model="Switch" />
 </template>
 
 <script setup lang="ts">

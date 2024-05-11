@@ -1,5 +1,5 @@
 <template>
-    <queso-field>
+    <queso-field v-bind="$props">
         <template #label="fieldProps">
             <slot name="label" v-bind="{ ...fieldProps }"></slot>
         </template>
@@ -58,18 +58,12 @@
 </template>
 
 <script setup lang="ts">
+import type { QuesoTextFieldProps } from "./types";
+
 import QuesoField from "@components/QuesoField";
 
-export type FieldTypes = "text" | "url" | "tel" | "email" | "password";
-
-export interface Props {
-    type?: FieldTypes;
-    placeholder?: string;
-}
-
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<QuesoTextFieldProps>(), {
     type: "text",
-    placeholder: "",
 });
 </script>
 
