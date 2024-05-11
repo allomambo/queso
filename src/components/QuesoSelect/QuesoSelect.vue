@@ -5,7 +5,7 @@
         </template>
 
         <template
-            #field="{
+            #input="{
                 fieldID,
                 fieldName,
                 fieldValue,

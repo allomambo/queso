@@ -1,18 +1,20 @@
 <template>
     <div class="queso-field" :class="fieldClasses">
-        <slot name="label" v-bind="{ ...exposedData }">
-            <label v-if="label" :for="fieldID" class="queso-field__label">
-                {{ label }}
-            </label>
-        </slot>
+        <label v-if="label" :for="fieldID" class="queso-field__label">
+            <slot name="beforeLabel"></slot>
+            <slot name="label" v-bind="{ ...exposedData }">
+                <span class="queso-field__label__text">{{ label }}</span>
+            </slot>
+            <slot name="afterLabel"></slot>
+        </label>
 
-        <div v-if="$slots.field" class="queso-field__input">
-            <slot name="beforeField"></slot>
-            <slot name="field" v-bind="{ ...exposedData }"></slot>
-            <slot name="afterField"></slot>
+        <div class="queso-field__input">
+            <slot name="beforeInput"></slot>
+            <slot name="input" v-bind="{ ...exposedData }"></slot>
+            <slot name="afterInput"></slot>
         </div>
 
-        <div v-if="isError" class="queso-field__error">
+        <div v-if="isError && $slots.error" class="queso-field__error">
             <slot name="error" v-bind="{ ...exposedData }"></slot>
         </div>
     </div>
@@ -103,8 +105,6 @@ defineExpose({ ...exposedData });
 
 <style lang="scss">
 .queso-field {
-    position: relative;
-
     &.is-disabled {
         @include unselectable;
     }

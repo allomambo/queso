@@ -1,15 +1,15 @@
 <template>
-    <queso-field v-bind="$props">
+    <queso-field class="-text-field" v-bind="$props">
         <template #label="fieldProps">
             <slot name="label" v-bind="{ ...fieldProps }"></slot>
         </template>
 
-        <template #beforeField>
-            <slot name="beforeField"></slot>
+        <template #beforeInput>
+            <slot name="beforeInput"></slot>
         </template>
 
         <template
-            #field="{
+            #input="{
                 fieldID,
                 fieldName,
                 fieldValue,
@@ -47,8 +47,8 @@
             </div>
         </template>
 
-        <template #afterField>
-            <slot name="afterField"></slot>
+        <template #afterInput>
+            <slot name="afterInput"></slot>
         </template>
 
         <template #error="fieldProps">

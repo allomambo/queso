@@ -4,12 +4,12 @@
             <span class="queso-checkbox__hidden-label"></span>
         </template>
 
-        <template #beforeField>
-            <slot name="beforeField"></slot>
+        <template #beforeInput>
+            <slot name="beforeInput"></slot>
         </template>
 
         <template
-            #field="{
+            #input="{
                 fieldID,
                 fieldName,
                 fieldValue,
@@ -57,8 +57,8 @@
             />
         </template>
 
-        <template #afterField>
-            <slot name="afterField"></slot>
+        <template #afterInput>
+            <slot name="afterInput"></slot>
         </template>
 
         <template #error="fieldProps">
