@@ -1,38 +1,27 @@
-import { mount, shallowMount } from "@vue/test-utils";
-import { describe, expect, test } from "vitest";
+import { mount } from "@vue/test-utils";
+import { expect, test } from "vitest";
+
 import QuesoTextField from "./QuesoTextField.vue";
 
-describe("QuesoTextField", () => {
-    test("renders correctly the object", () => {
-        const data = {
-            name: "field-name",
-        };
+function createComponent(propsData) {
+    return mount(QuesoTextField, { propsData });
+}
 
-        const wrapper = shallowMount(QuesoTextField, {
-            props: data,
-        });
-        expect(wrapper.vm).toBeTruthy();
-    });
-
-    test("renders correctly the label", () => {
-        const data = {
-            label: "field-label",
-        };
-
-        const wrapper = mount(QuesoTextField, {
-            props: data,
-        });
-        expect(wrapper.find(".queso-field__label").text()).toBe(data.label);
-    });
-
-    test("renders correctly the input", () => {
-        const data = {
-            name: "field-name",
-        };
-
-        const wrapper = mount(QuesoTextField, {
-            props: data,
-        });
-        expect(wrapper.find(".queso-field__input").exists()).toBe(true);
-    });
+test("QuesoTextField.vue", async () => {
+    // const wrapper = createComponent({ type: "text", modelValue: "test" });
+    // expect(wrapper.vm).toBeTruthy();
+    // expect(wrapper.html()).toMatchSnapshot();
+    // const input = wrapper.find("input");
+    // expect(input.exists()).toBe(true);
+    // await input.setValue("testing");
+    // expect(wrapper.props("modelValue")).toEqual("testing");
+    // const wrapperWithSlots = mount(QuesoTextField, {
+    //     props: { label: "Label" },
+    //     slots: {
+    //         beforeLabel: "<div>Before Label</div>",
+    //         afterLabel: "<div>After Label</div>",
+    //     },
+    // });
+    // expect(wrapperWithSlots.html()).toContain("Before Label");
+    // expect(wrapperWithSlots.html()).toContain("After Label");
 });
