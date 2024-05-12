@@ -104,44 +104,44 @@ import {
 
 const dataOptions = [
     {
-        key: 1,
+        value: "heavy-metal",
+        label: "Heavy Metal",
         data: {
-            label: "Heavy Metal",
             icon: "bell",
         },
     },
     {
-        key: 2,
+        value: "classic",
+        label: "Classic",
         data: {
-            label: "Classique",
             icon: "link",
         },
     },
     {
-        key: 3,
+        value: "funk-and-disco",
+        label: "Funk and Disco",
         data: {
-            label: "Funk and Disco",
             icon: "funnel",
         },
     },
     {
-        key: 4,
+        value: "folk-and-acoustic",
+        label: "Folk and Acoustic",
         data: {
-            label: "Folk and Acoustic",
             icon: "garbage",
         },
     },
     {
-        key: 5,
+        value: "country",
+        label: "Country",
         data: {
-            label: "Country",
             icon: "lock",
         },
     },
     {
-        key: 6,
+        value: "dance-and-electronic",
+        label: "Dance and Electronic",
         data: {
-            label: "Dance and Electronic",
             icon: "magnify_glass",
         },
     },
