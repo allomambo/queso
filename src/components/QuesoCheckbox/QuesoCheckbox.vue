@@ -1,113 +1,108 @@
 <template>
-    <queso-field v-bind="$props">
-        <template #label>
-            <span class="queso-checkbox__hidden-label"></span>
+    <queso-field class="-checkbox" v-bind="extendedProps">
+        <template #labelComplete="{ fieldLabel }">
+            <div v-if="fieldLabel" class="queso-field__label">
+                <slot name="beforeLabel"></slot>
+                <slot name="label" :label="fieldLabel">
+                    <span class="queso-field__label__text" v-html="fieldLabel"></span>
+                </slot>
+                <slot name="afterLabel"></slot>
+            </div>
         </template>
 
         <template #beforeInput>
             <slot name="beforeInput"></slot>
         </template>
-
-        <template
-            #input="{
-                fieldID,
-                fieldName,
-                fieldValue,
-                fieldLabel,
-                updateValue,
-                toggleIsActive,
-                toggleIsHover,
-                isRequired,
-                isDisabled,
-                isReadOnly,
-            }"
-        >
+        <template #input="{ fieldID, fieldName, isRequired, isDisabled, isReadOnly, toggleIsActive, toggleIsHover }">
             <component
                 :is="isReadOnly ? 'div' : 'label'"
                 class="queso-checkbox"
-                :for="fieldID"
-                :class="{ 'is-checked': fieldValue }"
+                :class="{ 'is-checked': isChecked }"
+                :for="!isReadOnly ? fieldID : null"
                 @mouseover="toggleIsHover(true)"
                 @mouseleave="toggleIsHover(false)"
             >
-                <span class="queso-checkbox__box">
-                    <span class="queso-checkbox__box__symbol">
-                        <slot name="symbol">✔︎</slot>
+                <slot name="checkboxBox">
+                    <span class="queso-checkbox__box">
+                        <span class="queso-checkbox__box__symbol">
+                            <slot name="checkboxBoxSymbol">✔︎</slot>
+                        </span>
                     </span>
-                </span>
-                <span class="queso-checkbox__label">
-                    <span class="queso-checkbox__label__text" v-html="fieldLabel"></span>
-                </span>
+                </slot>
+
+                <slot name="checkboxLabel">
+                    <span class="queso-checkbox__label">
+                        <span class="queso-checkbox__label__text" v-html="boxLabel"></span>
+                        <slot v-if="isRequired" name="checkboxLabelRequired" v-bind="{ isRequired }">
+                            <span class="queso-checkbox__label__required">*</span>
+                        </slot>
+                    </span>
+                </slot>
+
+                <input
+                    v-if="!isReadOnly"
+                    class="queso-checkbox__native"
+                    type="checkbox"
+                    :id="fieldID"
+                    :name="fieldName"
+                    :required="isRequired"
+                    :disabled="isDisabled"
+                    @focus="toggleIsActive(true)"
+                    @blur="toggleIsActive(false)"
+                    v-bind="extraAttributes"
+                    v-model="model"
+                />
             </component>
-
-            <input
-                v-if="!isReadOnly"
-                type="checkbox"
-                class="queso-checkbox__native"
-                :checked="fieldValue"
-                :name="fieldName"
-                :id="fieldID"
-                :required="isRequired"
-                :disabled="isDisabled"
-                @change="getCheckboxState($event, updateValue)"
-                @focus="toggleIsActive(true)"
-                @blur="toggleIsActive(false)"
-            />
         </template>
-
         <template #afterInput>
             <slot name="afterInput"></slot>
         </template>
 
-        <template #error="fieldProps">
-            <slot name="error" v-bind="{ ...fieldProps }"></slot>
+        <template #error="exposedData">
+            <slot name="error" v-bind="{ ...exposedData }"></slot>
         </template>
     </queso-field>
 </template>
 
 <script setup lang="ts">
+import { computed } from "vue";
+import { useExtendedFieldProps } from "@composables/fields";
+
 import type { QuesoCheckboxProps } from "./types";
 
 import QuesoField from "@components/QuesoField";
 
 const props = defineProps<QuesoCheckboxProps>();
+const extendedProps = useExtendedFieldProps(props);
 
-const getCheckboxState = (event: any, fieldCallback: (a: boolean) => void) => {
-    fieldCallback(event.target.checked);
-};
+const model = defineModel<boolean>({ required: true, default: false });
+const isChecked = computed<boolean>(() => !!model.value);
 </script>
 
 <style lang="scss">
 .queso-checkbox {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    cursor: pointer;
+    --queso-checkbox-box-symbol-opacity: 0;
+    cursor: var(--queso-checkbox-cursor, pointer);
 
     &.is-checked {
-        --queso-checkbox-symbol-opacity: 1;
+        --queso-checkbox-box-symbol-opacity: 1;
     }
 
     &__box {
         user-select: none;
 
         &__symbol {
-            line-height: 0;
-            opacity: var(--queso-checkbox-symbol-opacity, 0);
+            opacity: var(--queso-checkbox-box-symbol-opacity);
         }
-    }
-
-    @at-root div#{&} {
-        cursor: auto;
-        pointer-events: none;
     }
 
     &__native {
         @include accessible-item;
     }
 
-    &__hidden-label {
-        display: none !important;
+    // Read-only
+    @at-root div#{&} {
+        --queso-checkbox-cursor: auto;
     }
 }
 </style>

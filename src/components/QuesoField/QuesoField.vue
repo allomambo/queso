@@ -1,15 +1,17 @@
 <template>
     <div class="queso-field" :class="fieldClasses">
-        <label v-if="label" :for="fieldID" class="queso-field__label">
-            <slot name="beforeLabel"></slot>
-            <slot name="label" v-bind="{ label }">
-                <span class="queso-field__label__text">{{ label }}</span>
-            </slot>
-            <slot v-if="isRequired" name="required" v-bind="{ isRequired }">
-                <span class="queso-field__label__required">*</span>
-            </slot>
-            <slot name="afterLabel"></slot>
-        </label>
+        <slot name="labelComplete" v-bind="{ ...exposedData }">
+            <label v-if="label" :for="fieldID" class="queso-field__label">
+                <slot name="beforeLabel"></slot>
+                <slot name="label" v-bind="{ label }">
+                    <span class="queso-field__label__text" v-html="label"></span>
+                </slot>
+                <slot v-if="isRequired" name="required" v-bind="{ isRequired }">
+                    <span class="queso-field__label__required">*</span>
+                </slot>
+                <slot name="afterLabel"></slot>
+            </label>
+        </slot>
 
         <div class="queso-field__input">
             <slot name="beforeInput"></slot>

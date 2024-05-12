@@ -2,7 +2,7 @@
     <h3>Fields</h3>
     <QuesoTextField name="textfield" label="QuesoTextField" v-model="TextField" />
     <QuesoTextArea name="textarea" label="QuesoTextArea" v-model="TextArea" />
-    <QuesoCheckbox name="checkbox" label="QuesoCheckbox" v-model="Checkbox" />
+    <QuesoCheckbox name="checkbox" label="QuesoCheckbox" box-label="Lorem ipsum dolor sit amet" v-model="Checkbox" />
     <QuesoSelect name="select" label="QuesoSelect" :options="dataOptions" v-model="Select" />
     <QuesoSwitch name="switch" label="QuesoSwitch" v-model="Switch" />
     <hr />
