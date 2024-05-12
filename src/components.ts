@@ -12,7 +12,6 @@ import QuesoTextField from "@components/QuesoTextField";
 import QuesoTextArea from "@components/QuesoTextArea";
 import QuesoCheckbox from "@components/QuesoCheckbox";
 import QuesoSelect from "@components/QuesoSelect";
-import QuesoSwitch from "@components/QuesoSwitch";
 
 // Legacy Fields
 // Keep these for backwards compatibility
@@ -41,12 +40,11 @@ export {
     QuesoTextArea,
     QuesoCheckbox,
     QuesoSelect,
-    QuesoSwitch,
 
     // Legacy Fields
     QuesoTextFieldLegacy,
     QuesoTextAreaLegacy,
     QuesoCheckboxLegacy,
     QuesoSelectLegacy,
-    QuesoSwitchLegacy
+    QuesoSwitchLegacy,
 };
