@@ -70,10 +70,9 @@ import type { QuesoTextAreaProps } from "./types";
 import QuesoField from "@components/QuesoField";
 
 const props = defineProps<QuesoTextAreaProps>();
+const extendedProps = useExtendedFieldProps(props);
 
 const model = defineModel<string>({ required: true, default: "" });
-
-const extendedProps = useExtendedFieldProps(props);
 </script>
 
 <style lang="scss">
