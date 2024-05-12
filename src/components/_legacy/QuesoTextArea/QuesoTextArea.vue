@@ -66,7 +66,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .queso-text-area {
 }
 </style>

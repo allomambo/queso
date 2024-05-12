@@ -101,7 +101,7 @@ const isSelected = (values: any, option: Option) => {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .queso-select {
     &__select-native {
         @include accessible-item;

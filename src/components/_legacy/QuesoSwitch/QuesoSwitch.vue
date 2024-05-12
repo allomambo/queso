@@ -73,7 +73,7 @@ const getCheckboxState = (event: any, fieldCallback: (a: boolean) => void) => {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .queso-switch {
     --queso-switch-circle-color: white;
     --queso-switch-bg-color: silver;

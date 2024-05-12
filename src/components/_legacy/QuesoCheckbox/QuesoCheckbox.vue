@@ -90,7 +90,7 @@ const getCheckboxState = (event: any, fieldCallback: (a: boolean) => void) => {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .queso-checkbox {
     display: flex;
     align-items: center;
@@ -111,7 +111,7 @@ const getCheckboxState = (event: any, fieldCallback: (a: boolean) => void) => {
     }
 
     @at-root div#{&} {
-        cursor: auto;
+        cursor: default;
         pointer-events: none;
     }
 

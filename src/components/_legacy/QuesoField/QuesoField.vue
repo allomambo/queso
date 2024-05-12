@@ -113,7 +113,7 @@ const exposedData = reactive({
 defineExpose({ ...exposedData });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .queso-field {
     position: relative;
 
