@@ -80,9 +80,9 @@
 </template>
 
 <script setup lang="ts">
-import QuesoField from "@components/QuesoField";
-import QuesoDropdown from "@components/QuesoDropdown";
-import { Option } from "@components/QuesoDropdown/types";
+import QuesoField from "../QuesoField";
+import QuesoDropdown from "../QuesoDropdown";
+import { Option } from "../QuesoDropdown/types";
 
 export interface Props {
     options: Option[];

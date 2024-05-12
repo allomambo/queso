@@ -68,7 +68,7 @@
 </template>
 
 <script setup lang="ts">
-import QuesoField from "@components/QuesoField";
+import QuesoField from "../QuesoField";
 
 // * Keep for future usage
 // export interface TypeChoice {

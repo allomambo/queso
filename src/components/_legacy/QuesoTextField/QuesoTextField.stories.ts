@@ -1,5 +1,5 @@
 import QuesoTextField from "./QuesoTextField.vue";
-// import AppIcon from "@components/AppIcon";
+// import AppIcon from "../AppIcon";
 
 export default {
     title: "Formulaire/QuesoTextField",

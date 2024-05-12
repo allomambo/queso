@@ -66,7 +66,7 @@
 </template>
 
 <script setup lang="ts">
-import QuesoField from "@components/QuesoField";
+import QuesoField from "../QuesoField";
 
 const getCheckboxState = (event: any, fieldCallback: (a: boolean) => void) => {
     fieldCallback(event.target.checked);

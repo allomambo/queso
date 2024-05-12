@@ -58,7 +58,7 @@
 </template>
 
 <script setup lang="ts">
-import QuesoField from "@components/QuesoField";
+import QuesoField from "../QuesoField";
 
 export type FieldTypes = "text" | "url" | "tel" | "email" | "password";
 

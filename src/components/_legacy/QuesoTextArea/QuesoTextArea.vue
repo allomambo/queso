@@ -55,7 +55,7 @@
 </template>
 
 <script setup lang="ts">
-import QuesoField from "@components/QuesoField";
+import QuesoField from "../QuesoField";
 
 export interface Props {
     placeholder?: string;
