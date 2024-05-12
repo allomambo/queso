@@ -16,22 +16,11 @@
         <template #beforeInput>
             <slot name="beforeInput"></slot>
         </template>
-        <template
-            #input="{
-                fieldID,
-                fieldName,
-                fieldValue,
-                isRequired,
-                isDisabled,
-                isReadOnly,
-                toggleIsActive,
-                toggleIsHover,
-            }"
-        >
+        <template #input="{ fieldID, fieldName, isRequired, isDisabled, isReadOnly, toggleIsActive, toggleIsHover }">
             <div class="queso-text-area">
                 <slot name="beforeTextAreaInput"></slot>
 
-                <span v-if="isReadOnly" class="queso-text-area__readonly" v-html="fieldValue"></span>
+                <span v-if="isReadOnly" class="queso-text-area__readonly" v-html="model"></span>
 
                 <textarea
                     v-else

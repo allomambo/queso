@@ -26,15 +26,13 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, toRef, toRefs, reactive } from "vue";
+import { computed, ref, toRefs, reactive } from "vue";
 
 import type { HTMLAttributes } from "vue";
 import type { QuesoFieldProps } from "./types";
 
 // Props
 const props = defineProps<QuesoFieldProps>();
-
-// const emit = defineemit(["update:modelValue"]);
 
 // Emits
 const emit = defineEmits<{
@@ -50,11 +48,6 @@ const emit = defineEmits<{
  * STATES
  */
 const { isRequired, isDisabled, isError, isReadOnly } = toRefs(props);
-
-const isFilled = computed<boolean>(() => (fieldValue.value ? true : false));
-const updateValue = (data: any): void => {
-    fieldValue.value = data.target ? data.target.value : data;
-};
 
 // Active
 const isActive = ref<boolean>(false);
@@ -87,23 +80,13 @@ const toggleIsHover = (bool: boolean = false): void => {
 /**
  * COMPUTEDS
  */
-const fieldValue = computed<any>({
-    get() {
-        return props.modelValue;
-    },
-    set(value) {
-        // emit("update:modelValue", value);
-    },
-});
 
 const fieldID = computed<string>(() => props.id || props.name || "");
-const fieldName = toRef(props, "name");
-const fieldLabel = toRef(props, "label");
+const { name: fieldName, label: fieldLabel } = toRefs(props);
 
 const fieldClasses = computed<HTMLAttributes["class"]>(() => ({
     "is-disabled": isDisabled.value,
     "is-error": isError.value,
-    "has-value": isFilled.value,
     "is-active": isActive.value,
     "is-hover": isHover.value,
     "is-read-only": isReadOnly.value,
@@ -117,18 +100,15 @@ const exposedData = reactive({
     // Base
     fieldID,
     fieldName,
-    fieldValue,
     fieldLabel,
     // States
     isRequired,
     isActive,
     isHover,
-    isFilled,
     isDisabled,
     isError,
     isReadOnly,
     // Methods
-    updateValue,
     toggleIsActive,
     toggleIsHover,
 });

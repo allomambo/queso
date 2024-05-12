@@ -1,4 +1,4 @@
-import { computed, reactive } from "vue";
+import { computed } from "vue";
 
 import { isQuesoFieldProps } from "@components/QuesoField/types";
 import type { QuesoFieldProps } from "@components/QuesoField";
