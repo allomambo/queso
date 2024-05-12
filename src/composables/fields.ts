@@ -34,6 +34,7 @@ export const useExtendedFieldProps = (props: any) => {
 
         for (const prop in props) {
             if (isQuesoFieldProps(prop)) {
+                // @ts-expect-error Since name property is required, it will always be defined
                 extendedProps[prop] = props[prop];
             }
         }

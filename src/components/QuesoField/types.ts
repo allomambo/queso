@@ -7,7 +7,7 @@ export interface QuesoFieldBase {
 export interface QuesoFieldProps {
     // Base
     id?: string;
-    name?: string;
+    name: string;
     label?: string;
     // States
     isError?: boolean;
