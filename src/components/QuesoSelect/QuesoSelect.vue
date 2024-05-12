@@ -1,24 +1,25 @@
 <template>
-    <queso-field v-bind="$props">
-        <template #label>
-            <slot name="label"></slot>
+    <queso-field class="-select" v-bind="extendedProps">
+        <template #beforeLabel>
+            <slot name="beforeLabel"></slot>
+        </template>
+        <template #label="exposedData">
+            <slot name="label" v-bind="{ ...exposedData }"></slot>
+        </template>
+        <template #required="exposedData">
+            <slot name="required" v-bind="{ ...exposedData }"></slot>
+        </template>
+        <template #afterLabel>
+            <slot name="afterLabel"></slot>
         </template>
 
-        <template
-            #input="{
-                fieldID,
-                fieldName,
-                fieldValue,
-                updateValue,
-                toggleIsActive,
-                toggleIsHover,
-                isRequired,
-                isReadOnly,
-            }"
-        >
+        <template #beforeInput>
+            <slot name="beforeInput"></slot>
+        </template>
+        <template #input="{ fieldID, fieldName, isRequired, isDisabled, isReadOnly, toggleIsActive, toggleIsHover }">
             <div v-if="isReadOnly" class="queso-select__read-only">
                 <span class="queso-select__read-only__label">
-                    {{ fieldValue[0].data.label || placeholder }}
+                    {{ model || placeholder }}
                 </span>
             </div>
 
@@ -26,73 +27,68 @@
                 v-else
                 class="queso-select"
                 :options="options"
-                :default-options="fieldValue || []"
-                :multiple="multiple"
-                @update:options="(v) => updateValue(v)"
+                @update:modelValue="(v) => (model = v[0])"
                 @mouseover="toggleIsHover(true)"
                 @mouseleave="toggleIsHover(false)"
             >
-                <template #placeholder>
+                <template #selectorPlaceholder>
                     <slot name="placeholder" v-bind="{ placeholder }">{{ placeholder }}</slot>
                 </template>
-                <template #selector="{ activeOptions }">
+                <template #selectorActiveOptions="{ activeOptions }">
                     <slot name="selector" v-bind="{ activeOptions }">
-                        <span v-for="active in activeOptions" :key="active.key">{{ active.data.label }}</span>
+                        <span v-for="active in activeOptions" :key="active.value">{{ active.label }}</span>
                     </slot>
                 </template>
-                <template #icon>
-                    <slot name="icon">↓</slot>
+                <template #selectorIcon>
+                    <slot name="icon">+</slot>
                 </template>
-                <template #item="{ key, data }">
-                    <slot name="item" v-bind="{ key, data }">
-                        <span class="text">{{ data.label }}</span>
+                <template #item="{ value, label, data }">
+                    <slot name="item" v-bind="{ value, label, data }">
+                        <span class="text">{{ label }}</span>
                     </slot>
                 </template>
             </queso-dropdown>
 
             <select
-                :name="fieldName"
-                :id="fieldID"
                 class="queso-select__select-native"
+                :id="fieldID"
+                :name="fieldName"
+                :required="isRequired"
+                :disabled="isDisabled"
                 @focus="toggleIsActive(true)"
                 @blur="toggleIsActive(false)"
-                :required="isRequired"
-                :multiple="multiple"
+                v-bind="extraAttributes"
+                v-model="model"
             >
                 <option></option>
-                <option
-                    v-for="option in options"
-                    :value="option.key"
-                    :key="option.key"
-                    :selected="isSelected(fieldValue, option)"
-                >
-                    {{ option.data.label }}
+                <option v-for="option in options" :key="option.value" :value="option.value">
+                    {{ option.label }}
                 </option>
             </select>
         </template>
+        <template #afterInput>
+            <slot name="afterInput"></slot>
+        </template>
 
-        <template #error="fieldProps">
-            <slot name="error" v-bind="{ ...fieldProps }"></slot>
+        <template #error="exposedData">
+            <slot name="error" v-bind="{ ...exposedData }"></slot>
         </template>
     </queso-field>
 </template>
 
 <script setup lang="ts">
+import { useExtendedFieldProps } from "@composables/fields";
+
 import type { QuesoSelectProps } from "./types";
-import { Option } from "@components/QuesoDropdown/types";
+import { QuesoDropdownOptionValue } from "@components/QuesoDropdown/types";
 
 import QuesoField from "@components/QuesoField";
 import QuesoDropdown from "@components/QuesoDropdown";
 
-const props = withDefaults(defineProps<QuesoSelectProps>(), {
-    options: () => [],
-});
+const props = defineProps<QuesoSelectProps>();
+const extendedProps = useExtendedFieldProps(props);
 
-// Check if option in select is in active values
-const isSelected = (values: any, option: Option) => {
-    if (!Array.isArray(values)) return;
-    return values.find((o: Option) => o.key === option.key);
-};
+const model = defineModel<QuesoDropdownOptionValue>({ required: true });
 </script>
 
 <style lang="scss">

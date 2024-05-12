@@ -3,7 +3,13 @@
     <QuesoTextField name="textfield" label="QuesoTextField" v-model="TextField" />
     <QuesoTextArea name="textarea" label="QuesoTextArea" v-model="TextArea" />
     <QuesoCheckbox name="checkbox" label="QuesoCheckbox" box-label="Lorem ipsum dolor sit amet" v-model="Checkbox" />
-    <QuesoSelect name="select" label="QuesoSelect" :options="dataOptions" v-model="Select" />
+    <QuesoSelect
+        name="select"
+        label="QuesoSelect"
+        placeholder="Select an option"
+        :options="dataOptions"
+        v-model="Select"
+    />
     <hr />
 
     <h3>QuesoClickable</h3>
@@ -158,7 +164,7 @@ const openModal = () => {
 const TextField = ref("text field value");
 const TextArea = ref("text area value");
 const Checkbox = ref(true);
-const Select = ref([]);
+const Select = ref("");
 </script>
 
 <style lang="scss">

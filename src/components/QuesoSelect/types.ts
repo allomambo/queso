@@ -1,8 +1,7 @@
 import type { QuesoFieldProps, QuesoFieldBase } from "@components/QuesoField";
-import type { Option } from "@components/QuesoDropdown/types";
+import type { QuesoDropdownOptions } from "@components/QuesoDropdown";
 
 export interface QuesoSelectProps extends QuesoFieldProps, QuesoFieldBase {
-    options: Option[];
-    multiple?: boolean;
+    options: QuesoDropdownOptions;
     placeholder?: string;
 }
