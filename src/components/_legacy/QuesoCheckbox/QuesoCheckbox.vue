@@ -70,6 +70,8 @@
 <script setup lang="ts">
 import QuesoField from "../QuesoField";
 
+console.warn("<QuesoCheckboxLegacy> is deprecated. It will be removed on v1.0 version.");
+
 // * Keep for future usage
 // export interface TypeChoice {
 //     key: string | number;

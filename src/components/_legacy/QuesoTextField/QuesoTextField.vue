@@ -60,6 +60,8 @@
 <script setup lang="ts">
 import QuesoField from "../QuesoField";
 
+console.warn("<QuesoTextFieldLegacy> is deprecated. It will be removed on v1.0 version.");
+
 export type FieldTypes = "text" | "url" | "tel" | "email" | "password";
 
 export interface Props {

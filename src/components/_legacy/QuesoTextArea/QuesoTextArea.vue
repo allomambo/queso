@@ -57,6 +57,8 @@
 <script setup lang="ts">
 import QuesoField from "../QuesoField";
 
+console.warn("<QuesoTextAreaLegacy> is deprecated. It will be removed on v1.0 version.");
+
 export interface Props {
     placeholder?: string;
 }

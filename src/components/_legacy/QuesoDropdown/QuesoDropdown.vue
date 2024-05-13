@@ -54,6 +54,8 @@ import { onClickOutside, useScroll } from "@vueuse/core";
 
 import { Option } from "./types";
 
+console.warn("<QuesoDropdownLegacy> is deprecated. It will be removed on v1.0 version.");
+
 // Props / Emits
 export interface Props {
     defaultOptions?: Option[];

@@ -84,6 +84,8 @@ import QuesoField from "../QuesoField";
 import QuesoDropdown from "../QuesoDropdown";
 import { Option } from "../QuesoDropdown/types";
 
+console.warn("<QuesoSelectLegacy> is deprecated. It will be removed on v1.0 version.");
+
 export interface Props {
     options: Option[];
     multiple?: boolean;
