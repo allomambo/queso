@@ -47,8 +47,8 @@ $containers: (
                         $container-width: max(#{$width}, #{$container-ratio});
                     }
 
-                    --container-width: #{$container-width};
-                    --container-gap: #{$gap};
+                    --container-width-default: #{$container-width};
+                    --container-gap-default: #{$gap};
                 }
             }
         }
