@@ -6,5 +6,4 @@ export interface QuesoClickableProps {
     isDisabled?: boolean;
     isExternal?: boolean;
     isDownload?: boolean;
-    ariaLabel?: string;
 }
