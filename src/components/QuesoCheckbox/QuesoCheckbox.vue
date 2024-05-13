@@ -1,13 +1,16 @@
 <template>
-    <queso-field class="-checkbox" v-bind="extendedProps">
-        <template #labelComplete="{ fieldLabel }">
-            <div v-if="fieldLabel" class="queso-field__label">
-                <slot name="beforeLabel"></slot>
-                <slot name="label" :label="fieldLabel">
-                    <span class="queso-field__label__text" v-html="fieldLabel"></span>
-                </slot>
-                <slot name="afterLabel"></slot>
-            </div>
+    <queso-field class="-checkbox" static-label v-bind="extendedProps">
+        <template #beforeLabel>
+            <slot name="beforeLabel"></slot>
+        </template>
+        <template #label="exposedData">
+            <slot name="label" v-bind="{ ...exposedData }"></slot>
+        </template>
+        <template #required="exposedData">
+            <slot name="required" v-bind="{ ...exposedData }"></slot>
+        </template>
+        <template #afterLabel>
+            <slot name="afterLabel"></slot>
         </template>
 
         <template #beforeInput>

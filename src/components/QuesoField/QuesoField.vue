@@ -1,17 +1,20 @@
 <template>
     <div class="queso-field" :class="fieldClasses">
-        <slot name="labelComplete" v-bind="{ ...exposedData }">
-            <label v-if="label" :for="fieldID" class="queso-field__label">
-                <slot name="beforeLabel"></slot>
-                <slot name="label" v-bind="{ label }">
-                    <span class="queso-field__label__text" v-html="label"></span>
-                </slot>
-                <slot v-if="isRequired" name="required" v-bind="{ isRequired }">
-                    <span class="queso-field__label__required">*</span>
-                </slot>
-                <slot name="afterLabel"></slot>
-            </label>
-        </slot>
+        <component
+            v-if="label"
+            :is="hasStaticLabel ? 'div' : 'label'"
+            :for="!hasStaticLabel ? fieldID : null"
+            class="queso-field__label"
+        >
+            <slot name="beforeLabel"></slot>
+            <slot name="label" v-bind="{ label }">
+                <span class="queso-field__label__text" v-html="label"></span>
+            </slot>
+            <slot v-if="isRequired" name="required" v-bind="{ isRequired }">
+                <span class="queso-field__label__required">*</span>
+            </slot>
+            <slot name="afterLabel"></slot>
+        </component>
 
         <div class="queso-field__input">
             <slot name="beforeInput"></slot>
@@ -29,10 +32,10 @@
 import { computed, ref, toRefs, reactive } from "vue";
 
 import type { HTMLAttributes } from "vue";
-import type { QuesoFieldProps } from "./types";
+import type { QuesoFieldPrivateProps } from "./types";
 
 // Props
-const props = defineProps<QuesoFieldProps>();
+const props = defineProps<QuesoFieldPrivateProps>();
 
 // Emits
 const emit = defineEmits<{

@@ -1,9 +1,11 @@
+// Interface usable for all field components
 export type QuesoFieldBaseExtraAttributes = Record<string, string>;
 
 export interface QuesoFieldBase {
     extraAttributes?: QuesoFieldBaseExtraAttributes;
 }
 
+// QuesoField props
 export interface QuesoFieldProps {
     // Base
     id?: string;
@@ -16,7 +18,12 @@ export interface QuesoFieldProps {
     isReadOnly?: boolean;
 }
 
-// Typeguard: Determines if a prop is a QuesoFieldProps
+export interface QuesoFieldPrivateProps extends QuesoFieldProps {
+    hasStaticLabel?: boolean;
+}
+
+// Typeguard
+// Determines if a prop is a QuesoFieldProps
 const quesoFieldPropsKey = ["id", "name", "label", "isError", "isRequired", "isDisabled", "isReadOnly"] as Array<
     keyof QuesoFieldProps
 >;
