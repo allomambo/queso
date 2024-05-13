@@ -1,13 +1,13 @@
 <template>
     <Teleport to="body">
         <div class="queso-modal" :class="{ 'is-modal-open': isModalOpen }" :aria-expanded="isModalOpen" v-bind="$attrs">
-            <slot name="before-content"></slot>
+            <slot name="beforeContent"></slot>
 
-            <div class="queso-modal__inner">
+            <div class="queso-modal__content">
                 <slot></slot>
             </div>
 
-            <slot name="after-content"></slot>
+            <slot name="afterContent"></slot>
 
             <slot name="overlay">
                 <queso-modal-overlay />
@@ -16,25 +16,24 @@
     </Teleport>
 </template>
 
-<script lang="ts">
-import { ModalMethodsKey } from "./symbols";
-</script>
-
 <script setup lang="ts">
 import { ref, watch, onMounted, provide } from "vue";
 
-import QuesoModalOverlay from "./components/QuesoModalOverlay.vue";
+import { QuesoModalMethodsKey } from "./types";
+import type { QuesoModalMethods, QuesoModalOpen, QuesoModalClose } from "./types";
+
+import QuesoModalOverlay from "./components/QuesoModalOverlay";
 
 const emit = defineEmits(["modal:open", "modal:close"]);
 
 // Open/Close modal
 const isModalOpen = ref<boolean>(false);
 
-const open = () => {
+const open: QuesoModalOpen = () => {
     isModalOpen.value = true;
 };
 
-const close = () => {
+const close: QuesoModalClose = () => {
     isModalOpen.value = false;
 };
 
@@ -61,7 +60,7 @@ onMounted(() => {
 });
 
 // Provide and Expose open/close methods
-provide(ModalMethodsKey, { open, close });
+provide(QuesoModalMethodsKey, { open, close } as QuesoModalMethods);
 
 defineExpose({ isModalOpen, open, close });
 </script>
@@ -84,7 +83,7 @@ defineExpose({ isModalOpen, open, close });
     z-index: var(--queso-modal-z, 400);
     opacity: var(--queso-modal-opacity);
 
-    &__inner {
+    &__content {
         max-width: var(--queso-modal-max-width);
         max-height: var(--queso-modal-max-height);
         position: relative;

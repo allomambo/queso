@@ -2,15 +2,13 @@
     <div class="queso-modal__overlay" @click="close"></div>
 </template>
 
-<script lang="ts">
-import { ModalMethodsKey } from "../symbols";
-import type { ModalMethods } from "../types";
-</script>
-
 <script setup lang="ts">
 import { inject } from "vue";
 
-const { close } = inject(ModalMethodsKey) as ModalMethods;
+import { QuesoModalMethodsKey } from "../../types";
+
+const methods = inject(QuesoModalMethodsKey);
+const close = methods?.close;
 </script>
 
 <style lang="scss">
