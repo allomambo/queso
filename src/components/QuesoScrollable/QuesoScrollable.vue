@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, ref, watch, watchEffect } from "vue";
 import { useScroll, useResizeObserver } from "@vueuse/core";
 
 import type { QuesoScrollableProps } from "./types";
@@ -15,6 +15,11 @@ import type { QuesoScrollableProps } from "./types";
 const props = withDefaults(defineProps<QuesoScrollableProps>(), {
     offset: 0,
 });
+
+const emit = defineEmits<{
+    "scroll:top": [];
+    "scroll:bottom": [];
+}>();
 
 const content = ref<HTMLElement>();
 
@@ -41,6 +46,16 @@ const scrollableClasses = computed(() => ({
     "is-scrolled-top": arrivedState.top,
     "is-scrolled-bottom": arrivedState.bottom || !contentIsOverflowing.value,
 }));
+
+watchEffect(() => {
+    if (arrivedState.top) {
+        emit("scroll:top");
+    }
+
+    if (arrivedState.bottom || !contentIsOverflowing.value) {
+        emit("scroll:bottom");
+    }
+});
 </script>
 
 <style lang="scss">
