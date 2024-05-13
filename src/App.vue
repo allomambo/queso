@@ -85,6 +85,18 @@
     <QuesoCheckbox name="checkbox" label="QuesoCheckbox" v-model="Checkbox" />
     <QuesoSelect name="select" label="QuesoSelect" :options="dataOptions" v-model="Select" />
     <QuesoSwitch name="switch" label="QuesoSwitch" v-model="Switch" />
+    <hr />
+
+    <h3>Grid</h3>
+    <div class="l-grid">
+        <template v-for="i in gridColumns">
+            <div :class="`col-${i} inner`">col-{{ i }}</div>
+            <div v-if="i != gridColumns" :class="`col-${gridColumns - i} inner`">col-{{ gridColumns - i }}</div>
+        </template>
+        <div class="col-full inner">col-full</div>
+        <div class="col-half inner">col-half</div>
+        <div class="col-half inner">col-half</div>
+    </div>
 </template>
 
 <script setup lang="ts">
@@ -162,10 +174,21 @@ const TextArea = ref("text area value");
 const Checkbox = ref(true);
 const Select = ref([]);
 const Switch = ref(false);
+
+// Grid
+const gridColumns = 8;
 </script>
 
 <style lang="scss">
 :root {
     --queso-scrollable-height: 15rem;
+}
+
+.l-grid {
+    @include grid($columns: 8, $gap: 10px, $var-prefix: "queso");
+
+    > * {
+        outline: 1px dashed black;
+    }
 }
 </style>
