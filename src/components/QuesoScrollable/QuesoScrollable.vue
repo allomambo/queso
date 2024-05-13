@@ -10,13 +10,9 @@
 import { computed, ref } from "vue";
 import { useScroll, useResizeObserver } from "@vueuse/core";
 
-// Props / Emits
-export interface Props {
-    shadows?: boolean;
-    offset?: number;
-}
+import type { QuesoScrollableProps } from "./types";
 
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<QuesoScrollableProps>(), {
     offset: 0,
 });
 
