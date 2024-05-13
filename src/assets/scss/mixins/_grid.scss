@@ -55,30 +55,29 @@ $grid: (
     }
 }
 
-@mixin grid($var-prefix: "grid") {
+@mixin grid($columns: null, $gap: null, $var-prefix: "grid") {
     $largestGrid: getLargestValue($grid, 1, "complete");
-    $largestGridColumns: nth($largestGrid, 2);
-    $largestGridGap: nth($largestGrid, 3);
+
+    @if $columns == null {
+        $columns: nth($largestGrid, 2);
+    }
+    @if $gap == null {
+        $gap: nth($largestGrid, 3);
+    }
 
     display: var(--#{$var-prefix}-display, grid);
     grid-template-rows: repeat(var(--#{$var-prefix}-rows, 1), minmax(0, 1fr));
     grid-template-columns: repeat(
-        var(--#{$var-prefix}-columns, $largestGridColumns),
+        var(--#{$var-prefix}-columns, $columns),
         minmax(0, 1fr)
     );
-    column-gap: var(
-        --#{$var-prefix}-col-gap,
-        var(--#{$var-prefix}-gap, $largestGridGap)
-    );
-    row-gap: var(
-        --#{$var-prefix}-row-gap,
-        var(--#{$var-prefix}-gap, $largestGridGap)
-    );
+    column-gap: var(--#{$var-prefix}-col-gap, var(--#{$var-prefix}-gap, $gap));
+    row-gap: var(--#{$var-prefix}-row-gap, var(--#{$var-prefix}-gap, $gap));
 
     > * {
         grid-column-start: dvar(--#{$var-prefix}-col-start, 1);
         grid-column-end: dvar(--#{$var-prefix}-col-end, -1);
     }
 
-    @include make-cssgrid($largestGridColumns, $var-prefix);
+    @include make-cssgrid($columns, $var-prefix);
 }
