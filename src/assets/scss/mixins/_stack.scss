@@ -98,7 +98,7 @@ $stack-gap: 30px !default;
     }
 
     // Apply styles
-    display: flex;
+    display: var(--#{$var-prefix}-display, flex);
     align-items: var(--#{$var-prefix}-align, #{$align});
     justify-content: var(--#{$var-prefix}-justify, #{$justify});
     flex-direction: var(--#{$var-prefix}-direction, #{$direction});

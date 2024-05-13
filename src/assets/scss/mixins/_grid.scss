@@ -59,7 +59,7 @@ $grid: (
     $largestGridColumns: nth($largestGrid, 2);
     $largestGridGap: nth($largestGrid, 3);
 
-    display: grid;
+    display: var(--grid-display, grid);
     grid-template-rows: repeat(var(--grid-rows, 1), minmax(0, 1fr));
     grid-template-columns: repeat(
         var(--grid-columns, $largestGridColumns),
