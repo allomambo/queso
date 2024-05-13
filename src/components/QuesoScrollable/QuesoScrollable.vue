@@ -7,18 +7,19 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, ref, watchEffect } from "vue";
 import { useScroll, useResizeObserver } from "@vueuse/core";
 
-// Props / Emits
-export interface Props {
-    shadows?: boolean;
-    offset?: number;
-}
+import type { QuesoScrollableProps } from "./types";
 
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<QuesoScrollableProps>(), {
     offset: 0,
 });
+
+const emit = defineEmits<{
+    "scrollable:top:arrived": [];
+    "scrollable:bottom:arrived": [];
+}>();
 
 const content = ref<HTMLElement>();
 
@@ -26,6 +27,7 @@ const { arrivedState } = useScroll(content, {
     offset: { top: props.offset, bottom: props.offset },
 });
 
+// Check manually if content is overflowing because arrivedState doesn't update on resize
 const contentScrollHeight = ref<number>(0);
 const contentClientHeight = ref<number>(0);
 
@@ -35,15 +37,33 @@ useResizeObserver(content, (entries) => {
     contentClientHeight.value = entry.target.clientHeight;
 });
 
-const contentIsOverflowing = computed<boolean>(() => {
-    // Check manually if content is overflowing because arrivedState.bottom is false when not.
-    return contentScrollHeight.value > contentClientHeight.value;
+const contentIsOverflowingVertically = computed<boolean>(() => contentScrollHeight.value > contentClientHeight.value);
+
+const isArrivedAtTop = computed(() => arrivedState.top);
+const isArrivedAtBottom = computed(() => {
+    if (contentIsOverflowingVertically.value && arrivedState.top) {
+        return false;
+    } else if (!contentIsOverflowingVertically.value && arrivedState.top) {
+        return true;
+    }
+    return arrivedState.bottom;
 });
 
+// Watcher to emit events
+watchEffect(() => {
+    if (isArrivedAtTop.value) {
+        emit("scrollable:top:arrived");
+    }
+    if (isArrivedAtBottom.value) {
+        emit("scrollable:bottom:arrived");
+    }
+});
+
+// CSS classes
 const scrollableClasses = computed(() => ({
     "has-shadows": props.shadows,
-    "is-scrolled-top": arrivedState.top,
-    "is-scrolled-bottom": arrivedState.bottom || !contentIsOverflowing.value,
+    "is-scrolled-top": isArrivedAtTop.value,
+    "is-scrolled-bottom": isArrivedAtBottom.value,
 }));
 </script>
 

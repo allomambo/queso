@@ -90,6 +90,18 @@
 
     <h3>QuesoIcon</h3>
     <QuesoIcon name="chevron" :size="6" :rotation="90" />
+    <hr />
+
+    <h3>Grid</h3>
+    <div class="l-grid">
+        <template v-for="i in gridColumns">
+            <div :class="`col-${i} inner`">col-{{ i }}</div>
+            <div v-if="i != gridColumns" :class="`col-${gridColumns - i} inner`">col-{{ gridColumns - i }}</div>
+        </template>
+        <div class="col-full inner">col-full</div>
+        <div class="col-half inner">col-half</div>
+        <div class="col-half inner">col-half</div>
+    </div>
 </template>
 
 <script setup lang="ts">
@@ -165,10 +177,21 @@ const TextField = ref("text field value");
 const TextArea = ref("text area value");
 const Checkbox = ref(true);
 const Select = ref("");
+
+// Grid
+const gridColumns = 8;
 </script>
 
 <style lang="scss">
 :root {
     --queso-scrollable-height: 15rem;
+}
+
+.l-grid {
+    @include grid($columns: 8, $gap: 10px, $var-prefix: "queso");
+
+    > * {
+        outline: 1px dashed black;
+    }
 }
 </style>

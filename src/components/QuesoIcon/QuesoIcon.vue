@@ -12,20 +12,15 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-interface Props {
-    svg?: SVGElement | string;
-    name?: string;
-    prefix?: string;
-    size?: number;
-    rotation?: number;
-}
+import type { QuesoIconProps } from "./types";
 
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<QuesoIconProps>(), {
     size: 1,
+    sizeUnit: "rem",
     rotation: 0,
 });
 
-const iconID = computed(() => {
+const iconID = computed<string>(() => {
     const prefix = props.prefix ? `${props.prefix}-` : "";
     return `#${prefix}${props.name}`;
 });
@@ -39,22 +34,22 @@ const iconClasses = computed(() => {
 });
 
 // Visual
-const width = computed<string>(() => `${props.size}rem`);
+const width = computed<string>(() => `${props.size}${props.sizeUnit}`);
 const rotation = computed<string>(() => `${props.rotation}deg`);
 </script>
 
 <style lang="scss">
 .queso-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    vertical-align: middle;
+    display: var(--queso-icon-display, inline-flex);
+    align-items: var(--queso-icon-align, center);
+    justify-content: var(--queso-icon-justify, center);
+    vertical-align: var(--queso-icon-vertical-align, middle);
 
     svg {
         display: block;
         width: var(--queso-icon-width, v-bind("width"));
         height: calc(var(--queso-icon-height, var(--queso-icon-width, v-bind("width"))) * var(--queso-icon-ratio, 1));
-        fill: currentColor;
+        fill: var(--queso-icon-fill, currentColor);
         transform: rotate(var(--queso-icon-rotation, v-bind("rotation")));
     }
 }
