@@ -13,14 +13,13 @@
     "type": "module",
     "main": "./dist/index.cjs",
     "module": "./dist/index.js",
-    "types": "./dist/components.d.ts",
+    "types": "./dist/index.d.ts",
     "files": [
         "dist/*",
         "src/*"
     ],
     "exports": {
         ".": {
-            "types": "./dist/components.d.ts",
             "import": "./dist/index.js",
             "require": "./dist/index.cjs"
         },
