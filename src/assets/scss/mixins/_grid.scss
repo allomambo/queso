@@ -33,6 +33,7 @@ $grid: (
                     }
                 }
 
+                .col-all#{$infix},
                 .col-full#{$infix} {
                     --#{$var-prefix}-col-start-default: 1;
                     --#{$var-prefix}-col-end-default: -1;
