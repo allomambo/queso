@@ -32,14 +32,16 @@
 import { computed, ref, onBeforeMount, watch } from "vue";
 import { useElementBounding } from "@vueuse/core";
 
+import type { QuesoCollapsibleProps } from "./types";
+
 // Define Props/Emits
-export interface Props {
-    expandOnMount?: boolean;
-}
+const props = defineProps<QuesoCollapsibleProps>();
 
-const props = defineProps<Props>();
-
-const emit = defineEmits(["open", "close", "toggle"]);
+const emit = defineEmits<{
+    "collapsible:open": [];
+    "collapsible:close": [];
+    "collapsible:toggle": [boolean];
+}>();
 
 // Computeds
 const collapsibleContent = ref<HTMLElement>();
@@ -91,12 +93,12 @@ const toggle = (bool: boolean = false) => {
  */
 watch(isCollapsibleOpen, (newValue: boolean) => {
     if (newValue) {
-        emit("open");
+        emit("collapsible:open");
     } else {
-        emit("close");
+        emit("collapsible:close");
     }
 
-    emit("toggle", newValue);
+    emit("collapsible:toggle", newValue);
 });
 
 /**
