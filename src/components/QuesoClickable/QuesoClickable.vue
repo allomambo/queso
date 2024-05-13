@@ -44,18 +44,8 @@ const clickableDownload = computed(() => (props.markup === "a" && props.isDownlo
 
 <style lang="scss">
 .queso-clickable {
-    display: var(--queso-clickable-display, inline-flex);
-    align-items: var(--queso-clickable-align, center);
-    justify-content: var(--queso-clickable-justify, center);
-    cursor: pointer;
-
-    /*==============================
-    =           STATES             =
-    ==============================*/
-
-    //--- DISABLED ---//
-    &[disabled],
-    &[aria-disabled="true"] {
+    //--- State: Disabled ---//
+    &.is-disabled {
         @include unselectable;
     }
 }
