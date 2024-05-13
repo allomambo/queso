@@ -1,7 +1,7 @@
-export type ClickableTag = "button" | "a" | "router-link" | "div" | "span";
+export type QuesoClickableMarkup = "button" | "a" | "router-link" | "div" | "span";
 
 export interface QuesoClickableProps {
-    markup?: ClickableTag;
+    markup?: QuesoClickableMarkup;
     url?: string | object;
     isDisabled?: boolean;
     isExternal?: boolean;
