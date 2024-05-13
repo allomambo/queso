@@ -79,14 +79,15 @@ $containers: (
 
     // Set CSS custom properties
     --container-width-default: #{$container-width};
+    --container-max-width-default: calc(100% - (#{dvar(--container-gap)} * 2));
     --container-gap-default: #{$gap};
     --container-margin-left-default: auto;
     --container-margin-right-default: auto;
 
     // Apply styles
     display: block;
-    width: dvar(container-width);
-    max-width: calc(100% - (#{dvar(container-gap)} * 2));
-    margin-left: dvar(container-margin-left);
-    margin-right: dvar(container-margin-right);
+    width: dvar(--container-width);
+    max-width: dvar(--container-max-width);
+    margin-left: dvar(--container-margin-left);
+    margin-right: dvar(--container-margin-right);
 }
