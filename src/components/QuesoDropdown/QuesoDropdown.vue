@@ -50,7 +50,7 @@
 import { computed, ref, toRefs } from "vue";
 import { onClickOutside, useScroll } from "@vueuse/core";
 
-import { QuesoDropdownProps, QuesoDropdownOptions, QuesoDropdownOptionValue, QuesoDropdownOptionValues } from "./types";
+import { QuesoDropdownModel, QuesoDropdownProps, QuesoDropdownOptions, QuesoDropdownOptionValue } from "./types";
 
 // Props / Emits
 const props = defineProps<QuesoDropdownProps>();
@@ -60,7 +60,7 @@ const emit = defineEmits<{
     "close:dropdown": [];
 }>();
 
-const model = defineModel<QuesoDropdownOptionValues>({ default: () => [] });
+const model = defineModel<QuesoDropdownModel>({ default: () => [] });
 
 // Computeds
 const { options } = toRefs(props);

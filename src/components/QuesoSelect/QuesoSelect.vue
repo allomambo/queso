@@ -79,8 +79,8 @@
 <script setup lang="ts">
 import { useExtendedFieldProps } from "@composables/fields";
 
-import type { QuesoSelectProps } from "./types";
-import { QuesoDropdownOptionValue, QuesoDropdownOptionValues } from "@components/QuesoDropdown/types";
+import type { QuesoSelectModel, QuesoSelectProps } from "./types";
+import type { QuesoDropdownOptionValues } from "@components/QuesoDropdown/types";
 
 import QuesoField from "@components/QuesoField";
 import QuesoDropdown from "@components/QuesoDropdown";
@@ -88,7 +88,7 @@ import QuesoDropdown from "@components/QuesoDropdown";
 const props = defineProps<QuesoSelectProps>();
 const extendedProps = useExtendedFieldProps(props);
 
-const model = defineModel<QuesoDropdownOptionValue>({ required: true });
+const model = defineModel<QuesoSelectModel>({ required: true });
 </script>
 
 <style lang="scss">
