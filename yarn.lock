@@ -16,9 +16,9 @@
   integrity sha512-K0caG6Pde78nsm6i7Y4S7UxDS/DJ9Jo5zjcf4hwuqSbMDaVr+doTS8NIu0Plu5Y/yyFBTYPdcJAdQAhOFUf07A==
 
 "@ast-grep/napi-darwin-x64@0.21.4":
-  version "0.20.5"
-  resolved "https://registry.yarnpkg.com/@ast-grep/napi-darwin-x64/-/napi-darwin-x64-0.20.5.tgz#8dc7d9886f320b47fb0be5eff1d554d7b14d63ee"
-  integrity sha512-6AN9yHIXI1Um7FaVaZau1F/ElKofFcgR9b1Ffmz0V20rb9yEcp2PnAmAt5Lj8yrvbaRUXITFGp3MFpAZhlNNZA==
+  version "0.22.3"
+  resolved "https://registry.yarnpkg.com/@ast-grep/napi-darwin-x64/-/napi-darwin-x64-0.22.3.tgz#151a104127690328ee835024c2d0da07be51ebdc"
+  integrity sha512-w0kw+YYAjDW6Q5EB4I+hSU4Ax9FVxVDlPeZi3h94pRIgNjRMD8SjG/aglNImzPOACDp3bZg8m26iMc9RbZaduQ==
 
 "@ast-grep/napi-linux-arm64-gnu@0.21.4":
   version "0.21.4"
@@ -4378,6 +4378,7 @@ string-argv@~0.3.1:
   integrity sha512-aqD2Q0144Z+/RqG52NeHEkZauTAUWJO8c6yTftGJKO3Tja5tUgIfmIl6kExvhtxSDP7fXB6DvzkfMpCd/F3G+Q==
 
 "string-width-cjs@npm:string-width@^4.2.0", string-width@^4.1.0:
+  name string-width-cjs
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
   integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
@@ -4434,6 +4435,7 @@ string.prototype.trimstart@^1.0.8:
     es-object-atoms "^1.0.0"
 
 "strip-ansi-cjs@npm:strip-ansi@^6.0.1", strip-ansi@^6.0.0, strip-ansi@^6.0.1:
+  name strip-ansi-cjs
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
   integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
