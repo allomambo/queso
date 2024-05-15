@@ -60,7 +60,8 @@ export default defineConfig(({ command, mode }) => {
             vue(),
             libInjectCss(),
             dts({
-                rollupTypes: true,
+                tsconfigPath: resolve(__dirname, "tsconfig.declaration.json"),
+                outDir: "dist/declaration",
             }),
         ],
         optimizeDeps: {

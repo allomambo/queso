@@ -1,0 +1,18 @@
+{
+    "extends": "./tsconfig",
+    "compilerOptions": {
+        "removeComments": true,
+        "declaration": true,
+        "emitDeclarationOnly": true,
+        "declarationDir": "dist/declaration",
+        "outDir": "dist/declaration"
+    },
+    "exclude": [
+        "node_modules",
+        "src/**/*.stories.ts",
+        "src/**/*.test.ts",
+        "src/utils/**/*",
+        "src/App.vue",
+        "src/main.ts"
+    ]
+}
