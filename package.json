@@ -20,6 +20,7 @@
     ],
     "exports": {
         ".": {
+            "types": "./dist/declaration/components.d.ts",
             "import": "./dist/index.js",
             "require": "./dist/index.cjs"
         },
