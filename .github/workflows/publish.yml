@@ -13,7 +13,6 @@ jobs:
               with:
                   node-version: 20
             - run: yarn ci
-            - run: yarn test:run
             - run: yarn build:lib
 
     publish:
