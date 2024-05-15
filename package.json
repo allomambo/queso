@@ -13,7 +13,7 @@
     "type": "module",
     "main": "./dist/index.cjs",
     "module": "./dist/index.js",
-    "types": "./dist/index.d.ts",
+    "types": "./dist/declaration/components.d.ts",
     "files": [
         "dist/*",
         "src/*"
@@ -23,7 +23,7 @@
             "import": "./dist/index.js",
             "require": "./dist/index.cjs"
         },
-        "./types": "./src/types.ts",
+        "./types": "./dist/declaration/types.d.ts",
         "./styles/core": "./src/assets/scss/main.scss",
         "./styles/reset": "./src/assets/scss/ress.scss",
         "./scripts/utils": "./src/utils/index.ts",
