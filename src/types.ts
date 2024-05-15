@@ -2,6 +2,7 @@
 import type { QuesoClickableMarkup, QuesoClickableProps } from "@components/QuesoClickable";
 import type { QuesoCollapsibleProps } from "@components/QuesoCollapsible";
 import type {
+    QuesoDropdownModel,
     QuesoDropdownOptionValue,
     QuesoDropdownOptionValues,
     QuesoDropdownOption,
@@ -14,10 +15,10 @@ import type { QuesoScrollableProps } from "@components/QuesoScrollable";
 
 // Fields
 import type { QuesoFieldBaseExtraAttributes, QuesoFieldBase, QuesoFieldProps } from "@components/QuesoField";
-import type { QuesoTextFieldType, QuesoTextFieldProps } from "@components/QuesoTextField";
-import type { QuesoTextAreaProps } from "@components/QuesoTextArea";
-import type { QuesoCheckboxProps } from "@components/QuesoCheckbox";
-import type { QuesoSelectProps } from "@components/QuesoSelect";
+import type { QuesoTextFieldModel, QuesoTextFieldType, QuesoTextFieldProps } from "@components/QuesoTextField";
+import type { QuesoTextAreaModel, QuesoTextAreaProps } from "@components/QuesoTextArea";
+import type { QuesoCheckboxModel, QuesoCheckboxProps } from "@components/QuesoCheckbox";
+import type { QuesoSelectModel, QuesoSelectProps } from "@components/QuesoSelect";
 
 /*====================================
 =              EXPORTS               =
@@ -32,6 +33,7 @@ export type {
     // Collapsible
     QuesoCollapsibleProps,
     // Dropdown
+    QuesoDropdownModel,
     QuesoDropdownOptionValue,
     QuesoDropdownOptionValues,
     QuesoDropdownOption,
@@ -54,12 +56,16 @@ export type {
     QuesoFieldBase,
     QuesoFieldProps,
     // TextField
+    QuesoTextFieldModel,
     QuesoTextFieldType,
     QuesoTextFieldProps,
     // TextArea
+    QuesoTextAreaModel,
     QuesoTextAreaProps,
     // Checkbox
+    QuesoCheckboxModel,
     QuesoCheckboxProps,
     // Select
+    QuesoSelectModel,
     QuesoSelectProps,
 };
