@@ -71,14 +71,14 @@
 import { computed } from "vue";
 import { useExtendedFieldProps } from "@composables/fields";
 
-import type { QuesoCheckboxProps } from "./types";
+import type { QuesoCheckboxModel, QuesoCheckboxProps } from "./types";
 
 import QuesoField from "@components/QuesoField";
 
 const props = defineProps<QuesoCheckboxProps>();
 const extendedProps = useExtendedFieldProps(props);
 
-const model = defineModel<boolean>({ required: true, default: false });
+const model = defineModel<QuesoCheckboxModel>({ required: true, default: false });
 const isChecked = computed<boolean>(() => !!model.value);
 </script>
 

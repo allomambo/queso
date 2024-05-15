@@ -23,7 +23,7 @@ const props = withDefaults(defineProps<QuesoClickableProps>(), {
 const { isExternal, isDisabled, isDownload, markup, url } = toRefs(props);
 
 const isAnchor = computed<boolean>(() => markup.value === "a");
-const isRouter = computed<boolean>(() => markup.value === "router-link" && typeof url.value === "object");
+const isRouter = computed<boolean>(() => markup.value === "router-link");
 
 // Attributes when anchor and router-link tags
 const anchorAttributes = computed(() => {

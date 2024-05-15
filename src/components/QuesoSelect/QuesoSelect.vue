@@ -27,9 +27,9 @@
                 v-else
                 class="queso-select"
                 :options="options"
-                @update:modelValue="(v: QuesoDropdownOptionValues) => (model = v[0])"
                 @mouseover="toggleIsHover(true)"
                 @mouseleave="toggleIsHover(false)"
+                v-model="dropdownModel"
             >
                 <template #selectorPlaceholder>
                     <slot name="placeholder" v-bind="{ placeholder }">{{ placeholder }}</slot>
@@ -77,10 +77,11 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from "vue";
 import { useExtendedFieldProps } from "@composables/fields";
 
-import type { QuesoSelectProps } from "./types";
-import { QuesoDropdownOptionValue, QuesoDropdownOptionValues } from "@components/QuesoDropdown/types";
+import type { QuesoSelectModel, QuesoSelectProps } from "./types";
+import type { QuesoDropdownOptionValues } from "@components/QuesoDropdown/types";
 
 import QuesoField from "@components/QuesoField";
 import QuesoDropdown from "@components/QuesoDropdown";
@@ -88,7 +89,17 @@ import QuesoDropdown from "@components/QuesoDropdown";
 const props = defineProps<QuesoSelectProps>();
 const extendedProps = useExtendedFieldProps(props);
 
-const model = defineModel<QuesoDropdownOptionValue>({ required: true });
+const model = defineModel<QuesoSelectModel>({ required: true });
+
+// Writable computed because QuesoDropdown expects an array
+const dropdownModel = computed<QuesoDropdownOptionValues>({
+    get() {
+        return model.value ? [model.value] : [];
+    },
+    set(newDropdownValue) {
+        model.value = newDropdownValue[0];
+    },
+});
 </script>
 
 <style lang="scss">

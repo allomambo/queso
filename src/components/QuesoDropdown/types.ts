@@ -1,6 +1,8 @@
 export type QuesoDropdownOptionValue = string;
 export type QuesoDropdownOptionValues = QuesoDropdownOptionValue[];
 
+export type QuesoDropdownModel = QuesoDropdownOptionValues;
+
 export interface QuesoDropdownOption {
     value: QuesoDropdownOptionValue;
     label: string;

@@ -54,14 +54,14 @@
 <script setup lang="ts">
 import { useExtendedFieldProps } from "@composables/fields";
 
-import type { QuesoTextAreaProps } from "./types";
+import type { QuesoTextAreaModel, QuesoTextAreaProps } from "./types";
 
 import QuesoField from "@components/QuesoField";
 
 const props = defineProps<QuesoTextAreaProps>();
 const extendedProps = useExtendedFieldProps(props);
 
-const model = defineModel<string>({ required: true, default: "" });
+const model = defineModel<QuesoTextAreaModel>({ required: true, default: "" });
 </script>
 
 <style lang="scss">
