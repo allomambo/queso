@@ -27,7 +27,7 @@
                 v-else
                 class="queso-select"
                 :options="options"
-                @update:modelValue="(v) => (model = v[0])"
+                @update:modelValue="(v: QuesoDropdownOptionValues) => (model = v[0])"
                 @mouseover="toggleIsHover(true)"
                 @mouseleave="toggleIsHover(false)"
             >
@@ -80,7 +80,7 @@
 import { useExtendedFieldProps } from "@composables/fields";
 
 import type { QuesoSelectProps } from "./types";
-import { QuesoDropdownOptionValue } from "@components/QuesoDropdown/types";
+import { QuesoDropdownOptionValue, QuesoDropdownOptionValues } from "@components/QuesoDropdown/types";
 
 import QuesoField from "@components/QuesoField";
 import QuesoDropdown from "@components/QuesoDropdown";
