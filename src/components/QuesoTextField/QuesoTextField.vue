@@ -1,76 +1,70 @@
 <template>
-    <queso-field>
-        <template #label="fieldProps">
-            <slot name="label" v-bind="{ ...fieldProps }"></slot>
+    <queso-field class="-text-field" v-bind="extendedProps">
+        <template #beforeLabel>
+            <slot name="beforeLabel"></slot>
+        </template>
+        <template #label="exposedData">
+            <slot name="label" v-bind="{ ...exposedData }"></slot>
+        </template>
+        <template #required="exposedData">
+            <slot name="required" v-bind="{ ...exposedData }"></slot>
+        </template>
+        <template #afterLabel>
+            <slot name="afterLabel"></slot>
         </template>
 
-        <template #beforeField>
-            <slot name="beforeField"></slot>
+        <template #beforeInput>
+            <slot name="beforeInput"></slot>
         </template>
-
-        <template
-            #field="{
-                fieldID,
-                fieldName,
-                fieldValue,
-                fieldAutocomplete,
-                updateValue,
-                toggleIsActive,
-                toggleIsHover,
-                isRequired,
-                isDisabled,
-                isReadOnly,
-            }"
-        >
+        <template #input="{ fieldID, fieldName, isRequired, isDisabled, isReadOnly, toggleIsActive, toggleIsHover }">
             <div class="queso-text-field">
-                <span v-if="isReadOnly" class="queso-text-field__readonly" v-html="fieldValue"></span>
+                <slot name="beforeTextFieldInput"></slot>
+
+                <span v-if="isReadOnly" class="queso-text-field__readonly" v-html="model"></span>
 
                 <input
                     v-else
-                    :type="type"
-                    :value="fieldValue"
-                    :name="fieldName"
-                    :id="fieldID"
-                    :placeholder="placeholder"
                     class="queso-text-field__input"
+                    :type="type"
+                    :id="fieldID"
+                    :name="fieldName"
+                    :placeholder="placeholder"
                     :required="isRequired"
-                    :autocomplete="fieldAutocomplete"
                     :disabled="isDisabled"
-                    @input="updateValue"
                     @mouseover="toggleIsHover(true)"
                     @mouseleave="toggleIsHover(false)"
                     @focus="toggleIsActive(true)"
                     @blur="toggleIsActive(false)"
+                    v-bind="extraAttributes"
+                    v-model="model"
                 />
 
-                <slot name="after"></slot>
+                <slot name="afterTextFieldInput"></slot>
             </div>
         </template>
-
-        <template #afterField>
-            <slot name="afterField"></slot>
+        <template #afterInput>
+            <slot name="afterInput"></slot>
         </template>
 
-        <template #error="fieldProps">
-            <slot name="error" v-bind="{ ...fieldProps }"></slot>
+        <template #error="exposedData">
+            <slot name="error" v-bind="{ ...exposedData }"></slot>
         </template>
     </queso-field>
 </template>
 
 <script setup lang="ts">
+import { useExtendedFieldProps } from "@composables/fields";
+
+import type { QuesoTextFieldProps } from "./types";
+
 import QuesoField from "@components/QuesoField";
 
-export type FieldTypes = "text" | "url" | "tel" | "email" | "password";
-
-export interface Props {
-    type?: FieldTypes;
-    placeholder?: string;
-}
-
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<QuesoTextFieldProps>(), {
     type: "text",
-    placeholder: "",
 });
+const extendedProps = useExtendedFieldProps(props);
+
+const model = defineModel<string>({ required: true, default: "" });
 </script>
 
 <style lang="scss">

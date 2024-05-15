@@ -1,21 +1,21 @@
 <template>
-    <div v-if="options.length > 0" class="queso-dropdown" ref="dropdown" :class="dropdownClasses">
+    <div v-if="options.length > 0" ref="dropdown" class="queso-dropdown" :class="dropdownClasses">
         <div class="queso-dropdown__selector" @click="toggleDropdown(!isDropdownOpen)">
-            <slot name="header" v-bind="{ activeOptions }">
-                <slot name="prefix"></slot>
+            <slot name="selector" v-bind="{ options, activeOptions }">
+                <slot name="selectorBeforeText"></slot>
                 <div class="queso-dropdown__selector__text">
-                    <div v-if="activeOptions.length < 1" class="queso-dropdown__selector__placeholder">
-                        <slot name="placeholder"></slot>
+                    <div v-if="activeOptions.length < 1" class="queso-dropdown__selector__text__placeholder">
+                        <slot name="selectorPlaceholder"></slot>
                     </div>
-                    <div v-else class="queso-dropdown__selector__active-label">
-                        <slot name="selector" v-bind="{ activeOptions }">
+                    <div v-else class="queso-dropdown__selector__text__active-label">
+                        <slot name="selectorActiveOptions" v-bind="{ activeOptions }">
                             {{ activeOptions }}
                         </slot>
                     </div>
                 </div>
-                <slot name="suffix"></slot>
+                <slot name="selectorAfterText"></slot>
                 <div class="queso-dropdown__selector__icon">
-                    <slot name="icon">↓</slot>
+                    <slot name="selectorIcon">↓</slot>
                 </div>
             </slot>
         </div>
@@ -26,19 +26,17 @@
             </div>
             <div class="queso-dropdown__popover__scroll" :class="dropdownPopoverClasses">
                 <ul ref="dropdownPopover" class="queso-dropdown__popover__options-list">
-                    <slot name="beforeItems"></slot>
                     <li
                         v-for="option in options"
-                        :key="option.key"
-                        @click="updateOption(option)"
+                        :key="option.value"
+                        @click="updateOption(option.value)"
                         class="queso-dropdown__popover__options-list__item"
-                        :class="{ 'is-active': activeOptions.find((o) => o.key === option.key) }"
+                        :class="{ 'is-option-active': model.includes(option.value) }"
                     >
                         <slot name="item" v-bind="{ ...option, openDropdown, closeDropdown }">
                             {{ option }}
                         </slot>
                     </li>
-                    <slot name="afterItems"></slot>
                 </ul>
             </div>
             <div v-if="$slots.popoverFooter" class="queso-dropdown__popover__footer">
@@ -49,75 +47,53 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, onMounted } from "vue";
+import { computed, ref, toRefs } from "vue";
 import { onClickOutside, useScroll } from "@vueuse/core";
 
-import { Option } from "./types";
+import { QuesoDropdownProps, QuesoDropdownOptions, QuesoDropdownOptionValue, QuesoDropdownOptionValues } from "./types";
 
 // Props / Emits
-export interface Props {
-    defaultOptions?: Option[];
-    options: Option[];
-    multiple?: boolean;
-    stayOpenOnSelection?: boolean;
-}
+const props = defineProps<QuesoDropdownProps>();
 
-const props = withDefaults(defineProps<Props>(), {
-    defaultOptions: () => [],
-    options: () => [],
-});
+const emit = defineEmits<{
+    "open:dropdown": [];
+    "close:dropdown": [];
+}>();
 
-const emit = defineEmits(["update:options", "open:dropdown", "close:dropdown"]);
+const model = defineModel<QuesoDropdownOptionValues>({ default: () => [] });
 
 // Computeds
-const dropdown = ref<HTMLElement>();
-const dropdownPopover = ref<HTMLElement>();
+const { options } = toRefs(props);
+const dropdown = ref<HTMLElement | null>(null);
+const dropdownPopover = ref<HTMLElement | null>(null);
 const isDropdownOpen = ref<boolean>(false);
 
-const updatedOptions = ref<Option[]>([]);
-const activeOptions = computed<Option[]>(() => {
-    if (updatedOptions.value.length > 0) return updatedOptions.value;
-    return props.defaultOptions;
-});
-
-onMounted(() => {
-    if (props.multiple) {
-        updatedOptions.value = props.defaultOptions;
-    }
+const activeOptions = computed<QuesoDropdownOptions>(() => {
+    return options.value.filter((option) => model.value.includes(option.value));
 });
 
 const dropdownClasses = computed(() => ({
+    "is-multiple": props.multiple,
     "is-dropdown-open": isDropdownOpen.value,
     "is-dropdown-close": !isDropdownOpen.value,
-    "has-value": activeOptions.value.length >= 1,
-    "has-no-value": activeOptions.value.length < 1,
-    "is-multiple": props.multiple,
 }));
 
 /**
  * ON OPTION CHANGE
  */
 
-const updateOption = (option: Option) => {
+const updateOption = (option: QuesoDropdownOptionValue) => {
     if (props.multiple) {
-        // If multiple: if option present in array add it, otherwise remove it
-        let existingOption: number = 0;
-
-        updatedOptions.value = updatedOptions.value.filter((o: Option) => {
-            const optionExist = o.key === option.key ? false : true;
-            if (!optionExist) existingOption++;
-            return optionExist;
-        });
-
-        if (existingOption < 1) {
-            updatedOptions.value.push(option);
+        // If multiple: if option present in array remove it, otherwise add it
+        if (model.value.includes(option)) {
+            model.value = model.value.filter((value) => value !== option);
+        } else {
+            model.value = [...model.value, option];
         }
     } else {
         // If not multiple: just update completely the array
-        updatedOptions.value = [option];
+        model.value = [option];
     }
-
-    emit("update:options", activeOptions.value);
 
     if (!props.multiple) {
         if (!props.stayOpenOnSelection) closeDropdown();
@@ -155,6 +131,7 @@ onClickOutside(dropdown, () => closeDropdown());
 /**
  * CHOICES OVERFLOW
  */
+
 const { y, arrivedState } = useScroll(dropdownPopover, {
     offset: { top: 15, bottom: 15 },
 });

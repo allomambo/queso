@@ -1,6 +1,6 @@
 {
     "name": "@allomambo/queso",
-    "version": "0.0.14",
+    "version": "0.0.15",
     "description": "VueJS component library to use in conjunction with Arepa",
     "repository": "https://github.com/allomambo/queso.git",
     "author": "MamboMambo <allo@mambomambo.ca> (https://mambomambo.ca)",
@@ -13,17 +13,17 @@
     "type": "module",
     "main": "./dist/index.cjs",
     "module": "./dist/index.js",
-    "types": "./dist/components.d.ts",
+    "types": "./dist/index.d.ts",
     "files": [
         "dist/*",
         "src/*"
     ],
     "exports": {
         ".": {
-            "types": "./dist/components.d.ts",
             "import": "./dist/index.js",
             "require": "./dist/index.cjs"
         },
+        "./types": "./src/types.ts",
         "./styles/core": "./src/assets/scss/main.scss",
         "./styles/reset": "./src/assets/scss/ress.scss",
         "./scripts/utils": "./src/utils/index.ts",
@@ -46,37 +46,37 @@
         "test": "vitest"
     },
     "dependencies": {
-        "@vueuse/core": "^10.7.0",
-        "vite-plugin-lib-inject-css": "^1.3.0",
-        "vue": "^3.3.10"
+        "@vueuse/core": "^10.9.0",
+        "vite-plugin-lib-inject-css": "^2.1.0",
+        "vue": "^3.4.27"
     },
     "devDependencies": {
-        "@types/node": "^20.10.3",
-        "@typescript-eslint/eslint-plugin": "^6.13.2",
-        "@typescript-eslint/parser": "^6.13.2",
-        "@vitejs/plugin-legacy": "^5.2.0",
-        "@vitejs/plugin-vue": "^4.5.1",
-        "@vue/eslint-config-prettier": "^8.0.0",
-        "@vue/eslint-config-typescript": "^12.0.0",
-        "@vue/test-utils": "^2.4.3",
-        "eslint": "^8.55.0",
+        "@types/node": "^20.12.11",
+        "@typescript-eslint/eslint-plugin": "^7.8.0",
+        "@typescript-eslint/parser": "^7.8.0",
+        "@vitejs/plugin-legacy": "^5.4.0",
+        "@vitejs/plugin-vue": "^5.0.4",
+        "@vue/eslint-config-prettier": "^9.0.0",
+        "@vue/eslint-config-typescript": "^13.0.0",
+        "@vue/test-utils": "^2.4.6",
+        "eslint": "^9.2.0",
         "eslint-config-prettier": "^9.1.0",
-        "eslint-plugin-markdown": "^3.0.1",
-        "eslint-plugin-prettier": "5.0.1",
-        "eslint-plugin-vue": "^9.19.2",
-        "happy-dom": "^12.10.3",
+        "eslint-plugin-markdown": "^5.0.0",
+        "eslint-plugin-prettier": "5.1.3",
+        "eslint-plugin-vue": "^9.26.0",
+        "happy-dom": "^14.10.1",
         "npm-run-all": "^4.1.5",
-        "prettier": "^3.1.0",
-        "sass": "^1.69.5",
-        "terser": "^5.25.0",
-        "typescript": "^5.3.2",
-        "vite": "^5.0.5",
-        "vite-plugin-dts": "^3.6.4",
+        "prettier": "^3.2.5",
+        "sass": "^1.77.1",
+        "terser": "^5.31.0",
+        "typescript": "^5.4.5",
+        "vite": "^5.2.11",
+        "vite-plugin-dts": "^3.9.1",
         "vite-plugin-eslint": "^1.8.1",
-        "vite-plugin-html": "^3.2.0",
+        "vite-plugin-html": "^3.2.2",
         "vite-plugin-restart": "^0.4.0",
-        "vitest": "^1.0.1",
-        "vue-eslint-parser": "^9.3.2",
-        "vue-tsc": "^1.8.24"
+        "vitest": "^1.6.0",
+        "vue-eslint-parser": "^9.4.2",
+        "vue-tsc": "^2.0.17"
     }
 }

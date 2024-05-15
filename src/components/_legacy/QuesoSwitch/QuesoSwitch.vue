@@ -66,14 +66,18 @@
 </template>
 
 <script setup lang="ts">
-import QuesoField from "@components/QuesoField";
+import QuesoField from "../QuesoField";
+
+console.warn(
+    "<QuesoSwitchLegacy> is deprecated. It will be removed on v1.0 version. Use a stylized <QuesoCheckbox> component instead.",
+);
 
 const getCheckboxState = (event: any, fieldCallback: (a: boolean) => void) => {
     fieldCallback(event.target.checked);
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .queso-switch {
     --queso-switch-circle-color: white;
     --queso-switch-bg-color: silver;
