@@ -53,6 +53,7 @@ export default defineConfig(({ command, mode }) => {
                 "@": resolve(__dirname, "./src"),
                 "@assets": resolve(__dirname, "./src/assets"),
                 "@components": resolve(__dirname, "./src/components"),
+                "@composables": resolve(__dirname, "./src/composables"),
             },
         },
         plugins: [
@@ -75,7 +76,7 @@ export default defineConfig(({ command, mode }) => {
                     inline: ["@vue/test-utils"],
                 },
             },
-            exclude: ["**/*.spec.ts", "dist", "node_modules"],
+            exclude: ["**/*.spec.ts", "**/_legacy", "dist", "node_modules"],
         },
     };
 });

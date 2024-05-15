@@ -1,85 +1,95 @@
 <template>
     <div class="queso-field" :class="fieldClasses">
-        <slot name="label" v-bind="{ ...exposedData }">
-            <label v-if="label" :for="fieldID" class="queso-field__label">
-                {{ label }}
-            </label>
-        </slot>
+        <component
+            v-if="label"
+            :is="hasStaticLabel ? 'div' : 'label'"
+            :for="!hasStaticLabel ? fieldID : null"
+            class="queso-field__label"
+        >
+            <slot name="beforeLabel"></slot>
+            <slot name="label" v-bind="{ label }">
+                <span class="queso-field__label__text" v-html="label"></span>
+            </slot>
+            <slot v-if="isRequired" name="required" v-bind="{ isRequired }">
+                <span class="queso-field__label__required">*</span>
+            </slot>
+            <slot name="afterLabel"></slot>
+        </component>
 
-        <div v-if="$slots.field" class="queso-field__input">
-            <slot name="beforeField"></slot>
-            <slot name="field" v-bind="{ ...exposedData }"></slot>
-            <slot name="afterField"></slot>
+        <div class="queso-field__input">
+            <slot name="beforeInput"></slot>
+            <slot name="input" v-bind="{ ...exposedData }"></slot>
+            <slot name="afterInput"></slot>
         </div>
 
-        <div v-if="isError" class="queso-field__error">
+        <div v-if="isError && $slots.error" class="queso-field__error">
             <slot name="error" v-bind="{ ...exposedData }"></slot>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import { computed, ref, toRef, HTMLAttributes, toRefs, reactive } from "vue";
+import { computed, ref, toRefs, reactive } from "vue";
 
-export interface Props {
-    // Base
-    id?: string;
-    name?: string;
-    modelValue?: any;
-    label?: string;
-    // States
-    isRequired?: boolean;
-    isDisabled?: boolean;
-    isReadOnly?: boolean;
-    isError?: boolean;
-    isAutocomplete?: boolean;
-}
+import type { HTMLAttributes } from "vue";
+import type { QuesoFieldPrivateProps } from "./types";
 
-const props = defineProps<Props>();
+// Props
+const props = defineProps<QuesoFieldPrivateProps>();
 
-const emit = defineEmits(["update:modelValue"]);
+// Emits
+const emit = defineEmits<{
+    "input:hover": [boolean];
+    "input:hover:enter": [];
+    "input:hover:leave": [];
+    "input:active": [boolean];
+    "input:active:focus": [];
+    "input:active:blur": [];
+}>();
 
 /**
  * STATES
  */
+const { isRequired, isDisabled, isError, isReadOnly } = toRefs(props);
+
+// Active
 const isActive = ref<boolean>(false);
-const isHover = ref<boolean>(false);
-const isFilled = computed<boolean>(() => (fieldValue.value ? true : false));
-const { isRequired, isDisabled, isError, isReadOnly, isAutocomplete } = toRefs(props);
 
-const toggleIsActive = (bool: boolean = false) => {
+const toggleIsActive = (bool: boolean = false): void => {
     isActive.value = bool;
+    emit("input:active", bool);
+
+    if (bool) {
+        emit("input:active:focus");
+    } else {
+        emit("input:active:blur");
+    }
 };
 
-const toggleIsHover = (bool: boolean = false) => {
+// Hover
+const isHover = ref<boolean>(false);
+
+const toggleIsHover = (bool: boolean = false): void => {
     isHover.value = bool;
-};
+    emit("input:hover", bool);
 
-const updateValue = (data: any) => {
-    fieldValue.value = data.target ? data.target.value : data;
+    if (bool) {
+        emit("input:hover:enter");
+    } else {
+        emit("input:hover:leave");
+    }
 };
 
 /**
  * COMPUTEDS
  */
-const fieldValue = computed<any>({
-    get() {
-        return props.modelValue;
-    },
-    set(value) {
-        emit("update:modelValue", value);
-    },
-});
 
 const fieldID = computed<string>(() => props.id || props.name || "");
-const fieldName = toRef(props, "name");
-const fieldLabel = toRef(props, "label");
-const fieldAutocomplete = computed<string | undefined>(() => (isAutocomplete.value ? "on" : undefined));
+const { name: fieldName, label: fieldLabel } = toRefs(props);
 
 const fieldClasses = computed<HTMLAttributes["class"]>(() => ({
     "is-disabled": isDisabled.value,
     "is-error": isError.value,
-    "has-value": isFilled.value,
     "is-active": isActive.value,
     "is-hover": isHover.value,
     "is-read-only": isReadOnly.value,
@@ -93,19 +103,15 @@ const exposedData = reactive({
     // Base
     fieldID,
     fieldName,
-    fieldValue,
     fieldLabel,
-    fieldAutocomplete,
     // States
     isRequired,
     isActive,
     isHover,
-    isFilled,
     isDisabled,
     isError,
     isReadOnly,
     // Methods
-    updateValue,
     toggleIsActive,
     toggleIsHover,
 });
@@ -115,8 +121,6 @@ defineExpose({ ...exposedData });
 
 <style lang="scss">
 .queso-field {
-    position: relative;
-
     &.is-disabled {
         @include unselectable;
     }

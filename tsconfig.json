@@ -12,7 +12,8 @@
         "paths": {
             "@/*": ["./src/*"],
             "@assets/*": ["./src/assets/*"],
-            "@components/*": ["./src/components/*"]
+            "@components/*": ["./src/components/*"],
+            "@composables/*": ["./src/composables/*"]
         },
         "lib": ["es2016", "dom"]
     },
