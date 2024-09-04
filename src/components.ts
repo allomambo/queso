@@ -4,7 +4,6 @@ import QuesoDropdown from "@components/QuesoDropdown";
 import QuesoModal from "@components/QuesoModal";
 import QuesoCollapsible from "@components/QuesoCollapsible";
 import QuesoScrollable from "@components/QuesoScrollable";
-import QuesoIcon from "@components/QuesoIcon";
 
 // Fields
 import QuesoField from "@components/QuesoField";
@@ -13,6 +12,9 @@ import QuesoTextArea from "@components/QuesoTextArea";
 import QuesoCheckbox from "@components/QuesoCheckbox";
 import QuesoCheckboxMultiple from "@components/QuesoCheckboxMultiple";
 import QuesoSelect from "@components/QuesoSelect";
+import QuesoPassword from "@components/QuesoPassword";
+import QuesoSelectMultiple from "@components/QuesoSelectMultiple";
+import QuesoRadio from "@components/QuesoRadio";
 
 // Legacy Fields
 // Keep these for backwards compatibility. Will be removed in version v1.0.0
@@ -35,7 +37,6 @@ export {
     QuesoModal,
     QuesoCollapsible,
     QuesoScrollable,
-    QuesoIcon,
 
     // Fields
     QuesoField,
@@ -44,6 +45,9 @@ export {
     QuesoCheckbox,
     QuesoCheckboxMultiple,
     QuesoSelect,
+    QuesoPassword,
+    QuesoSelectMultiple,
+    QuesoRadio,
 
     // Legacy Fields
     QuesoFieldLegacy,

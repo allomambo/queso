@@ -1,6 +1,7 @@
 <template>
     <h3>Fields</h3>
     <QuesoTextField name="textfield" label="QuesoTextField" v-model="TextField" />
+    <QuesoPassword name="password" label="QuesoPassword" v-model="PasswordField" />
     <QuesoTextArea name="textarea" label="QuesoTextArea" v-model="TextArea" />
     <QuesoCheckbox
         name="checkbox"
@@ -23,6 +24,14 @@
         :options="dataOptions"
         v-model="Select"
     />
+    <QuesoSelectMultiple
+        name="selectMultiple"
+        label="QuesoSelectMultiple"
+        placeholder="Select options"
+        :options="dataOptions"
+        v-model="SelectMultiple"
+    />
+    <QuesoRadio name="radio" label="QuesoRadio" :choices="dataChoices" v-model="Radio" />
     <hr />
 
     <h3>QuesoClickable</h3>
@@ -101,10 +110,6 @@
     </QuesoScrollable>
     <hr />
 
-    <h3>QuesoIcon</h3>
-    <QuesoIcon name="chevron" :size="6" :rotation="90" />
-    <hr />
-
     <h3>Grid</h3>
     <div class="l-grid">
         <template v-for="i in gridColumns">
@@ -126,13 +131,16 @@ import {
     QuesoClickable,
     QuesoCollapsible,
     QuesoDropdown,
-    QuesoIcon,
     QuesoModal,
     QuesoScrollable,
     QuesoSelect,
+    QuesoSelectMultiple,
     QuesoTextArea,
     QuesoTextField,
+    QuesoPassword,
+    QuesoRadio,
 } from "./components";
+import { c } from "vite/dist/node/types.d-aGj9QkWt";
 
 const dataOptions = [
     {
@@ -216,10 +224,13 @@ const openModal = () => {
 
 // Fields
 const TextField = ref("text field value");
+const PasswordField = ref("");
 const TextArea = ref("text area value");
 const Checkbox = ref(true);
 const CheckboxMultiple = ref(["dance-and-electronic", "folk-and-acoustic"]);
 const Select = ref("");
+const SelectMultiple = ref([]);
+const Radio = ref("");
 
 // Grid
 const gridColumns = 8;

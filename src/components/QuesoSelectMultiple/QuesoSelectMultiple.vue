@@ -1,7 +1,7 @@
 <template>
-    <queso-field class="-select" v-bind="extendedProps">
-        <template #beforeLabel="exposedData">
-            <slot name="beforeLabel" v-bind="{ ...exposedData }"></slot>
+    <queso-field class="-select-multiple" v-bind="extendedProps">
+        <template #beforeLabel>
+            <slot name="beforeLabel"></slot>
         </template>
         <template #label="exposedData">
             <slot name="label" v-bind="{ ...exposedData }"></slot>
@@ -9,12 +9,12 @@
         <template #required="exposedData">
             <slot name="required" v-bind="{ ...exposedData }"></slot>
         </template>
-        <template #afterLabel="exposedData">
-            <slot name="afterLabel" v-bind="{ ...exposedData }"></slot>
+        <template #afterLabel>
+            <slot name="afterLabel"></slot>
         </template>
 
-        <template #beforeInput="exposedData">
-            <slot name="beforeInput" v-bind="{ ...exposedData }"></slot>
+        <template #beforeInput>
+            <slot name="beforeInput"></slot>
         </template>
         <template #input="{ fieldID, fieldName, isRequired, isDisabled, isReadOnly, toggleIsActive, toggleIsHover }">
             <div v-if="isReadOnly" class="queso-select__read-only">
@@ -27,9 +27,10 @@
                 v-else
                 class="queso-select"
                 :options="options"
+                multiple
                 @mouseover="toggleIsHover(true)"
                 @mouseleave="toggleIsHover(false)"
-                v-model="dropdownModel"
+                v-model="model"
             >
                 <template #selectorPlaceholder>
                     <slot name="placeholder" v-bind="{ placeholder }">{{ placeholder }}</slot>
@@ -66,8 +67,8 @@
                 </option>
             </select>
         </template>
-        <template #afterInput="exposedData">
-            <slot name="afterInput" v-bind="{ ...exposedData }"></slot>
+        <template #afterInput>
+            <slot name="afterInput"></slot>
         </template>
 
         <template #error="exposedData">
@@ -77,35 +78,19 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
 import { useExtendedFieldProps } from "@composables/fields";
 
-import type { QuesoSelectModel, QuesoSelectProps } from "./types";
-import type { QuesoDropdownOptionValues } from "@components/QuesoDropdown/types";
+import type { QuesoSelectMultipleModel, QuesoSelectMultipleProps } from "./types";
 
 import QuesoField from "@components/QuesoField";
 import QuesoDropdown from "@components/QuesoDropdown";
 
-const props = defineProps<QuesoSelectProps>();
+const props = defineProps<QuesoSelectMultipleProps>();
 const extendedProps = useExtendedFieldProps(props);
 
-const model = defineModel<QuesoSelectModel>({ required: true });
-
-// Writable computed because QuesoDropdown expects an array
-const dropdownModel = computed<QuesoDropdownOptionValues>({
-    get() {
-        return model.value ? [model.value] : [];
-    },
-    set(newDropdownValue) {
-        model.value = newDropdownValue[0];
-    },
-});
+const model = defineModel<QuesoSelectMultipleModel>({ required: true, default: [] });
 </script>
 
 <style lang="scss">
-.queso-select {
-    &__select-native {
-        @include accessible-item;
-    }
-}
+// Styles for select comes from QuesoSelect
 </style>
