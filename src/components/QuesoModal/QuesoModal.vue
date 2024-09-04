@@ -18,6 +18,7 @@
 
 <script setup lang="ts">
 import { ref, watch, onMounted, provide } from "vue";
+import { onKeyStroke } from "@vueuse/core";
 
 import { QuesoModalMethodsKey } from "./types";
 import type { QuesoModalMethods, QuesoModalOpen, QuesoModalClose } from "./types";
@@ -56,6 +57,12 @@ watch(isModalOpen, (isOpen) => {
 onMounted(() => {
     if (isModalOpen.value) {
         toggleOverflowOnDocument(true);
+    }
+});
+
+onKeyStroke("Escape", () => {
+    if (isModalOpen.value) {
+        isModalOpen.value = false;
     }
 });
 
