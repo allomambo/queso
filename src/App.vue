@@ -1,7 +1,7 @@
 <template>
     <h3>Fields</h3>
     <QuesoTextField name="textfield" label="QuesoTextField" v-model="TextField" />
-    <QuesoPasswordField name="password" label="QuesoPasswordField" v-model="PasswordField" />
+    <QuesoPassword name="password" label="QuesoPassword" v-model="PasswordField" />
     <QuesoTextArea name="textarea" label="QuesoTextArea" v-model="TextArea" />
     <QuesoCheckbox name="checkbox" label="QuesoCheckbox" box-label="Lorem ipsum dolor sit amet" v-model="Checkbox" />
     <QuesoSelect
@@ -119,7 +119,7 @@ import {
     QuesoSelect,
     QuesoTextArea,
     QuesoTextField,
-    QuesoPasswordField,
+    QuesoPassword,
 } from "./components";
 
 const dataOptions = [

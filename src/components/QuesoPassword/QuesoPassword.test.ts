@@ -1,14 +1,14 @@
 import { mount, shallowMount } from "@vue/test-utils";
 import { describe, expect, test } from "vitest";
-import QuesoPasswordField from "./QuesoPasswordField.vue";
+import QuesoPassword from "./QuesoPassword.vue";
 
-describe("QuesoPasswordField", () => {
+describe("QuesoPassword", () => {
     test("renders correctly the object", () => {
         const data = {
             name: "field-name",
         };
 
-        const wrapper = shallowMount(QuesoPasswordField, {
+        const wrapper = shallowMount(QuesoPassword, {
             props: data,
         });
         expect(wrapper.vm).toBeTruthy();
@@ -19,7 +19,7 @@ describe("QuesoPasswordField", () => {
             label: "field-label",
         };
 
-        const wrapper = mount(QuesoPasswordField, {
+        const wrapper = mount(QuesoPassword, {
             props: data,
         });
         expect(wrapper.find(".queso-field__label").text()).toBe(data.label);
@@ -30,7 +30,7 @@ describe("QuesoPasswordField", () => {
             name: "field-name",
         };
 
-        const wrapper = mount(QuesoPasswordField, {
+        const wrapper = mount(QuesoPassword, {
             props: data,
         });
         expect(wrapper.find(".queso-field__input").exists()).toBe(true);

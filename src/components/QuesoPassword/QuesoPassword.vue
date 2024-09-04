@@ -1,5 +1,5 @@
 <template>
-    <queso-field class="-password-field" v-bind="extendedProps">
+    <queso-field class="-password" v-bind="extendedProps">
         <template #beforeLabel>
             <slot name="beforeLabel"></slot>
         </template>
@@ -17,14 +17,14 @@
             <slot name="beforeInput"></slot>
         </template>
         <template #input="{ fieldID, fieldName, isRequired, isDisabled, isReadOnly, toggleIsActive, toggleIsHover }">
-            <div class="queso-password-field">
-                <slot name="beforePasswordFieldInput"></slot>
+            <div class="queso-password">
+                <slot name="beforePasswordInput"></slot>
 
-                <span v-if="isReadOnly" class="queso-password-field__readonly" v-html="model"></span>
+                <span v-if="isReadOnly" class="queso-password__readonly" v-html="model"></span>
 
                 <input
                     v-else
-                    class="queso-password-field__input"
+                    class="queso-password__input"
                     :type="type"
                     :id="fieldID"
                     :name="fieldName"
@@ -39,10 +39,10 @@
                     v-model="model"
                 />
 
-                <slot name="afterPasswordFieldInput"> </slot>
+                <slot name="afterPasswordInput"> </slot>
 
                 <slot name="toggleVisibilityButton" v-bind="{ togglePasswordVisibility, showPassword, hidePassword }">
-                    <button class="queso-password-field__visibility-button" @click="togglePasswordVisibility()">
+                    <button class="queso-password__visibility-button" @click="togglePasswordVisibility()">
                         <slot name="toggleVisibilityButtonIcon">◎</slot>
                     </button>
                 </slot>
@@ -63,14 +63,14 @@ import { computed, ref } from "vue";
 
 import { useExtendedFieldProps } from "@composables/fields";
 
-import type { QuesoPasswordFieldModel, QuesoPasswordFieldProps } from "./types";
+import type { QuesoPasswordModel, QuesoPasswordProps } from "./types";
 
 import QuesoField from "@components/QuesoField";
 
-const props = withDefaults(defineProps<QuesoPasswordFieldProps>(), {});
+const props = withDefaults(defineProps<QuesoPasswordProps>(), {});
 const extendedProps = useExtendedFieldProps(props);
 
-const model = defineModel<QuesoPasswordFieldModel>({ required: true, default: "" });
+const model = defineModel<QuesoPasswordModel>({ required: true, default: "" });
 
 const isPasswordShow = ref<boolean>(false);
 const type = computed(() => (isPasswordShow.value ? "text" : "password"));
@@ -89,6 +89,6 @@ const togglePasswordVisibility = () => {
 </script>
 
 <style lang="scss">
-.queso-password-field {
+.queso-password {
 }
 </style>
