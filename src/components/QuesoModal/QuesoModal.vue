@@ -1,12 +1,13 @@
 <template>
     <Teleport to="body">
         <div
+            ref="modalContainer"
             class="queso-modal"
             :class="{ 'is-modal-open': isModalOpen }"
             :aria-expanded="isModalOpen"
             v-bind="$attrs"
-            ref="target"
         >
+            <input type="text" />
             <slot name="beforeContent"></slot>
 
             <div class="queso-modal__content">
@@ -23,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, onMounted, provide } from "vue";
+import { ref, watch, onMounted, provide, computed } from "vue";
 import { useFocusTrap } from "@vueuse/integrations/useFocusTrap";
 
 import { QuesoModalMethodsKey } from "./types";
@@ -33,9 +34,8 @@ import QuesoModalOverlay from "./components/QuesoModalOverlay";
 
 const emit = defineEmits(["modal:open", "modal:close"]);
 
-const target = ref();
-const containsFocusable = ref<boolean>(false);
-const { activate, deactivate } = useFocusTrap(target);
+const modalContainer = ref<HTMLElement | null>(null);
+const { activate: activeFocus, deactivate: deactivateFocus } = useFocusTrap(modalContainer);
 
 // Active/Deactive Focus Trap
 // Active or deactivate focus trap only if the modal contains focusable elements
@@ -53,9 +53,16 @@ const focusableSelectors = [
     "[contenteditable]",
 ];
 
-const hasFocusableElements = (element: HTMLElement | null): boolean => {
+const hasFocusableElement = computed<boolean>(() => {
+    const element = modalContainer.value;
     if (!element) return false;
     return focusableSelectors.some((selector) => element.querySelector(selector) !== null);
+});
+
+const toggleFocusable = (isOpen: boolean) => {
+    if (hasFocusableElement.value) {
+        isOpen ? activeFocus() : deactivateFocus();
+    }
 };
 
 // Open/Close modal
@@ -74,30 +81,22 @@ const toggleOverflowOnDocument = (bool: boolean = true) => {
     document.documentElement.style.overflow = bool ? "hidden" : "";
 };
 
-// Update opened state
+// Update opened state and focus trap
 watch(isModalOpen, (isOpen) => {
     if (isOpen) {
+        toggleFocusable(true);
         toggleOverflowOnDocument(true);
-
-        if (containsFocusable.value) {
-            activate();
-        }
-
         emit("modal:open");
     } else {
+        toggleFocusable(false);
         toggleOverflowOnDocument(false);
-
-        if (containsFocusable.value) {
-            deactivate();
-        }
-
         emit("modal:close");
     }
 });
 
 onMounted(() => {
-    containsFocusable.value = hasFocusableElements(target.value);
     if (isModalOpen.value) {
+        toggleFocusable(true);
         toggleOverflowOnDocument(true);
     }
 });
