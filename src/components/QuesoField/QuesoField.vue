@@ -6,20 +6,20 @@
             :for="!hasStaticLabel ? fieldID : null"
             class="queso-field__label"
         >
-            <slot name="beforeLabel"></slot>
-            <slot name="label" v-bind="{ label }">
+            <slot name="beforeLabel" v-bind="{ ...exposedData }"></slot>
+            <slot name="label" v-bind="{ label, ...exposedData }">
                 <span class="queso-field__label__text" v-html="label"></span>
             </slot>
-            <slot v-if="isRequired" name="required" v-bind="{ isRequired }">
+            <slot v-if="isRequired" name="required" v-bind="{ ...exposedData }">
                 <span class="queso-field__label__required">*</span>
             </slot>
-            <slot name="afterLabel"></slot>
+            <slot name="afterLabel" v-bind="{ ...exposedData }"></slot>
         </component>
 
         <div class="queso-field__input">
-            <slot name="beforeInput"></slot>
+            <slot name="beforeInput" v-bind="{ ...exposedData }"></slot>
             <slot name="input" v-bind="{ ...exposedData }"></slot>
-            <slot name="afterInput"></slot>
+            <slot name="afterInput" v-bind="{ ...exposedData }"></slot>
         </div>
 
         <div v-if="isError && $slots.error" class="queso-field__error">
