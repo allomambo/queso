@@ -67,22 +67,90 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<{
         type: import('vue').PropType<import('../QuesoField').QuesoFieldBaseExtraAttributes>;
     };
 }>>, {}, {}>, {
-    beforeLabel?(_: {}): any;
+    beforeLabel?(_: {
+        fieldID: string;
+        fieldName: string;
+        fieldLabel: string | undefined;
+        isRequired: boolean;
+        isActive: boolean;
+        isHover: boolean;
+        isDisabled: boolean;
+        isError: boolean;
+        isReadOnly: boolean;
+        toggleIsActive: (bool?: boolean) => void;
+        toggleIsHover: (bool?: boolean) => void;
+    }): any;
     label?(_: {
-        label: string;
+        fieldID: string;
+        fieldName: string;
+        fieldLabel: string | undefined;
+        isRequired: boolean;
+        isActive: boolean;
+        isHover: boolean;
+        isDisabled: boolean;
+        isError: boolean;
+        isReadOnly: boolean;
+        toggleIsActive: (bool?: boolean) => void;
+        toggleIsHover: (bool?: boolean) => void;
     }): any;
     required?(_: {
-        isRequired: true;
+        fieldID: string;
+        fieldName: string;
+        fieldLabel: string | undefined;
+        isRequired: boolean;
+        isActive: boolean;
+        isHover: boolean;
+        isDisabled: boolean;
+        isError: boolean;
+        isReadOnly: boolean;
+        toggleIsActive: (bool?: boolean) => void;
+        toggleIsHover: (bool?: boolean) => void;
     }): any;
-    afterLabel?(_: {}): any;
-    beforeInput?(_: {}): any;
+    afterLabel?(_: {
+        fieldID: string;
+        fieldName: string;
+        fieldLabel: string | undefined;
+        isRequired: boolean;
+        isActive: boolean;
+        isHover: boolean;
+        isDisabled: boolean;
+        isError: boolean;
+        isReadOnly: boolean;
+        toggleIsActive: (bool?: boolean) => void;
+        toggleIsHover: (bool?: boolean) => void;
+    }): any;
+    beforeInput?(_: {
+        fieldID: string;
+        fieldName: string;
+        fieldLabel: string | undefined;
+        isRequired: boolean;
+        isActive: boolean;
+        isHover: boolean;
+        isDisabled: boolean;
+        isError: boolean;
+        isReadOnly: boolean;
+        toggleIsActive: (bool?: boolean) => void;
+        toggleIsHover: (bool?: boolean) => void;
+    }): any;
     checkboxBox?(_: {}): any;
     checkboxBoxSymbol?(_: {}): any;
     checkboxLabel?(_: {}): any;
     checkboxLabelRequired?(_: {
         isRequired: true;
     }): any;
-    afterInput?(_: {}): any;
+    afterInput?(_: {
+        fieldID: string;
+        fieldName: string;
+        fieldLabel: string | undefined;
+        isRequired: boolean;
+        isActive: boolean;
+        isHover: boolean;
+        isDisabled: boolean;
+        isError: boolean;
+        isReadOnly: boolean;
+        toggleIsActive: (bool?: boolean) => void;
+        toggleIsHover: (bool?: boolean) => void;
+    }): any;
     error?(_: {
         fieldID: string;
         fieldName: string;

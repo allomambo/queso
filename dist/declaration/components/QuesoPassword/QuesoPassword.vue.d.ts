@@ -25,10 +25,6 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<{
     isReadOnly: {
         type: import('vue').PropType<boolean>;
     };
-    type: {
-        type: import('vue').PropType<import('./types').QuesoTextFieldType>;
-        default: string;
-    };
     extraAttributes: {
         type: import('vue').PropType<import('../QuesoField').QuesoFieldBaseExtraAttributes>;
     };
@@ -62,32 +58,14 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<{
     isReadOnly: {
         type: import('vue').PropType<boolean>;
     };
-    type: {
-        type: import('vue').PropType<import('./types').QuesoTextFieldType>;
-        default: string;
-    };
     extraAttributes: {
         type: import('vue').PropType<import('../QuesoField').QuesoFieldBaseExtraAttributes>;
     };
     placeholder: {
         type: import('vue').PropType<string>;
     };
-}>>, {
-    type: import('./types').QuesoTextFieldType;
-}, {}>, {
-    beforeLabel?(_: {
-        fieldID: string;
-        fieldName: string;
-        fieldLabel: string | undefined;
-        isRequired: boolean;
-        isActive: boolean;
-        isHover: boolean;
-        isDisabled: boolean;
-        isError: boolean;
-        isReadOnly: boolean;
-        toggleIsActive: (bool?: boolean) => void;
-        toggleIsHover: (bool?: boolean) => void;
-    }): any;
+}>>, {}, {}>, {
+    beforeLabel?(_: {}): any;
     label?(_: {
         fieldID: string;
         fieldName: string;
@@ -114,47 +92,17 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<{
         toggleIsActive: (bool?: boolean) => void;
         toggleIsHover: (bool?: boolean) => void;
     }): any;
-    afterLabel?(_: {
-        fieldID: string;
-        fieldName: string;
-        fieldLabel: string | undefined;
-        isRequired: boolean;
-        isActive: boolean;
-        isHover: boolean;
-        isDisabled: boolean;
-        isError: boolean;
-        isReadOnly: boolean;
-        toggleIsActive: (bool?: boolean) => void;
-        toggleIsHover: (bool?: boolean) => void;
+    afterLabel?(_: {}): any;
+    beforeInput?(_: {}): any;
+    beforePasswordInput?(_: {}): any;
+    afterPasswordInput?(_: {}): any;
+    toggleVisibilityButton?(_: {
+        togglePasswordVisibility: () => void;
+        showPassword: () => void;
+        hidePassword: () => void;
     }): any;
-    beforeInput?(_: {
-        fieldID: string;
-        fieldName: string;
-        fieldLabel: string | undefined;
-        isRequired: boolean;
-        isActive: boolean;
-        isHover: boolean;
-        isDisabled: boolean;
-        isError: boolean;
-        isReadOnly: boolean;
-        toggleIsActive: (bool?: boolean) => void;
-        toggleIsHover: (bool?: boolean) => void;
-    }): any;
-    beforeTextFieldInput?(_: {}): any;
-    afterTextFieldInput?(_: {}): any;
-    afterInput?(_: {
-        fieldID: string;
-        fieldName: string;
-        fieldLabel: string | undefined;
-        isRequired: boolean;
-        isActive: boolean;
-        isHover: boolean;
-        isDisabled: boolean;
-        isError: boolean;
-        isReadOnly: boolean;
-        toggleIsActive: (bool?: boolean) => void;
-        toggleIsHover: (bool?: boolean) => void;
-    }): any;
+    toggleVisibilityButtonIcon?(_: {}): any;
+    afterInput?(_: {}): any;
     error?(_: {
         fieldID: string;
         fieldName: string;
