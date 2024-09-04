@@ -3,12 +3,15 @@ import { default as QuesoDropdown } from './components/QuesoDropdown';
 import { default as QuesoModal } from './components/QuesoModal';
 import { default as QuesoCollapsible } from './components/QuesoCollapsible';
 import { default as QuesoScrollable } from './components/QuesoScrollable';
-import { default as QuesoIcon } from './components/QuesoIcon';
 import { default as QuesoField } from './components/QuesoField';
 import { default as QuesoTextField } from './components/QuesoTextField';
 import { default as QuesoTextArea } from './components/QuesoTextArea';
 import { default as QuesoCheckbox } from './components/QuesoCheckbox';
+import { default as QuesoCheckboxMultiple } from './components/QuesoCheckboxMultiple';
 import { default as QuesoSelect } from './components/QuesoSelect';
+import { default as QuesoPassword } from './components/QuesoPassword';
+import { default as QuesoSelectMultiple } from './components/QuesoSelectMultiple';
+import { default as QuesoRadio } from './components/QuesoRadio';
 import { default as QuesoFieldLegacy } from './components/_legacy/QuesoField';
 import { default as QuesoDropdownLegacy } from './components/_legacy/QuesoDropdown';
 import { default as QuesoTextFieldLegacy } from './components/_legacy/QuesoTextField';
@@ -17,4 +20,4 @@ import { default as QuesoCheckboxLegacy } from './components/_legacy/QuesoCheckb
 import { default as QuesoSelectLegacy } from './components/_legacy/QuesoSelect';
 import { default as QuesoSwitchLegacy } from './components/_legacy/QuesoSwitch';
 
-export { QuesoClickable, QuesoDropdown, QuesoModal, QuesoCollapsible, QuesoScrollable, QuesoIcon, QuesoField, QuesoTextField, QuesoTextArea, QuesoCheckbox, QuesoSelect, QuesoFieldLegacy, QuesoDropdownLegacy, QuesoTextFieldLegacy, QuesoTextAreaLegacy, QuesoCheckboxLegacy, QuesoSelectLegacy, QuesoSwitchLegacy, };
+export { QuesoClickable, QuesoDropdown, QuesoModal, QuesoCollapsible, QuesoScrollable, QuesoField, QuesoTextField, QuesoTextArea, QuesoCheckbox, QuesoCheckboxMultiple, QuesoSelect, QuesoPassword, QuesoSelectMultiple, QuesoRadio, QuesoFieldLegacy, QuesoDropdownLegacy, QuesoTextFieldLegacy, QuesoTextAreaLegacy, QuesoCheckboxLegacy, QuesoSelectLegacy, QuesoSwitchLegacy, };
