@@ -54,9 +54,8 @@ const focusableSelectors = [
 ];
 
 const hasFocusableElement = computed<boolean>(() => {
-    const element = modalContainer.value;
-    if (!element) return false;
-    return focusableSelectors.some((selector) => element.querySelector(selector) !== null);
+    if (modalContainer.value === null) return false;
+    return focusableSelectors.some((selector) => modalContainer.value!.querySelector(selector) !== null);
 });
 
 const toggleFocusable = (isOpen: boolean) => {
