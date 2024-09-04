@@ -1,13 +1,14 @@
 {
     "name": "@allomambo/queso",
-    "version": "0.1.1",
+    "version": "0.2.0",
     "description": "VueJS component library to use in conjunction with Arepa",
     "repository": "https://github.com/allomambo/queso.git",
     "author": "MamboMambo <allo@mambomambo.ca> (https://mambomambo.ca)",
     "contributors": [
         "Alexandre Belley <ab@mambomambo.ca> (https://mambomambo.ca/)",
         "Maxime Lafrenière <jesuis@maximelafreniere.com> (https://maximelafreniere.com)",
-        "Aurélien Vigne <yay@aurelienvigne.com> (http://www.aurelienvigne.com)"
+        "Aurélien Vigne <yay@aurelienvigne.com> (http://www.aurelienvigne.com)",
+        "Antoine Savard <antoinesavard8@gmail.com>"
     ],
     "license": "MIT",
     "type": "module",
