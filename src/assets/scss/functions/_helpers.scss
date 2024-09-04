@@ -19,18 +19,6 @@
     @return math.div($value, $ratio) + em;
 }
 
-// Check if value is a sass:map
-// @return {boolean}
-@function is-map($var) {
-    @return type-of($var) == "map";
-}
-
-// Check if value exist in map
-// @return {boolean}
-@function index-exists($map, $val) {
-    @return index($map, $val) != null;
-}
-
 // Determines whether two values have the same units
 // @return {boolean}
 @function units-are-same($value1, $value2) {

@@ -89,16 +89,14 @@ module.exports = {
 
 ```
 import {
-    checkStatus,
-    arrayToGraphQL,
-    typeCheck,
-    mutateState,
-    resizeEnd,
-    mailTo,
-    tel,
-    toKebab,
     capitalize,
-    isTouch,
-    reducedMotion,
-} from "@allomambo/queso/scripts/utils";
+    firstObjectOfArray,
+    mailTo,
+    resizeEnd,
+    tel,
+    toCamelCase,
+    toKebabCase,
+    toPascalCase,
+    toSnakeCase,
+} from "@allomambo/queso/utils";
 ```
