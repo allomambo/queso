@@ -30,6 +30,7 @@
         :options="dataOptions"
         v-model="SelectMultiple"
     />
+    <QuesoRadio name="radio" label="QuesoRadio" :choices="dataChoices" v-model="Radio" />
     <hr />
 
     <h3>QuesoClickable</h3>
@@ -135,7 +136,9 @@ import {
     QuesoSelectMultiple,
     QuesoTextArea,
     QuesoTextField,
+    QuesoRadio,
 } from "./components";
+import { c } from "vite/dist/node/types.d-aGj9QkWt";
 
 const dataOptions = [
     {
@@ -224,6 +227,7 @@ const Checkbox = ref(true);
 const CheckboxMultiple = ref(["dance-and-electronic", "folk-and-acoustic"]);
 const Select = ref("");
 const SelectMultiple = ref([]);
+const Radio = ref("");
 
 // Grid
 const gridColumns = 8;
