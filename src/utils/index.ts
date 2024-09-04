@@ -17,22 +17,7 @@ import toKebabCase from "./toKebabCase";
 import toPascalCase from "./toPascalCase";
 import toSnakeCase from "./toSnakeCase";
 
-const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const isTouch = "ontouchstart" in document.documentElement;
-
 /**
  * Exports
  */
-export {
-    capitalize,
-    firstObjectOfArray,
-    mailTo,
-    resizeEnd,
-    tel,
-    toCamelCase,
-    toKebabCase,
-    toPascalCase,
-    toSnakeCase,
-    isTouch,
-    reducedMotion,
-};
+export { capitalize, firstObjectOfArray, mailTo, resizeEnd, tel, toCamelCase, toKebabCase, toPascalCase, toSnakeCase };
