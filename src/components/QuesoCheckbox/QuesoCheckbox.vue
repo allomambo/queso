@@ -1,7 +1,7 @@
 <template>
     <queso-field class="-checkbox" static-label v-bind="extendedProps">
-        <template #beforeLabel>
-            <slot name="beforeLabel"></slot>
+        <template #beforeLabel="exposedData">
+            <slot name="beforeLabel" v-bind="{ ...exposedData }"></slot>
         </template>
         <template #label="exposedData">
             <slot name="label" v-bind="{ ...exposedData }"></slot>
@@ -9,12 +9,12 @@
         <template #required="exposedData">
             <slot name="required" v-bind="{ ...exposedData }"></slot>
         </template>
-        <template #afterLabel>
-            <slot name="afterLabel"></slot>
+        <template #afterLabel="exposedData">
+            <slot name="afterLabel" v-bind="{ ...exposedData }"></slot>
         </template>
 
-        <template #beforeInput>
-            <slot name="beforeInput"></slot>
+        <template #beforeInput="exposedData">
+            <slot name="beforeInput" v-bind="{ ...exposedData }"></slot>
         </template>
         <template #input="{ fieldID, fieldName, isRequired, isDisabled, isReadOnly, toggleIsActive, toggleIsHover }">
             <component
@@ -57,8 +57,8 @@
                 />
             </component>
         </template>
-        <template #afterInput>
-            <slot name="afterInput"></slot>
+        <template #afterInput="exposedData">
+            <slot name="afterInput" v-bind="{ ...exposedData }"></slot>
         </template>
 
         <template #error="exposedData">
