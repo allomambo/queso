@@ -28,6 +28,7 @@ import type {
     QuesoSelectMultipleOptions,
     QuesoSelectMultipleProps,
 } from "@components/QuesoSelectMultiple";
+import type { QuesoRadioModel, QuesoRadioChoices, QuesoRadioProps } from "@components/QuesoRadio";
 
 /*====================================
 =              EXPORTS               =
@@ -80,4 +81,8 @@ export type {
     QuesoSelectMultipleModel,
     QuesoSelectMultipleOptions,
     QuesoSelectMultipleProps,
+    // Radio
+    QuesoRadioModel,
+    QuesoRadioChoices,
+    QuesoRadioProps,
 };
