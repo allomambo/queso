@@ -29,6 +29,7 @@ import type {
     QuesoSelectMultipleProps,
 } from "@components/QuesoSelectMultiple";
 import type { QuesoRadioModel, QuesoRadioChoices, QuesoRadioProps } from "@components/QuesoRadio";
+import type { QuesoPasswordModel, QuesoPasswordProps } from "@components/QuesoPassword";
 
 /*====================================
 =              EXPORTS               =
@@ -85,4 +86,7 @@ export type {
     QuesoRadioModel,
     QuesoRadioChoices,
     QuesoRadioProps,
+    // Password
+    QuesoPasswordModel,
+    QuesoPasswordProps,
 };
