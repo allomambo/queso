@@ -37,9 +37,6 @@
                 <slot name="checkboxLabel">
                     <span class="queso-checkbox__label">
                         <span class="queso-checkbox__label__text" v-html="choice.label"></span>
-                        <slot v-if="isRequired" name="checkboxLabelRequired" v-bind="{ isRequired }">
-                            <span class="queso-checkbox__label__required">*</span>
-                        </slot>
                     </span>
                 </slot>
 
