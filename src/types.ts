@@ -9,7 +9,6 @@ import type {
     QuesoDropdownOptions,
     QuesoDropdownProps,
 } from "@components/QuesoDropdown";
-import type { QuesoIconSizeUnit, QuesoIconProps } from "@components/QuesoIcon";
 import type { QuesoModalOpen, QuesoModalClose, QuesoModalMethods } from "@components/QuesoModal";
 import type { QuesoScrollableProps } from "@components/QuesoScrollable";
 
@@ -39,9 +38,6 @@ export type {
     QuesoDropdownOption,
     QuesoDropdownOptions,
     QuesoDropdownProps,
-    // Icon
-    QuesoIconSizeUnit,
-    QuesoIconProps,
     // Modal
     QuesoModalOpen,
     QuesoModalClose,
