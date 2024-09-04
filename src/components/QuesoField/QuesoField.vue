@@ -7,8 +7,8 @@
             class="queso-field__label"
         >
             <slot name="beforeLabel" v-bind="{ ...exposedData }"></slot>
-            <slot name="label" v-bind="{ label, ...exposedData }">
-                <span class="queso-field__label__text" v-html="label"></span>
+            <slot name="label" v-bind="{ ...exposedData }">
+                <span class="queso-field__label__text" v-html="fieldLabel"></span>
             </slot>
             <slot v-if="isRequired" name="required" v-bind="{ ...exposedData }">
                 <span class="queso-field__label__required">*</span>
