@@ -1,5 +1,5 @@
 import { mount } from "@vue/test-utils";
-import { describe, it, expect } from "vitest";
+import { describe, expect, test } from "vitest";
 import QuesoRadio from "./QuesoRadio.vue";
 
 describe("QuesoRadio.vue", () => {
@@ -10,27 +10,28 @@ describe("QuesoRadio.vue", () => {
 
     const props = {
         choices,
+        modelValue: "",
     };
 
-    it("renders correctly", () => {
+    test("renders correctly", () => {
         const wrapper = mount(QuesoRadio, { props });
         expect(wrapper.exists()).toBe(true);
     });
 
-    it("renders checkboxes based on choices prop", () => {
+    test("renders radio buttons based on choices prop", () => {
         const wrapper = mount(QuesoRadio, { props });
-        const checkboxes = wrapper.findAll(".queso-checkbox__native");
-        expect(checkboxes.length).toBe(choices.length);
+        const radioButtons = wrapper.findAll(".queso-radio__native");
+        expect(radioButtons.length).toBe(choices.length);
     });
 
-    it("updates model when checkbox is clicked", async () => {
+    test("updates model when a radio button is selected", async () => {
         const wrapper = mount(QuesoRadio, { props });
-        const checkbox = wrapper.find(".queso-checkbox__native");
-        await checkbox.setChecked();
-        expect(wrapper.vm.model.value).toContain("choice1");
+        const radioButton = wrapper.find(".queso-radio__native");
+        await radioButton.setChecked();
+        expect(wrapper.emitted()["update:modelValue"][0]).toEqual(["choice1"]);
     });
 
-    it("renders slots correctly", () => {
+    test("renders slots correctly", () => {
         const wrapper = mount(QuesoRadio, {
             props,
             slots: {
