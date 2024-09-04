@@ -28,6 +28,7 @@
         "./styles/core": "./src/assets/scss/main.scss",
         "./styles/reset": "./src/assets/scss/ress.scss",
         "./scripts/utils": "./src/utils/index.ts",
+        "./utils": "./src/utils/index.ts",
         "./*": "./dist/*"
     },
     "engines": {

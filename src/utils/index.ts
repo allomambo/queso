@@ -2,7 +2,7 @@
  * Utilities
  *
  * Usage:
- * import { aFunction } from "@/utils";
+ * import { aFunction } from "@allomambo/queso/utils";
  * aFunction()
  *
  */
