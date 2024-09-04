@@ -1,6 +1,7 @@
 <template>
     <h3>Fields</h3>
     <QuesoTextField name="textfield" label="QuesoTextField" v-model="TextField" />
+    <QuesoPassword name="password" label="QuesoPassword" v-model="PasswordField" />
     <QuesoTextArea name="textarea" label="QuesoTextArea" v-model="TextArea" />
     <QuesoCheckbox
         name="checkbox"
@@ -136,6 +137,7 @@ import {
     QuesoSelectMultiple,
     QuesoTextArea,
     QuesoTextField,
+    QuesoPassword,
     QuesoRadio,
 } from "./components";
 import { c } from "vite/dist/node/types.d-aGj9QkWt";
@@ -222,6 +224,7 @@ const openModal = () => {
 
 // Fields
 const TextField = ref("text field value");
+const PasswordField = ref("");
 const TextArea = ref("text area value");
 const Checkbox = ref(true);
 const CheckboxMultiple = ref(["dance-and-electronic", "folk-and-acoustic"]);

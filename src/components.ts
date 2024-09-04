@@ -12,6 +12,7 @@ import QuesoTextArea from "@components/QuesoTextArea";
 import QuesoCheckbox from "@components/QuesoCheckbox";
 import QuesoCheckboxMultiple from "@components/QuesoCheckboxMultiple";
 import QuesoSelect from "@components/QuesoSelect";
+import QuesoPassword from "@components/QuesoPassword";
 import QuesoSelectMultiple from "@components/QuesoSelectMultiple";
 import QuesoRadio from "@components/QuesoRadio";
 
@@ -44,6 +45,7 @@ export {
     QuesoCheckbox,
     QuesoCheckboxMultiple,
     QuesoSelect,
+    QuesoPassword,
     QuesoSelectMultiple,
     QuesoRadio,
 
