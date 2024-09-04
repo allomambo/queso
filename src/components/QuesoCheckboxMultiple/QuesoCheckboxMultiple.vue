@@ -1,5 +1,5 @@
 <template>
-    <queso-field class="-checkbox" static-label v-bind="extendedProps">
+    <queso-field class="-checkbox-multiple" static-label v-bind="extendedProps">
         <template #beforeLabel>
             <slot name="beforeLabel"></slot>
         </template>
@@ -18,10 +18,11 @@
         </template>
         <template #input="{ fieldID, fieldName, isRequired, isDisabled, isReadOnly, toggleIsActive, toggleIsHover }">
             <component
+                v-for="choice in choices"
                 :is="isReadOnly ? 'div' : 'label'"
                 class="queso-checkbox"
-                :class="{ 'is-checked': isChecked }"
-                :for="!isReadOnly ? fieldID : null"
+                :class="{ 'is-checked': choice.isChecked }"
+                :for="!isReadOnly ? `${fieldID}-${choice.value}` : null"
                 @mouseover="toggleIsHover(true)"
                 @mouseleave="toggleIsHover(false)"
             >
@@ -35,7 +36,7 @@
 
                 <slot name="checkboxLabel">
                     <span class="queso-checkbox__label">
-                        <span class="queso-checkbox__label__text" v-html="boxLabel"></span>
+                        <span class="queso-checkbox__label__text" v-html="choice.label"></span>
                         <slot v-if="isRequired" name="checkboxLabelRequired" v-bind="{ isRequired }">
                             <span class="queso-checkbox__label__required">*</span>
                         </slot>
@@ -46,14 +47,14 @@
                     v-if="!isReadOnly"
                     class="queso-checkbox__native"
                     type="checkbox"
-                    :id="fieldID"
-                    :name="fieldName"
+                    :id="`${fieldID}-${choice.value}`"
+                    :name="`${fieldName}[]`"
                     :required="isRequired"
                     :disabled="isDisabled"
                     @focus="toggleIsActive(true)"
                     @blur="toggleIsActive(false)"
                     v-bind="extraAttributes"
-                    v-model="model"
+                    v-model="choice.isChecked"
                 />
             </component>
         </template>
@@ -68,10 +69,10 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, reactive, watch } from "vue";
 import { useExtendedFieldProps } from "@composables/fields";
 
-import type { QuesoCheckboxMultipleModel, QuesoCheckboxMultipleProps } from "./types";
+import type { QuesoCheckboxMultipleModel, QuesoCheckboxMultipleProps, QuesoCheckboxMultipleChoices } from "./types";
 
 import QuesoField from "@components/QuesoField";
 
@@ -79,7 +80,24 @@ const props = defineProps<QuesoCheckboxMultipleProps>();
 const extendedProps = useExtendedFieldProps(props);
 
 const model = defineModel<QuesoCheckboxMultipleModel>({ required: true, default: [] });
-const isChecked = computed<boolean>(() => !!model.value);
+
+// Convert the choices to reactive objects
+// Add the isChecked property to each choice if not present
+const choices: QuesoCheckboxMultipleChoices = reactive(
+    props.choices.map((choice) => ({ isChecked: false, ...choice })),
+);
+const checkedChoices = computed<QuesoCheckboxMultipleModel>(() =>
+    choices.filter((choice) => choice.isChecked).map((choice) => choice.value),
+);
+
+// Update the model when the checked choices change
+watch(
+    checkedChoices,
+    (value) => {
+        model.value = value;
+    },
+    { immediate: true },
+);
 </script>
 
 <style lang="scss">
