@@ -11,6 +11,7 @@ import QuesoField from "@components/QuesoField";
 import QuesoTextField from "@components/QuesoTextField";
 import QuesoTextArea from "@components/QuesoTextArea";
 import QuesoCheckbox from "@components/QuesoCheckbox";
+import QuesoCheckboxMultiple from "@components/QuesoCheckboxMultiple";
 import QuesoSelect from "@components/QuesoSelect";
 import QuesoPassword from "@components/QuesoPassword";
 
@@ -42,6 +43,7 @@ export {
     QuesoTextField,
     QuesoTextArea,
     QuesoCheckbox,
+    QuesoCheckboxMultiple,
     QuesoSelect,
     QuesoPassword,
 

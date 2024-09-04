@@ -16,31 +16,46 @@
     &:after {
         @include unselectable;
         content: "";
-        position: absolute;
+        position: var(--overflow-shadow-position, absolute);
         z-index: var(--overflow-shadow-z, 9);
-        background: linear-gradient(
-            var(--overflow-shadow-direction),
-            var(--overflow-shadow-color, #{$color}),
-            transparent
+        background: var(
+            --overflow-shadow-background,
+            linear-gradient(
+                var(--overflow-shadow-direction),
+                var(--overflow-shadow-color, #{$color}),
+                transparent
+            )
         );
         @if $orientation == "vertical" {
-            width: 100%;
             height: var(--overflow-shadow-size, #{$size});
-            left: 0;
+            left: var(
+                --overflow-shadow-offset-left,
+                var(--overflow-shadow-offset, 0)
+            );
+            right: var(
+                --overflow-shadow-offset-right,
+                var(--overflow-shadow-offset, 0)
+            );
         } @else {
             width: var(--overflow-shadow-size, #{$size});
-            height: 100%;
-            top: 0;
+            top: var(
+                --overflow-shadow-offset-top,
+                var(--overflow-shadow-offset, 0)
+            );
+            bottom: var(
+                --overflow-shadow-offset-bottom,
+                var(--overflow-shadow-offset, 0)
+            );
         }
     }
 
     &:before {
         @if $orientation == "vertical" {
             --overflow-shadow-direction: 180deg;
-            top: 0;
+            top: var(--overflow-shadow-before-top, 0);
         } @else {
             --overflow-shadow-direction: 90deg;
-            left: 0;
+            left: var(--overflow-shadow-before-left, 0);
         }
         opacity: var(--overflow-shadow-before-opacity, 1);
     }
@@ -48,10 +63,10 @@
     &:after {
         @if $orientation == "vertical" {
             --overflow-shadow-direction: 0deg;
-            bottom: 0;
+            bottom: var(--overflow-shadow-after-bottom, 0);
         } @else {
             --overflow-shadow-direction: -90deg;
-            right: 0;
+            right: var(--overflow-shadow-after-right, 0);
         }
         opacity: var(--overflow-shadow-after-opacity, 1);
     }

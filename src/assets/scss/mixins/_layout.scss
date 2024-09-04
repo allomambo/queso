@@ -7,13 +7,14 @@
     $top: 0,
     $right: 0,
     $bottom: 0,
-    $left: 0
+    $left: 0,
+    $var-prefix: "fullscreen"
 ) {
-    position: $position;
-    top: $top;
-    right: $right;
-    bottom: $bottom;
-    left: $left;
+    position: var(--#{$var-prefix}-position, $position);
+    top: var(--#{$var-prefix}-top, $top);
+    right: var(--#{$var-prefix}-right, $right);
+    bottom: var(--#{$var-prefix}-bottom, $bottom);
+    left: var(--#{$var-prefix}-left, $left);
 }
 
 @mixin center-viewport($width: 100vw) {
@@ -48,10 +49,17 @@
 }
 
 @mixin overflow($orientation: "vertical") {
-    overflow-y: auto;
+    $valid-orientation: horizontal, vertical, both;
+    @if not index($valid-orientation, $orientation) {
+        @error "'#{$orientation}' is not a valid orientation. Choose between : #{$valid-orientation}.";
+    }
 
     @if ($orientation == "horizontal") {
         overflow-x: auto;
+    } @else if ($orientation == "vertical") {
+        overflow-y: auto;
+    } @else {
+        overflow: auto;
     }
 
     @include hide-scrollbar;
