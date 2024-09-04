@@ -12,6 +12,7 @@ import QuesoTextArea from "@components/QuesoTextArea";
 import QuesoCheckbox from "@components/QuesoCheckbox";
 import QuesoCheckboxMultiple from "@components/QuesoCheckboxMultiple";
 import QuesoSelect from "@components/QuesoSelect";
+import QuesoSelectMultiple from "@components/QuesoSelectMultiple";
 
 // Legacy Fields
 // Keep these for backwards compatibility. Will be removed in version v1.0.0
@@ -42,6 +43,7 @@ export {
     QuesoCheckbox,
     QuesoCheckboxMultiple,
     QuesoSelect,
+    QuesoSelectMultiple,
 
     // Legacy Fields
     QuesoFieldLegacy,

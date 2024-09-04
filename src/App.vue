@@ -23,6 +23,13 @@
         :options="dataOptions"
         v-model="Select"
     />
+    <QuesoSelectMultiple
+        name="selectMultiple"
+        label="QuesoSelectMultiple"
+        placeholder="Select options"
+        :options="dataOptions"
+        v-model="SelectMultiple"
+    />
     <hr />
 
     <h3>QuesoClickable</h3>
@@ -125,6 +132,7 @@ import {
     QuesoModal,
     QuesoScrollable,
     QuesoSelect,
+    QuesoSelectMultiple,
     QuesoTextArea,
     QuesoTextField,
 } from "./components";
@@ -215,6 +223,7 @@ const TextArea = ref("text area value");
 const Checkbox = ref(true);
 const CheckboxMultiple = ref(["dance-and-electronic", "folk-and-acoustic"]);
 const Select = ref("");
+const SelectMultiple = ref([]);
 
 // Grid
 const gridColumns = 8;
