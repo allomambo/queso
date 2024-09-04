@@ -8,11 +8,16 @@
     height: auto;
 }
 
-@mixin object-fit($fit: cover, $position: 50% 50%) {
-    width: var(--img-width, 100%);
-    height: var(--img-height, 100%);
-    object-fit: var(--img-object-fit, $fit);
-    object-position: var(--img-object-position, $position);
+@mixin object-fit($fit: cover, $position: 50% 50%, $var-prefix: "obj") {
+    $valid-fit: cover, contain, fill, none, scale-down;
+    @if not index($valid-fit, $fit) {
+        @error "'#{$fit}' is not a valid fit. Choose between : #{$valid-fit}.";
+    }
+
+    width: var(--#{$var-prefix}-width, 100%);
+    height: var(--#{$var-prefix}-height, 100%);
+    object-fit: var(--#{$var-prefix}-object-fit, $fit);
+    object-position: var(--#{$var-prefix}-object-position, $position);
 }
 
 // Pure CSS triangle
@@ -65,23 +70,4 @@
 
     background: nth(nth($color-stops, 1), 1);
     background: linear-gradient($direction, $color-stops);
-}
-
-// Border radius
-@mixin radius(
-    $radiusTop: 1em,
-    $radiusRight: 1em,
-    $radiusBottom: 1em,
-    $radiusLeft: 1em
-) {
-    border-radius: $radiusTop $radiusRight $radiusBottom $radiusLeft; /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
-
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-}
-
-@mixin rounded-corners($radius: 1em) {
-    @include radius($radius, $radius, $radius, $radius);
 }
