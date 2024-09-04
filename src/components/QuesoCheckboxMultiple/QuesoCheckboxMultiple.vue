@@ -84,7 +84,7 @@ const model = defineModel<QuesoCheckboxMultipleModel>({ required: true, default:
 // Convert the choices to reactive objects
 // Add the isChecked property to each choice if not present
 const choices: QuesoCheckboxMultipleChoices = reactive(
-    props.choices.map((choice) => ({ isChecked: false, ...choice })),
+    props.choices.map((choice) => ({ isChecked: model.value.includes(choice.value), ...choice })),
 );
 const checkedChoices = computed<QuesoCheckboxMultipleModel>(() =>
     choices.filter((choice) => choice.isChecked).map((choice) => choice.value),

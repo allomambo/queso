@@ -16,7 +16,6 @@
         is-required
         v-model="CheckboxMultiple"
     />
-    <pre>{{ CheckboxMultiple }}</pre>
     <QuesoSelect
         name="select"
         label="QuesoSelect"
@@ -193,7 +192,6 @@ const dataChoices = [
     {
         value: "funk-and-disco",
         label: "Funk and Disco",
-        isChecked: true,
     },
     {
         value: "folk-and-acoustic",
@@ -220,7 +218,7 @@ const openModal = () => {
 const TextField = ref("text field value");
 const TextArea = ref("text area value");
 const Checkbox = ref(true);
-const CheckboxMultiple = ref([]);
+const CheckboxMultiple = ref(["dance-and-electronic", "folk-and-acoustic"]);
 const Select = ref("");
 
 // Grid
