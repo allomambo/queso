@@ -17,7 +17,17 @@ import type { QuesoFieldBaseExtraAttributes, QuesoFieldBase, QuesoFieldProps } f
 import type { QuesoTextFieldModel, QuesoTextFieldType, QuesoTextFieldProps } from "@components/QuesoTextField";
 import type { QuesoTextAreaModel, QuesoTextAreaProps } from "@components/QuesoTextArea";
 import type { QuesoCheckboxModel, QuesoCheckboxProps } from "@components/QuesoCheckbox";
+import type {
+    QuesoCheckboxMultipleModel,
+    QuesoCheckboxMultipleChoices,
+    QuesoCheckboxMultipleProps,
+} from "@components/QuesoCheckboxMultiple";
 import type { QuesoSelectModel, QuesoSelectProps } from "@components/QuesoSelect";
+import type {
+    QuesoSelectMultipleModel,
+    QuesoSelectMultipleOptions,
+    QuesoSelectMultipleProps,
+} from "@components/QuesoSelectMultiple";
 
 /*====================================
 =              EXPORTS               =
@@ -61,7 +71,13 @@ export type {
     // Checkbox
     QuesoCheckboxModel,
     QuesoCheckboxProps,
+    QuesoCheckboxMultipleModel,
+    QuesoCheckboxMultipleChoices,
+    QuesoCheckboxMultipleProps,
     // Select
     QuesoSelectModel,
     QuesoSelectProps,
+    QuesoSelectMultipleModel,
+    QuesoSelectMultipleOptions,
+    QuesoSelectMultipleProps,
 };
