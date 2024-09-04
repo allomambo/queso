@@ -1,38 +1,57 @@
-import { mount, shallowMount } from "@vue/test-utils";
-import { describe, expect, test } from "vitest";
+import { mount } from "@vue/test-utils";
+import { describe, it, expect } from "vitest";
 import QuesoCheckboxMultiple from "./QuesoCheckboxMultiple.vue";
 
-describe("QuesoCheckboxMultiple", () => {
-    test("renders correctly the object", () => {
-        const data = {
-            name: "field-name",
-        };
+describe("QuesoCheckboxMultiple.vue", () => {
+    const choices = [
+        { value: "choice1", label: "Choice 1" },
+        { value: "choice2", label: "Choice 2" },
+    ];
 
-        const wrapper = shallowMount(QuesoCheckboxMultiple, {
-            props: data,
-        });
-        expect(wrapper.vm).toBeTruthy();
+    const props = {
+        choices,
+    };
+
+    it("renders correctly", () => {
+        const wrapper = mount(QuesoCheckboxMultiple, { props });
+        expect(wrapper.exists()).toBe(true);
     });
 
-    test("renders correctly the label", () => {
-        const data = {
-            label: "field-label",
-        };
-
-        const wrapper = mount(QuesoCheckboxMultiple, {
-            props: data,
-        });
-        expect(wrapper.find(".queso-checkbox__label__text").text()).toBe(data.label);
+    it("renders checkboxes based on choices prop", () => {
+        const wrapper = mount(QuesoCheckboxMultiple, { props });
+        const checkboxes = wrapper.findAll(".queso-checkbox__native");
+        expect(checkboxes.length).toBe(choices.length);
     });
 
-    test("renders correctly the checkbox symbol", () => {
-        const data = {
-            name: "field-name",
-        };
+    it("updates model when checkbox is clicked", async () => {
+        const wrapper = mount(QuesoCheckboxMultiple, { props });
+        const checkbox = wrapper.find(".queso-checkbox__native");
+        await checkbox.setChecked();
+        expect(wrapper.vm.model.value).toContain("choice1");
+    });
 
+    it("renders slots correctly", () => {
         const wrapper = mount(QuesoCheckboxMultiple, {
-            props: data,
+            props,
+            slots: {
+                beforeLabel: '<div class="before-label">Before Label</div>',
+                label: '<div class="label">Label</div>',
+                required: '<div class="required">Required</div>',
+                afterLabel: '<div class="after-label">After Label</div>',
+                beforeInput: '<div class="before-input">Before Input</div>',
+                input: '<div class="input">Input</div>',
+                afterInput: '<div class="after-input">After Input</div>',
+                error: '<div class="error">Error</div>',
+            },
         });
-        expect(wrapper.find(".queso-checkbox__box__symbol").exists()).toBe(true);
+
+        expect(wrapper.find(".before-label").exists()).toBe(true);
+        expect(wrapper.find(".label").exists()).toBe(true);
+        expect(wrapper.find(".required").exists()).toBe(true);
+        expect(wrapper.find(".after-label").exists()).toBe(true);
+        expect(wrapper.find(".before-input").exists()).toBe(true);
+        expect(wrapper.find(".input").exists()).toBe(true);
+        expect(wrapper.find(".after-input").exists()).toBe(true);
+        expect(wrapper.find(".error").exists()).toBe(true);
     });
 });
