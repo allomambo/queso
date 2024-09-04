@@ -10,6 +10,7 @@
 import arrayToGraphQL from "./arrayToGraphQL";
 import capitalize from "./capitalize";
 import checkStatus from "./checkStatus";
+import firstObjectOfArray from "./firstObjectOfArray";
 import mutateState from "./mutateState";
 import resizeEnd from "./resizeEnd";
 import toCamelCase from "./toCamelCase";
@@ -26,6 +27,7 @@ const isTouch = "ontouchstart" in document.documentElement;
 export {
     checkStatus,
     arrayToGraphQL,
+    firstObjectOfArray,
     typeCheck,
     mutateState,
     resizeEnd,
