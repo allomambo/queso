@@ -7,7 +7,6 @@
             :aria-expanded="isModalOpen"
             v-bind="$attrs"
         >
-            <input type="text" />
             <slot name="beforeContent"></slot>
 
             <div class="queso-modal__content">
