@@ -1,6 +1,7 @@
 <template>
     <h3>Fields</h3>
     <QuesoTextField name="textfield" label="QuesoTextField" v-model="TextField" />
+    <QuesoPasswordField name="password" label="QuesoPasswordField" v-model="PasswordField" />
     <QuesoTextArea name="textarea" label="QuesoTextArea" v-model="TextArea" />
     <QuesoCheckbox name="checkbox" label="QuesoCheckbox" box-label="Lorem ipsum dolor sit amet" v-model="Checkbox" />
     <QuesoSelect
@@ -118,6 +119,7 @@ import {
     QuesoSelect,
     QuesoTextArea,
     QuesoTextField,
+    QuesoPasswordField,
 } from "./components";
 
 const dataOptions = [
@@ -174,6 +176,7 @@ const openModal = () => {
 
 // Fields
 const TextField = ref("text field value");
+const PasswordField = ref("");
 const TextArea = ref("text area value");
 const Checkbox = ref(true);
 const Select = ref("");
