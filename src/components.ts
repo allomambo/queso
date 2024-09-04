@@ -4,7 +4,6 @@ import QuesoDropdown from "@components/QuesoDropdown";
 import QuesoModal from "@components/QuesoModal";
 import QuesoCollapsible from "@components/QuesoCollapsible";
 import QuesoScrollable from "@components/QuesoScrollable";
-import QuesoIcon from "@components/QuesoIcon";
 
 // Fields
 import QuesoField from "@components/QuesoField";
@@ -35,7 +34,6 @@ export {
     QuesoModal,
     QuesoCollapsible,
     QuesoScrollable,
-    QuesoIcon,
 
     // Fields
     QuesoField,

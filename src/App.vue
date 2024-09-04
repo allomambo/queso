@@ -101,10 +101,6 @@
     </QuesoScrollable>
     <hr />
 
-    <h3>QuesoIcon</h3>
-    <QuesoIcon name="chevron" :size="6" :rotation="90" />
-    <hr />
-
     <h3>Grid</h3>
     <div class="l-grid">
         <template v-for="i in gridColumns">
@@ -126,7 +122,6 @@ import {
     QuesoClickable,
     QuesoCollapsible,
     QuesoDropdown,
-    QuesoIcon,
     QuesoModal,
     QuesoScrollable,
     QuesoSelect,
