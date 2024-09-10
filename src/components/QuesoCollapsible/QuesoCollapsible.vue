@@ -96,8 +96,7 @@ const toggle = (bool: boolean = false) => {
 const handleKeydown = (bool: boolean = false, event: KeyboardEvent) => {
     if (event.key === " " || event.key === "Space") {
         event.preventDefault();
-        if (bool) open();
-        else close();
+        toggle(bool);
     }
 };
 
