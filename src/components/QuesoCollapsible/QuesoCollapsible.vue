@@ -2,7 +2,12 @@
     <div class="queso-collapsible" :class="collapsibleClasses">
         <slot name="beforeHeader"></slot>
 
-        <div class="queso-collapsible__header" @click="toggle(!isCollapsibleOpen)">
+        <div
+            class="queso-collapsible__header"
+            @click="toggle(!isCollapsibleOpen)"
+            @keydown="handleKeydown(!isCollapsibleOpen, $event)"
+            tabindex="0"
+        >
             <slot name="header" v-bind="{ isCollapsibleOpen }">
                 <slot name="headerPrefix"></slot>
                 <div class="queso-collapsible__header__text">
@@ -86,6 +91,14 @@ const close = () => {
 const toggle = (bool: boolean = false) => {
     if (bool) open();
     else close();
+};
+
+const handleKeydown = (bool: boolean = false, event: KeyboardEvent) => {
+    if (event.key === " " || event.key === "Space") {
+        event.preventDefault();
+        if (bool) open();
+        else close();
+    }
 };
 
 /**
