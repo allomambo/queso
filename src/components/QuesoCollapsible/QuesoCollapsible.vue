@@ -54,7 +54,7 @@ const emit = defineEmits<{
 const collapsibleContent = ref<HTMLElement>();
 const isCollapsibleOpen = ref<boolean>(false);
 const isCollapsibleExpanded = ref<boolean>(props.expandOnMount);
-const uniqueId = "queso-collapsible__" + Math.random().toString(36).substr(2, 9);
+const uniqueId = "queso-collapsible__" + Math.random().toString(36).substring(2, 9);
 
 onBeforeMount(() => {
     if (isCollapsibleExpanded.value) {
