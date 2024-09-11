@@ -1,6 +1,11 @@
 <template>
     <div v-if="options.length > 0" ref="dropdown" class="queso-dropdown" :class="dropdownClasses">
-        <div class="queso-dropdown__selector" @click="toggleDropdown(!isDropdownOpen)">
+        <div
+            class="queso-dropdown__selector"
+            @click="toggleDropdown(!isDropdownOpen)"
+            :aria-expanded="isDropdownOpen"
+            :aria-controls="uniqueId"
+        >
             <slot name="selector" v-bind="{ options, activeOptions }">
                 <slot name="selectorBeforeText"></slot>
                 <div class="queso-dropdown__selector__text">
@@ -20,7 +25,7 @@
             </slot>
         </div>
 
-        <div class="queso-dropdown__popover" :aria-expanded="isDropdownOpen">
+        <div class="queso-dropdown__popover" :id="uniqueId">
             <div v-if="$slots.popoverHeader" class="queso-dropdown__popover__header">
                 <slot name="popoverHeader"></slot>
             </div>
@@ -47,7 +52,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, toRefs } from "vue";
+import { computed, onMounted, ref, toRefs } from "vue";
 import { onClickOutside, useScroll } from "@vueuse/core";
 
 import { QuesoDropdownModel, QuesoDropdownProps, QuesoDropdownOptions, QuesoDropdownOptionValue } from "./types";
@@ -67,6 +72,7 @@ const { options } = toRefs(props);
 const dropdown = ref<HTMLElement | null>(null);
 const dropdownPopover = ref<HTMLElement | null>(null);
 const isDropdownOpen = ref<boolean>(false);
+const uniqueId = ref<string>("");
 
 const activeOptions = computed<QuesoDropdownOptions>(() => {
     return options.value.filter((option) => model.value.includes(option.value));
@@ -154,6 +160,14 @@ const dropdownPopoverClasses = computed(() => ({
  * EXPOSE
  */
 defineExpose({ isDropdownOpen, openDropdown, closeDropdown });
+
+// Generate unique ID for aria-expanded and aria-controls
+const generateUniqueId = () => {
+    return "queso-collapsible__" + Math.random().toString(36).substr(2, 9);
+};
+onMounted(() => {
+    uniqueId.value = generateUniqueId();
+});
 </script>
 
 <style lang="scss">
