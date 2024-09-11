@@ -2,9 +2,11 @@
     <div v-if="options.length > 0" ref="dropdown" class="queso-dropdown" :class="dropdownClasses">
         <div
             class="queso-dropdown__selector"
-            @click="toggleDropdown(!isDropdownOpen)"
             :aria-expanded="isDropdownOpen"
             :aria-controls="uniqueId"
+            tabindex="0"
+            @click="toggleDropdown()"
+            @keydown="handleKeydownToggleDropdown($event)"
         >
             <slot name="selector" v-bind="{ options, activeOptions }">
                 <slot name="selectorBeforeText"></slot>
@@ -34,9 +36,11 @@
                     <li
                         v-for="option in options"
                         :key="option.value"
-                        @click="updateOption(option.value)"
                         class="queso-dropdown__popover__options-list__item"
                         :class="{ 'is-option-active': model.includes(option.value) }"
+                        :tabindex="isDropdownOpen ? '0' : '-1'"
+                        @click="updateOption(option.value)"
+                        @keydown="handleKeydownUpdateOption(option.value, $event)"
                     >
                         <slot name="item" v-bind="{ ...option, openDropdown, closeDropdown }">
                             {{ option }}
@@ -52,7 +56,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref, toRefs } from "vue";
+import { computed, ref, toRefs } from "vue";
 import { onClickOutside, useScroll } from "@vueuse/core";
 
 import { QuesoDropdownModel, QuesoDropdownProps, QuesoDropdownOptions, QuesoDropdownOptionValue } from "./types";
@@ -72,7 +76,7 @@ const { options } = toRefs(props);
 const dropdown = ref<HTMLElement | null>(null);
 const dropdownPopover = ref<HTMLElement | null>(null);
 const isDropdownOpen = ref<boolean>(false);
-const uniqueId = ref<string>("");
+const uniqueId = "queso-collapsible__" + Math.random().toString(36).substring(2, 9);
 
 const activeOptions = computed<QuesoDropdownOptions>(() => {
     return options.value.filter((option) => model.value.includes(option.value));
@@ -106,6 +110,13 @@ const updateOption = (option: QuesoDropdownOptionValue) => {
     }
 };
 
+const handleKeydownUpdateOption = (option: QuesoDropdownOptionValue, event: KeyboardEvent) => {
+    if (event.key === " " || event.key === "Space") {
+        event.preventDefault();
+        updateOption(option);
+    }
+};
+
 /**
  * OPEN/CLOSE DROPDOWN
  */
@@ -127,9 +138,19 @@ const closeDropdown = () => {
     scrollToTop();
 };
 
-const toggleDropdown = (bool: boolean = false) => {
-    if (bool) openDropdown();
-    else closeDropdown();
+const toggleDropdown = () => {
+    if (isDropdownOpen.value) {
+        closeDropdown();
+    } else {
+        openDropdown();
+    }
+};
+
+const handleKeydownToggleDropdown = (event: KeyboardEvent) => {
+    if (event.key === " " || event.key === "Space") {
+        event.preventDefault();
+        toggleDropdown();
+    }
 };
 
 onClickOutside(dropdown, () => closeDropdown());
@@ -160,14 +181,6 @@ const dropdownPopoverClasses = computed(() => ({
  * EXPOSE
  */
 defineExpose({ isDropdownOpen, openDropdown, closeDropdown });
-
-// Generate unique ID for aria-expanded and aria-controls
-const generateUniqueId = () => {
-    return "queso-collapsible__" + Math.random().toString(36).substr(2, 9);
-};
-onMounted(() => {
-    uniqueId.value = generateUniqueId();
-});
 </script>
 
 <style lang="scss">
