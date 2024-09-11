@@ -6,6 +6,8 @@
             class="queso-collapsible__header"
             @click="toggle(!isCollapsibleOpen)"
             @keydown="handleKeydown(!isCollapsibleOpen, $event)"
+            :aria-expanded="isCollapsibleOpen"
+            :aria-controls="uniqueId"
             tabindex="0"
         >
             <slot name="header" v-bind="{ isCollapsibleOpen }">
@@ -23,7 +25,7 @@
         <slot name="afterHeader"></slot>
         <slot name="beforeContent"></slot>
 
-        <div class="queso-collapsible__content" :aria-expanded="isCollapsibleOpen">
+        <div class="queso-collapsible__content" :id="uniqueId">
             <div ref="collapsibleContent" class="queso-collapsible__content__inner">
                 <slot name="content"></slot>
             </div>
@@ -34,7 +36,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, onBeforeMount, watch } from "vue";
+import { computed, ref, onBeforeMount, watch, onMounted } from "vue";
 import { useElementBounding } from "@vueuse/core";
 
 import type { QuesoCollapsibleProps } from "./types";
@@ -52,6 +54,7 @@ const emit = defineEmits<{
 const collapsibleContent = ref<HTMLElement>();
 const isCollapsibleOpen = ref<boolean>(false);
 const isCollapsibleExpanded = ref<boolean>(props.expandOnMount);
+const uniqueId = ref("");
 
 onBeforeMount(() => {
     if (isCollapsibleExpanded.value) {
@@ -117,6 +120,15 @@ watch(isCollapsibleOpen, (newValue: boolean) => {
  * EXPOSE REF/METHODS
  */
 defineExpose({ isCollapsibleOpen, open, close, toggle });
+
+// Generate unique ID for aria-expanded and aria-controls
+const generateUniqueId = () => {
+    return "queso-collapsible__" + Math.random().toString(36).substr(2, 9);
+};
+
+onMounted(() => {
+    uniqueId.value = generateUniqueId();
+});
 </script>
 
 <style lang="scss">
