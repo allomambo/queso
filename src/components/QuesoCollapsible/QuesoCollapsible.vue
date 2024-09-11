@@ -3,12 +3,12 @@
         <slot name="beforeHeader"></slot>
 
         <div
-            @click="toggle(!isCollapsibleOpen)"
-            @keydown="handleKeydown(!isCollapsibleOpen, $event)"
             class="queso-collapsible__header"
             :aria-expanded="isCollapsibleOpen"
             :aria-controls="uniqueId"
             tabindex="0"
+            @click="toggle()"
+            @keydown="handleKeydown($event)"
         >
             <slot name="header" v-bind="{ isCollapsibleOpen }">
                 <slot name="headerPrefix"></slot>
@@ -91,15 +91,18 @@ const close = () => {
     }, 1); // If expanded, need to set height before going to 0px
 };
 
-const toggle = (bool: boolean = false) => {
-    if (bool) open();
-    else close();
+const toggle = () => {
+    if (isCollapsibleOpen.value) {
+        close();
+    } else {
+        open();
+    }
 };
 
-const handleKeydown = (bool: boolean = false, event: KeyboardEvent) => {
+const handleKeydown = (event: KeyboardEvent) => {
     if (event.key === " " || event.key === "Space") {
         event.preventDefault();
-        toggle(bool);
+        toggle();
     }
 };
 
