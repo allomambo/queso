@@ -36,7 +36,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, onBeforeMount, watch, onMounted } from "vue";
+import { computed, ref, onBeforeMount, watch } from "vue";
 import { useElementBounding } from "@vueuse/core";
 
 import type { QuesoCollapsibleProps } from "./types";
@@ -54,7 +54,7 @@ const emit = defineEmits<{
 const collapsibleContent = ref<HTMLElement>();
 const isCollapsibleOpen = ref<boolean>(false);
 const isCollapsibleExpanded = ref<boolean>(props.expandOnMount);
-const uniqueId = ref("");
+const uniqueId = "queso-collapsible__" + Math.random().toString(36).substr(2, 9);
 
 onBeforeMount(() => {
     if (isCollapsibleExpanded.value) {
@@ -120,15 +120,6 @@ watch(isCollapsibleOpen, (newValue: boolean) => {
  * EXPOSE REF/METHODS
  */
 defineExpose({ isCollapsibleOpen, open, close, toggle });
-
-// Generate unique ID for aria-expanded and aria-controls
-const generateUniqueId = () => {
-    return "queso-collapsible__" + Math.random().toString(36).substr(2, 9);
-};
-
-onMounted(() => {
-    uniqueId.value = generateUniqueId();
-});
 </script>
 
 <style lang="scss">
