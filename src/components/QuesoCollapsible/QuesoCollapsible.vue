@@ -3,9 +3,9 @@
         <slot name="beforeHeader"></slot>
 
         <div
-            class="queso-collapsible__header"
             @click="toggle(!isCollapsibleOpen)"
             @keydown="handleKeydown(!isCollapsibleOpen, $event)"
+            class="queso-collapsible__header"
             :aria-expanded="isCollapsibleOpen"
             :aria-controls="uniqueId"
             tabindex="0"
