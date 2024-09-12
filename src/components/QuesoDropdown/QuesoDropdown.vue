@@ -1,6 +1,13 @@
 <template>
     <div v-if="options.length > 0" ref="dropdown" class="queso-dropdown" :class="dropdownClasses">
-        <div class="queso-dropdown__selector" @click="toggleDropdown(!isDropdownOpen)">
+        <div
+            class="queso-dropdown__selector"
+            :aria-expanded="isDropdownOpen"
+            :aria-controls="uniqueId"
+            tabindex="0"
+            @click="toggleDropdown()"
+            @keydown="handleKeydownToggleDropdown($event)"
+        >
             <slot name="selector" v-bind="{ options, activeOptions }">
                 <slot name="selectorBeforeText"></slot>
                 <div class="queso-dropdown__selector__text">
@@ -20,18 +27,21 @@
             </slot>
         </div>
 
-        <div class="queso-dropdown__popover" :aria-expanded="isDropdownOpen">
+        <div class="queso-dropdown__popover" :id="uniqueId">
             <div v-if="$slots.popoverHeader" class="queso-dropdown__popover__header">
                 <slot name="popoverHeader"></slot>
             </div>
             <div class="queso-dropdown__popover__scroll" :class="dropdownPopoverClasses">
                 <ul ref="dropdownPopover" class="queso-dropdown__popover__options-list">
                     <li
-                        v-for="option in options"
+                        v-for="(option, index) in options"
                         :key="option.value"
-                        @click="updateOption(option.value)"
+                        ref="optionsRefs"
                         class="queso-dropdown__popover__options-list__item"
                         :class="{ 'is-option-active': model.includes(option.value) }"
+                        :tabindex="isDropdownOpen ? '0' : '-1'"
+                        @click="updateOption(option.value)"
+                        @keydown="handleKeydownUpdateOption(option.value, $event)"
                     >
                         <slot name="item" v-bind="{ ...option, openDropdown, closeDropdown }">
                             {{ option }}
@@ -49,6 +59,8 @@
 <script setup lang="ts">
 import { computed, ref, toRefs } from "vue";
 import { onClickOutside, useScroll } from "@vueuse/core";
+import { onKeyStroke } from "@vueuse/core";
+import { useFocusTrap } from "@vueuse/integrations/useFocusTrap";
 
 import { QuesoDropdownModel, QuesoDropdownProps, QuesoDropdownOptions, QuesoDropdownOptionValue } from "./types";
 
@@ -60,23 +72,29 @@ const emit = defineEmits<{
     "close:dropdown": [];
 }>();
 
+// Model
 const model = defineModel<QuesoDropdownModel>({ default: () => [] });
 
-// Computeds
-const { options } = toRefs(props);
+// Refs
 const dropdown = ref<HTMLElement | null>(null);
+const optionsRefs = ref<HTMLElement[]>([]);
 const dropdownPopover = ref<HTMLElement | null>(null);
 const isDropdownOpen = ref<boolean>(false);
 
+// Variables
+const { options } = toRefs(props);
+const uniqueId = "queso-collapsible__" + Math.random().toString(36).substring(2, 9);
 const activeOptions = computed<QuesoDropdownOptions>(() => {
     return options.value.filter((option) => model.value.includes(option.value));
 });
-
 const dropdownClasses = computed(() => ({
     "is-multiple": props.multiple,
     "is-dropdown-open": isDropdownOpen.value,
     "is-dropdown-close": !isDropdownOpen.value,
 }));
+
+// Focus Trap
+const { activate: activeFocus, deactivate: deactivateFocus } = useFocusTrap(dropdown);
 
 /**
  * ON OPTION CHANGE
@@ -100,6 +118,27 @@ const updateOption = (option: QuesoDropdownOptionValue) => {
     }
 };
 
+// Navigate through options with keyboard
+const handleKeydownUpdateOption = (option: QuesoDropdownOptionValue, event: KeyboardEvent) => {
+    event.preventDefault();
+
+    const currentIndex = optionsRefs.value.findIndex((el) => el === event.target);
+    const nextIndex = (currentIndex + 1) % optionsRefs.value.length;
+    const prevIndex = (currentIndex - 1 + optionsRefs.value.length) % optionsRefs.value.length;
+    const optionNext = optionsRefs.value[nextIndex];
+    const optionPrev = optionsRefs.value[prevIndex];
+
+    if (event.key === "ArrowDown" || event.key === "ArrowRight") {
+        optionNext.focus();
+    } else if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
+        optionPrev.focus();
+    } else if (event.key === "Enter") {
+        updateOption(option);
+    } else if (event.key === " " || event.key === "Space") {
+        updateOption(option);
+    }
+};
+
 /**
  * OPEN/CLOSE DROPDOWN
  */
@@ -112,20 +151,49 @@ const scrollToTop = () => {
 
 const openDropdown = () => {
     isDropdownOpen.value = true;
+    const option = optionsRefs.value[0];
+
+    activeFocus();
+    if (option) {
+        option.focus();
+    }
+
     emit("open:dropdown");
 };
 
 const closeDropdown = () => {
     isDropdownOpen.value = false;
-    emit("close:dropdown");
+
+    deactivateFocus();
     scrollToTop();
+
+    emit("close:dropdown");
 };
 
-const toggleDropdown = (bool: boolean = false) => {
-    if (bool) openDropdown();
-    else closeDropdown();
+const toggleDropdown = () => {
+    if (isDropdownOpen.value) {
+        closeDropdown();
+    } else {
+        openDropdown();
+    }
 };
 
+// Open dropdown on space key
+const handleKeydownToggleDropdown = (event: KeyboardEvent) => {
+    if (event.key === " " || event.key === "Space") {
+        event.preventDefault();
+        toggleDropdown();
+    }
+};
+
+// Close dropdown on space key
+onKeyStroke("Escape", () => {
+    if (isDropdownOpen.value) {
+        closeDropdown();
+    }
+});
+
+// Close dropdown on click outside
 onClickOutside(dropdown, () => closeDropdown());
 
 /**
