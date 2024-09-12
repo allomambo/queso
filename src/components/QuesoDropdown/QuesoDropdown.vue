@@ -36,7 +36,7 @@
                     <li
                         v-for="(option, index) in options"
                         :key="option.value"
-                        :ref="(el) => setOptionRef(el, index)"
+                        :ref="(el: DropdownOption) => setOptionRef(el, index)"
                         class="queso-dropdown__popover__options-list__item"
                         :class="{ 'is-option-active': model.includes(option.value) }"
                         :tabindex="isDropdownOpen ? '0' : '-1'"
@@ -75,15 +75,16 @@ const emit = defineEmits<{
 // Model
 const model = defineModel<QuesoDropdownModel>({ default: () => [] });
 
+type DropdownOption = Element | ComponentPublicInstance | null;
 // Refs
 const dropdown = ref<HTMLElement | null>(null);
-const optionsRefs = ref<HTMLElement[]>([]);
+const optionsRefs = ref<DropdownOption[]>([]);
 const dropdownPopover = ref<HTMLElement | null>(null);
 const isDropdownOpen = ref<boolean>(false);
 // Assigns refs to options
-const setOptionRef = (el: Element | ComponentPublicInstance | null, index: number) => {
+const setOptionRef = (el: DropdownOption, index: number) => {
     if (el) {
-        optionsRefs.value[index] = el as HTMLElement;
+        optionsRefs.value[index] = el;
     }
 };
 
@@ -129,13 +130,15 @@ const handleKeydownUpdateOption = (option: QuesoDropdownOptionValue, event: Keyb
     event.preventDefault();
 
     const currentIndex = optionsRefs.value.findIndex((el) => el === event.target);
+    const nextIndex = (currentIndex + 1) % optionsRefs.value.length;
+    const prevIndex = (currentIndex - 1 + optionsRefs.value.length) % optionsRefs.value.length;
+    const optionNext = optionsRefs.value[nextIndex] as HTMLElement;
+    const optionPrev = optionsRefs.value[prevIndex] as HTMLElement;
 
     if (event.key === "ArrowDown" || event.key === "ArrowRight") {
-        const nextIndex = (currentIndex + 1) % optionsRefs.value.length;
-        optionsRefs.value[nextIndex].focus();
+        optionNext.focus();
     } else if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
-        const prevIndex = (currentIndex - 1 + optionsRefs.value.length) % optionsRefs.value.length;
-        optionsRefs.value[prevIndex].focus();
+        optionPrev.focus();
     } else if (event.key === "Enter") {
         updateOption(option);
     } else if (event.key === " " || event.key === "Space") {
@@ -155,10 +158,11 @@ const scrollToTop = () => {
 
 const openDropdown = () => {
     isDropdownOpen.value = true;
+    const option = optionsRefs.value[0] as HTMLElement;
 
     activeFocus();
-    if (optionsRefs.value[0]) {
-        optionsRefs.value[0].focus();
+    if (option) {
+        option.focus();
     }
 
     emit("open:dropdown");
