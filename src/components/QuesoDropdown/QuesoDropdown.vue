@@ -36,7 +36,7 @@
                     <li
                         v-for="(option, index) in options"
                         :key="option.value"
-                        :ref="(el: DropdownOption) => setOptionRef(el, index)"
+                        ref="optionsRefs"
                         class="queso-dropdown__popover__options-list__item"
                         :class="{ 'is-option-active': model.includes(option.value) }"
                         :tabindex="isDropdownOpen ? '0' : '-1'"
@@ -57,7 +57,7 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentPublicInstance, computed, ref, toRefs } from "vue";
+import { computed, ref, toRefs } from "vue";
 import { onClickOutside, useScroll } from "@vueuse/core";
 import { onKeyStroke } from "@vueuse/core";
 import { useFocusTrap } from "@vueuse/integrations/useFocusTrap";
@@ -75,18 +75,11 @@ const emit = defineEmits<{
 // Model
 const model = defineModel<QuesoDropdownModel>({ default: () => [] });
 
-type DropdownOption = Element | ComponentPublicInstance | null;
 // Refs
 const dropdown = ref<HTMLElement | null>(null);
-const optionsRefs = ref<DropdownOption[]>([]);
+const optionsRefs = ref<HTMLElement[]>([]);
 const dropdownPopover = ref<HTMLElement | null>(null);
 const isDropdownOpen = ref<boolean>(false);
-// Assigns refs to options
-const setOptionRef = (el: DropdownOption, index: number) => {
-    if (el) {
-        optionsRefs.value[index] = el;
-    }
-};
 
 // Variables
 const { options } = toRefs(props);
@@ -132,8 +125,8 @@ const handleKeydownUpdateOption = (option: QuesoDropdownOptionValue, event: Keyb
     const currentIndex = optionsRefs.value.findIndex((el) => el === event.target);
     const nextIndex = (currentIndex + 1) % optionsRefs.value.length;
     const prevIndex = (currentIndex - 1 + optionsRefs.value.length) % optionsRefs.value.length;
-    const optionNext = optionsRefs.value[nextIndex] as HTMLElement;
-    const optionPrev = optionsRefs.value[prevIndex] as HTMLElement;
+    const optionNext = optionsRefs.value[nextIndex];
+    const optionPrev = optionsRefs.value[prevIndex];
 
     if (event.key === "ArrowDown" || event.key === "ArrowRight") {
         optionNext.focus();
@@ -158,7 +151,7 @@ const scrollToTop = () => {
 
 const openDropdown = () => {
     isDropdownOpen.value = true;
-    const option = optionsRefs.value[0] as HTMLElement;
+    const option = optionsRefs.value[0];
 
     activeFocus();
     if (option) {
