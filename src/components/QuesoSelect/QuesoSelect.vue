@@ -59,6 +59,7 @@
                 @blur="toggleIsActive(false)"
                 v-bind="extraAttributes"
                 v-model="model"
+                tabindex="-1"
             >
                 <option></option>
                 <option v-for="option in options" :key="option.value" :value="option.value">
