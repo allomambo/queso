@@ -1,5 +1,5 @@
 import { defineComponent as N, ref as _, computed as f, onMounted as V, openBlock as d, createElementBlock as a, normalizeClass as h, createElementVNode as i, renderSlot as o, normalizeProps as $, guardReactiveProps as q, createTextVNode as y, toDisplayString as C, createCommentVNode as k, Fragment as z, renderList as L, mergeProps as Q } from "vue";
-import { o as M, u as R } from "../QuesoCollapsible-BV0Q2a-x.js";
+import { a as M, u as R } from "../QuesoCollapsible-BAoVzf7E.js";
 import '../../assets/components/QuesoDropdown.css';const j = { class: "queso-dropdown__selector__text" }, A = {
   key: 0,
   class: "queso-dropdown__selector__placeholder"

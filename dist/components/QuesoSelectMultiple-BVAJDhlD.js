@@ -1,7 +1,7 @@
 import { defineComponent as F, mergeModels as S, useModel as D, openBlock as r, createBlock as h, unref as f, mergeProps as y, withCtx as l, renderSlot as s, normalizeProps as a, guardReactiveProps as n, createElementBlock as i, createElementVNode as c, toDisplayString as p, createTextVNode as _, Fragment as q, renderList as B, withDirectives as I, vModelSelect as R } from "vue";
 import { u as w } from "./QuesoCheckbox-C7EQnWOn.js";
 import { _ as A } from "./QuesoField-DYBEGM8C.js";
-import { _ as C } from "./QuesoDropdown-beahh475.js";
+import { _ as C } from "./QuesoDropdown-DCDvSGBg.js";
 import '../assets/components/QuesoCheckboxMultiple.css';const N = {
   key: 0,
   class: "queso-select__read-only"
