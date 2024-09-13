@@ -4,7 +4,7 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<__
     isCollapsibleOpen: import('vue').Ref<boolean>;
     open: () => void;
     close: () => void;
-    toggle: (bool?: boolean) => void;
+    toggle: () => void;
 }, unknown, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
     "collapsible:open": () => void;
     "collapsible:close": () => void;

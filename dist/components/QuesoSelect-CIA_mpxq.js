@@ -1,7 +1,7 @@
 import { defineComponent as S, mergeModels as w, useModel as D, computed as I, openBlock as n, createBlock as y, unref as v, mergeProps as _, withCtx as s, renderSlot as t, normalizeProps as r, guardReactiveProps as a, createElementBlock as i, createElementVNode as c, toDisplayString as p, createTextVNode as q, Fragment as B, renderList as M, withDirectives as R, vModelSelect as g } from "vue";
 import { u as A } from "./QuesoCheckbox-C7EQnWOn.js";
 import { _ as C } from "./QuesoField-DYBEGM8C.js";
-import { _ as N } from "./QuesoDropdown-beahh475.js";
+import { _ as N } from "./QuesoDropdown-DCDvSGBg.js";
 import '../assets/components/QuesoSelect.css';const U = {
   key: 0,
   class: "queso-select__read-only"
@@ -93,7 +93,8 @@ import '../assets/components/QuesoSelect.css';const U = {
           onFocus: (o) => $(!0),
           onBlur: (o) => $(!1)
         }, e.extraAttributes, {
-          "onUpdate:modelValue": m[1] || (m[1] = (o) => u.value = o)
+          "onUpdate:modelValue": m[1] || (m[1] = (o) => u.value = o),
+          tabindex: "-1"
         }), [
           T,
           (n(!0), i(B, null, M(e.options, (o) => (n(), i("option", {
