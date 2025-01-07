@@ -3,7 +3,7 @@
  * @param data The array or object to retrieve the first item from.
  * @returns The first item of the array, or the data itself if it's not an array.
  */
-const firstObjectOfArray = <T>(data: T[] | T | undefined): T | null => {
+const getFirstObjectOfArray = <T>(data: T[] | T | undefined): T | null => {
     // Check if data is an array
     if (Array.isArray(data)) {
         // If data is an array, return the first element if it exists, otherwise return null
@@ -15,4 +15,7 @@ const firstObjectOfArray = <T>(data: T[] | T | undefined): T | null => {
     return data !== undefined ? data : null;
 };
 
-export default firstObjectOfArray;
+/** @deprecated Use getFirstObjectOfArray utility instead */
+export const firstObjectOfArray = getFirstObjectOfArray;
+
+export default getFirstObjectOfArray;

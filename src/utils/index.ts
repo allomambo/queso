@@ -8,7 +8,7 @@
  */
 
 import capitalize from "./capitalize";
-import firstObjectOfArray from "./firstObjectOfArray";
+import getFirstObjectOfArray, { firstObjectOfArray } from "./getFirstObjectOfArray";
 import resizeEnd from "./resizeEnd";
 import toCamelCase from "./toCamelCase";
 import toKebabCase from "./toKebabCase";
@@ -22,7 +22,8 @@ import toTel, { tel } from "./toTel";
  */
 export {
     capitalize,
-    firstObjectOfArray,
+    getFirstObjectOfArray,
+    firstObjectOfArray, // Legacy
     resizeEnd,
     toCamelCase,
     toKebabCase,
