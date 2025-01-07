@@ -1,6 +1,7 @@
 import type { QuesoFieldProps, QuesoFieldBase } from "@components/QuesoField";
-import type { QuesoDropdownOptions, QuesoDropdownModel } from "@components/QuesoDropdown";
+import type { QuesoDropdownOption, QuesoDropdownOptions, QuesoDropdownModel } from "@components/QuesoDropdown";
 
+export type QuesoSelectMultipleOption = QuesoDropdownOption;
 export type QuesoSelectMultipleOptions = QuesoDropdownOptions;
 export type QuesoSelectMultipleModel = QuesoDropdownModel;
 
