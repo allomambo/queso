@@ -16,16 +16,6 @@ import QuesoPassword from "@components/QuesoPassword";
 import QuesoSelectMultiple from "@components/QuesoSelectMultiple";
 import QuesoRadio from "@components/QuesoRadio";
 
-// Legacy Fields
-// Keep these for backwards compatibility. Will be removed in version v1.0.0
-import QuesoFieldLegacy from "@components/_legacy/QuesoField";
-import QuesoDropdownLegacy from "@components/_legacy/QuesoDropdown";
-import QuesoTextFieldLegacy from "@components/_legacy/QuesoTextField";
-import QuesoTextAreaLegacy from "@components/_legacy/QuesoTextArea";
-import QuesoCheckboxLegacy from "@components/_legacy/QuesoCheckbox";
-import QuesoSelectLegacy from "@components/_legacy/QuesoSelect";
-import QuesoSwitchLegacy from "@components/_legacy/QuesoSwitch";
-
 /*====================================
 =              EXPORTS               =
 ====================================*/
@@ -48,13 +38,4 @@ export {
     QuesoPassword,
     QuesoSelectMultiple,
     QuesoRadio,
-
-    // Legacy Fields
-    QuesoFieldLegacy,
-    QuesoDropdownLegacy,
-    QuesoTextFieldLegacy,
-    QuesoTextAreaLegacy,
-    QuesoCheckboxLegacy,
-    QuesoSelectLegacy,
-    QuesoSwitchLegacy,
 };
