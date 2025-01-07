@@ -97,6 +97,7 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<{
     beforePasswordInput?(_: {}): any;
     afterPasswordInput?(_: {}): any;
     toggleVisibilityButton?(_: {
+        isPasswordShow: boolean;
         togglePasswordVisibility: () => void;
         showPassword: () => void;
         hidePassword: () => void;
