@@ -77,7 +77,7 @@ export default defineConfig(({ command, mode }) => {
                     inline: ["@vue/test-utils"],
                 },
             },
-            exclude: ["**/*.spec.ts", "**/_legacy", "dist", "node_modules"],
+            exclude: ["**/*.spec.ts", "dist", "node_modules"],
         },
     };
 });
