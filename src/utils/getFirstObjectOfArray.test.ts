@@ -1,24 +1,24 @@
 import { describe, expect, test } from "vitest";
-import firstObjectOfArray from "./firstObjectOfArray";
+import getFirstObjectOfArray from "./getFirstObjectOfArray";
 
-describe("firstObjectOfArray", () => {
+describe("getFirstObjectOfArray", () => {
     test("returns the first object from an array", () => {
         const data = [{ name: "cheese" }, { name: "ham" }];
-        expect(firstObjectOfArray(data)).toEqual({ name: "cheese" });
+        expect(getFirstObjectOfArray(data)).toEqual({ name: "cheese" });
     });
 
     test("returns null for an empty array", () => {
         const data: any[] = [];
-        expect(firstObjectOfArray(data)).toBeNull();
+        expect(getFirstObjectOfArray(data)).toBeNull();
     });
 
     test("returns the data itself if it's not an array", () => {
         const data = { name: "cheese" };
-        expect(firstObjectOfArray(data)).toEqual({ name: "cheese" });
+        expect(getFirstObjectOfArray(data)).toEqual({ name: "cheese" });
     });
 
     test("returns null if data is undefined", () => {
         const data = undefined;
-        expect(firstObjectOfArray(data)).toBeNull();
+        expect(getFirstObjectOfArray(data)).toBeNull();
     });
 });

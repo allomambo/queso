@@ -8,16 +8,29 @@
  */
 
 import capitalize from "./capitalize";
-import firstObjectOfArray from "./firstObjectOfArray";
-import mailTo from "./mailTo";
+import getFirstObjectOfArray, { firstObjectOfArray } from "./getFirstObjectOfArray";
 import resizeEnd from "./resizeEnd";
-import tel from "./tel";
 import toCamelCase from "./toCamelCase";
 import toKebabCase from "./toKebabCase";
+import toMailTo, { mailTo } from "./toMailTo";
 import toPascalCase from "./toPascalCase";
 import toSnakeCase from "./toSnakeCase";
+import toTel, { tel } from "./toTel";
 
 /**
  * Exports
  */
-export { capitalize, firstObjectOfArray, mailTo, resizeEnd, tel, toCamelCase, toKebabCase, toPascalCase, toSnakeCase };
+export {
+    capitalize,
+    getFirstObjectOfArray,
+    firstObjectOfArray, // Legacy
+    resizeEnd,
+    toCamelCase,
+    toKebabCase,
+    toMailTo,
+    mailTo, // Legacy
+    toPascalCase,
+    toSnakeCase,
+    toTel,
+    tel, // Legacy
+};
