@@ -9,10 +9,10 @@
 
 import capitalize from "./capitalize";
 import firstObjectOfArray from "./firstObjectOfArray";
-import mailTo from "./mailTo";
 import resizeEnd from "./resizeEnd";
 import toCamelCase from "./toCamelCase";
 import toKebabCase from "./toKebabCase";
+import toMailTo, { mailTo } from "./toMailTo";
 import toPascalCase from "./toPascalCase";
 import toSnakeCase from "./toSnakeCase";
 import toTel, { tel } from "./toTel";
@@ -23,10 +23,11 @@ import toTel, { tel } from "./toTel";
 export {
     capitalize,
     firstObjectOfArray,
-    mailTo,
     resizeEnd,
     toCamelCase,
     toKebabCase,
+    toMailTo,
+    mailTo, // Legacy
     toPascalCase,
     toSnakeCase,
     toTel,
