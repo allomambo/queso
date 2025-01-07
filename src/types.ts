@@ -19,16 +19,18 @@ import type { QuesoTextAreaModel, QuesoTextAreaProps } from "@components/QuesoTe
 import type { QuesoCheckboxModel, QuesoCheckboxProps } from "@components/QuesoCheckbox";
 import type {
     QuesoCheckboxMultipleModel,
+    QuesoCheckboxMultipleChoice,
     QuesoCheckboxMultipleChoices,
     QuesoCheckboxMultipleProps,
 } from "@components/QuesoCheckboxMultiple";
 import type { QuesoSelectModel, QuesoSelectProps } from "@components/QuesoSelect";
 import type {
     QuesoSelectMultipleModel,
+    QuesoSelectMultipleOption,
     QuesoSelectMultipleOptions,
     QuesoSelectMultipleProps,
 } from "@components/QuesoSelectMultiple";
-import type { QuesoRadioModel, QuesoRadioChoices, QuesoRadioProps } from "@components/QuesoRadio";
+import type { QuesoRadioModel, QuesoRadioChoice, QuesoRadioChoices, QuesoRadioProps } from "@components/QuesoRadio";
 import type { QuesoPasswordModel, QuesoPasswordProps } from "@components/QuesoPassword";
 
 /*====================================
@@ -74,16 +76,19 @@ export type {
     QuesoCheckboxModel,
     QuesoCheckboxProps,
     QuesoCheckboxMultipleModel,
+    QuesoCheckboxMultipleChoice,
     QuesoCheckboxMultipleChoices,
     QuesoCheckboxMultipleProps,
     // Select
     QuesoSelectModel,
     QuesoSelectProps,
     QuesoSelectMultipleModel,
+    QuesoSelectMultipleOption,
     QuesoSelectMultipleOptions,
     QuesoSelectMultipleProps,
     // Radio
     QuesoRadioModel,
+    QuesoRadioChoice,
     QuesoRadioChoices,
     QuesoRadioProps,
     // Password
