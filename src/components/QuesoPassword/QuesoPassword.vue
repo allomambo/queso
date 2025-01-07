@@ -41,7 +41,10 @@
 
                 <slot name="afterPasswordInput"> </slot>
 
-                <slot name="toggleVisibilityButton" v-bind="{ togglePasswordVisibility, showPassword, hidePassword }">
+                <slot
+                    name="toggleVisibilityButton"
+                    v-bind="{ isPasswordShow, togglePasswordVisibility, showPassword, hidePassword }"
+                >
                     <button class="queso-password__visibility-button" @click="togglePasswordVisibility()">
                         <slot name="toggleVisibilityButtonIcon">◎</slot>
                     </button>
