@@ -47,25 +47,26 @@
                         <span class="text">{{ label }}</span>
                     </slot>
                 </template>
+                <template #after>
+                    <select
+                        class="queso-select__select-native"
+                        :id="fieldID"
+                        :name="fieldName"
+                        :required="isRequired"
+                        :disabled="isDisabled"
+                        @focus="toggleIsActive(true)"
+                        @blur="toggleIsActive(false)"
+                        v-bind="extraAttributes"
+                        v-model="model"
+                        tabindex="-1"
+                    >
+                        <option></option>
+                        <option v-for="option in options" :key="option.value" :value="option.value">
+                            {{ option.label }}
+                        </option>
+                    </select>
+                </template>
             </queso-dropdown>
-
-            <select
-                class="queso-select__select-native"
-                :id="fieldID"
-                :name="fieldName"
-                :required="isRequired"
-                :disabled="isDisabled"
-                @focus="toggleIsActive(true)"
-                @blur="toggleIsActive(false)"
-                v-bind="extraAttributes"
-                v-model="model"
-                tabindex="-1"
-            >
-                <option></option>
-                <option v-for="option in options" :key="option.value" :value="option.value">
-                    {{ option.label }}
-                </option>
-            </select>
         </template>
         <template #afterInput="exposedData">
             <slot name="afterInput" v-bind="{ ...exposedData }"></slot>
@@ -105,8 +106,12 @@ const dropdownModel = computed<QuesoDropdownOptionValues>({
 
 <style lang="scss">
 .queso-select {
+    position: var(--queso-select-position, relative);
+
     &__select-native {
         @include accessible-item;
+        top: 100%;
+        left: 0;
     }
 }
 </style>

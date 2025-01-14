@@ -53,6 +53,8 @@
                 <slot name="popoverFooter"></slot>
             </div>
         </div>
+
+        <slot name="after"></slot>
     </div>
 </template>
 

@@ -42,6 +42,7 @@
 
                 <input
                     v-if="!isReadOnly"
+                    ref="checkboxInputs"
                     class="queso-checkbox__native"
                     type="checkbox"
                     :id="`${fieldID}-${choice.value}`"
@@ -50,7 +51,6 @@
                     :disabled="isDisabled"
                     @focus="toggleIsActive(true)"
                     @blur="toggleIsActive(false)"
-                    @invalid="setCustomValidationMessage"
                     v-bind="extraAttributes"
                     v-model="choice.isChecked"
                 />
@@ -67,7 +67,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, reactive, watch } from "vue";
+import { computed, ref, reactive, watch } from "vue";
 import { useExtendedFieldProps } from "@composables/fields";
 
 import type { QuesoCheckboxMultipleModel, QuesoCheckboxMultipleProps, QuesoCheckboxMultipleChoices } from "./types";
@@ -99,14 +99,30 @@ watch(
     { immediate: true },
 );
 
-// Errors
-// If the field is required, the choices must have at least one checked
-const hasAtLeastOneChecked = computed(() => checkedChoices.value.length > 0);
+/**
+ * Validation error
+ */
 
-const setCustomValidationMessage = (event: Event) => {
-    const input = event.target as HTMLInputElement;
-    input.setCustomValidity(props.validationMessage);
-};
+const checkboxInputs = ref<HTMLInputElement[]>([]);
+
+// If the field is required, the choices must have at least one checked
+const hasAtLeastOneChecked = computed<boolean>(() => checkedChoices.value.length > 0);
+const displayValidationMessage = computed<boolean>(() => props.isRequired && !hasAtLeastOneChecked.value);
+
+// Set a custom validation message if the field is required and no choices are checked
+watch(
+    displayValidationMessage,
+    (value) => {
+        checkboxInputs.value.forEach((input) => {
+            if (value) {
+                input.setCustomValidity(props.validationMessage);
+            } else {
+                input.setCustomValidity("");
+            }
+        });
+    },
+    { immediate: true },
+);
 </script>
 
 <style lang="scss">
