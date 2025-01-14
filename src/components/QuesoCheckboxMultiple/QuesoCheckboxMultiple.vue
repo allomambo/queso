@@ -46,10 +46,11 @@
                     type="checkbox"
                     :id="`${fieldID}-${choice.value}`"
                     :name="`${fieldName}[]`"
-                    :required="isRequired"
+                    :required="isRequired && !hasAtLeastOneChecked"
                     :disabled="isDisabled"
                     @focus="toggleIsActive(true)"
                     @blur="toggleIsActive(false)"
+                    @invalid="setCustomValidationMessage"
                     v-bind="extraAttributes"
                     v-model="choice.isChecked"
                 />
@@ -73,7 +74,9 @@ import type { QuesoCheckboxMultipleModel, QuesoCheckboxMultipleProps, QuesoCheck
 
 import QuesoField from "@components/QuesoField";
 
-const props = defineProps<QuesoCheckboxMultipleProps>();
+const props = withDefaults(defineProps<QuesoCheckboxMultipleProps>(), {
+    validationMessage: "Please select at least one option",
+});
 const extendedProps = useExtendedFieldProps(props);
 
 const model = defineModel<QuesoCheckboxMultipleModel>({ required: true, default: [] });
@@ -95,6 +98,15 @@ watch(
     },
     { immediate: true },
 );
+
+// Errors
+// If the field is required, the choices must have at least one checked
+const hasAtLeastOneChecked = computed(() => checkedChoices.value.length > 0);
+
+const setCustomValidationMessage = (event: Event) => {
+    const input = event.target as HTMLInputElement;
+    input.setCustomValidity(props.validationMessage);
+};
 </script>
 
 <style lang="scss">
