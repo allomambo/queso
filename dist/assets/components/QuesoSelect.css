@@ -1,1 +1,1 @@
-@charset "UTF-8";.queso-select__select-native{position:absolute;width:1px;height:1px;white-space:nowrap;overflow:hidden;clip:rect(1px,1px,1px,1px)}
+@charset "UTF-8";.queso-select{position:var(--queso-select-position, relative)}.queso-select__select-native{position:absolute;width:1px;height:1px;white-space:nowrap;overflow:hidden;clip:rect(1px,1px,1px,1px);top:100%;left:0}

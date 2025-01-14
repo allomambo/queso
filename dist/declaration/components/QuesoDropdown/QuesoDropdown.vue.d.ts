@@ -55,6 +55,7 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<{
         data?: object | undefined;
     }): any;
     popoverFooter?(_: {}): any;
+    after?(_: {}): any;
 }>;
 export default _default;
 type __VLS_WithTemplateSlots<T, S> = T & {

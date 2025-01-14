@@ -1,4 +1,4 @@
-import { getCurrentScope as Pe, onScopeDispose as Re, unref as J, ref as L, computed as U, watch as Ce, defineComponent as Ie, mergeModels as ve, useModel as Ae, toRefs as _e, openBlock as R, createElementBlock as C, normalizeClass as ie, createElementVNode as B, renderSlot as E, normalizeProps as be, guardReactiveProps as pe, createTextVNode as se, toDisplayString as he, createCommentVNode as ue, Fragment as xe, renderList as Be, mergeProps as Ke } from "vue";
+import { getCurrentScope as Pe, onScopeDispose as Re, unref as J, ref as L, computed as U, watch as Ce, defineComponent as Ie, mergeModels as ve, useModel as Ae, toRefs as _e, openBlock as R, createElementBlock as C, normalizeClass as ie, createElementVNode as B, renderSlot as S, normalizeProps as be, guardReactiveProps as pe, createTextVNode as se, toDisplayString as he, createCommentVNode as ue, Fragment as xe, renderList as Be, mergeProps as Ke } from "vue";
 import { o as Le, a as qe, u as $e } from "./QuesoCollapsible-BAoVzf7E.js";
 import '../assets/components/QuesoDropdown.css';function je(i) {
   return Pe() ? (Re(i), !0) : !1;
@@ -541,7 +541,7 @@ var we = {
       isBackward: n
     });
     c && (W(r) && r.preventDefault(), F(c));
-  }, S = function(r) {
+  }, E = function(r) {
     if (dt(r) && G(u.escapeDeactivates, r) !== !1) {
       r.preventDefault(), d.deactivate();
       return;
@@ -563,13 +563,13 @@ var we = {
       }), a.addEventListener("click", $, {
         capture: !0,
         passive: !1
-      }), a.addEventListener("keydown", S, {
+      }), a.addEventListener("keydown", E, {
         capture: !0,
         passive: !1
       }), d;
   }, Z = function() {
     if (o.active)
-      return a.removeEventListener("focusin", H, !0), a.removeEventListener("mousedown", x, !0), a.removeEventListener("touchstart", x, !0), a.removeEventListener("click", $, !0), a.removeEventListener("keydown", S, !0), d;
+      return a.removeEventListener("focusin", H, !0), a.removeEventListener("mousedown", x, !0), a.removeEventListener("touchstart", x, !0), a.removeEventListener("click", $, !0), a.removeEventListener("keydown", E, !0), d;
   }, Q = function(r) {
     var n = r.some(function(c) {
       var v = Array.from(c.removedNodes);
@@ -706,7 +706,7 @@ const gt = ["aria-expanded"], mt = { class: "queso-dropdown__selector__text" }, 
       "is-dropdown-open": b.value,
       "is-dropdown-close": !b.value
     })), { activate: F, deactivate: z } = ht(o), _ = (l) => {
-      a.multiple ? u.value.includes(l) ? u.value = u.value.filter((r) => r !== l) : u.value = [...u.value, l] : u.value = [l], a.multiple || a.stayOpenOnSelection || S();
+      a.multiple ? u.value.includes(l) ? u.value = u.value.filter((r) => r !== l) : u.value = [...u.value, l] : u.value = [l], a.multiple || a.stayOpenOnSelection || E();
     }, x = (l, r) => {
       r.preventDefault();
       const n = d.value.findIndex((m) => m === r.target), c = (n + 1) % d.value.length, v = (n - 1 + d.value.length) % d.value.length, p = d.value[c], h = d.value[v];
@@ -719,16 +719,16 @@ const gt = ["aria-expanded"], mt = { class: "queso-dropdown__selector__text" }, 
       b.value = !0;
       const l = d.value[0];
       F(), l && l.focus(), s("open:dropdown");
-    }, S = () => {
+    }, E = () => {
       b.value = !1, z(), H(), s("close:dropdown");
     }, $ = () => {
-      b.value ? S() : q();
+      b.value ? E() : q();
     }, Y = (l) => {
       (l.key === " " || l.key === "Space") && (l.preventDefault(), $());
     };
     Le("Escape", () => {
-      b.value && S();
-    }), qe(o, () => S());
+      b.value && E();
+    }), qe(o, () => E());
     const { y: Z, arrivedState: Q } = $e(f, {
       offset: { top: 15, bottom: 15 }
     }), j = U(() => {
@@ -738,7 +738,7 @@ const gt = ["aria-expanded"], mt = { class: "queso-dropdown__selector__text" }, 
       "is-scrolled-top": Q.top,
       "is-scrolled-bottom": Q.bottom || !j.value
     }));
-    return e({ isDropdownOpen: b, openDropdown: q, closeDropdown: S }), (l, r) => J(w).length > 0 ? (R(), C("div", {
+    return e({ isDropdownOpen: b, openDropdown: q, closeDropdown: E }), (l, r) => J(w).length > 0 ? (R(), C("div", {
       key: 0,
       ref_key: "dropdown",
       ref: o,
@@ -752,20 +752,20 @@ const gt = ["aria-expanded"], mt = { class: "queso-dropdown__selector__text" }, 
         onClick: r[0] || (r[0] = (n) => $()),
         onKeydown: r[1] || (r[1] = (n) => Y(n))
       }, [
-        E(l.$slots, "selector", be(pe({ options: J(w), activeOptions: g.value })), () => [
-          E(l.$slots, "selectorBeforeText"),
+        S(l.$slots, "selector", be(pe({ options: J(w), activeOptions: g.value })), () => [
+          S(l.$slots, "selectorBeforeText"),
           B("div", mt, [
             g.value.length < 1 ? (R(), C("div", yt, [
-              E(l.$slots, "selectorPlaceholder")
+              S(l.$slots, "selectorPlaceholder")
             ])) : (R(), C("div", wt, [
-              E(l.$slots, "selectorActiveOptions", be(pe({ activeOptions: g.value })), () => [
+              S(l.$slots, "selectorActiveOptions", be(pe({ activeOptions: g.value })), () => [
                 se(he(g.value), 1)
               ])
             ]))
           ]),
-          E(l.$slots, "selectorAfterText"),
+          S(l.$slots, "selectorAfterText"),
           B("div", Nt, [
-            E(l.$slots, "selectorIcon", {}, () => [
+            S(l.$slots, "selectorIcon", {}, () => [
               se("↓")
             ])
           ])
@@ -776,7 +776,7 @@ const gt = ["aria-expanded"], mt = { class: "queso-dropdown__selector__text" }, 
         id: y
       }, [
         l.$slots.popoverHeader ? (R(), C("div", Tt, [
-          E(l.$slots, "popoverHeader")
+          S(l.$slots, "popoverHeader")
         ])) : ue("", !0),
         B("div", {
           class: ie(["queso-dropdown__popover__scroll", O.value])
@@ -796,16 +796,17 @@ const gt = ["aria-expanded"], mt = { class: "queso-dropdown__selector__text" }, 
               onClick: (v) => _(n.value),
               onKeydown: (v) => x(n.value, v)
             }, [
-              E(l.$slots, "item", Ke({ ref_for: !0 }, { ...n, openDropdown: q, closeDropdown: S }), () => [
+              S(l.$slots, "item", Ke({ ref_for: !0 }, { ...n, openDropdown: q, closeDropdown: E }), () => [
                 se(he(n), 1)
               ])
             ], 42, Ft))), 128))
           ], 512)
         ], 2),
         l.$slots.popoverFooter ? (R(), C("div", St, [
-          E(l.$slots, "popoverFooter")
+          S(l.$slots, "popoverFooter")
         ])) : ue("", !0)
-      ])
+      ]),
+      S(l.$slots, "after")
     ], 2)) : ue("", !0);
   }
 });
