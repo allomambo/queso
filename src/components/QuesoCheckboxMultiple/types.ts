@@ -16,4 +16,5 @@ export type QuesoCheckboxMultipleModel = QuesoCheckboxMultipleChoice["value"][];
 // Props
 export interface QuesoCheckboxMultipleProps extends QuesoFieldProps, QuesoFieldBase {
     choices: QuesoCheckboxMultipleChoices;
+    validationMessage?: string;
 }

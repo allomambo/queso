@@ -86,6 +86,7 @@ const isChecked = computed<boolean>(() => !!model.value);
 .queso-checkbox {
     --queso-checkbox-box-symbol-opacity: 0;
     cursor: var(--queso-checkbox-cursor, pointer);
+    position: var(--queso-checkbox-position, relative);
 
     &.is-checked {
         --queso-checkbox-box-symbol-opacity: 1;
@@ -101,6 +102,8 @@ const isChecked = computed<boolean>(() => !!model.value);
 
     &__native {
         @include accessible-item;
+        top: 100%;
+        left: 0;
     }
 
     // Read-only

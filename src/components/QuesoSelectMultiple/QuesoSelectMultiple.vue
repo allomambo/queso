@@ -56,6 +56,7 @@
                 :name="fieldName"
                 :required="isRequired"
                 :disabled="isDisabled"
+                multiple
                 @focus="toggleIsActive(true)"
                 @blur="toggleIsActive(false)"
                 v-bind="extraAttributes"
