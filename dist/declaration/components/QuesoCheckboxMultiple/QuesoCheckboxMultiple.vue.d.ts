@@ -5,10 +5,6 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<{
         required: true;
         type: import('vue').PropType<QuesoCheckboxMultipleModel>;
     };
-    choices: {
-        type: import('vue').PropType<QuesoCheckboxMultipleChoices>;
-        required: true;
-    };
     id: {
         type: import('vue').PropType<string>;
     };
@@ -33,16 +29,20 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<{
     };
     extraAttributes: {
         type: import('vue').PropType<import('../QuesoField').QuesoFieldBaseExtraAttributes>;
+    };
+    choices: {
+        type: import('vue').PropType<QuesoCheckboxMultipleChoices>;
+        required: true;
+    };
+    validationMessage: {
+        type: import('vue').PropType<string>;
+        default: string;
     };
 }, {}, unknown, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<{
     modelValue: {
         required: true;
         type: import('vue').PropType<QuesoCheckboxMultipleModel>;
     };
-    choices: {
-        type: import('vue').PropType<QuesoCheckboxMultipleChoices>;
-        required: true;
-    };
     id: {
         type: import('vue').PropType<string>;
     };
@@ -68,7 +68,17 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<{
     extraAttributes: {
         type: import('vue').PropType<import('../QuesoField').QuesoFieldBaseExtraAttributes>;
     };
-}>>, {}, {}>, {
+    choices: {
+        type: import('vue').PropType<QuesoCheckboxMultipleChoices>;
+        required: true;
+    };
+    validationMessage: {
+        type: import('vue').PropType<string>;
+        default: string;
+    };
+}>>, {
+    validationMessage: string;
+}, {}>, {
     beforeLabel?(_: {}): any;
     label?(_: {
         fieldID: string;
