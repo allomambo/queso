@@ -67,7 +67,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, reactive, watch } from "vue";
+// import { computed, reactive, watch } from "vue";
 import { useExtendedFieldProps } from "@composables/fields";
 
 import type { QuesoRadioModel, QuesoRadioProps, QuesoRadioChoices } from "./types";
@@ -102,6 +102,7 @@ const model = defineModel<QuesoRadioModel>({ required: true, default: "" });
 .queso-radio {
     --queso-radio-box-symbol-opacity: 0;
     cursor: var(--queso-radio-cursor, pointer);
+    position: var(--queso-radio-position, relative);
 
     &.is-selected {
         --queso-radio-box-symbol-opacity: 1;
@@ -117,6 +118,8 @@ const model = defineModel<QuesoRadioModel>({ required: true, default: "" });
 
     &__native {
         @include accessible-item;
+        top: 100%;
+        left: 0;
     }
 
     // Read-only
