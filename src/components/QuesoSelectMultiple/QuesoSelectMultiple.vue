@@ -48,25 +48,26 @@
                         <span class="text">{{ label }}</span>
                     </slot>
                 </template>
+                <template #after>
+                    <select
+                        class="queso-select__select-native"
+                        :id="fieldID"
+                        :name="fieldName"
+                        :required="isRequired"
+                        :disabled="isDisabled"
+                        multiple
+                        @focus="toggleIsActive(true)"
+                        @blur="toggleIsActive(false)"
+                        v-bind="extraAttributes"
+                        v-model="model"
+                    >
+                        <option></option>
+                        <option v-for="option in options" :key="option.value" :value="option.value">
+                            {{ option.label }}
+                        </option>
+                    </select>
+                </template>
             </queso-dropdown>
-
-            <select
-                class="queso-select__select-native"
-                :id="fieldID"
-                :name="fieldName"
-                :required="isRequired"
-                :disabled="isDisabled"
-                multiple
-                @focus="toggleIsActive(true)"
-                @blur="toggleIsActive(false)"
-                v-bind="extraAttributes"
-                v-model="model"
-            >
-                <option></option>
-                <option v-for="option in options" :key="option.value" :value="option.value">
-                    {{ option.label }}
-                </option>
-            </select>
         </template>
         <template #afterInput>
             <slot name="afterInput"></slot>
