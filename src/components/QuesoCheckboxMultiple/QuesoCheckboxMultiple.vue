@@ -90,11 +90,26 @@ const checkedChoices = computed<QuesoCheckboxMultipleModel>(() =>
     choices.filter((choice) => choice.isChecked).map((choice) => choice.value),
 );
 
-// Update the model when the checked choices change
+// Update the model when checked choices change
 watch(
     checkedChoices,
     (value) => {
-        model.value = value;
+        // Only update the model if the value has changed to prevent infinite loop
+        // (using JSON.stringify for deep comparison)
+        if (JSON.stringify(value) !== JSON.stringify(model.value)) {
+            model.value = value;
+        }
+    },
+    { immediate: true },
+);
+
+// Watch for external model changes and update choices accordingly
+watch(
+    model,
+    (newValue) => {
+        choices.forEach((choice) => {
+            choice.isChecked = newValue.includes(choice.value);
+        });
     },
     { immediate: true },
 );
