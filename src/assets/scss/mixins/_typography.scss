@@ -3,7 +3,16 @@
 =================================*/
 
 @mixin fontfaces($webfonts, $dir) {
-    @each $webfont in $webfonts {
+    // Check if it's a nested list by seeing if the first item is a string
+    // !! Don't remove the prettier-ignore comment !!
+    // prettier-ignore
+    $normalized-webfonts: if(
+        type-of(nth($webfonts, 1)) == "string",
+        ($webfonts,),
+        $webfonts
+    );
+
+    @each $webfont in $normalized-webfonts {
         @font-face {
             font-family: nth($webfont, 1);
             src:
