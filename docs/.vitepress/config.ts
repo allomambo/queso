@@ -1,5 +1,57 @@
 import { defineConfig } from "vitepress";
 
+const NAV_ITEMS = [
+    {
+        text: "Components",
+        items: [
+            {
+                text: "Basic",
+                items: [
+                    { text: "QuesoClickable", link: "/components/clickable" },
+                    { text: "QuesoCollapsible", link: "/components/collapsible" },
+                    { text: "QuesoDropdown", link: "/components/dropdown" },
+                    { text: "QuesoModal", link: "/components/modal" },
+                    { text: "QuesoScrollable", link: "/components/scrollable" },
+                ],
+            },
+            {
+                text: "Form",
+                items: [
+                    { text: "QuesoCheckbox", link: "/components/checkbox" },
+                    { text: "QuesoPassword", link: "/components/password" },
+                    { text: "QuesoRadio", link: "/components/radio" },
+                    { text: "QuesoSelect", link: "/components/select" },
+                    { text: "QuesoTextArea", link: "/components/text-area" },
+                    { text: "QuesoTextField", link: "/components/text-field" },
+                ],
+            },
+        ],
+    },
+    {
+        text: "Sass core",
+        items: [
+            { text: "Core", link: "/sass-core/core" },
+            { text: "Variables", link: "/sass-core/variables" },
+            { text: "Mixins", link: "/sass-core/mixins" },
+            { text: "Functions", link: "/sass-core/functions" },
+        ],
+    },
+    {
+        text: "Utils",
+        items: [
+            { text: "capitalize", link: "/utils#capitalize" },
+            { text: "getFirstObjectOfArray", link: "/utils#getfirstobjectofarray" },
+            { text: "resizeEnd", link: "/utils#resizeend" },
+            { text: "toCamelCase", link: "/utils#tocamelcase" },
+            { text: "toKebabCase", link: "/utils#tokebabcase" },
+            { text: "toPascalCase", link: "/utils#topascalcase" },
+            { text: "toSnakeCase", link: "/utils#tosnakecase" },
+            { text: "toMailTo", link: "/utils#tomailto" },
+            { text: "toTel", link: "/utils#totel" },
+        ],
+    },
+];
+
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
     title: "🧀 Queso",
@@ -31,40 +83,7 @@ export default defineConfig({
             provider: "local",
         },
 
-        nav: [
-            { text: "Home", link: "/" },
-            {
-                text: "Components",
-                items: [
-                    { text: "QuesoComponent", link: "/components/queso-component" },
-                    { text: "QuesoButton", link: "/components/queso-button" },
-                    { text: "QuesoInput", link: "/components/queso-input" },
-                    { text: "QuesoSelect", link: "/components/queso-select" },
-                    { text: "QuesoTextarea", link: "/components/queso-textarea" },
-                    { text: "QuesoCheckbox", link: "/components/queso-checkbox" },
-                    { text: "QuesoRadio", link: "/components/queso-radio" },
-                    { text: "QuesoSwitch", link: "/components/queso-switch" },
-                ],
-            },
-            {
-                text: "Sass core",
-                items: [
-                    { text: "Core", link: "/sass-core/core" },
-                    { text: "Variables", link: "/sass-core/variables" },
-                    { text: "Mixins", link: "/sass-core/mixins" },
-                    { text: "Functions", link: "/sass-core/functions" },
-                ],
-            },
-            {
-                text: "Utils",
-                items: [
-                    { text: "toCamelCase", link: "/utils/to-camel-case" },
-                    { text: "toKebabCase", link: "/utils/to-kebab-case" },
-                    { text: "toPascalCase", link: "/utils/to-pascal-case" },
-                    { text: "toSnakeCase", link: "/utils/to-snake-case" },
-                ],
-            },
-        ],
+        nav: [{ text: "Home", link: "/" }, ...NAV_ITEMS],
 
         socialLinks: [{ icon: "github", link: "https://github.com/allomambo/queso" }],
 
@@ -76,37 +95,7 @@ export default defineConfig({
                     { text: "Usage", link: "/usage" },
                 ],
             },
-            {
-                text: "Components",
-                items: [
-                    { text: "QuesoComponent", link: "/components/queso-component" },
-                    { text: "QuesoButton", link: "/components/queso-button" },
-                    { text: "QuesoInput", link: "/components/queso-input" },
-                    { text: "QuesoSelect", link: "/components/queso-select" },
-                    { text: "QuesoTextarea", link: "/components/queso-textarea" },
-                    { text: "QuesoCheckbox", link: "/components/queso-checkbox" },
-                    { text: "QuesoRadio", link: "/components/queso-radio" },
-                    { text: "QuesoSwitch", link: "/components/queso-switch" },
-                ],
-            },
-            {
-                text: "Sass core",
-                items: [
-                    { text: "Core", link: "/sass-core/core" },
-                    { text: "Variables", link: "/sass-core/variables" },
-                    { text: "Mixins", link: "/sass-core/mixins" },
-                    { text: "Functions", link: "/sass-core/functions" },
-                ],
-            },
-            {
-                text: "Utils",
-                items: [
-                    { text: "toCamelCase", link: "/utils/to-camel-case" },
-                    { text: "toKebabCase", link: "/utils/to-kebab-case" },
-                    { text: "toPascalCase", link: "/utils/to-pascal-case" },
-                    { text: "toSnakeCase", link: "/utils/to-snake-case" },
-                ],
-            },
+            ...NAV_ITEMS,
             {
                 text: "Examples",
                 items: [

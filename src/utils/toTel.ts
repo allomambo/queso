@@ -1,6 +1,11 @@
-const toTel = (str: string): string | null => {
+/**
+ * Converts a string to a tel link.
+ * @param {string} str - The input string to be converted.
+ * @returns {string} The input string in tel link format.
+ */
+const toTel = (str: string): string => {
     if (!str) {
-        return null;
+        return "";
     }
 
     return `tel:+${str.replace(/[^+\d]+/g, "")}`;

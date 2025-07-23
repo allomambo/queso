@@ -17,7 +17,7 @@ hero:
           link: /components/queso-component
         - theme: alt
           text: Utils
-          link: /utils/to-camel-case
+          link: /utils
     image:
         src: /vitepress-logo.svg
         alt: MamboMambo Queso
