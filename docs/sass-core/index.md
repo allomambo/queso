@@ -12,7 +12,7 @@ next:
 The Sass core contains the foundational building blocks for the project's styles, including variables, functions, mixins, and utilities. Use these to maintain consistency and reusability across your stylesheets.
 
 ::: info Usage
-For more info how to install the sass core on your project, refer to [Usage](../usage)
+For more info how to install the sass core on your project, refer to [Usage](../usage#how-to-use-the-sass-core)
 :::
 
 ---

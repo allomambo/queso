@@ -10,6 +10,10 @@ The components are organized into two main categories: basic interactive compone
 
 Each component has its types exported, including props, model, and other relevant interfaces for type-safe development.
 
+::: info Usage
+For more info how to use components in your project, refer to [Usage](../usage#how-to-use-components)
+:::
+
 ---
 
 #### Basic
