@@ -20,10 +20,12 @@ For a complete list of components, go to [Components overview](../components/)
 
 ## How to use the Sass core
 
-Import the sass core from the package
+Import the sass core from the package in your project root file, often `App.vue`
 
-```scss
-@import "@allomambo/queso/styles/core";
+```vue
+<script setup>
+import "@allomambo/queso/styles/core";
+</script>
 ```
 
 If you use a frontend build tool like Vite or Webpack, we recommend that you import the sass core as additional data in your config file.
@@ -35,7 +37,7 @@ export default defineConfig({
     css: {
         preprocessorOptions: {
             scss: {
-                additionalData: `@import "@assets/scss/main.scss";`
+                additionalData: `@import "@allomambo/queso/styles/core";`
             }
         }
     }

@@ -79,11 +79,9 @@ const NAV_ITEMS = [
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-    title: "🧀 Queso",
+    title: "Queso",
     description: "VueJS component library to use in conjunction with Arepa",
-    cleanUrls: true,
-    lastUpdated: true,
-
+    lang: "en-CA",
     head: [
         ["link", { rel: "icon", type: "image/svg+xml", href: "/vitepress-logo-mini.svg" }],
         ["link", { rel: "icon", type: "image/png", href: "/vitepress-logo-mini.png" }],
@@ -99,6 +97,8 @@ export default defineConfig({
         ],
         ["meta", { property: "og:url", content: "https://mambomambo.github.io/queso" }],
     ],
+    cleanUrls: true,
+    lastUpdated: true,
 
     themeConfig: {
         // https://vitepress.dev/reference/default-theme-config
@@ -128,7 +128,7 @@ export default defineConfig({
         ],
 
         footer: {
-            copyright: `© ${new Date().getFullYear()} MamboMambo`,
+            copyright: `MamboMambo © 2024-present`,
         },
     },
 });
