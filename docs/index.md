@@ -11,7 +11,7 @@ hero:
           link: /installation
         - theme: alt
           text: Components
-          link: /components/queso-component
+          link: /components
         - theme: alt
           text: Sass core
           link: /components/queso-component

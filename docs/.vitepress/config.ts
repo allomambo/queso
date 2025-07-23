@@ -4,6 +4,7 @@ const NAV_ITEMS = [
     {
         text: "Components",
         items: [
+            { text: "Overview", link: "/components/" },
             {
                 text: "Basic",
                 items: [
@@ -93,6 +94,7 @@ export default defineConfig({
                 items: [
                     { text: "Installation", link: "/installation" },
                     { text: "Usage", link: "/usage" },
+                    { text: "Code convention", link: "/code-convention" },
                 ],
             },
             ...NAV_ITEMS,
