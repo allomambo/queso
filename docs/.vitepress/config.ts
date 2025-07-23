@@ -31,10 +31,34 @@ const NAV_ITEMS = [
     {
         text: "Sass core",
         items: [
-            { text: "Core", link: "/sass-core/core" },
-            { text: "Variables", link: "/sass-core/variables" },
-            { text: "Mixins", link: "/sass-core/mixins" },
-            { text: "Functions", link: "/sass-core/functions" },
+            { text: "Overview", link: "/sass-core/" },
+            {
+                text: "Mixins",
+                items: [
+                    { text: "A11y", link: "/sass-core/a11y" },
+                    { text: "Breakpoints", link: "/sass-core/breakpoints" },
+                    { text: "Containers", link: "/sass-core/containers" },
+                    { text: "Grid", link: "/sass-core/grid" },
+                    { text: "Headings", link: "/sass-core/headings" },
+                    { text: "Helpers", link: "/sass-core/mixins-helpers" },
+                    { text: "Layout", link: "/sass-core/layout" },
+                    { text: "Make Variations", link: "/sass-core/make-variations" },
+                    { text: "Minimum Aspect Ratio", link: "/sass-core/minimum-aspect-ratio" },
+                    { text: "Overflow Shadows", link: "/sass-core/overflow-shadows" },
+                    { text: "Stack", link: "/sass-core/stack" },
+                    { text: "Typography", link: "/sass-core/typography" },
+                    { text: "Visuals", link: "/sass-core/visuals" },
+                ],
+            },
+            {
+                text: "Functions",
+                items: [
+                    { text: "Maths", link: "/sass-core/maths" },
+                    { text: "Shortcuts", link: "/sass-core/shortcuts" },
+                    { text: "Map", link: "/sass-core/map" },
+                    { text: "Helpers", link: "/sass-core/functions-helpers" },
+                ],
+            },
         ],
     },
     {
@@ -86,7 +110,10 @@ export default defineConfig({
 
         nav: [{ text: "Home", link: "/" }, ...NAV_ITEMS],
 
-        socialLinks: [{ icon: "github", link: "https://github.com/allomambo/queso" }],
+        socialLinks: [
+            { icon: "npm", link: "https://www.npmjs.com/package/@allomambo/queso" },
+            { icon: "github", link: "https://github.com/allomambo/queso" },
+        ],
 
         sidebar: [
             {
@@ -99,5 +126,9 @@ export default defineConfig({
             },
             ...NAV_ITEMS,
         ],
+
+        footer: {
+            copyright: `© ${new Date().getFullYear()} MamboMambo`,
+        },
     },
 });

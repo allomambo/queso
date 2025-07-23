@@ -1,4 +1,7 @@
 ---
+prev:
+    text: "Sass core"
+    link: "/sass-core/"
 next: false
 ---
 

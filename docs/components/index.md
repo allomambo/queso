@@ -1,5 +1,7 @@
 ---
-next: false
+next:
+    text: "Sass core"
+    link: "/sass-core/"
 ---
 
 # Components
@@ -12,17 +14,17 @@ Each component has its types exported, including props, model, and other relevan
 
 #### Basic
 
-[QuesoClickable](/components/clickable)  
-[QuesoCollapsible](/components/collapsible)  
-[QuesoDropdown](/components/dropdown)  
-[QuesoModal](/components/modal)  
-[QuesoScrollable](/components/scrollable)
+-   [QuesoClickable](/components/clickable)
+-   [QuesoCollapsible](/components/collapsible)
+-   [QuesoDropdown](/components/dropdown)
+-   [QuesoModal](/components/modal)
+-   [QuesoScrollable](/components/scrollable)
 
 #### Form
 
-[QuesoCheckbox](/components/checkbox), [QuesoCheckboxMultiple](/components/checkbox#quesocheckboxmultiple)  
-[QuesoPassword](/components/password)  
-[QuesoRadio](/components/radio)  
-[QuesoSelect](/components/select), [QuesoSelectMultiple](/components/select#quesoselectmultiple)  
-[QuesoTextArea](/components/text-area)  
-[QuesoTextField](/components/text-field)
+-   [QuesoCheckbox](/components/checkbox), [QuesoCheckboxMultiple](/components/checkbox#quesocheckboxmultiple)
+-   [QuesoPassword](/components/password)
+-   [QuesoRadio](/components/radio)
+-   [QuesoSelect](/components/select), [QuesoSelectMultiple](/components/select#quesoselectmultiple)
+-   [QuesoTextArea](/components/text-area)
+-   [QuesoTextField](/components/text-field)
