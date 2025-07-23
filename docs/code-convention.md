@@ -130,6 +130,8 @@ export interface QuesoComponentMiscInterface {
 import { computed, ref } from "vue";
 import { onClickOutside } from "@vueuse/core";
 
+import { QuesoComponent } from "@components/QuesoComponent";
+
 // Types
 import type { QuesoComponentProps } from "./types";
 
