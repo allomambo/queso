@@ -98,13 +98,6 @@ export default defineConfig({
                 ],
             },
             ...NAV_ITEMS,
-            {
-                text: "Examples",
-                items: [
-                    { text: "Markdown Examples", link: "/markdown-examples" },
-                    { text: "Runtime API Examples", link: "/api-examples" },
-                ],
-            },
         ],
     },
 });
