@@ -1,12 +1,12 @@
 /**
  * Converts a string to snake_case.
- * @param {string} string - The input string to be converted.
- * @returns {string | null} The input string in snake_case.
+ * @param {string} str - The input string to be converted.
+ * @returns {string} The input string in snake_case.
  */
-const toSnakeCase = (string: string): string | null => {
-    if (!string) return null;
+const toSnakeCase = (str: string): string => {
+    if (!str) return "";
 
-    return `${string}`
+    return `${str}`
         .toLowerCase()
         .replace("-", "")
         .replace(/[^\w\u00C0-\u024f]+/g, "_")

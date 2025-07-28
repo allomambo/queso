@@ -1,12 +1,12 @@
 /**
  * Converts a string to camelCase.
- * @param {string} string - The input string to be converted.
- * @returns {string | null} The input string in camelCase.
+ * @param {string} str - The input string to be converted.
+ * @returns {string} The input string in camelCase.
  */
-const toCamelCase = (string: String): string | null => {
-    if (!string) return null;
+const toCamelCase = (str: string): string => {
+    if (!str) return "";
 
-    return `${string}`
+    return `${str}`
         .toLowerCase()
         .replace(new RegExp(/[-_]+/, "g"), " ")
         .replace(new RegExp(/[^\w\s]/, "g"), "")

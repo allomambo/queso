@@ -1,12 +1,12 @@
 /**
  * Converts a string to PascalCase.
- * @param {string} string - The input string to be converted.
- * @returns {string | null} The input string in PascalCase.
+ * @param {string} str - The input string to be converted.
+ * @returns {string} The input string in PascalCase.
  */
-const toPascalCase = (string: String): string | null => {
-    if (!string) return null;
+const toPascalCase = (str: string): string => {
+    if (!str) return "";
 
-    return `${string}`
+    return `${str}`
         .toLowerCase()
         .replace(new RegExp(/[-_]+/, "g"), " ")
         .replace(new RegExp(/[^\w\s]/, "g"), "")
