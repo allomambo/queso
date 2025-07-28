@@ -46,25 +46,6 @@ import { QuesoClickable } from "@allomambo/queso";
 -   **Default:** `false`
 -   **Description:** When `true` and `markup` is `"a"`, adds the `download` attribute for file downloads.
 
-### Type Declaration
-
-```ts
-export type QuesoClickableMarkup =
-    | "button"
-    | "a"
-    | "router-link"
-    | "div"
-    | "span";
-
-export interface QuesoClickableProps {
-    markup?: QuesoClickableMarkup;
-    url?: string | object;
-    isDisabled?: boolean;
-    isExternal?: boolean;
-    isDownload?: boolean;
-}
-```
-
 ## Examples
 
 ### Button (Default)
@@ -174,3 +155,22 @@ The component applies the following CSS classes:
 -   `.queso-clickable` - Base class
 -   `.is-disabled` - Applied when `isDisabled` is `true`
 -   `.is-download` - Applied when `isDownload` is `true` and markup is `"a"`
+
+## Type Declaration
+
+```ts
+export type QuesoClickableMarkup =
+    | "button"
+    | "a"
+    | "router-link"
+    | "div"
+    | "span";
+
+export interface QuesoClickableProps {
+    markup?: QuesoClickableMarkup;
+    url?: string | object;
+    isDisabled?: boolean;
+    isExternal?: boolean;
+    isDownload?: boolean;
+}
+```
