@@ -16,6 +16,7 @@ This document outlines the coding standards and conventions used throughout the 
 -   Use PascalCase for component names: `QuesoClickable`, `QuesoModal`
 -   Component files use PascalCase: `QuesoClickable.vue`, `QuesoModal.vue`
 -   When used in an template use kebab-case: `<queso-clickable />`, `<queso-modal />`
+-   Emits should be prefixed with the component name: `dropdown:open`, `collapsible:toggle`
 
 ### CSS Classes
 

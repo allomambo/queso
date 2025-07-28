@@ -8,19 +8,19 @@
             @click="toggleDropdown()"
             @keydown="handleKeydownToggleDropdown($event)"
         >
-            <slot name="selector" v-bind="{ options, activeOptions }">
-                <slot name="selectorBeforeText"></slot>
+            <slot name="selector" v-bind="{ options, activeOptions, isDropdownOpen }">
+                <slot name="beforeSelectorText"></slot>
                 <div class="queso-dropdown__selector__text">
                     <div v-if="activeOptions.length < 1" class="queso-dropdown__selector__text__placeholder">
                         <slot name="selectorPlaceholder"></slot>
                     </div>
                     <div v-else class="queso-dropdown__selector__text__active-label">
-                        <slot name="selectorActiveOptions" v-bind="{ activeOptions }">
+                        <slot name="selectorActiveOptions" v-bind="{ activeOptions, isDropdownOpen }">
                             {{ activeOptions }}
                         </slot>
                     </div>
                 </div>
-                <slot name="selectorAfterText"></slot>
+                <slot name="afterSelectorText"></slot>
                 <div class="queso-dropdown__selector__icon">
                     <slot name="selectorIcon">↓</slot>
                 </div>
@@ -43,7 +43,7 @@
                         @click="updateOption(option.value)"
                         @keydown="handleKeydownUpdateOption(option.value, $event)"
                     >
-                        <slot name="item" v-bind="{ ...option, openDropdown, closeDropdown }">
+                        <slot name="popoverItem" v-bind="{ index, ...option, openDropdown, closeDropdown }">
                             {{ option }}
                         </slot>
                     </li>
@@ -54,7 +54,7 @@
             </div>
         </div>
 
-        <slot name="after"></slot>
+        <slot name="afterDropdown"></slot>
     </div>
 </template>
 
@@ -70,8 +70,8 @@ import { QuesoDropdownModel, QuesoDropdownProps, QuesoDropdownOptions, QuesoDrop
 const props = defineProps<QuesoDropdownProps>();
 
 const emit = defineEmits<{
-    "open:dropdown": [];
-    "close:dropdown": [];
+    "dropdown:open": [];
+    "dropdown:close": [];
 }>();
 
 // Model
@@ -160,7 +160,7 @@ const openDropdown = () => {
         option.focus();
     }
 
-    emit("open:dropdown");
+    emit("dropdown:open");
 };
 
 const closeDropdown = () => {
@@ -169,7 +169,7 @@ const closeDropdown = () => {
     deactivateFocus();
     scrollToTop();
 
-    emit("close:dropdown");
+    emit("dropdown:close");
 };
 
 const toggleDropdown = () => {
