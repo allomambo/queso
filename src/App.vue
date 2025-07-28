@@ -140,7 +140,6 @@ import {
     QuesoPassword,
     QuesoRadio,
 } from "./components";
-import { c } from "vite/dist/node/types.d-aGj9QkWt";
 
 const dataOptions = [
     {
