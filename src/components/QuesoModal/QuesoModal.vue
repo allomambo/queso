@@ -7,15 +7,17 @@
             :aria-expanded="isModalOpen"
             v-bind="$attrs"
         >
-            <slot name="beforeContent"></slot>
+            <slot name="beforeContent" v-bind="{ isModalOpen, open, close }"></slot>
 
             <div class="queso-modal__content">
-                <slot></slot>
+                <slot name="content" v-bind="{ isModalOpen, open, close }">
+                    <slot v-bind="{ isModalOpen, open, close }"></slot>
+                </slot>
             </div>
 
-            <slot name="afterContent"></slot>
+            <slot name="afterContent" v-bind="{ isModalOpen, open, close }"></slot>
 
-            <slot name="overlay">
+            <slot name="overlay" v-bind="{ isModalOpen, open, close }">
                 <queso-modal-overlay />
             </slot>
         </div>
