@@ -1,13 +1,28 @@
 # Shortcuts
 
-Shortcut utility functions for common operations.
+Shortcut functions for common CSS operations.
 
-## Usage
+## `dvar()`
 
-```scss
-@import "@/assets/scss/functions/shortcuts";
+Creates a CSS variable with a default fallback.
+
+| Parameter  | Type     | Default&nbsp;Value | Description                              |
+| ---------- | -------- | ------------------ | ---------------------------------------- |
+| `$var`     | `string` | -                  | The CSS variable name                    |
+| `$default` | `any`    | `null`             | The default value if variable is not set |
+
+::: code-group
+
+```scss [Usage]
+.element {
+    font-size: dvar(--heading-font-size);
+}
 ```
 
-## Examples
+```scss [Result]
+.element {
+    font-size: var(--heading-font-size, var(--heading-font-size-default));
+}
+```
 
-Refer to the source file for available functions and their usage.
+:::
