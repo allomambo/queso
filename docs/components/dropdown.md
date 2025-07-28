@@ -396,15 +396,15 @@ The component applies the following CSS classes:
 ```ts
 export type QuesoDropdownOptionValue = string;
 export type QuesoDropdownOptionValues = QuesoDropdownOptionValue[];
-export type QuesoDropdownModel = QuesoDropdownOptionValues;
 
 export interface QuesoDropdownOption {
     value: QuesoDropdownOptionValue;
     label: string;
     data?: object;
 }
-
 export type QuesoDropdownOptions = QuesoDropdownOption[];
+
+export type QuesoDropdownModel = QuesoDropdownOptionValues;
 
 export interface QuesoDropdownProps {
     options: QuesoDropdownOptions;
