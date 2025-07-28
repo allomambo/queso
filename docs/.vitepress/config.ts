@@ -2,6 +2,14 @@ import { defineConfig } from "vitepress";
 
 const NAV_ITEMS = [
     {
+        text: "Get started",
+        items: [
+            { text: "Installation", link: "/installation" },
+            { text: "Usage", link: "/usage" },
+            { text: "Code convention", link: "/code-convention" },
+        ],
+    },
+    {
         text: "Components",
         items: [
             { text: "Overview", link: "/components/" },
@@ -79,18 +87,18 @@ export default defineConfig({
     description: "VueJS component library to use in conjunction with Arepa",
     lang: "en-CA",
     head: [
-        ["link", { rel: "icon", type: "image/svg+xml", href: "/vitepress-logo-mini.svg" }],
-        ["link", { rel: "icon", type: "image/png", href: "/vitepress-logo-mini.png" }],
+        // ["link", { rel: "icon", type: "image/svg+xml", href: "/vitepress-logo-mini.svg" }],
+        ["link", { rel: "icon", type: "image/png", href: "/cheese-wedge.png" }],
         ["meta", { name: "theme-color", content: "#5f67ee" }],
         ["meta", { property: "og:type", content: "website" }],
         ["meta", { property: "og:site_name", content: "Queso" }],
-        [
-            "meta",
-            {
-                property: "og:image",
-                content: "https://mambomambo.github.io/queso/vitepress-og.jpg",
-            },
-        ],
+        // [
+        //     "meta",
+        //     {
+        //         property: "og:image",
+        //         content: "https://mambomambo.github.io/queso/vitepress-og.jpg",
+        //     },
+        // ],
         ["meta", { property: "og:url", content: "https://mambomambo.github.io/queso" }],
     ],
     cleanUrls: true,
@@ -98,30 +106,20 @@ export default defineConfig({
 
     themeConfig: {
         // https://vitepress.dev/reference/default-theme-config
-        logo: { src: "/vitepress-logo-mini.svg", width: 24, height: 24 },
+        logo: { src: "/cheese-wedge.png", width: 24, height: 24 },
 
         search: {
             provider: "local",
         },
 
-        nav: [{ text: "Home", link: "/" }, ...NAV_ITEMS],
+        nav: [...NAV_ITEMS],
 
         socialLinks: [
             { icon: "npm", link: "https://www.npmjs.com/package/@allomambo/queso" },
             { icon: "github", link: "https://github.com/allomambo/queso" },
         ],
 
-        sidebar: [
-            {
-                text: "Get started",
-                items: [
-                    { text: "Installation", link: "/installation" },
-                    { text: "Usage", link: "/usage" },
-                    { text: "Code convention", link: "/code-convention" },
-                ],
-            },
-            ...NAV_ITEMS,
-        ],
+        sidebar: [...NAV_ITEMS],
 
         footer: {
             copyright: `MamboMambo © 2024-present`,

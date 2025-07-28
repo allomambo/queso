@@ -18,9 +18,9 @@ hero:
         - theme: alt
           text: Utils
           link: /utils
-    image:
-        src: /vitepress-logo.svg
-        alt: MamboMambo Queso
+    # image:
+    # src: /vitepress-logo.svg
+    # alt: MamboMambo Queso
 
 features:
     - icon: 🎨
