@@ -32,23 +32,23 @@
                 @mouseleave="toggleIsHover(false)"
                 v-model="model"
             >
-                <template #selectorPlaceholder>
-                    <slot name="placeholder" v-bind="{ placeholder }">{{ placeholder }}</slot>
+                <template #selectorPlaceholder="{ isDropdownOpen }">
+                    <slot name="placeholder" v-bind="{ isDropdownOpen, placeholder }">{{ placeholder }}</slot>
                 </template>
-                <template #selectorActiveOptions="{ activeOptions }">
-                    <slot name="selector" v-bind="{ activeOptions }">
+                <template #selectorActiveOptions="{ isDropdownOpen, activeOptions }">
+                    <slot name="selector" v-bind="{ isDropdownOpen, activeOptions }">
                         <span v-for="active in activeOptions" :key="active.value">{{ active.label }}</span>
                     </slot>
                 </template>
-                <template #selectorIcon>
-                    <slot name="icon">+</slot>
+                <template #selectorIcon="{ isDropdownOpen }">
+                    <slot name="icon" v-bind="{ isDropdownOpen }">+</slot>
                 </template>
-                <template #item="{ value, label, data }">
-                    <slot name="item" v-bind="{ value, label, data }">
+                <template #popoverItem="{ index, value, label, data }">
+                    <slot name="item" v-bind="{ index, value, label, data }">
                         <span class="text">{{ label }}</span>
                     </slot>
                 </template>
-                <template #after>
+                <template #afterDropdown>
                     <select
                         class="queso-select__select-native"
                         :id="fieldID"

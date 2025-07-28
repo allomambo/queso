@@ -43,7 +43,7 @@
                         @click="updateOption(option.value)"
                         @keydown="handleKeydownUpdateOption(option.value, $event)"
                     >
-                        <slot name="item" v-bind="{ index, ...option, openDropdown, closeDropdown }">
+                        <slot name="popoverItem" v-bind="{ index, ...option, openDropdown, closeDropdown }">
                             {{ option }}
                         </slot>
                     </li>
@@ -54,7 +54,7 @@
             </div>
         </div>
 
-        <slot name="after"></slot>
+        <slot name="afterDropdown"></slot>
     </div>
 </template>
 
