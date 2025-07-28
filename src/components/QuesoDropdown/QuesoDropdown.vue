@@ -70,8 +70,8 @@ import { QuesoDropdownModel, QuesoDropdownProps, QuesoDropdownOptions, QuesoDrop
 const props = defineProps<QuesoDropdownProps>();
 
 const emit = defineEmits<{
-    "open:dropdown": [];
-    "close:dropdown": [];
+    "dropdown:open": [];
+    "dropdown:close": [];
 }>();
 
 // Model
@@ -160,7 +160,7 @@ const openDropdown = () => {
         option.focus();
     }
 
-    emit("open:dropdown");
+    emit("dropdown:open");
 };
 
 const closeDropdown = () => {
@@ -169,7 +169,7 @@ const closeDropdown = () => {
     deactivateFocus();
     scrollToTop();
 
-    emit("close:dropdown");
+    emit("dropdown:close");
 };
 
 const toggleDropdown = () => {
