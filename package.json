@@ -3,6 +3,7 @@
     "version": "0.2.5",
     "description": "VueJS component library to use in conjunction with Arepa",
     "repository": "https://github.com/allomambo/queso.git",
+    "homepage": "https://allomambo.github.io/queso/",
     "author": "MamboMambo <allo@mambomambo.ca> (https://mambomambo.ca)",
     "contributors": [
         "Alexandre Belley <ab@mambomambo.ca> (https://mambomambo.ca/)",
@@ -46,7 +47,10 @@
         "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src",
         "test:coverage": "vitest run --coverage",
         "test:run": "vitest --run",
-        "test": "vitest"
+        "test": "vitest",
+        "docs:dev": "vitepress dev docs",
+        "docs:build": "vitepress build docs",
+        "docs:preview": "vitepress preview docs"
     },
     "dependencies": {
         "@vueuse/core": "^10.9.0",
@@ -80,6 +84,7 @@
         "vite-plugin-eslint": "^1.8.1",
         "vite-plugin-html": "^3.2.2",
         "vite-plugin-restart": "^0.4.0",
+        "vitepress": "^1.6.3",
         "vitest": "^1.6.0",
         "vue-eslint-parser": "^9.4.2",
         "vue-tsc": "^2.0.17"

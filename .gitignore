@@ -43,4 +43,5 @@ Thumbs.db
 *.wmv
 
 # Builds
-/docs/
+docs/.vitepress/dist/
+docs/.vitepress/cache/
