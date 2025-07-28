@@ -4,7 +4,7 @@
         class="queso-clickable"
         :class="clickableClasses"
         :disabled="clickableDisabled"
-        :aria-disabled="clickableDisabled"
+        :aria-disabled="clickableAriaDisabled"
         v-bind="anchorAttributes"
     >
         <slot></slot>
@@ -47,6 +47,7 @@ const anchorAttributes = computed(() => {
 // Computeds
 const clickableTarget = computed(() => (isAnchor.value && isExternal.value ? "_blank" : null));
 const clickableDisabled = computed(() => (isDisabled.value ? "" : null));
+const clickableAriaDisabled = computed(() => (isDisabled.value ? "true" : null));
 const clickableDownload = computed(() => (isAnchor.value && isDownload.value ? "" : null));
 
 // CSS classes

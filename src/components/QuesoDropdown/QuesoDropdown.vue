@@ -8,28 +8,28 @@
             @click="toggleDropdown()"
             @keydown="handleKeydownToggleDropdown($event)"
         >
-            <slot name="selector" v-bind="{ options, activeOptions, isDropdownOpen }">
-                <slot name="beforeSelectorText"></slot>
+            <slot name="selector" v-bind="{ isDropdownOpen, options, activeOptions }">
+                <slot name="selectorBeforeText" v-bind="{ isDropdownOpen, options, activeOptions }"></slot>
                 <div class="queso-dropdown__selector__text">
                     <div v-if="activeOptions.length < 1" class="queso-dropdown__selector__text__placeholder">
-                        <slot name="selectorPlaceholder"></slot>
+                        <slot name="selectorPlaceholder" v-bind="{ isDropdownOpen }"></slot>
                     </div>
                     <div v-else class="queso-dropdown__selector__text__active-label">
-                        <slot name="selectorActiveOptions" v-bind="{ activeOptions, isDropdownOpen }">
+                        <slot name="selectorActiveOptions" v-bind="{ isDropdownOpen, activeOptions }">
                             {{ activeOptions }}
                         </slot>
                     </div>
                 </div>
-                <slot name="afterSelectorText"></slot>
+                <slot name="selectorAfterText" v-bind="{ isDropdownOpen, options, activeOptions }"></slot>
                 <div class="queso-dropdown__selector__icon">
-                    <slot name="selectorIcon">↓</slot>
+                    <slot name="selectorIcon" v-bind="{ isDropdownOpen }">↓</slot>
                 </div>
             </slot>
         </div>
 
         <div class="queso-dropdown__popover" :id="uniqueId">
             <div v-if="$slots.popoverHeader" class="queso-dropdown__popover__header">
-                <slot name="popoverHeader"></slot>
+                <slot name="popoverHeader" v-bind="{ options, activeOptions }"></slot>
             </div>
             <div class="queso-dropdown__popover__scroll" :class="dropdownPopoverClasses">
                 <ul ref="dropdownPopover" class="queso-dropdown__popover__options-list">
@@ -50,7 +50,7 @@
                 </ul>
             </div>
             <div v-if="$slots.popoverFooter" class="queso-dropdown__popover__footer">
-                <slot name="popoverFooter"></slot>
+                <slot name="popoverFooter" v-bind="{ options, activeOptions }"></slot>
             </div>
         </div>
 
