@@ -68,7 +68,7 @@ const showModal = ref(false);
 ```
 
 ::: info Component Library
-For a complete list of available components and their props, visit the [Components overview](../components/)
+For a complete list of available components and their props, visit the [Components overview](/components/)
 :::
 
 ## Sass Core
@@ -185,7 +185,7 @@ $grid: (
 ```
 
 ::: info Sass Documentation
-For detailed information about available mixins and functions, visit the [Sass core overview](../sass-core/)
+For detailed information about available mixins and functions, visit the [Sass core overview](/sass-core/)
 :::
 
 ## Utilities
@@ -202,7 +202,7 @@ const pascalCase = toPascalCase("hello-world"); // "HelloWorld"
 ```
 
 ::: info All Utilities
-For a complete list of available utilities, visit the [Utils](../utils) documentation.
+For a complete list of available utilities, visit the [Utils](/utils) documentation.
 :::
 
 ## TypeScript Support

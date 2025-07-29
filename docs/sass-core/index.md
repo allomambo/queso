@@ -23,19 +23,15 @@ For more info how to install the sass core on your project, refer to [Usage](../
 -   [Breakpoints](./breakpoints.md)
 -   [Containers](./containers.md)
 -   [Grid](./grid.md)
--   [Headings](./headings.md)
--   [Helpers](./mixins-helpers.md)
 -   [Layout](./layout.md)
--   [Make Variations](./make-variations.md)
--   [Minimum Aspect Ratio](./minimum-aspect-ratio.md)
--   [Overflow Shadows](./overflow-shadows.md)
--   [Stack](./stack.md)
+-   [Flex](./flex.md)
 -   [Typography](./typography.md)
 -   [Visuals](./visuals.md)
+-   [Misc](./misc.md)
 
 #### Functions
 
 -   [Maths](./maths.md)
 -   [Shortcuts](./shortcuts.md)
 -   [Map](./map.md)
--   [Helpers](./functions-helpers.md)
+-   [Units](./units.md)

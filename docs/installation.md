@@ -49,7 +49,7 @@ The entire package is lightweight, with components shipping minimal default styl
 
 Once installed, you can:
 
-1. **Start using Queso** - Check out the [Usage](../usage) guide
-2. **Explore the component library** - Browse available [Components](../components/)
-3. **Set up styling and use mixins** - Learn about the [Sass Core](../sass-core/)
-4. **Use utilities** - Discover available [Utils](../utils)
+1. **Start using Queso** - Check out the [Usage](/usage) guide
+2. **Explore the component library** - Browse available [Components](/components/)
+3. **Set up styling and use mixins** - Learn about the [Sass Core](/sass-core/)
+4. **Use utilities** - Discover available [Utils](/utils)
