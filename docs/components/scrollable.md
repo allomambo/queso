@@ -32,12 +32,12 @@ import { QuesoScrollable } from "@components/QuesoScrollable";
 
 ## Emits
 
-### `scrollable:top:arrived`
+### `scrollable:top:reached`
 
 -   **Payload:** `void`
 -   **Description:** Emitted when the scroll position reaches the top boundary (considering the offset).
 
-### `scrollable:bottom:arrived`
+### `scrollable:bottom:reached`
 
 -   **Payload:** `void`
 -   **Description:** Emitted when the scroll position reaches the bottom boundary (considering the offset).

@@ -46,18 +46,27 @@ const closeModal = () => {
 
 ### `default`
 
+-   **Props:** `{ isModalOpen: boolean, open: () => void, close: () => void }`
 -   **Description:** The main modal content.
 
 ### `beforeContent`
 
+-   **Props:** `{ isModalOpen: boolean, open: () => void, close: () => void }`
 -   **Description:** Content to display before the main modal content.
+
+### `content` (alias for `default`)
+
+-   **Props:** `{ isModalOpen: boolean, open: () => void, close: () => void }`
+-   **Description:** The main modal content. This slot is an alias for the default slot - you can use either `#content` or `#default` slot.
 
 ### `afterContent`
 
+-   **Props:** `{ isModalOpen: boolean, open: () => void, close: () => void }`
 -   **Description:** Content to display after the main modal content.
 
 ### `overlay`
 
+-   **Props:** `{ isModalOpen: boolean, open: () => void, close: () => void }`
 -   **Description:** Custom overlay component. Defaults to `<queso-modal-overlay />`.
 
 ## Exposed Methods

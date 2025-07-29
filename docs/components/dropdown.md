@@ -61,40 +61,46 @@ const options = [
 ### `selector`
 
 -   **Props:** `{ options: QuesoDropdownOption[], activeOptions: QuesoDropdownOption[], isDropdownOpen: boolean }`
--   **Description:** Completely replaces the entire selector content. Receives the available options, currently selected options, and dropdown open state.
+-   **Description:** Completely replaces the entire selector content.
 
-### `beforeSelectorText`
+### `selectorBeforeText`
 
--   **Description:** Content to display before the selector text (Placeholder/ActiveOptions).
+-   **Props:** `{ isDropdownOpen: boolean, options: QuesoDropdownOptions, activeOptions: QuesoDropdownOptions }`
+-   **Description:** Content to display before the selector text.
 
 ### `selectorPlaceholder`
 
+-   **Props:** `{ isDropdownOpen: boolean }`
 -   **Description:** Text displayed when no options are selected.
 
 ### `selectorActiveOptions`
 
--   **Props:** `{ activeOptions: QuesoDropdownOption[], isDropdownOpen: boolean }`
--   **Description:** Content to display when options are selected. Receives the currently selected options and dropdown open state.
+-   **Props:** `{ isDropdownOpen: boolean, activeOptions: QuesoDropdownOptions }`
+-   **Description:** Content to display when options are selected.
 
-### `afterSelectorText`
+### `selectorAfterText`
 
--   **Description:** Content to display after the selector text (Placeholder/ActiveOptions).
+-   **Props:** `{ isDropdownOpen: boolean, options: QuesoDropdownOptions, activeOptions: QuesoDropdownOptions }`
+-   **Description:** Content to display after the selector text.
 
 ### `selectorIcon`
 
+-   **Props:** `{ isDropdownOpen: boolean }`
 -   **Description:** The icon displayed in the selector. Defaults to "↓".
 
 ### `popoverHeader`
 
+-   **Props:** `{ options: QuesoDropdownOptions, activeOptions: QuesoDropdownOptions }`
 -   **Description:** Content to display at the top of the dropdown popover.
 
 ### `popoverItem`
 
 -   **Props:** `{ index: number, value: string, label: string, data?: object, openDropdown: () => void, closeDropdown: () => void }`
--   **Description:** Content for each dropdown option. Receives the option index, data, and dropdown control methods.
+-   **Description:** Content for each dropdown option.
 
 ### `popoverFooter`
 
+-   **Props:** `{ options: QuesoDropdownOptions, activeOptions: QuesoDropdownOptions }`
 -   **Description:** Content to display at the bottom of the dropdown popover.
 
 ### `afterDropdown`

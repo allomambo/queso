@@ -49,7 +49,7 @@ import { QuesoCollapsible } from "@allomambo/queso";
 ### `header`
 
 -   **Props:** `{ isCollapsibleOpen: boolean }`
--   **Description:** Completely replaces the entire header content. Receives the current open state.
+-   **Description:** Completely replaces the entire header content.
 
 ### `headerPrefix`
 
@@ -58,7 +58,7 @@ import { QuesoCollapsible } from "@allomambo/queso";
 ### `headerText`
 
 -   **Props:** `{ isCollapsibleOpen: boolean }`
--   **Description:** The main text content of the header. Receives the current open state.
+-   **Description:** The main text content of the header.
 
 ### `headerSuffix`
 
@@ -67,7 +67,7 @@ import { QuesoCollapsible } from "@allomambo/queso";
 ### `headerIcon`
 
 -   **Props:** `{ isCollapsibleOpen: boolean }`
--   **Description:** The icon displayed in the header. Defaults to "↓". Receives the current open state.
+-   **Description:** The icon displayed in the header. Defaults to "↓".
 
 ### `beforeHeader`
 
