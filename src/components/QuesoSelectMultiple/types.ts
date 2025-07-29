@@ -3,6 +3,7 @@ import type { QuesoDropdownOption, QuesoDropdownOptions, QuesoDropdownModel } fr
 
 export type QuesoSelectMultipleOption = QuesoDropdownOption;
 export type QuesoSelectMultipleOptions = QuesoDropdownOptions;
+
 export type QuesoSelectMultipleModel = QuesoDropdownModel;
 
 export interface QuesoSelectMultipleProps extends QuesoFieldProps, QuesoFieldBase {

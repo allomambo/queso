@@ -24,12 +24,14 @@ const NAV_ITEMS = [
                 ],
             },
             {
-                text: "Form",
+                text: "Form field",
                 items: [
                     { text: "QuesoCheckbox", link: "/components/checkbox" },
+                    { text: "QuesoCheckboxMultiple", link: "/components/checkbox-multiple" },
                     { text: "QuesoPassword", link: "/components/password" },
                     { text: "QuesoRadio", link: "/components/radio" },
                     { text: "QuesoSelect", link: "/components/select" },
+                    { text: "QuesoSelectMultiple", link: "/components/select-multiple" },
                     { text: "QuesoTextArea", link: "/components/text-area" },
                     { text: "QuesoTextField", link: "/components/text-field" },
                 ],

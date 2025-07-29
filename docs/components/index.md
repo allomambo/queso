@@ -24,11 +24,13 @@ For more info how to use components in your project, refer to [Usage](../usage#h
 -   [QuesoModal](/components/modal)
 -   [QuesoScrollable](/components/scrollable)
 
-#### Form
+#### Form field
 
--   [QuesoCheckbox](/components/checkbox), [QuesoCheckboxMultiple](/components/checkbox#quesocheckboxmultiple)
+-   [QuesoCheckbox](/components/checkbox)
+-   [QuesoCheckboxMultiple](/components/checkbox-multiple)
 -   [QuesoPassword](/components/password)
 -   [QuesoRadio](/components/radio)
--   [QuesoSelect](/components/select), [QuesoSelectMultiple](/components/select#quesoselectmultiple)
+-   [QuesoSelect](/components/select)
+-   [QuesoSelectMultiple](/components/select-multiple)
 -   [QuesoTextArea](/components/text-area)
 -   [QuesoTextField](/components/text-field)
