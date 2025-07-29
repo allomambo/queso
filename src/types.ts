@@ -9,7 +9,6 @@ import type {
     QuesoDropdownOptions,
     QuesoDropdownProps,
 } from "@components/QuesoDropdown";
-import type { QuesoIconSizeUnit, QuesoIconProps } from "@components/QuesoIcon";
 import type { QuesoModalOpen, QuesoModalClose, QuesoModalMethods } from "@components/QuesoModal";
 import type { QuesoScrollableProps } from "@components/QuesoScrollable";
 
@@ -18,7 +17,21 @@ import type { QuesoFieldBaseExtraAttributes, QuesoFieldBase, QuesoFieldProps } f
 import type { QuesoTextFieldModel, QuesoTextFieldType, QuesoTextFieldProps } from "@components/QuesoTextField";
 import type { QuesoTextAreaModel, QuesoTextAreaProps } from "@components/QuesoTextArea";
 import type { QuesoCheckboxModel, QuesoCheckboxProps } from "@components/QuesoCheckbox";
+import type {
+    QuesoCheckboxMultipleModel,
+    QuesoCheckboxMultipleChoice,
+    QuesoCheckboxMultipleChoices,
+    QuesoCheckboxMultipleProps,
+} from "@components/QuesoCheckboxMultiple";
 import type { QuesoSelectModel, QuesoSelectProps } from "@components/QuesoSelect";
+import type {
+    QuesoSelectMultipleModel,
+    QuesoSelectMultipleOption,
+    QuesoSelectMultipleOptions,
+    QuesoSelectMultipleProps,
+} from "@components/QuesoSelectMultiple";
+import type { QuesoRadioModel, QuesoRadioChoice, QuesoRadioChoices, QuesoRadioProps } from "@components/QuesoRadio";
+import type { QuesoPasswordModel, QuesoPasswordProps } from "@components/QuesoPassword";
 
 /*====================================
 =              EXPORTS               =
@@ -39,9 +52,6 @@ export type {
     QuesoDropdownOption,
     QuesoDropdownOptions,
     QuesoDropdownProps,
-    // Icon
-    QuesoIconSizeUnit,
-    QuesoIconProps,
     // Modal
     QuesoModalOpen,
     QuesoModalClose,
@@ -65,7 +75,23 @@ export type {
     // Checkbox
     QuesoCheckboxModel,
     QuesoCheckboxProps,
+    QuesoCheckboxMultipleModel,
+    QuesoCheckboxMultipleChoice,
+    QuesoCheckboxMultipleChoices,
+    QuesoCheckboxMultipleProps,
     // Select
     QuesoSelectModel,
     QuesoSelectProps,
+    QuesoSelectMultipleModel,
+    QuesoSelectMultipleOption,
+    QuesoSelectMultipleOptions,
+    QuesoSelectMultipleProps,
+    // Radio
+    QuesoRadioModel,
+    QuesoRadioChoice,
+    QuesoRadioChoices,
+    QuesoRadioProps,
+    // Password
+    QuesoPasswordModel,
+    QuesoPasswordProps,
 };

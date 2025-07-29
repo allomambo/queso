@@ -1,13 +1,15 @@
 {
     "name": "@allomambo/queso",
-    "version": "0.1.1",
+    "version": "0.3.0",
     "description": "VueJS component library to use in conjunction with Arepa",
     "repository": "https://github.com/allomambo/queso.git",
+    "homepage": "https://allomambo.github.io/queso/",
     "author": "MamboMambo <allo@mambomambo.ca> (https://mambomambo.ca)",
     "contributors": [
         "Alexandre Belley <ab@mambomambo.ca> (https://mambomambo.ca/)",
         "Maxime Lafrenière <jesuis@maximelafreniere.com> (https://maximelafreniere.com)",
-        "Aurélien Vigne <yay@aurelienvigne.com> (http://www.aurelienvigne.com)"
+        "Aurélien Vigne <yay@aurelienvigne.com> (http://www.aurelienvigne.com)",
+        "Antoine Savard <antoinesavard8@gmail.com> (https://mambomambo.ca/)"
     ],
     "license": "MIT",
     "type": "module",
@@ -28,6 +30,7 @@
         "./styles/core": "./src/assets/scss/main.scss",
         "./styles/reset": "./src/assets/scss/ress.scss",
         "./scripts/utils": "./src/utils/index.ts",
+        "./utils": "./src/utils/index.ts",
         "./*": "./dist/*"
     },
     "engines": {
@@ -44,10 +47,15 @@
         "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src",
         "test:coverage": "vitest run --coverage",
         "test:run": "vitest --run",
-        "test": "vitest"
+        "test": "vitest",
+        "docs:dev": "vitepress dev docs",
+        "docs:build": "vitepress build docs",
+        "docs:preview": "vitepress preview docs"
     },
     "dependencies": {
         "@vueuse/core": "^10.9.0",
+        "@vueuse/integrations": "^11.0.3",
+        "focus-trap": "^7",
         "vite-plugin-lib-inject-css": "^2.1.0",
         "vue": "^3.4.27"
     },
@@ -76,6 +84,7 @@
         "vite-plugin-eslint": "^1.8.1",
         "vite-plugin-html": "^3.2.2",
         "vite-plugin-restart": "^0.4.0",
+        "vitepress": "^1.6.3",
         "vitest": "^1.6.0",
         "vue-eslint-parser": "^9.4.2",
         "vue-tsc": "^2.0.17"

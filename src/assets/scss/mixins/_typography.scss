@@ -3,10 +3,20 @@
 =================================*/
 
 @mixin fontfaces($webfonts, $dir) {
-    @each $webfont in $webfonts {
+    // Check if it's a nested list by seeing if the first item is a string
+    // !! Don't remove the prettier-ignore comment !!
+    // prettier-ignore
+    $normalized-webfonts: if(
+        type-of(nth($webfonts, 1)) == "string",
+        ($webfonts,),
+        $webfonts
+    );
+
+    @each $webfont in $normalized-webfonts {
         @font-face {
             font-family: nth($webfont, 1);
-            src: url("#{$dir}#{nth($webfont, 2)}.woff2") format("woff2"),
+            src:
+                url("#{$dir}#{nth($webfont, 2)}.woff2") format("woff2"),
                 url("#{$dir}#{nth($webfont, 2)}.woff") format("woff");
             font-weight: #{nth($webfont, 3)};
             font-style: #{nth($webfont, 4)};
@@ -20,11 +30,6 @@
 =================================*/
 
 @mixin selection {
-    ::-moz-selection {
-        text-shadow: none;
-        @content;
-    }
-
     ::selection {
         text-shadow: none;
         @content;

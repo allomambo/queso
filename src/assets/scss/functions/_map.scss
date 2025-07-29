@@ -2,6 +2,27 @@
 =        SASS map helpers         =
 =================================*/
 
+// Check if value is a sass:map
+// @return {boolean}
+@function is-map($var) {
+    @return type-of($var) == "map";
+}
+
+// Check if value exist in map
+// @return {boolean}
+@function index-exists($map, $val) {
+    @return index($map, $val) != null;
+}
+
+// Return the first key of a map
+// @return {string}
+@function getFirstKey($values) {
+    $keys: map-keys($values);
+
+    @return nth($keys, 1);
+}
+
+// Return the largest value of a map
 @function getLargestValue($values, $sub-value: 0, $return: "value") {
     $largestKey: "";
     $largestValue: 0;
@@ -27,10 +48,4 @@
     } @else {
         @return join($largestKey, $largestValues);
     }
-}
-
-@function getFirstKey($values) {
-    $keys: map-keys($values);
-
-    @return nth($keys, 1);
 }

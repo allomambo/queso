@@ -17,8 +17,8 @@ const props = withDefaults(defineProps<QuesoScrollableProps>(), {
 });
 
 const emit = defineEmits<{
-    "scrollable:top:arrived": [];
-    "scrollable:bottom:arrived": [];
+    "scrollable:top:reached": [];
+    "scrollable:bottom:reached": [];
 }>();
 
 const content = ref<HTMLElement>();
@@ -52,10 +52,10 @@ const isArrivedAtBottom = computed(() => {
 // Watcher to emit events
 watchEffect(() => {
     if (isArrivedAtTop.value) {
-        emit("scrollable:top:arrived");
+        emit("scrollable:top:reached");
     }
     if (isArrivedAtBottom.value) {
-        emit("scrollable:bottom:arrived");
+        emit("scrollable:bottom:reached");
     }
 });
 

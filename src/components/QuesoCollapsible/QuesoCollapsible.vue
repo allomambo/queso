@@ -2,7 +2,14 @@
     <div class="queso-collapsible" :class="collapsibleClasses">
         <slot name="beforeHeader"></slot>
 
-        <div class="queso-collapsible__header" @click="toggle(!isCollapsibleOpen)">
+        <div
+            class="queso-collapsible__header"
+            :aria-expanded="isCollapsibleOpen"
+            :aria-controls="uniqueId"
+            tabindex="0"
+            @click="toggle()"
+            @keydown="handleKeydown($event)"
+        >
             <slot name="header" v-bind="{ isCollapsibleOpen }">
                 <slot name="headerPrefix"></slot>
                 <div class="queso-collapsible__header__text">
@@ -18,7 +25,7 @@
         <slot name="afterHeader"></slot>
         <slot name="beforeContent"></slot>
 
-        <div class="queso-collapsible__content" :aria-expanded="isCollapsibleOpen">
+        <div class="queso-collapsible__content" :id="uniqueId">
             <div ref="collapsibleContent" class="queso-collapsible__content__inner">
                 <slot name="content"></slot>
             </div>
@@ -47,6 +54,7 @@ const emit = defineEmits<{
 const collapsibleContent = ref<HTMLElement>();
 const isCollapsibleOpen = ref<boolean>(false);
 const isCollapsibleExpanded = ref<boolean>(props.expandOnMount);
+const uniqueId = "queso-collapsible__" + Math.random().toString(36).substring(2, 9);
 
 onBeforeMount(() => {
     if (isCollapsibleExpanded.value) {
@@ -83,9 +91,19 @@ const close = () => {
     }, 1); // If expanded, need to set height before going to 0px
 };
 
-const toggle = (bool: boolean = false) => {
-    if (bool) open();
-    else close();
+const toggle = () => {
+    if (isCollapsibleOpen.value) {
+        close();
+    } else {
+        open();
+    }
+};
+
+const handleKeydown = (event: KeyboardEvent) => {
+    if (event.key === " " || event.key === "Space") {
+        event.preventDefault();
+        toggle();
+    }
 };
 
 /**

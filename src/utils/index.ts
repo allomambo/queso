@@ -2,40 +2,35 @@
  * Utilities
  *
  * Usage:
- * import { aFunction } from "@/utils";
+ * import { aFunction } from "@allomambo/queso/utils";
  * aFunction()
  *
  */
 
-import arrayToGraphQL from "./arrayToGraphQL";
 import capitalize from "./capitalize";
-import checkStatus from "./checkStatus";
-import mutateState from "./mutateState";
+import getFirstObjectOfArray, { firstObjectOfArray } from "./getFirstObjectOfArray";
 import resizeEnd from "./resizeEnd";
 import toCamelCase from "./toCamelCase";
 import toKebabCase from "./toKebabCase";
+import toMailTo, { mailTo } from "./toMailTo";
 import toPascalCase from "./toPascalCase";
 import toSnakeCase from "./toSnakeCase";
-import mailTo from "./mailTo";
-import tel from "./tel";
-import typeCheck from "./typeCheck";
+import toTel, { tel } from "./toTel";
 
-const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const isTouch = "ontouchstart" in document.documentElement;
-
+/**
+ * Exports
+ */
 export {
-    checkStatus,
-    arrayToGraphQL,
-    typeCheck,
-    mutateState,
+    capitalize,
+    getFirstObjectOfArray,
+    firstObjectOfArray, // Legacy
     resizeEnd,
-    mailTo,
-    tel,
     toCamelCase,
     toKebabCase,
+    toMailTo,
+    mailTo, // Legacy
     toPascalCase,
     toSnakeCase,
-    capitalize,
-    isTouch,
-    reducedMotion,
+    toTel,
+    tel, // Legacy
 };

@@ -1,8 +1,22 @@
 <template>
     <h3>Fields</h3>
     <QuesoTextField name="textfield" label="QuesoTextField" v-model="TextField" />
+    <QuesoPassword name="password" label="QuesoPassword" v-model="PasswordField" />
     <QuesoTextArea name="textarea" label="QuesoTextArea" v-model="TextArea" />
-    <QuesoCheckbox name="checkbox" label="QuesoCheckbox" box-label="Lorem ipsum dolor sit amet" v-model="Checkbox" />
+    <QuesoCheckbox
+        name="checkbox"
+        label="QuesoCheckbox"
+        box-label="Lorem ipsum dolor sit amet"
+        is-required
+        v-model="Checkbox"
+    />
+    <QuesoCheckboxMultiple
+        name="checkboxMultiple"
+        label="QuesoCheckboxMultiple"
+        :choices="dataChoices"
+        is-required
+        v-model="CheckboxMultiple"
+    />
     <QuesoSelect
         name="select"
         label="QuesoSelect"
@@ -10,6 +24,14 @@
         :options="dataOptions"
         v-model="Select"
     />
+    <QuesoSelectMultiple
+        name="selectMultiple"
+        label="QuesoSelectMultiple"
+        placeholder="Select options"
+        :options="dataOptions"
+        v-model="SelectMultiple"
+    />
+    <QuesoRadio name="radio" label="QuesoRadio" :choices="dataChoices" v-model="Radio" />
     <hr />
 
     <h3>QuesoClickable</h3>
@@ -88,10 +110,6 @@
     </QuesoScrollable>
     <hr />
 
-    <h3>QuesoIcon</h3>
-    <QuesoIcon name="chevron" :size="6" :rotation="90" />
-    <hr />
-
     <h3>Grid</h3>
     <div class="l-grid">
         <template v-for="i in gridColumns">
@@ -109,15 +127,18 @@ import { ref } from "vue";
 
 import {
     QuesoCheckbox,
+    QuesoCheckboxMultiple,
     QuesoClickable,
     QuesoCollapsible,
     QuesoDropdown,
-    QuesoIcon,
     QuesoModal,
     QuesoScrollable,
     QuesoSelect,
+    QuesoSelectMultiple,
     QuesoTextArea,
     QuesoTextField,
+    QuesoPassword,
+    QuesoRadio,
 } from "./components";
 
 const dataOptions = [
@@ -165,6 +186,34 @@ const dataOptions = [
     },
 ];
 
+const dataChoices = [
+    {
+        value: "heavy-metal",
+        label: "Heavy Metal",
+    },
+    {
+        value: "classic",
+        label: "Classic",
+        isChecked: true,
+    },
+    {
+        value: "funk-and-disco",
+        label: "Funk and Disco",
+    },
+    {
+        value: "folk-and-acoustic",
+        label: "Folk and Acoustic",
+    },
+    {
+        value: "country",
+        label: "Country",
+    },
+    {
+        value: "dance-and-electronic",
+        label: "Dance and Electronic",
+    },
+];
+
 // Modal
 const myModal = ref<InstanceType<typeof QuesoModal> | null>(null);
 
@@ -174,9 +223,13 @@ const openModal = () => {
 
 // Fields
 const TextField = ref("text field value");
+const PasswordField = ref("");
 const TextArea = ref("text area value");
 const Checkbox = ref(true);
+const CheckboxMultiple = ref(["dance-and-electronic", "folk-and-acoustic"]);
 const Select = ref("");
+const SelectMultiple = ref([]);
+const Radio = ref("");
 
 // Grid
 const gridColumns = 8;

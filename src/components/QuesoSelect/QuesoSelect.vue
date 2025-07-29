@@ -1,7 +1,7 @@
 <template>
     <queso-field class="-select" v-bind="extendedProps">
-        <template #beforeLabel>
-            <slot name="beforeLabel"></slot>
+        <template #beforeLabel="exposedData">
+            <slot name="beforeLabel" v-bind="{ ...exposedData }"></slot>
         </template>
         <template #label="exposedData">
             <slot name="label" v-bind="{ ...exposedData }"></slot>
@@ -9,12 +9,12 @@
         <template #required="exposedData">
             <slot name="required" v-bind="{ ...exposedData }"></slot>
         </template>
-        <template #afterLabel>
-            <slot name="afterLabel"></slot>
+        <template #afterLabel="exposedData">
+            <slot name="afterLabel" v-bind="{ ...exposedData }"></slot>
         </template>
 
-        <template #beforeInput>
-            <slot name="beforeInput"></slot>
+        <template #beforeInput="exposedData">
+            <slot name="beforeInput" v-bind="{ ...exposedData }"></slot>
         </template>
         <template #input="{ fieldID, fieldName, isRequired, isDisabled, isReadOnly, toggleIsActive, toggleIsHover }">
             <div v-if="isReadOnly" class="queso-select__read-only">
@@ -31,43 +31,45 @@
                 @mouseleave="toggleIsHover(false)"
                 v-model="dropdownModel"
             >
-                <template #selectorPlaceholder>
-                    <slot name="placeholder" v-bind="{ placeholder }">{{ placeholder }}</slot>
+                <template #selectorPlaceholder="{ isDropdownOpen }">
+                    <slot name="placeholder" v-bind="{ isDropdownOpen, placeholder }">{{ placeholder }}</slot>
                 </template>
-                <template #selectorActiveOptions="{ activeOptions }">
-                    <slot name="selector" v-bind="{ activeOptions }">
+                <template #selectorActiveOptions="{ isDropdownOpen, activeOptions }">
+                    <slot name="selector" v-bind="{ isDropdownOpen, activeOptions }">
                         <span v-for="active in activeOptions" :key="active.value">{{ active.label }}</span>
                     </slot>
                 </template>
-                <template #selectorIcon>
-                    <slot name="icon">+</slot>
+                <template #selectorIcon="{ isDropdownOpen }">
+                    <slot name="icon" v-bind="{ isDropdownOpen }">+</slot>
                 </template>
-                <template #item="{ value, label, data }">
-                    <slot name="item" v-bind="{ value, label, data }">
+                <template #popoverItem="{ index, value, label, data }">
+                    <slot name="item" v-bind="{ index, value, label, data }">
                         <span class="text">{{ label }}</span>
                     </slot>
                 </template>
+                <template #afterDropdown>
+                    <select
+                        class="queso-select__select-native"
+                        :id="fieldID"
+                        :name="fieldName"
+                        :required="isRequired"
+                        :disabled="isDisabled"
+                        @focus="toggleIsActive(true)"
+                        @blur="toggleIsActive(false)"
+                        v-bind="extraAttributes"
+                        v-model="model"
+                        tabindex="-1"
+                    >
+                        <option></option>
+                        <option v-for="option in options" :key="option.value" :value="option.value">
+                            {{ option.label }}
+                        </option>
+                    </select>
+                </template>
             </queso-dropdown>
-
-            <select
-                class="queso-select__select-native"
-                :id="fieldID"
-                :name="fieldName"
-                :required="isRequired"
-                :disabled="isDisabled"
-                @focus="toggleIsActive(true)"
-                @blur="toggleIsActive(false)"
-                v-bind="extraAttributes"
-                v-model="model"
-            >
-                <option></option>
-                <option v-for="option in options" :key="option.value" :value="option.value">
-                    {{ option.label }}
-                </option>
-            </select>
         </template>
-        <template #afterInput>
-            <slot name="afterInput"></slot>
+        <template #afterInput="exposedData">
+            <slot name="afterInput" v-bind="{ ...exposedData }"></slot>
         </template>
 
         <template #error="exposedData">
@@ -104,8 +106,12 @@ const dropdownModel = computed<QuesoDropdownOptionValues>({
 
 <style lang="scss">
 .queso-select {
+    position: var(--queso-select-position, relative);
+
     &__select-native {
         @include accessible-item;
+        top: 100%;
+        left: 0;
     }
 }
 </style>
