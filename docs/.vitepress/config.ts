@@ -83,6 +83,7 @@ const NAV_ITEMS = [
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+    base: "/queso/",
     title: "Queso",
     description: "VueJS component library to use in conjunction with Arepa",
     lang: "en-CA",
