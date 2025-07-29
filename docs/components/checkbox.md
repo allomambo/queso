@@ -393,7 +393,6 @@ const isVerified = ref(true);
 -   `.queso-checkbox__label` - Checkbox label container
 -   `.queso-checkbox__label__text` - Checkbox label text
 -   `.queso-checkbox__label__required` - Checkbox label required indicator
--   `.queso-checkbox__native` - Native checkbox input element
 
 ### Error
 

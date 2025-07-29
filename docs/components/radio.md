@@ -522,7 +522,6 @@ const statusChoices = [
 -   `.queso-radio__box__symbol` - Radio box symbol (checkmark)
 -   `.queso-radio__label` - Radio label container
 -   `.queso-radio__label__text` - Radio label text
--   `.queso-radio__native` - Native radio input element
 
 ### Error
 
