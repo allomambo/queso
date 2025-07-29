@@ -13,15 +13,3 @@ Work in progress. Coming up.
 import { QuesoCheckbox } from "@allomambo/queso";
 </script>
 ```
-
-# QuesoCheckboxMultiple
-
-```vue
-<template>
-    <queso-checkbox-multiple ...props />
-</template>
-
-<script setup>
-import { QuesoCheckboxMultiple } from "@allomambo/queso";
-</script>
-```
