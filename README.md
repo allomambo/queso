@@ -17,7 +17,7 @@
 yarn add @allomambo/queso
 
 # With npm:
-npm install @allomambo/queso
+npm install allomambo/queso
 ```
 
 **2.** Use components in your project
