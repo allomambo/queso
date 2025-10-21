@@ -35,20 +35,6 @@
                     toggleIsHover(false);
                 "
             >
-                <slot name="radioBox">
-                    <span class="queso-radio__box">
-                        <span class="queso-radio__box__symbol">
-                            <slot name="radioBoxSymbol">✔︎</slot>
-                        </span>
-                    </span>
-                </slot>
-
-                <slot name="radioLabel">
-                    <span class="queso-radio__label">
-                        <span class="queso-radio__label__text" v-html="choice.label"></span>
-                    </span>
-                </slot>
-
                 <input
                     v-if="!isReadOnly"
                     class="queso-radio__native"
@@ -63,6 +49,20 @@
                     v-bind="extraAttributes"
                     v-model="model"
                 />
+
+                <slot name="radioBox">
+                    <span class="queso-radio__box">
+                        <span class="queso-radio__box__symbol">
+                            <slot name="radioBoxSymbol">✔︎</slot>
+                        </span>
+                    </span>
+                </slot>
+
+                <slot name="radioLabel">
+                    <span class="queso-radio__label">
+                        <span class="queso-radio__label__text" v-html="choice.label"></span>
+                    </span>
+                </slot>
             </component>
         </template>
         <template #afterInput>
