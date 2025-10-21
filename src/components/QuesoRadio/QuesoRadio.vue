@@ -1,76 +1,107 @@
 <template>
-    <queso-field class="-radio" static-label v-bind="extendedProps">
-        <template #beforeLabel>
-            <slot name="beforeLabel"></slot>
+    <queso-field class="-radio" has-static-label v-bind="extendedProps">
+        <template #beforeLabel="exposedData">
+            <slot name="beforeLabel" v-bind="exposedData"></slot>
         </template>
         <template #label="exposedData">
-            <slot name="label" v-bind="{ ...exposedData }"></slot>
+            <slot name="label" v-bind="exposedData"></slot>
         </template>
         <template #required="exposedData">
-            <slot name="required" v-bind="{ ...exposedData }"></slot>
+            <slot name="required" v-bind="exposedData"></slot>
         </template>
-        <template #afterLabel>
-            <slot name="afterLabel"></slot>
+        <template #afterLabel="exposedData">
+            <slot name="afterLabel" v-bind="exposedData"></slot>
         </template>
 
-        <template #beforeInput>
-            <slot name="beforeInput"></slot>
+        <template #beforeInput="exposedData">
+            <slot name="beforeInput" v-bind="exposedData"></slot>
         </template>
-        <template #input="{ fieldID, fieldName, isRequired, isDisabled, isReadOnly, toggleIsActive, toggleIsHover }">
+        <template #input="exposedData">
             <component
                 v-for="choice in choices"
-                :is="isReadOnly ? 'div' : 'label'"
+                :is="exposedData.isReadOnly ? 'div' : 'label'"
                 class="queso-radio"
                 :class="{
                     'is-radio-hover': hoveredChoice === choice.value,
                     'is-selected': model === choice.value,
                 }"
-                :for="!isReadOnly ? `${fieldID}-${choice.value}` : null"
+                :for="!exposedData.isReadOnly ? `${exposedData.fieldID}-${choice.value}` : null"
                 @mouseover="
                     hoveredChoice = choice.value;
-                    toggleIsHover(true);
+                    exposedData.toggleIsHover(true);
                 "
                 @mouseleave="
                     hoveredChoice = null;
-                    toggleIsHover(false);
+                    exposedData.toggleIsHover(false);
                 "
             >
                 <input
-                    v-if="!isReadOnly"
+                    v-if="!exposedData.isReadOnly"
                     class="queso-radio__native"
                     type="radio"
-                    :id="`${fieldID}-${choice.value}`"
-                    :name="fieldName"
-                    :required="isRequired"
-                    :disabled="isDisabled"
+                    :id="`${exposedData.fieldID}-${choice.value}`"
+                    :name="exposedData.fieldName"
+                    :required="exposedData.isRequired"
+                    :disabled="exposedData.isDisabled"
                     :value="choice.value"
-                    @focus="toggleIsActive(true)"
-                    @blur="toggleIsActive(false)"
+                    @focus="exposedData.toggleIsActive(true)"
+                    @blur="exposedData.toggleIsActive(false)"
                     v-bind="extraAttributes"
                     v-model="model"
                 />
 
-                <slot name="radioBox">
-                    <span class="queso-radio__box">
-                        <span class="queso-radio__box__symbol">
-                            <slot name="radioBoxSymbol">✔︎</slot>
+                <slot
+                    name="radio"
+                    v-bind="{
+                        ...exposedData,
+                        isHovered: hoveredChoice === choice.value,
+                        isSelected: model === choice.value,
+                    }"
+                >
+                    <slot
+                        name="radioBox"
+                        v-bind="{
+                            ...exposedData,
+                            isHovered: hoveredChoice === choice.value,
+                            isSelected: model === choice.value,
+                        }"
+                    >
+                        <span class="queso-radio__box">
+                            <span class="queso-radio__box__symbol">
+                                <slot
+                                    name="radioBoxSymbol"
+                                    v-bind="{
+                                        ...exposedData,
+                                        isHovered: hoveredChoice === choice.value,
+                                        isSelected: model === choice.value,
+                                    }"
+                                    >✔︎</slot
+                                >
+                            </span>
                         </span>
-                    </span>
-                </slot>
+                    </slot>
 
-                <slot name="radioLabel">
-                    <span class="queso-radio__label">
-                        <span class="queso-radio__label__text" v-html="choice.label"></span>
-                    </span>
+                    <slot
+                        name="radioLabel"
+                        v-bind="{
+                            ...exposedData,
+                            isHovered: hoveredChoice === choice.value,
+                            isSelected: model === choice.value,
+                        }"
+                    >
+                        <span class="queso-radio__label">
+                            <span class="queso-radio__label__text" v-html="choice.label"></span>
+                        </span>
+                    </slot>
                 </slot>
             </component>
         </template>
-        <template #afterInput>
-            <slot name="afterInput"></slot>
+        <template #afterInput="exposedData">
+            <slot name="afterInput" v-bind="exposedData"></slot>
         </template>
 
         <template #error="exposedData">
-            <slot name="error" v-bind="{ ...exposedData }"></slot>
+            <slot name="error" v-bind="exposedData"></slot>
         </template>
     </queso-field>
 </template>

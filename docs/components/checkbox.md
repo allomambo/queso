@@ -105,24 +105,29 @@ const agreedToTerms = ref(false);
 -   **Props:** `ExposedData`
 -   **Description:** Content displayed before the checkbox field.
 
+### `checkbox`
+
+-   **Props:** `ExposedData & { isHovered: boolean, isChecked: boolean }`
+-   **Description:** Custom checkbox container element. Defaults to a styled checkbox container.
+
 ### `checkboxBox`
 
--   **Props:** `{}`
+-   **Props:** `ExposedData & { isHovered: boolean, isChecked: boolean }`
 -   **Description:** Custom checkbox box element. Defaults to a styled checkbox box.
 
 ### `checkboxBoxSymbol`
 
--   **Props:** `{}`
+-   **Props:** `ExposedData & { isHovered: boolean, isChecked: boolean }`
 -   **Description:** Symbol displayed inside the checkbox box when checked. Defaults to "✔︎".
 
 ### `checkboxLabel`
 
--   **Props:** `{}`
+-   **Props:** `ExposedData & { isHovered: boolean, isChecked: boolean }`
 -   **Description:** Custom label element for the checkbox. Defaults to the `boxLabel` prop.
 
 ### `checkboxLabelRequired`
 
--   **Props:** `{ isRequired: boolean }`
+-   **Props:** `ExposedData & { isHovered: boolean, isChecked: boolean }`
 -   **Description:** Custom required indicator for the checkbox label. Defaults to "\*".
 
 ### `afterInput`

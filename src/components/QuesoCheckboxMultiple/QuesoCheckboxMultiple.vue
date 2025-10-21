@@ -1,73 +1,104 @@
 <template>
-    <queso-field class="-checkbox-multiple" static-label v-bind="extendedProps">
-        <template #beforeLabel>
-            <slot name="beforeLabel"></slot>
+    <queso-field class="-checkbox-multiple" has-static-label v-bind="extendedProps">
+        <template #beforeLabel="exposedData">
+            <slot name="beforeLabel" v-bind="exposedData"></slot>
         </template>
         <template #label="exposedData">
-            <slot name="label" v-bind="{ ...exposedData }"></slot>
+            <slot name="label" v-bind="exposedData"></slot>
         </template>
         <template #required="exposedData">
-            <slot name="required" v-bind="{ ...exposedData }"></slot>
+            <slot name="required" v-bind="exposedData"></slot>
         </template>
-        <template #afterLabel>
-            <slot name="afterLabel"></slot>
+        <template #afterLabel="exposedData">
+            <slot name="afterLabel" v-bind="exposedData"></slot>
         </template>
 
-        <template #beforeInput>
-            <slot name="beforeInput"></slot>
+        <template #beforeInput="exposedData">
+            <slot name="beforeInput" v-bind="exposedData"></slot>
         </template>
-        <template #input="{ fieldID, fieldName, isRequired, isDisabled, isReadOnly, toggleIsActive, toggleIsHover }">
+        <template #input="exposedData">
             <component
                 v-for="choice in choices"
-                :is="isReadOnly ? 'div' : 'label'"
+                :is="exposedData.isReadOnly ? 'div' : 'label'"
                 class="queso-checkbox"
                 :class="{ 'is-checkbox-hover': hoveredChoice === choice.value, 'is-checked': choice.isChecked }"
-                :for="!isReadOnly ? `${fieldID}-${choice.value}` : null"
+                :for="!exposedData.isReadOnly ? `${exposedData.fieldID}-${choice.value}` : null"
                 @mouseover="
                     hoveredChoice = choice.value;
-                    toggleIsHover(true);
+                    exposedData.toggleIsHover(true);
                 "
                 @mouseleave="
                     hoveredChoice = null;
-                    toggleIsHover(false);
+                    exposedData.toggleIsHover(false);
                 "
             >
                 <input
-                    v-if="!isReadOnly"
+                    v-if="!exposedData.isReadOnly"
                     ref="checkboxInputs"
                     class="queso-checkbox__native"
                     type="checkbox"
-                    :id="`${fieldID}-${choice.value}`"
-                    :name="`${fieldName}[]`"
-                    :required="isRequired && !hasAtLeastOneChecked"
-                    :disabled="isDisabled"
-                    @focus="toggleIsActive(true)"
-                    @blur="toggleIsActive(false)"
+                    :id="`${exposedData.fieldID}-${choice.value}`"
+                    :name="`${exposedData.fieldName}[]`"
+                    :required="exposedData.isRequired && !hasAtLeastOneChecked"
+                    :disabled="exposedData.isDisabled"
+                    @focus="exposedData.toggleIsActive(true)"
+                    @blur="exposedData.toggleIsActive(false)"
                     v-bind="extraAttributes"
                     v-model="choice.isChecked"
                 />
 
-                <slot name="checkboxBox">
-                    <span class="queso-checkbox__box">
-                        <span class="queso-checkbox__box__symbol">
-                            <slot name="checkboxBoxSymbol">✔︎</slot>
+                <slot
+                    name="checkbox"
+                    v-bind="{
+                        ...exposedData,
+                        isHovered: hoveredChoice === choice.value,
+                        isSelected: choice.isChecked,
+                    }"
+                >
+                    <slot
+                        name="checkboxBox"
+                        v-bind="{
+                            ...exposedData,
+                            isHovered: hoveredChoice === choice.value,
+                            isSelected: choice.isChecked,
+                        }"
+                    >
+                        <span class="queso-checkbox__box">
+                            <span class="queso-checkbox__box__symbol">
+                                <slot
+                                    name="checkboxBoxSymbol"
+                                    v-bind="{
+                                        ...exposedData,
+                                        isHovered: hoveredChoice === choice.value,
+                                        isSelected: choice.isChecked,
+                                    }"
+                                    >✔︎</slot
+                                >
+                            </span>
                         </span>
-                    </span>
-                </slot>
+                    </slot>
 
-                <slot name="checkboxLabel">
-                    <span class="queso-checkbox__label">
-                        <span class="queso-checkbox__label__text" v-html="choice.label"></span>
-                    </span>
+                    <slot
+                        name="checkboxLabel"
+                        v-bind="{
+                            ...exposedData,
+                            isHovered: hoveredChoice === choice.value,
+                            isSelected: choice.isChecked,
+                        }"
+                    >
+                        <span class="queso-checkbox__label">
+                            <span class="queso-checkbox__label__text" v-html="choice.label"></span>
+                        </span>
+                    </slot>
                 </slot>
             </component>
         </template>
-        <template #afterInput>
-            <slot name="afterInput"></slot>
+        <template #afterInput="exposedData">
+            <slot name="afterInput" v-bind="exposedData"></slot>
         </template>
 
         <template #error="exposedData">
-            <slot name="error" v-bind="{ ...exposedData }"></slot>
+            <slot name="error" v-bind="exposedData"></slot>
         </template>
     </queso-field>
 </template>

@@ -1,63 +1,67 @@
 <template>
     <queso-field class="-select-multiple" v-bind="extendedProps">
-        <template #beforeLabel>
-            <slot name="beforeLabel"></slot>
+        <template #beforeLabel="exposedData">
+            <slot name="beforeLabel" v-bind="exposedData"></slot>
         </template>
         <template #label="exposedData">
-            <slot name="label" v-bind="{ ...exposedData }"></slot>
+            <slot name="label" v-bind="exposedData"></slot>
         </template>
         <template #required="exposedData">
-            <slot name="required" v-bind="{ ...exposedData }"></slot>
+            <slot name="required" v-bind="exposedData"></slot>
         </template>
-        <template #afterLabel>
-            <slot name="afterLabel"></slot>
+        <template #afterLabel="exposedData">
+            <slot name="afterLabel" v-bind="exposedData"></slot>
         </template>
 
-        <template #beforeInput>
-            <slot name="beforeInput"></slot>
+        <template #beforeInput="exposedData">
+            <slot name="beforeInput" v-bind="exposedData"></slot>
         </template>
-        <template #input="{ fieldID, fieldName, isRequired, isDisabled, isReadOnly, toggleIsActive, toggleIsHover }">
-            <div v-if="isReadOnly" class="queso-select__read-only">
-                <span class="queso-select__read-only__label">
-                    {{ model || placeholder }}
-                </span>
-            </div>
+        <template #input="exposedData">
+            <slot v-if="exposedData.isReadOnly" name="readOnly" v-bind="exposedData">
+                <div class="queso-select__read-only">
+                    <span class="queso-select__read-only__label" v-html="model"></span>
+                </div>
+            </slot>
 
             <queso-dropdown
                 v-else
                 class="queso-select"
                 :options="options"
                 multiple
-                @mouseover="toggleIsHover(true)"
-                @mouseleave="toggleIsHover(false)"
+                @mouseover="exposedData.toggleIsHover(true)"
+                @mouseleave="exposedData.toggleIsHover(false)"
                 v-model="model"
             >
-                <template #selectorPlaceholder="{ isDropdownOpen }">
-                    <slot name="placeholder" v-bind="{ isDropdownOpen, placeholder }">{{ placeholder }}</slot>
-                </template>
-                <template #selectorActiveOptions="{ isDropdownOpen, activeOptions }">
-                    <slot name="selector" v-bind="{ isDropdownOpen, activeOptions }">
-                        <span v-for="active in activeOptions" :key="active.value">{{ active.label }}</span>
+                <template #selectorPlaceholder="exposedDropdownData">
+                    <slot name="placeholder" v-bind="{ ...exposedData, ...exposedDropdownData }">
+                        {{ placeholder }}
                     </slot>
                 </template>
-                <template #selectorIcon="{ isDropdownOpen }">
-                    <slot name="icon" v-bind="{ isDropdownOpen }">+</slot>
+                <template #selectorActiveOptions="exposedDropdownData">
+                    <slot name="selector" v-bind="{ ...exposedData, ...exposedDropdownData }">
+                        <span v-for="active in exposedDropdownData.activeOptions" :key="active.value">
+                            {{ active.label }}
+                        </span>
+                    </slot>
                 </template>
-                <template #popoverItem="{ index, value, label, data }">
-                    <slot name="item" v-bind="{ index, value, label, data }">
-                        <span class="text">{{ label }}</span>
+                <template #selectorIcon="exposedDropdownData">
+                    <slot name="icon" v-bind="{ ...exposedData, ...exposedDropdownData }">+</slot>
+                </template>
+                <template #popoverItem="exposedDropdownData">
+                    <slot name="item" v-bind="{ ...exposedData, ...exposedDropdownData }">
+                        <span class="text">{{ exposedDropdownData.label }}</span>
                     </slot>
                 </template>
                 <template #afterDropdown>
                     <select
                         class="queso-select__select-native"
-                        :id="fieldID"
-                        :name="fieldName"
-                        :required="isRequired"
-                        :disabled="isDisabled"
+                        :id="exposedData.fieldID"
+                        :name="exposedData.fieldName"
+                        :required="exposedData.isRequired"
+                        :disabled="exposedData.isDisabled"
                         multiple
-                        @focus="toggleIsActive(true)"
-                        @blur="toggleIsActive(false)"
+                        @focus="exposedData.toggleIsActive(true)"
+                        @blur="exposedData.toggleIsActive(false)"
                         v-bind="extraAttributes"
                         v-model="model"
                     >
@@ -69,12 +73,12 @@
                 </template>
             </queso-dropdown>
         </template>
-        <template #afterInput>
-            <slot name="afterInput"></slot>
+        <template #afterInput="exposedData">
+            <slot name="afterInput" v-bind="exposedData"></slot>
         </template>
 
         <template #error="exposedData">
-            <slot name="error" v-bind="{ ...exposedData }"></slot>
+            <slot name="error" v-bind="exposedData"></slot>
         </template>
     </queso-field>
 </template>
