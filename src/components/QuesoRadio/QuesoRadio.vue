@@ -21,10 +21,19 @@
                 v-for="choice in choices"
                 :is="isReadOnly ? 'div' : 'label'"
                 class="queso-radio"
-                :class="{ 'is-selected': model === choice.value }"
+                :class="{
+                    'is-radio-hover': hoveredChoice === choice.value,
+                    'is-selected': model === choice.value,
+                }"
                 :for="!isReadOnly ? `${fieldID}-${choice.value}` : null"
-                @mouseover="toggleIsHover(true)"
-                @mouseleave="toggleIsHover(false)"
+                @mouseover="
+                    hoveredChoice = choice.value;
+                    toggleIsHover(true);
+                "
+                @mouseleave="
+                    hoveredChoice = null;
+                    toggleIsHover(false);
+                "
             >
                 <slot name="radioBox">
                     <span class="queso-radio__box">
@@ -67,10 +76,10 @@
 </template>
 
 <script setup lang="ts">
-// import { computed, reactive, watch } from "vue";
+import { ref } from "vue";
 import { useExtendedFieldProps } from "@composables/fields";
 
-import type { QuesoRadioModel, QuesoRadioProps, QuesoRadioChoices } from "./types";
+import type { QuesoRadioModel, QuesoRadioProps, QuesoRadioChoice } from "./types";
 
 import QuesoField from "@components/QuesoField";
 
@@ -79,23 +88,7 @@ const extendedProps = useExtendedFieldProps(props);
 
 const model = defineModel<QuesoRadioModel>({ required: true, default: "" });
 
-// // Convert the choices to reactive objects
-// // Add the isChecked property to each choice if not present
-// const choices: QuesoRadioChoices = reactive(
-//     props.choices.map((choice) => ({ isChecked: model.value.includes(choice.value), ...choice })),
-// );
-// const checkedChoices = computed<QuesoRadioModel>(() =>
-//     choices.filter((choice) => choice.isChecked).map((choice) => choice.value),
-// );
-
-// // Update the model when the checked choices change
-// watch(
-//     checkedChoices,
-//     (value) => {
-//         model.value = value;
-//     },
-//     { immediate: true },
-// );
+const hoveredChoice = ref<QuesoRadioChoice["value"] | null>(null);
 </script>
 
 <style lang="scss">

@@ -21,10 +21,16 @@
                 v-for="choice in choices"
                 :is="isReadOnly ? 'div' : 'label'"
                 class="queso-checkbox"
-                :class="{ 'is-checked': choice.isChecked }"
+                :class="{ 'is-checkbox-hover': hoveredChoice === choice.value, 'is-checked': choice.isChecked }"
                 :for="!isReadOnly ? `${fieldID}-${choice.value}` : null"
-                @mouseover="toggleIsHover(true)"
-                @mouseleave="toggleIsHover(false)"
+                @mouseover="
+                    hoveredChoice = choice.value;
+                    toggleIsHover(true);
+                "
+                @mouseleave="
+                    hoveredChoice = null;
+                    toggleIsHover(false);
+                "
             >
                 <slot name="checkboxBox">
                     <span class="queso-checkbox__box">
@@ -80,6 +86,8 @@ const props = withDefaults(defineProps<QuesoCheckboxMultipleProps>(), {
 const extendedProps = useExtendedFieldProps(props);
 
 const model = defineModel<QuesoCheckboxMultipleModel>({ required: true, default: [] });
+
+const hoveredChoice = ref<QuesoCheckboxMultipleChoices[number]["value"] | null>(null);
 
 // Convert the choices to reactive objects
 // Add the isChecked property to each choice if not present

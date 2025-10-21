@@ -20,10 +20,16 @@
             <component
                 :is="isReadOnly ? 'div' : 'label'"
                 class="queso-checkbox"
-                :class="{ 'is-checked': isChecked }"
+                :class="{ 'is-checkbox-hover': isHovered, 'is-checked': isChecked }"
                 :for="!isReadOnly ? fieldID : null"
-                @mouseover="toggleIsHover(true)"
-                @mouseleave="toggleIsHover(false)"
+                @mouseover="
+                    isHovered = true;
+                    toggleIsHover(true);
+                "
+                @mouseleave="
+                    isHovered = false;
+                    toggleIsHover(false);
+                "
             >
                 <slot name="checkboxBox">
                     <span class="queso-checkbox__box">
@@ -68,7 +74,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { useExtendedFieldProps } from "@composables/fields";
 
 import type { QuesoCheckboxModel, QuesoCheckboxProps } from "./types";
@@ -79,7 +85,9 @@ const props = defineProps<QuesoCheckboxProps>();
 const extendedProps = useExtendedFieldProps(props);
 
 const model = defineModel<QuesoCheckboxModel>({ required: true, default: false });
+
 const isChecked = computed<boolean>(() => !!model.value);
+const isHovered = ref<boolean>(false);
 </script>
 
 <style lang="scss">
