@@ -20,7 +20,9 @@
             <div class="queso-text-field">
                 <slot name="beforeTextFieldInput" v-bind="exposedData"></slot>
 
-                <span v-if="exposedData.isReadOnly" class="queso-text-field__readonly" v-html="model"></span>
+                <slot v-if="exposedData.isReadOnly" name="readOnly" v-bind="exposedData">
+                    <span class="queso-text-field__readonly" v-html="model"></span>
+                </slot>
 
                 <input
                     v-else

@@ -17,11 +17,11 @@
             <slot name="beforeInput" v-bind="exposedData"></slot>
         </template>
         <template #input="exposedData">
-            <div v-if="exposedData.isReadOnly" class="queso-select__read-only">
-                <span class="queso-select__read-only__label">
-                    {{ model || placeholder }}
-                </span>
-            </div>
+            <slot v-if="exposedData.isReadOnly" name="readOnly" v-bind="exposedData">
+                <div class="queso-select__read-only">
+                    <span class="queso-select__read-only__label" v-html="model"></span>
+                </div>
+            </slot>
 
             <queso-dropdown
                 v-else

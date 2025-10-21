@@ -23,7 +23,9 @@
                     v-bind="{ ...exposedData, isPasswordShow, togglePasswordVisibility, showPassword, hidePassword }"
                 ></slot>
 
-                <span v-if="exposedData.isReadOnly" class="queso-password__readonly" v-html="model"></span>
+                <slot v-if="exposedData.isReadOnly" name="readOnly" v-bind="exposedData">
+                    <span class="queso-password__readonly" v-html="model"></span>
+                </slot>
 
                 <input
                     v-else

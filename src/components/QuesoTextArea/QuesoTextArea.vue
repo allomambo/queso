@@ -20,7 +20,9 @@
             <div class="queso-text-area">
                 <slot name="beforeTextAreaInput" v-bind="exposedData"></slot>
 
-                <span v-if="exposedData.isReadOnly" class="queso-text-area__readonly" v-html="model"></span>
+                <slot v-if="exposedData.isReadOnly" name="readOnly" v-bind="exposedData">
+                    <span class="queso-text-area__readonly" v-html="model"></span>
+                </slot>
 
                 <textarea
                     v-else
