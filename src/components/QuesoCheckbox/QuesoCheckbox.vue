@@ -31,6 +31,20 @@
                     toggleIsHover(false);
                 "
             >
+                <input
+                    v-if="!isReadOnly"
+                    class="queso-checkbox__native"
+                    type="checkbox"
+                    :id="fieldID"
+                    :name="fieldName"
+                    :required="isRequired"
+                    :disabled="isDisabled"
+                    @focus="toggleIsActive(true)"
+                    @blur="toggleIsActive(false)"
+                    v-bind="extraAttributes"
+                    v-model="model"
+                />
+
                 <slot name="checkboxBox">
                     <span class="queso-checkbox__box">
                         <span class="queso-checkbox__box__symbol">
@@ -47,20 +61,6 @@
                         </slot>
                     </span>
                 </slot>
-
-                <input
-                    v-if="!isReadOnly"
-                    class="queso-checkbox__native"
-                    type="checkbox"
-                    :id="fieldID"
-                    :name="fieldName"
-                    :required="isRequired"
-                    :disabled="isDisabled"
-                    @focus="toggleIsActive(true)"
-                    @blur="toggleIsActive(false)"
-                    v-bind="extraAttributes"
-                    v-model="model"
-                />
             </component>
         </template>
         <template #afterInput="exposedData">

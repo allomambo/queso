@@ -32,20 +32,6 @@
                     toggleIsHover(false);
                 "
             >
-                <slot name="checkboxBox">
-                    <span class="queso-checkbox__box">
-                        <span class="queso-checkbox__box__symbol">
-                            <slot name="checkboxBoxSymbol">✔︎</slot>
-                        </span>
-                    </span>
-                </slot>
-
-                <slot name="checkboxLabel">
-                    <span class="queso-checkbox__label">
-                        <span class="queso-checkbox__label__text" v-html="choice.label"></span>
-                    </span>
-                </slot>
-
                 <input
                     v-if="!isReadOnly"
                     ref="checkboxInputs"
@@ -60,6 +46,20 @@
                     v-bind="extraAttributes"
                     v-model="choice.isChecked"
                 />
+
+                <slot name="checkboxBox">
+                    <span class="queso-checkbox__box">
+                        <span class="queso-checkbox__box__symbol">
+                            <slot name="checkboxBoxSymbol">✔︎</slot>
+                        </span>
+                    </span>
+                </slot>
+
+                <slot name="checkboxLabel">
+                    <span class="queso-checkbox__label">
+                        <span class="queso-checkbox__label__text" v-html="choice.label"></span>
+                    </span>
+                </slot>
             </component>
         </template>
         <template #afterInput>
