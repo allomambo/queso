@@ -113,22 +113,27 @@ const password = ref("");
 
 ### `beforePasswordInput`
 
--   **Props:** `{}`
+-   **Props:** `ExposedData & { isPasswordShow: boolean, togglePasswordVisibility: () => void, showPassword: () => void, hidePassword: () => void }`
 -   **Description:** Content displayed before the password input element (inside the password wrapper).
+
+### `readOnly`
+
+-   **Props:** `ExposedData`
+-   **Description:** Content displayed when the field is in read-only mode. Defaults to displaying the field value as text.
 
 ### `afterPasswordInput`
 
--   **Props:** `{}`
+-   **Props:** `ExposedData & { isPasswordShow: boolean, togglePasswordVisibility: () => void, showPassword: () => void, hidePassword: () => void }`
 -   **Description:** Content displayed after the password input element (inside the password wrapper).
 
 ### `toggleVisibilityButton`
 
--   **Props:** `{ isPasswordShow: boolean, togglePasswordVisibility: () => void, showPassword: () => void, hidePassword: () => void }`
+-   **Props:** `ExposedData & { isPasswordShow: boolean, togglePasswordVisibility: () => void, showPassword: () => void, hidePassword: () => void }`
 -   **Description:** Custom toggle button for password visibility. Defaults to a button with "◎" icon.
 
 ### `toggleVisibilityButtonIcon`
 
--   **Props:** `{}`
+-   **Props:** `ExposedData & { isPasswordShow: boolean, togglePasswordVisibility: () => void, showPassword: () => void, hidePassword: () => void }`
 -   **Description:** Icon content for the default visibility toggle button.
 
 ### `afterInput`

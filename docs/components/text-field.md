@@ -121,12 +121,17 @@ const email = ref("");
 
 ### `beforeTextFieldInput`
 
--   **Props:** `{}`
+-   **Props:** `ExposedData`
 -   **Description:** Content displayed before the text input element (inside the input wrapper).
+
+### `readOnly`
+
+-   **Props:** `ExposedData`
+-   **Description:** Content displayed when the field is in read-only mode. Defaults to displaying the field value as text.
 
 ### `afterTextFieldInput`
 
--   **Props:** `{}`
+-   **Props:** `ExposedData`
 -   **Description:** Content displayed after the text input element (inside the input wrapper).
 
 ### `afterInput`

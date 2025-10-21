@@ -117,19 +117,24 @@ const interestChoices = [
 -   **Props:** `ExposedData`
 -   **Description:** Content displayed before the checkbox group field.
 
+### `checkbox`
+
+-   **Props:** `ExposedData & { isHovered: boolean, isSelected: boolean }`
+-   **Description:** Custom checkbox container element for each choice. Defaults to a styled checkbox container.
+
 ### `checkboxBox`
 
--   **Props:** `{}`
+-   **Props:** `ExposedData & { isHovered: boolean, isSelected: boolean }`
 -   **Description:** Custom checkbox box element for each choice. Defaults to a styled checkbox box.
 
 ### `checkboxBoxSymbol`
 
--   **Props:** `{}`
+-   **Props:** `ExposedData & { isHovered: boolean, isSelected: boolean }`
 -   **Description:** Symbol displayed inside the checkbox box when checked. Defaults to "✔︎".
 
 ### `checkboxLabel`
 
--   **Props:** `{}`
+-   **Props:** `ExposedData & { isHovered: boolean, isSelected: boolean }`
 -   **Description:** Custom label element for each choice. Defaults to the choice label.
 
 ### `afterInput`

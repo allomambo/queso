@@ -110,19 +110,24 @@ const genderChoices = [
 -   **Props:** `ExposedData`
 -   **Description:** Content displayed before the radio group field.
 
+### `radio`
+
+-   **Props:** `ExposedData & { isHovered: boolean, isSelected: boolean }`
+-   **Description:** Custom radio container element for each choice. Defaults to a styled radio container.
+
 ### `radioBox`
 
--   **Props:** `{}`
+-   **Props:** `ExposedData & { isHovered: boolean, isSelected: boolean }`
 -   **Description:** Custom radio box element for each choice. Defaults to a styled radio box.
 
 ### `radioBoxSymbol`
 
--   **Props:** `{}`
+-   **Props:** `ExposedData & { isHovered: boolean, isSelected: boolean }`
 -   **Description:** Symbol displayed inside the radio box when selected. Defaults to "✔︎".
 
 ### `radioLabel`
 
--   **Props:** `{}`
+-   **Props:** `ExposedData & { isHovered: boolean, isSelected: boolean }`
 -   **Description:** Custom label element for each choice. Defaults to the choice label.
 
 ### `afterInput`
