@@ -135,6 +135,9 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<{
     radio?(_: {
         isHovered: boolean;
         isSelected: boolean;
+        label: string;
+        value: string;
+        data?: object | undefined;
         fieldID: string;
         fieldName: string;
         fieldLabel: string | undefined;
@@ -150,6 +153,9 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<{
     radioBox?(_: {
         isHovered: boolean;
         isSelected: boolean;
+        label: string;
+        value: string;
+        data?: object | undefined;
         fieldID: string;
         fieldName: string;
         fieldLabel: string | undefined;
@@ -165,6 +171,9 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<{
     radioBoxSymbol?(_: {
         isHovered: boolean;
         isSelected: boolean;
+        label: string;
+        value: string;
+        data?: object | undefined;
         fieldID: string;
         fieldName: string;
         fieldLabel: string | undefined;
@@ -180,6 +189,9 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<{
     radioLabel?(_: {
         isHovered: boolean;
         isSelected: boolean;
+        label: string;
+        value: string;
+        data?: object | undefined;
         fieldID: string;
         fieldName: string;
         fieldLabel: string | undefined;
