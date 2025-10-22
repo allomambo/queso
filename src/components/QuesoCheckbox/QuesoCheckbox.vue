@@ -1,74 +1,88 @@
 <template>
-    <queso-field class="-checkbox" static-label v-bind="extendedProps">
+    <queso-field class="-checkbox" has-static-label v-bind="extendedProps">
         <template #beforeLabel="exposedData">
-            <slot name="beforeLabel" v-bind="{ ...exposedData }"></slot>
+            <slot name="beforeLabel" v-bind="exposedData"></slot>
         </template>
         <template #label="exposedData">
-            <slot name="label" v-bind="{ ...exposedData }"></slot>
+            <slot name="label" v-bind="exposedData"></slot>
         </template>
         <template #required="exposedData">
-            <slot name="required" v-bind="{ ...exposedData }"></slot>
+            <slot name="required" v-bind="exposedData"></slot>
         </template>
         <template #afterLabel="exposedData">
-            <slot name="afterLabel" v-bind="{ ...exposedData }"></slot>
+            <slot name="afterLabel" v-bind="exposedData"></slot>
         </template>
 
         <template #beforeInput="exposedData">
-            <slot name="beforeInput" v-bind="{ ...exposedData }"></slot>
+            <slot name="beforeInput" v-bind="exposedData"></slot>
         </template>
-        <template #input="{ fieldID, fieldName, isRequired, isDisabled, isReadOnly, toggleIsActive, toggleIsHover }">
+        <template #input="exposedData">
             <component
-                :is="isReadOnly ? 'div' : 'label'"
+                :is="exposedData.isReadOnly ? 'div' : 'label'"
                 class="queso-checkbox"
-                :class="{ 'is-checked': isChecked }"
-                :for="!isReadOnly ? fieldID : null"
-                @mouseover="toggleIsHover(true)"
-                @mouseleave="toggleIsHover(false)"
+                :class="{ 'is-checkbox-hover': isHovered, 'is-checked': isChecked }"
+                :for="!exposedData.isReadOnly ? exposedData.fieldID : null"
+                @mouseover="
+                    isHovered = true;
+                    exposedData.toggleIsHover(true);
+                "
+                @mouseleave="
+                    isHovered = false;
+                    exposedData.toggleIsHover(false);
+                "
             >
-                <slot name="checkboxBox">
-                    <span class="queso-checkbox__box">
-                        <span class="queso-checkbox__box__symbol">
-                            <slot name="checkboxBoxSymbol">✔︎</slot>
-                        </span>
-                    </span>
-                </slot>
-
-                <slot name="checkboxLabel">
-                    <span class="queso-checkbox__label">
-                        <span class="queso-checkbox__label__text" v-html="boxLabel"></span>
-                        <slot v-if="isRequired" name="checkboxLabelRequired" v-bind="{ isRequired }">
-                            <span class="queso-checkbox__label__required">*</span>
-                        </slot>
-                    </span>
-                </slot>
-
                 <input
-                    v-if="!isReadOnly"
+                    v-if="!exposedData.isReadOnly"
                     class="queso-checkbox__native"
                     type="checkbox"
-                    :id="fieldID"
-                    :name="fieldName"
-                    :required="isRequired"
-                    :disabled="isDisabled"
-                    @focus="toggleIsActive(true)"
-                    @blur="toggleIsActive(false)"
+                    :id="exposedData.fieldID"
+                    :name="exposedData.fieldName"
+                    :required="exposedData.isRequired"
+                    :disabled="exposedData.isDisabled"
+                    @focus="exposedData.toggleIsActive(true)"
+                    @blur="exposedData.toggleIsActive(false)"
                     v-bind="extraAttributes"
                     v-model="model"
                 />
+
+                <slot name="checkbox" v-bind="{ ...exposedData, isHovered, isChecked }">
+                    <slot name="checkboxBox" v-bind="{ ...exposedData, isHovered, isChecked }">
+                        <span class="queso-checkbox__box">
+                            <span class="queso-checkbox__box__symbol">
+                                <slot name="checkboxBoxSymbol" v-bind="{ ...exposedData, isHovered, isChecked }"
+                                    >✔︎</slot
+                                >
+                            </span>
+                        </span>
+                    </slot>
+
+                    <slot name="checkboxLabel" v-bind="{ ...exposedData, isHovered, isChecked }">
+                        <span class="queso-checkbox__label">
+                            <span class="queso-checkbox__label__text" v-html="boxLabel"></span>
+                            <slot
+                                v-if="exposedData.isRequired"
+                                name="checkboxLabelRequired"
+                                v-bind="{ ...exposedData, isHovered, isChecked }"
+                            >
+                                <span class="queso-checkbox__label__required">*</span>
+                            </slot>
+                        </span>
+                    </slot>
+                </slot>
             </component>
         </template>
         <template #afterInput="exposedData">
-            <slot name="afterInput" v-bind="{ ...exposedData }"></slot>
+            <slot name="afterInput" v-bind="exposedData"></slot>
         </template>
 
         <template #error="exposedData">
-            <slot name="error" v-bind="{ ...exposedData }"></slot>
+            <slot name="error" v-bind="exposedData"></slot>
         </template>
     </queso-field>
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { useExtendedFieldProps } from "@composables/fields";
 
 import type { QuesoCheckboxModel, QuesoCheckboxProps } from "./types";
@@ -79,7 +93,9 @@ const props = defineProps<QuesoCheckboxProps>();
 const extendedProps = useExtendedFieldProps(props);
 
 const model = defineModel<QuesoCheckboxModel>({ required: true, default: false });
+
 const isChecked = computed<boolean>(() => !!model.value);
+const isHovered = ref<boolean>(false);
 </script>
 
 <style lang="scss">

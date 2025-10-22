@@ -120,23 +120,33 @@ const countryOptions = [
 
 ### `placeholder`
 
--   **Props:** `{ isDropdownOpen: boolean, placeholder: string }`
+-   **Props:** `ExposedData & { isDropdownOpen: boolean, placeholder: string }`
 -   **Description:** Custom placeholder content. Defaults to the `placeholder` prop.
 
 ### `selector`
 
--   **Props:** `{ isDropdownOpen: boolean, activeOptions: QuesoSelectOptions }`
+-   **Props:** `ExposedData & { isDropdownOpen: boolean, activeOptions: QuesoSelectOptions }`
 -   **Description:** Custom selector content showing the selected option(s). Defaults to displaying the selected option label.
 
 ### `icon`
 
--   **Props:** `{ isDropdownOpen: boolean }`
+-   **Props:** `ExposedData & { isDropdownOpen: boolean }`
 -   **Description:** Custom dropdown icon. Defaults to "+".
 
 ### `item`
 
--   **Props:** `{ index: number, value: string, label: string, data: any }`
+-   **Props:** `ExposedData & { index: number, value: string, label: string, data: any }`
 -   **Description:** Custom dropdown item content. Defaults to displaying the option label.
+
+### `readOnly`
+
+-   **Props:** `ExposedData`
+-   **Description:** Content displayed when the field is in read-only mode. Defaults to displaying the selected value as text.
+
+### `afterDropdown`
+
+-   **Props:** `ExposedData`
+-   **Description:** Content displayed after the dropdown component (typically for hidden native select element).
 
 ### `afterInput`
 

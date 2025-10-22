@@ -107,12 +107,17 @@ const description = ref("");
 
 ### `beforeTextAreaInput`
 
--   **Props:** `{}`
+-   **Props:** `ExposedData`
 -   **Description:** Content displayed before the textarea element (inside the textarea wrapper).
+
+### `readOnly`
+
+-   **Props:** `ExposedData`
+-   **Description:** Content displayed when the field is in read-only mode. Defaults to displaying the field value as text.
 
 ### `afterTextAreaInput`
 
--   **Props:** `{}`
+-   **Props:** `ExposedData`
 -   **Description:** Content displayed after the textarea element (inside the textarea wrapper).
 
 ### `afterInput`
