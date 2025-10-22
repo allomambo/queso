@@ -1,6 +1,6 @@
 {
     "name": "@allomambo/queso",
-    "version": "0.4.0",
+    "version": "0.4.1",
     "description": "VueJS component library to use in conjunction with Arepa",
     "repository": "https://github.com/allomambo/queso.git",
     "homepage": "https://allomambo.github.io/queso/",

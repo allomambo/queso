@@ -147,6 +147,10 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<{
     checkbox?(_: {
         isHovered: boolean;
         isSelected: boolean | undefined;
+        label: string;
+        value: string;
+        isChecked?: boolean | undefined;
+        data?: object | undefined;
         fieldID: string;
         fieldName: string;
         fieldLabel: string | undefined;
@@ -162,6 +166,10 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<{
     checkboxBox?(_: {
         isHovered: boolean;
         isSelected: boolean | undefined;
+        label: string;
+        value: string;
+        isChecked?: boolean | undefined;
+        data?: object | undefined;
         fieldID: string;
         fieldName: string;
         fieldLabel: string | undefined;
@@ -177,6 +185,10 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<{
     checkboxBoxSymbol?(_: {
         isHovered: boolean;
         isSelected: boolean | undefined;
+        label: string;
+        value: string;
+        isChecked?: boolean | undefined;
+        data?: object | undefined;
         fieldID: string;
         fieldName: string;
         fieldLabel: string | undefined;
@@ -192,6 +204,10 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<{
     checkboxLabel?(_: {
         isHovered: boolean;
         isSelected: boolean | undefined;
+        label: string;
+        value: string;
+        isChecked?: boolean | undefined;
+        data?: object | undefined;
         fieldID: string;
         fieldName: string;
         fieldLabel: string | undefined;
