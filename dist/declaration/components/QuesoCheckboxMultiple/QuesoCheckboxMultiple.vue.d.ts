@@ -79,7 +79,19 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<{
 }>>, {
     validationMessage: string;
 }, {}>, {
-    beforeLabel?(_: {}): any;
+    beforeLabel?(_: {
+        fieldID: string;
+        fieldName: string;
+        fieldLabel: string | undefined;
+        isRequired: boolean;
+        isActive: boolean;
+        isHover: boolean;
+        isDisabled: boolean;
+        isError: boolean;
+        isReadOnly: boolean;
+        toggleIsActive: (bool?: boolean) => void;
+        toggleIsHover: (bool?: boolean) => void;
+    }): any;
     label?(_: {
         fieldID: string;
         fieldName: string;
@@ -106,12 +118,105 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<{
         toggleIsActive: (bool?: boolean) => void;
         toggleIsHover: (bool?: boolean) => void;
     }): any;
-    afterLabel?(_: {}): any;
-    beforeInput?(_: {}): any;
-    checkboxBox?(_: {}): any;
-    checkboxBoxSymbol?(_: {}): any;
-    checkboxLabel?(_: {}): any;
-    afterInput?(_: {}): any;
+    afterLabel?(_: {
+        fieldID: string;
+        fieldName: string;
+        fieldLabel: string | undefined;
+        isRequired: boolean;
+        isActive: boolean;
+        isHover: boolean;
+        isDisabled: boolean;
+        isError: boolean;
+        isReadOnly: boolean;
+        toggleIsActive: (bool?: boolean) => void;
+        toggleIsHover: (bool?: boolean) => void;
+    }): any;
+    beforeInput?(_: {
+        fieldID: string;
+        fieldName: string;
+        fieldLabel: string | undefined;
+        isRequired: boolean;
+        isActive: boolean;
+        isHover: boolean;
+        isDisabled: boolean;
+        isError: boolean;
+        isReadOnly: boolean;
+        toggleIsActive: (bool?: boolean) => void;
+        toggleIsHover: (bool?: boolean) => void;
+    }): any;
+    checkbox?(_: {
+        isHovered: boolean;
+        isSelected: boolean | undefined;
+        fieldID: string;
+        fieldName: string;
+        fieldLabel: string | undefined;
+        isRequired: boolean;
+        isActive: boolean;
+        isHover: boolean;
+        isDisabled: boolean;
+        isError: boolean;
+        isReadOnly: boolean;
+        toggleIsActive: (bool?: boolean) => void;
+        toggleIsHover: (bool?: boolean) => void;
+    }): any;
+    checkboxBox?(_: {
+        isHovered: boolean;
+        isSelected: boolean | undefined;
+        fieldID: string;
+        fieldName: string;
+        fieldLabel: string | undefined;
+        isRequired: boolean;
+        isActive: boolean;
+        isHover: boolean;
+        isDisabled: boolean;
+        isError: boolean;
+        isReadOnly: boolean;
+        toggleIsActive: (bool?: boolean) => void;
+        toggleIsHover: (bool?: boolean) => void;
+    }): any;
+    checkboxBoxSymbol?(_: {
+        isHovered: boolean;
+        isSelected: boolean | undefined;
+        fieldID: string;
+        fieldName: string;
+        fieldLabel: string | undefined;
+        isRequired: boolean;
+        isActive: boolean;
+        isHover: boolean;
+        isDisabled: boolean;
+        isError: boolean;
+        isReadOnly: boolean;
+        toggleIsActive: (bool?: boolean) => void;
+        toggleIsHover: (bool?: boolean) => void;
+    }): any;
+    checkboxLabel?(_: {
+        isHovered: boolean;
+        isSelected: boolean | undefined;
+        fieldID: string;
+        fieldName: string;
+        fieldLabel: string | undefined;
+        isRequired: boolean;
+        isActive: boolean;
+        isHover: boolean;
+        isDisabled: boolean;
+        isError: boolean;
+        isReadOnly: boolean;
+        toggleIsActive: (bool?: boolean) => void;
+        toggleIsHover: (bool?: boolean) => void;
+    }): any;
+    afterInput?(_: {
+        fieldID: string;
+        fieldName: string;
+        fieldLabel: string | undefined;
+        isRequired: boolean;
+        isActive: boolean;
+        isHover: boolean;
+        isDisabled: boolean;
+        isError: boolean;
+        isReadOnly: boolean;
+        toggleIsActive: (bool?: boolean) => void;
+        toggleIsHover: (bool?: boolean) => void;
+    }): any;
     error?(_: {
         fieldID: string;
         fieldName: string;

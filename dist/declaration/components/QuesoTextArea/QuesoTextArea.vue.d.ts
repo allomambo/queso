@@ -130,8 +130,45 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<{
         toggleIsActive: (bool?: boolean) => void;
         toggleIsHover: (bool?: boolean) => void;
     }): any;
-    beforeTextAreaInput?(_: {}): any;
-    afterTextAreaInput?(_: {}): any;
+    beforeTextAreaInput?(_: {
+        fieldID: string;
+        fieldName: string;
+        fieldLabel: string | undefined;
+        isRequired: boolean;
+        isActive: boolean;
+        isHover: boolean;
+        isDisabled: boolean;
+        isError: boolean;
+        isReadOnly: boolean;
+        toggleIsActive: (bool?: boolean) => void;
+        toggleIsHover: (bool?: boolean) => void;
+    }): any;
+    readOnly?(_: {
+        fieldID: string;
+        fieldName: string;
+        fieldLabel: string | undefined;
+        isRequired: boolean;
+        isActive: boolean;
+        isHover: boolean;
+        isDisabled: boolean;
+        isError: boolean;
+        isReadOnly: boolean;
+        toggleIsActive: (bool?: boolean) => void;
+        toggleIsHover: (bool?: boolean) => void;
+    }): any;
+    afterTextAreaInput?(_: {
+        fieldID: string;
+        fieldName: string;
+        fieldLabel: string | undefined;
+        isRequired: boolean;
+        isActive: boolean;
+        isHover: boolean;
+        isDisabled: boolean;
+        isError: boolean;
+        isReadOnly: boolean;
+        toggleIsActive: (bool?: boolean) => void;
+        toggleIsHover: (bool?: boolean) => void;
+    }): any;
     afterInput?(_: {
         fieldID: string;
         fieldName: string;
