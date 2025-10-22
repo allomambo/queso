@@ -4,6 +4,7 @@ import type { QuesoFieldProps, QuesoFieldBase } from "@components/QuesoField";
 export interface QuesoRadioChoice {
     label: string;
     value: string;
+    data?: object;
 }
 
 export type QuesoRadioChoices = QuesoRadioChoice[];

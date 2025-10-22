@@ -51,6 +51,7 @@
                     name="checkbox"
                     v-bind="{
                         ...exposedData,
+                        ...choice,
                         isHovered: hoveredChoice === choice.value,
                         isSelected: choice.isChecked,
                     }"
@@ -59,6 +60,7 @@
                         name="checkboxBox"
                         v-bind="{
                             ...exposedData,
+                            ...choice,
                             isHovered: hoveredChoice === choice.value,
                             isSelected: choice.isChecked,
                         }"
@@ -69,6 +71,7 @@
                                     name="checkboxBoxSymbol"
                                     v-bind="{
                                         ...exposedData,
+                                        ...choice,
                                         isHovered: hoveredChoice === choice.value,
                                         isSelected: choice.isChecked,
                                     }"
@@ -82,6 +85,7 @@
                         name="checkboxLabel"
                         v-bind="{
                             ...exposedData,
+                            ...choice,
                             isHovered: hoveredChoice === choice.value,
                             isSelected: choice.isChecked,
                         }"

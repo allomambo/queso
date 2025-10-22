@@ -6,6 +6,7 @@ export interface QuesoCheckboxMultipleChoice {
     label: QuesoCheckboxProps["boxLabel"];
     value: string;
     isChecked?: QuesoCheckboxModel;
+    data?: object;
 }
 
 export type QuesoCheckboxMultipleChoices = QuesoCheckboxMultipleChoice[];
