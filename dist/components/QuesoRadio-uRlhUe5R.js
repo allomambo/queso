@@ -1,7 +1,7 @@
 import { defineComponent as y, mergeModels as g, useModel as B, ref as I, openBlock as v, createBlock as _, unref as $, mergeProps as i, withCtx as s, renderSlot as o, normalizeProps as t, guardReactiveProps as n, createElementBlock as p, Fragment as M, renderList as R, resolveDynamicComponent as H, normalizeClass as L, withDirectives as V, vModelRadio as C, createCommentVNode as S, createElementVNode as f, createTextVNode as P } from "vue";
-import { u as c } from "./QuesoCheckbox-oMH7omFq.js";
-import { _ as k } from "./QuesoField-DYBEGM8C.js";
-import '../assets/components/QuesoRadio.css';const A = ["id", "name", "required", "disabled", "value", "onFocus", "onBlur"], E = { class: "queso-radio__box" }, F = { class: "queso-radio__box__symbol" }, N = { class: "queso-radio__label" }, O = ["innerHTML"], U = /* @__PURE__ */ y({
+import { u as k } from "./QuesoCheckbox-oMH7omFq.js";
+import { _ as A } from "./QuesoField-DYBEGM8C.js";
+import '../assets/components/QuesoRadio.css';const E = ["id", "name", "required", "disabled", "value", "onFocus", "onBlur"], F = { class: "queso-radio__box" }, N = { class: "queso-radio__box__symbol" }, O = { class: "queso-radio__label" }, T = ["innerHTML"], j = /* @__PURE__ */ y({
   __name: "QuesoRadio",
   props: /* @__PURE__ */ g({
     choices: {},
@@ -19,8 +19,8 @@ import '../assets/components/QuesoRadio.css';const A = ["id", "name", "required"
   }),
   emits: ["update:modelValue"],
   setup(m) {
-    const q = c(m), a = B(m, "modelValue"), u = I(null);
-    return (r, b) => (v(), _($(k), i({
+    const q = k(m), a = B(m, "modelValue"), u = I(null);
+    return (r, b) => (v(), _($(A), i({
       class: "-radio",
       "has-static-label": ""
     }, $(q)), {
@@ -68,23 +68,26 @@ import '../assets/components/QuesoRadio.css';const A = ["id", "name", "required"
               ref_for: !0
             }, r.extraAttributes, {
               "onUpdate:modelValue": b[0] || (b[0] = (d) => a.value = d)
-            }), null, 16, A)), [
+            }), null, 16, E)), [
               [C, a.value]
             ]),
             o(r.$slots, "radio", i({ ref_for: !0 }, {
               ...e,
+              ...l,
               isHovered: u.value === l.value,
               isSelected: a.value === l.value
             }), () => [
               o(r.$slots, "radioBox", i({ ref_for: !0 }, {
                 ...e,
+                ...l,
                 isHovered: u.value === l.value,
                 isSelected: a.value === l.value
               }), () => [
-                f("span", E, [
-                  f("span", F, [
+                f("span", F, [
+                  f("span", N, [
                     o(r.$slots, "radioBoxSymbol", i({ ref_for: !0 }, {
                       ...e,
+                      ...l,
                       isHovered: u.value === l.value,
                       isSelected: a.value === l.value
                     }), () => [
@@ -95,14 +98,15 @@ import '../assets/components/QuesoRadio.css';const A = ["id", "name", "required"
               ]),
               o(r.$slots, "radioLabel", i({ ref_for: !0 }, {
                 ...e,
+                ...l,
                 isHovered: u.value === l.value,
                 isSelected: a.value === l.value
               }), () => [
-                f("span", N, [
+                f("span", O, [
                   f("span", {
                     class: "queso-radio__label__text",
                     innerHTML: l.label
-                  }, null, 8, O)
+                  }, null, 8, T)
                 ])
               ])
             ])
@@ -121,5 +125,5 @@ import '../assets/components/QuesoRadio.css';const A = ["id", "name", "required"
   }
 });
 export {
-  U as _
+  j as _
 };
