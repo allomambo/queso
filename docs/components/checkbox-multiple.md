@@ -52,7 +52,7 @@ const interestChoices = [
 
 -   **Type:** `QuesoCheckboxMultipleChoices`
 -   **Required:** `true`
--   **Description:** Array of choices for the checkbox group. Each choice must have a `label` and `value`.
+-   **Description:** Array of choices for the checkbox group. Each choice must have a `label` and `value`, with optional `data`.
 
 ### `validationMessage`
 
@@ -119,22 +119,22 @@ const interestChoices = [
 
 ### `checkbox`
 
--   **Props:** `ExposedData & { isHovered: boolean, isSelected: boolean }`
+-   **Props:** `ExposedData & QuesoCheckboxMultipleChoice & { isHovered: boolean, isSelected: boolean }`
 -   **Description:** Custom checkbox container element for each choice. Defaults to a styled checkbox container.
 
 ### `checkboxBox`
 
--   **Props:** `ExposedData & { isHovered: boolean, isSelected: boolean }`
+-   **Props:** `ExposedData & QuesoCheckboxMultipleChoice & { isHovered: boolean, isSelected: boolean }`
 -   **Description:** Custom checkbox box element for each choice. Defaults to a styled checkbox box.
 
 ### `checkboxBoxSymbol`
 
--   **Props:** `ExposedData & { isHovered: boolean, isSelected: boolean }`
+-   **Props:** `ExposedData & QuesoCheckboxMultipleChoice & { isHovered: boolean, isSelected: boolean }`
 -   **Description:** Symbol displayed inside the checkbox box when checked. Defaults to "✔︎".
 
 ### `checkboxLabel`
 
--   **Props:** `ExposedData & { isHovered: boolean, isSelected: boolean }`
+-   **Props:** `ExposedData & QuesoCheckboxMultipleChoice & { isHovered: boolean, isSelected: boolean }`
 -   **Description:** Custom label element for each choice. Defaults to the choice label.
 
 ### `afterInput`
@@ -615,6 +615,7 @@ export interface QuesoCheckboxMultipleChoice {
     label: string;
     value: string;
     isChecked?: boolean;
+    data?: object;
 }
 
 export type QuesoCheckboxMultipleChoices = QuesoCheckboxMultipleChoice[];

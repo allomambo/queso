@@ -51,7 +51,7 @@ const genderChoices = [
 
 -   **Type:** `QuesoRadioChoice[]`
 -   **Required:** `true`
--   **Description:** Array of choices for the radio group. Each choice must have a `label` and `value`.
+-   **Description:** Array of choices for the radio group. Each choice must have a `label` and `value`, with optional `data`.
 
 ### `isRequired`
 
@@ -112,22 +112,22 @@ const genderChoices = [
 
 ### `radio`
 
--   **Props:** `ExposedData & { isHovered: boolean, isSelected: boolean }`
+-   **Props:** `ExposedData & QuesoRadioChoice & { isHovered: boolean, isSelected: boolean }`
 -   **Description:** Custom radio container element for each choice. Defaults to a styled radio container.
 
 ### `radioBox`
 
--   **Props:** `ExposedData & { isHovered: boolean, isSelected: boolean }`
+-   **Props:** `ExposedData & QuesoRadioChoice & { isHovered: boolean, isSelected: boolean }`
 -   **Description:** Custom radio box element for each choice. Defaults to a styled radio box.
 
 ### `radioBoxSymbol`
 
--   **Props:** `ExposedData & { isHovered: boolean, isSelected: boolean }`
+-   **Props:** `ExposedData & QuesoRadioChoice & { isHovered: boolean, isSelected: boolean }`
 -   **Description:** Symbol displayed inside the radio box when selected. Defaults to "✔︎".
 
 ### `radioLabel`
 
--   **Props:** `ExposedData & { isHovered: boolean, isSelected: boolean }`
+-   **Props:** `ExposedData & QuesoRadioChoice & { isHovered: boolean, isSelected: boolean }`
 -   **Description:** Custom label element for each choice. Defaults to the choice label.
 
 ### `afterInput`
@@ -549,6 +549,7 @@ export interface ExposedData {
 export interface QuesoRadioChoice {
     label: string;
     value: string;
+    data?: object;
 }
 
 export type QuesoRadioChoices = QuesoRadioChoice[];

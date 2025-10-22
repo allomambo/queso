@@ -54,6 +54,7 @@
                     name="radio"
                     v-bind="{
                         ...exposedData,
+                        ...choice,
                         isHovered: hoveredChoice === choice.value,
                         isSelected: model === choice.value,
                     }"
@@ -62,6 +63,7 @@
                         name="radioBox"
                         v-bind="{
                             ...exposedData,
+                            ...choice,
                             isHovered: hoveredChoice === choice.value,
                             isSelected: model === choice.value,
                         }"
@@ -72,6 +74,7 @@
                                     name="radioBoxSymbol"
                                     v-bind="{
                                         ...exposedData,
+                                        ...choice,
                                         isHovered: hoveredChoice === choice.value,
                                         isSelected: model === choice.value,
                                     }"
@@ -85,6 +88,7 @@
                         name="radioLabel"
                         v-bind="{
                             ...exposedData,
+                            ...choice,
                             isHovered: hoveredChoice === choice.value,
                             isSelected: model === choice.value,
                         }"
