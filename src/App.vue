@@ -28,14 +28,24 @@
         placeholder="Select an option"
         :options="selectOptions"
         v-model="Select"
-    />
+    >
+        <template #item="{ label, data }">
+            <span class="text">{{ label }}</span>
+            <span class="icon">{{ data?.icon }}</span>
+        </template>
+    </QuesoSelect>
     <QuesoSelectMultiple
         name="selectMultiple"
         label="QuesoSelectMultiple"
         placeholder="Select options"
         :options="selectMultipleOptions"
         v-model="SelectMultiple"
-    />
+    >
+        <template #item="{ label, data }">
+            <span class="text">{{ label }}</span>
+            <span class="icon">{{ data?.icon }}</span>
+        </template>
+    </QuesoSelectMultiple>
     <QuesoRadio name="radio" label="QuesoRadio" :choices="radioChoices" v-model="Radio">
         <template #radioBox="{ isSelected, data }">
             <span v-if="isSelected">✔︎</span>
