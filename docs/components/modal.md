@@ -5,6 +5,8 @@ A modal component with comprehensive accessibility support, focus management, an
 ## Breaking Changes
 
 ::: danger Breaking Change
+**Version:** These breaking changes are introduced in version `0.4.2`. If you're upgrading from version `0.4.1` or earlier to `0.4.2`, you must follow the migration guide below to update your code.
+
 Two breaking changes have been introduced:
 
 1. **Method names changed:** `open()`/`close()` → `openModal()`/`closeModal()` for better clarity
@@ -136,13 +138,16 @@ import { QuesoModal } from "@components/QuesoModal";
 </script>
 ```
 
-### Legacy Usage (with ref)
+### Legacy Usage
 
 ::: warning Warning
-This method is still supported for backward compatibility, but the `trigger` slot approach is preferred for new code. Use it only if you need programmatic control from multiple places or complex conditional logic.
+The method below is still supported for backward compatibility, but the `trigger` slot approach is preferred for new code. Use it only if you need programmatic control from multiple places or complex conditional logic.
 
 See the [Migration Guide](#breaking-changes) for detailed examples and migration steps.
 :::
+
+<details>
+<summary><strong>Show example code</strong></summary>
 
 ```vue
 <template>
@@ -168,6 +173,8 @@ const closeModal = () => {
 };
 </script>
 ```
+
+</details>
 
 ## Emits
 
