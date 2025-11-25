@@ -106,12 +106,6 @@ const scrollableClasses = computed(() => ({
         z-index: var(--queso-scrollable-indicator-z, 9);
         left: var(--queso-scrollable-indicator-offset-left, var(--queso-scrollable-indicator-offset, 0));
         right: var(--queso-scrollable-indicator-offset-right, var(--queso-scrollable-indicator-offset, 0));
-    }
-
-    &__top-indicator {
-        --queso-scrollable-indicator-direction: 180deg;
-        top: var(--queso-scrollable-indicator-before-top, 0);
-        opacity: var(--queso-scrollable-top-indicator-opacity, 1);
         background: var(
             --queso-scrollable-top-indicator-background,
             linear-gradient(
@@ -120,6 +114,12 @@ const scrollableClasses = computed(() => ({
                 transparent
             )
         );
+    }
+
+    &__top-indicator {
+        --queso-scrollable-indicator-direction: 180deg;
+        top: var(--queso-scrollable-indicator-before-top, 0);
+        opacity: var(--queso-scrollable-top-indicator-opacity, 1);
 
         &.is-hidden {
             --queso-scrollable-top-indicator-opacity: 0;
@@ -130,14 +130,6 @@ const scrollableClasses = computed(() => ({
         --queso-scrollable-indicator-direction: 0deg;
         bottom: var(--queso-scrollable-indicator-after-bottom, 0);
         opacity: var(--queso-scrollable-bottom-indicator-opacity, 1);
-        background: var(
-            --queso-scrollable-bottom-indicator-background,
-            linear-gradient(
-                var(--queso-scrollable-indicator-direction),
-                var(--queso-scrollable-indicator-color, white),
-                transparent
-            )
-        );
 
         &.is-hidden {
             --queso-scrollable-bottom-indicator-opacity: 0;
