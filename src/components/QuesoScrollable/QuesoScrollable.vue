@@ -1,7 +1,7 @@
 <template>
     <div class="queso-scrollable" :class="scrollableClasses">
         <div
-            v-if="$slots.topIndicator && !shadows"
+            v-if="hasTopIndicatorSlot"
             class="queso-scrollable__top-indicator"
             :class="{ 'is-hidden': isArrivedAtTop }"
             role="presentation"
@@ -14,7 +14,7 @@
         </div>
 
         <div
-            v-if="$slots.bottomIndicator && !shadows"
+            v-if="hasBottomIndicatorSlot"
             class="queso-scrollable__bottom-indicator"
             :class="{ 'is-hidden': isArrivedAtBottom }"
             role="presentation"
@@ -25,7 +25,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, watchEffect } from "vue";
+import { computed, nextTick, onMounted, ref, useSlots, watchEffect } from "vue";
 import { useScroll, useResizeObserver } from "@vueuse/core";
 
 import type { QuesoScrollableProps } from "./types";
@@ -39,6 +39,7 @@ const emit = defineEmits<{
     "scrollable:bottom:reached": [];
 }>();
 
+const slots = useSlots();
 const content = ref<HTMLElement>();
 
 const { arrivedState } = useScroll(content, {
@@ -49,10 +50,21 @@ const { arrivedState } = useScroll(content, {
 const contentScrollHeight = ref<number>(0);
 const contentClientHeight = ref<number>(0);
 
-useResizeObserver(content, (entries) => {
-    const entry = entries[0];
-    contentScrollHeight.value = entry.target.scrollHeight;
-    contentClientHeight.value = entry.target.clientHeight;
+const updateContentDimensions = () => {
+    if (content.value) {
+        contentScrollHeight.value = content.value.scrollHeight;
+        contentClientHeight.value = content.value.clientHeight;
+    }
+};
+
+useResizeObserver(content, () => {
+    updateContentDimensions();
+});
+
+onMounted(() => {
+    nextTick(() => {
+        updateContentDimensions();
+    });
 });
 
 const contentIsOverflowingVertically = computed<boolean>(() => contentScrollHeight.value > contentClientHeight.value);
@@ -67,7 +79,15 @@ const isArrivedAtBottom = computed(() => {
     return arrivedState.bottom;
 });
 
-// Watcher to emit events
+const hasTopIndicatorSlot = computed(() => !!(slots.topIndicator && !props.shadows));
+const hasBottomIndicatorSlot = computed(() => !!(slots.bottomIndicator && !props.shadows));
+
+const scrollableClasses = computed(() => ({
+    "has-shadows": props.shadows,
+    "is-scrolled-top": isArrivedAtTop.value,
+    "is-scrolled-bottom": isArrivedAtBottom.value,
+}));
+
 watchEffect(() => {
     if (isArrivedAtTop.value) {
         emit("scrollable:top:reached");
@@ -76,13 +96,6 @@ watchEffect(() => {
         emit("scrollable:bottom:reached");
     }
 });
-
-// CSS classes
-const scrollableClasses = computed(() => ({
-    "has-shadows": props.shadows,
-    "is-scrolled-top": isArrivedAtTop.value,
-    "is-scrolled-bottom": isArrivedAtBottom.value,
-}));
 </script>
 
 <style lang="scss">
