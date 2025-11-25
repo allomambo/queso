@@ -50,9 +50,9 @@ const interestChoices = [
 
 ### `choices`
 
--   **Type:** `QuesoCheckboxMultipleChoices`
+-   **Type:** `QuesoCheckboxMultipleChoices<TChoiceData>`
 -   **Required:** `true`
--   **Description:** Array of choices for the checkbox group. Each choice must have a `label` and `value`, with optional `data`.
+-   **Description:** Array of choices for the checkbox group. Each choice must have a `label` and `value`, with optional `data`. `TChoiceData` defaults to `Record<string, any>` so you can strongly type additional metadata (icons, descriptions, etc.).
 
 ### `validationMessage`
 
@@ -119,22 +119,22 @@ const interestChoices = [
 
 ### `checkbox`
 
--   **Props:** `ExposedData & QuesoCheckboxMultipleChoice & { isHovered: boolean, isSelected: boolean }`
+-   **Props:** `ExposedData & QuesoCheckboxMultipleChoice<TChoiceData> & { isHovered: boolean, isSelected: boolean }`
 -   **Description:** Custom checkbox container element for each choice. Defaults to a styled checkbox container.
 
 ### `checkboxBox`
 
--   **Props:** `ExposedData & QuesoCheckboxMultipleChoice & { isHovered: boolean, isSelected: boolean }`
+-   **Props:** `ExposedData & QuesoCheckboxMultipleChoice<TChoiceData> & { isHovered: boolean, isSelected: boolean }`
 -   **Description:** Custom checkbox box element for each choice. Defaults to a styled checkbox box.
 
 ### `checkboxBoxSymbol`
 
--   **Props:** `ExposedData & QuesoCheckboxMultipleChoice & { isHovered: boolean, isSelected: boolean }`
+-   **Props:** `ExposedData & QuesoCheckboxMultipleChoice<TChoiceData> & { isHovered: boolean, isSelected: boolean }`
 -   **Description:** Symbol displayed inside the checkbox box when checked. Defaults to "✔︎".
 
 ### `checkboxLabel`
 
--   **Props:** `ExposedData & QuesoCheckboxMultipleChoice & { isHovered: boolean, isSelected: boolean }`
+-   **Props:** `ExposedData & QuesoCheckboxMultipleChoice<TChoiceData> & { isHovered: boolean, isSelected: boolean }`
 -   **Description:** Custom label element for each choice. Defaults to the choice label.
 
 ### `afterInput`
@@ -611,21 +611,24 @@ export interface ExposedData {
     isHover: boolean;
 }
 
-export interface QuesoCheckboxMultipleChoice {
+export interface QuesoCheckboxMultipleChoice<
+    TChoiceData = Record<string, any>,
+> {
     label: string;
     value: string;
     isChecked?: boolean;
-    data?: object;
+    data?: TChoiceData;
 }
 
-export type QuesoCheckboxMultipleChoices = QuesoCheckboxMultipleChoice[];
+export type QuesoCheckboxMultipleChoices<TChoiceData = Record<string, any>> =
+    QuesoCheckboxMultipleChoice<TChoiceData>[];
 export type QuesoCheckboxMultipleModel = QuesoCheckboxMultipleChoice["value"][];
 
-export interface QuesoCheckboxMultipleProps {
+export interface QuesoCheckboxMultipleProps<TChoiceData = Record<string, any>> {
     name: string;
     label?: string;
     id?: string;
-    choices: QuesoCheckboxMultipleChoices;
+    choices: QuesoCheckboxMultipleChoices<TChoiceData>;
     validationMessage?: string;
     isRequired?: boolean;
     isDisabled?: boolean;

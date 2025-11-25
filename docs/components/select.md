@@ -51,9 +51,9 @@ const countryOptions = [
 
 ### `options`
 
--   **Type:** `QuesoSelectOptions`
+-   **Type:** `QuesoSelectOptions<TOptionData>`
 -   **Required:** `true`
--   **Description:** Array of options for the select dropdown. Each option must have a `label` and `value`.
+-   **Description:** Array of options for the select dropdown. Each option must have a `label` and `value`. `TOptionData` mirrors the dropdown option type and defaults to `Record<string, any>`, so slot props receive a fully typed `data` object.
 
 ### `placeholder`
 
@@ -125,7 +125,7 @@ const countryOptions = [
 
 ### `selector`
 
--   **Props:** `ExposedData & { isDropdownOpen: boolean, activeOptions: QuesoSelectOptions }`
+-   **Props:** `ExposedData & { isDropdownOpen: boolean, activeOptions: QuesoSelectOptions<TOptionData> }`
 -   **Description:** Custom selector content showing the selected option(s). Defaults to displaying the selected option label.
 
 ### `icon`
@@ -135,7 +135,7 @@ const countryOptions = [
 
 ### `item`
 
--   **Props:** `ExposedData & { index: number, value: string, label: string, data: any }`
+-   **Props:** `ExposedData & { index: number, value: string, label: string, data?: TOptionData }`
 -   **Description:** Custom dropdown item content. Defaults to displaying the option label.
 
 ### `readOnly`
@@ -463,16 +463,18 @@ export interface ExposedData {
     isHover: boolean;
 }
 
-export type QuesoSelectOption = QuesoDropdownOption;
-export type QuesoSelectOptions = QuesoDropdownOptions;
+export type QuesoSelectOption<TOptionData = Record<string, any>> =
+    QuesoDropdownOption<TOptionData>;
+export type QuesoSelectOptions<TOptionData = Record<string, any>> =
+    QuesoDropdownOptions<TOptionData>;
 
 export type QuesoSelectModel = QuesoDropdownOptionValue;
 
-export interface QuesoSelectProps {
+export interface QuesoSelectProps<TOptionData = Record<string, any>> {
     name: string;
     label?: string;
     id?: string;
-    options: QuesoSelectOptions;
+    options: QuesoSelectOptions<TOptionData>;
     placeholder?: string;
     isRequired?: boolean;
     isDisabled?: boolean;
