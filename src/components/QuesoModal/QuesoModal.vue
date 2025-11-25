@@ -1,4 +1,6 @@
 <template>
+    <slot name="trigger" v-bind="{ openModal }"></slot>
+
     <Teleport to="body">
         <div
             ref="modalContainer"
@@ -7,17 +9,17 @@
             :aria-expanded="isModalOpen"
             v-bind="$attrs"
         >
-            <slot name="beforeContent" v-bind="{ isModalOpen, open, close }"></slot>
+            <slot name="beforeContent" v-bind="{ isModalOpen, openModal, closeModal }"></slot>
 
             <div class="queso-modal__content">
-                <slot name="content" v-bind="{ isModalOpen, open, close }">
-                    <slot v-bind="{ isModalOpen, open, close }"></slot>
+                <slot name="content" v-bind="{ isModalOpen, openModal, closeModal }">
+                    <slot v-bind="{ isModalOpen, openModal, closeModal }"></slot>
                 </slot>
             </div>
 
-            <slot name="afterContent" v-bind="{ isModalOpen, open, close }"></slot>
+            <slot name="afterContent" v-bind="{ isModalOpen, openModal, closeModal }"></slot>
 
-            <slot name="overlay" v-bind="{ isModalOpen, open, close }">
+            <slot name="overlay" v-bind="{ isModalOpen, openModal, closeModal }">
                 <queso-modal-overlay />
             </slot>
         </div>
@@ -69,11 +71,11 @@ const toggleFocusable = (isOpen: boolean) => {
 // Open/Close modal
 const isModalOpen = ref<boolean>(false);
 
-const open: QuesoModalOpen = () => {
+const openModal: QuesoModalOpen = () => {
     isModalOpen.value = true;
 };
 
-const close: QuesoModalClose = () => {
+const closeModal: QuesoModalClose = () => {
     isModalOpen.value = false;
 };
 
@@ -109,9 +111,9 @@ onKeyStroke("Escape", () => {
 });
 
 // Provide and Expose open/close methods
-provide(QuesoModalMethodsKey, { open, close } as QuesoModalMethods);
+provide(QuesoModalMethodsKey, { openModal, closeModal } as QuesoModalMethods);
 
-defineExpose({ isModalOpen, open, close });
+defineExpose({ isModalOpen, openModal, closeModal });
 </script>
 
 <style lang="scss">

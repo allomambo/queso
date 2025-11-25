@@ -2,7 +2,24 @@
 
 A modal component with comprehensive accessibility support, focus management, and automatic body scroll locking. It uses Vue's Teleport to render at the document body level and provides automatic ARIA attributes and keyboard navigation.
 
-## Basic Usage
+## Breaking Changes
+
+::: danger Breaking Change
+**Version:** These breaking changes are introduced in version `0.4.2`. If you're upgrading from version `0.4.1` or earlier to `0.4.2`, you must follow the migration guide below to update your code.
+
+Two breaking changes have been introduced:
+
+1. **Method names changed:** `open()`/`close()` → `openModal()`/`closeModal()` for better clarity
+2. **New recommended approach:** Use the `trigger` slot instead of `ref` for simpler code
+
+**Migration required:** Update all references from `open` → `openModal` and `close` → `closeModal`, and consider migrating to the `trigger` slot approach.
+:::
+
+### Migration Guide
+
+#### Recommended: Migrate to trigger slot
+
+**Before (with ref):**
 
 ```vue
 <template>
@@ -15,7 +32,6 @@ A modal component with comprehensive accessibility support, focus management, an
 
 <script setup lang="ts">
 import { ref } from "vue";
-
 import { QuesoModal } from "@components/QuesoModal";
 
 const myModal = ref<InstanceType<typeof QuesoModal> | null>(null);
@@ -29,6 +45,136 @@ const closeModal = () => {
 };
 </script>
 ```
+
+**After (with trigger slot - recommended):**
+
+```vue
+<template>
+    <queso-modal>
+        <template #trigger="{ openModal }">
+            <button @click="openModal">Open modal</button>
+        </template>
+
+        <p>This is the modal content.</p>
+    </queso-modal>
+</template>
+
+<script setup lang="ts">
+import { QuesoModal } from "@components/QuesoModal";
+</script>
+```
+
+#### Alternative: Keep using ref (update method names)
+
+If you need to keep using `ref` for programmatic control, update the method names:
+
+**Before:**
+
+```vue
+<template>
+    <button @click="openModal()">Open modal</button>
+
+    <queso-modal ref="myModal">
+        <template #default="{ close }">
+            <button @click="close">Close</button>
+        </template>
+    </queso-modal>
+</template>
+
+<script setup lang="ts">
+const myModal = ref<InstanceType<typeof QuesoModal> | null>(null);
+
+const openModal = () => {
+    myModal.value?.open();
+};
+
+const closeModal = () => {
+    myModal.value?.close();
+};
+</script>
+```
+
+**After:**
+
+```vue
+<template>
+    <button @click="openModal()">Open modal</button>
+
+    <queso-modal ref="myModal">
+        <template #default="{ closeModal }">
+            <button @click="closeModal">Close</button>
+        </template>
+    </queso-modal>
+</template>
+
+<script setup lang="ts">
+const myModal = ref<InstanceType<typeof QuesoModal> | null>(null);
+
+const openModal = () => {
+    myModal.value?.openModal();
+};
+
+const closeModal = () => {
+    myModal.value?.closeModal();
+};
+</script>
+```
+
+## Basic Usage
+
+```vue
+<template>
+    <queso-modal>
+        <template #trigger="{ openModal }">
+            <button @click="openModal">Open modal</button>
+        </template>
+
+        <p>This is the modal content.</p>
+    </queso-modal>
+</template>
+
+<script setup lang="ts">
+import { QuesoModal } from "@components/QuesoModal";
+</script>
+```
+
+### Legacy Usage
+
+::: warning Warning
+The method below is still supported for backward compatibility, but the `trigger` slot approach is preferred for new code. Use it only if you need programmatic control from multiple places or complex conditional logic.
+
+See the [Migration Guide](#breaking-changes) for detailed examples and migration steps.
+:::
+
+<details>
+<summary><strong>Show example code</strong></summary>
+
+```vue
+<template>
+    <button @click="openModal()">Open modal</button>
+
+    <queso-modal ref="myModal">
+        <p>This is the modal content.</p>
+    </queso-modal>
+</template>
+
+<script setup lang="ts">
+import { ref } from "vue";
+import { QuesoModal } from "@components/QuesoModal";
+
+const myModal = ref<InstanceType<typeof QuesoModal> | null>(null);
+
+const openModal = () => {
+    myModal.value?.openModal();
+};
+
+const closeModal = () => {
+    myModal.value?.closeModal();
+};
+</script>
+```
+
+</details>
 
 ## Emits
 
@@ -44,38 +190,43 @@ const closeModal = () => {
 
 ## Slots
 
+### `trigger`
+
+-   **Props:** `{ openModal: () => void }`
+-   **Description:** The trigger element that opens the modal. This slot is rendered outside the Teleport, allowing you to place the trigger anywhere in your component. Use the `openModal` function to open the modal when the trigger is clicked.
+
 ### `default`
 
--   **Props:** `{ isModalOpen: boolean, open: () => void, close: () => void }`
+-   **Props:** `{ isModalOpen: boolean, openModal: () => void, closeModal: () => void }`
 -   **Description:** The main modal content.
 
 ### `beforeContent`
 
--   **Props:** `{ isModalOpen: boolean, open: () => void, close: () => void }`
+-   **Props:** `{ isModalOpen: boolean, openModal: () => void, closeModal: () => void }`
 -   **Description:** Content to display before the main modal content.
 
 ### `content` (alias for `default`)
 
--   **Props:** `{ isModalOpen: boolean, open: () => void, close: () => void }`
+-   **Props:** `{ isModalOpen: boolean, openModal: () => void, closeModal: () => void }`
 -   **Description:** The main modal content. This slot is an alias for the default slot - you can use either `#content` or `#default` slot.
 
 ### `afterContent`
 
--   **Props:** `{ isModalOpen: boolean, open: () => void, close: () => void }`
+-   **Props:** `{ isModalOpen: boolean, openModal: () => void, closeModal: () => void }`
 -   **Description:** Content to display after the main modal content.
 
 ### `overlay`
 
--   **Props:** `{ isModalOpen: boolean, open: () => void, close: () => void }`
+-   **Props:** `{ isModalOpen: boolean, openModal: () => void, closeModal: () => void }`
 -   **Description:** Custom overlay component. Defaults to `<queso-modal-overlay />`.
 
 ## Exposed Methods
 
-### `open()`
+### `openModal()`
 
 Opens the modal and activates focus trapping.
 
-### `close()`
+### `closeModal()`
 
 Closes the modal and deactivates focus trapping.
 

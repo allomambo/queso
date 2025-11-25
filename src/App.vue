@@ -66,8 +66,10 @@
     <hr />
 
     <h3>QuesoModal</h3>
-    <button @click="openModal()">Open modal</button>
-    <QuesoModal ref="myModal">
+    <QuesoModal>
+        <template #trigger="{ openModal }">
+            <button @click="openModal">Open modal</button>
+        </template>
         <p>CONTENT HERE</p>
     </QuesoModal>
     <hr />
@@ -244,13 +246,6 @@ const selectOptions: QuesoSelectOptions<DataOption> = defaultOptionsOrChoices;
 const selectMultipleOptions: QuesoSelectMultipleOptions<DataOption> = defaultOptionsOrChoices;
 const radioChoices: QuesoRadioChoices<DataOption> = defaultOptionsOrChoices;
 const checkboxMultipleChoices: QuesoCheckboxMultipleChoices<DataOption> = defaultOptionsOrChoices;
-
-// Modal
-const myModal = ref<InstanceType<typeof QuesoModal> | null>(null);
-
-const openModal = () => {
-    myModal.value?.open();
-};
 
 // Fields
 const TextField = ref("text field value");
