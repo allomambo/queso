@@ -110,7 +110,7 @@
     </queso-field>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" generic="TChoiceData extends Record<string, any> = Record<string, any>">
 import { ref } from "vue";
 import { useExtendedFieldProps } from "@composables/fields";
 
@@ -118,7 +118,7 @@ import type { QuesoRadioModel, QuesoRadioProps, QuesoRadioChoice } from "./types
 
 import QuesoField from "@components/QuesoField";
 
-const props = defineProps<QuesoRadioProps>();
+const props = defineProps<QuesoRadioProps<TChoiceData>>();
 const extendedProps = useExtendedFieldProps(props);
 
 const model = defineModel<QuesoRadioModel>({ required: true, default: "" });

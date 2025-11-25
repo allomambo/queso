@@ -58,7 +58,7 @@
     </div>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" generic="TOptionData extends Record<string, any> = Record<string, any>">
 import { computed, ref, toRefs } from "vue";
 import { onClickOutside, useScroll } from "@vueuse/core";
 import { onKeyStroke } from "@vueuse/core";
@@ -67,7 +67,7 @@ import { useFocusTrap } from "@vueuse/integrations/useFocusTrap";
 import { QuesoDropdownModel, QuesoDropdownProps, QuesoDropdownOptions, QuesoDropdownOptionValue } from "./types";
 
 // Props / Emits
-const props = defineProps<QuesoDropdownProps>();
+const props = defineProps<QuesoDropdownProps<TOptionData>>();
 
 const emit = defineEmits<{
     "dropdown:open": [];
@@ -86,7 +86,7 @@ const isDropdownOpen = ref<boolean>(false);
 // Variables
 const { options } = toRefs(props);
 const uniqueId = "queso-collapsible__" + Math.random().toString(36).substring(2, 9);
-const activeOptions = computed<QuesoDropdownOptions>(() => {
+const activeOptions = computed<QuesoDropdownOptions<TOptionData>>(() => {
     return options.value.filter((option) => model.value.includes(option.value));
 });
 const dropdownClasses = computed(() => ({
