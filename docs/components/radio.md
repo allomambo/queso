@@ -49,9 +49,9 @@ const genderChoices = [
 
 ### `choices`
 
--   **Type:** `QuesoRadioChoice[]`
+-   **Type:** `QuesoRadioChoice<TChoiceData>[]`
 -   **Required:** `true`
--   **Description:** Array of choices for the radio group. Each choice must have a `label` and `value`, with optional `data`.
+-   **Description:** Array of choices for the radio group. Each choice must have a `label` and `value`, with optional `data`. `TChoiceData` defaults to `Record<string, any>` and lets you type the extra payload shared through slots.
 
 ### `isRequired`
 
@@ -112,22 +112,22 @@ const genderChoices = [
 
 ### `radio`
 
--   **Props:** `ExposedData & QuesoRadioChoice & { isHovered: boolean, isSelected: boolean }`
+-   **Props:** `ExposedData & QuesoRadioChoice<TChoiceData> & { isHovered: boolean, isSelected: boolean }`
 -   **Description:** Custom radio container element for each choice. Defaults to a styled radio container.
 
 ### `radioBox`
 
--   **Props:** `ExposedData & QuesoRadioChoice & { isHovered: boolean, isSelected: boolean }`
+-   **Props:** `ExposedData & QuesoRadioChoice<TChoiceData> & { isHovered: boolean, isSelected: boolean }`
 -   **Description:** Custom radio box element for each choice. Defaults to a styled radio box.
 
 ### `radioBoxSymbol`
 
--   **Props:** `ExposedData & QuesoRadioChoice & { isHovered: boolean, isSelected: boolean }`
+-   **Props:** `ExposedData & QuesoRadioChoice<TChoiceData> & { isHovered: boolean, isSelected: boolean }`
 -   **Description:** Symbol displayed inside the radio box when selected. Defaults to "✔︎".
 
 ### `radioLabel`
 
--   **Props:** `ExposedData & QuesoRadioChoice & { isHovered: boolean, isSelected: boolean }`
+-   **Props:** `ExposedData & QuesoRadioChoice<TChoiceData> & { isHovered: boolean, isSelected: boolean }`
 -   **Description:** Custom label element for each choice. Defaults to the choice label.
 
 ### `afterInput`
@@ -546,20 +546,21 @@ export interface ExposedData {
     isHover: boolean;
 }
 
-export interface QuesoRadioChoice {
+export interface QuesoRadioChoice<TChoiceData = Record<string, any>> {
     label: string;
     value: string;
-    data?: object;
+    data?: TChoiceData;
 }
 
-export type QuesoRadioChoices = QuesoRadioChoice[];
+export type QuesoRadioChoices<TChoiceData = Record<string, any>> =
+    QuesoRadioChoice<TChoiceData>[];
 export type QuesoRadioModel = QuesoRadioChoice["value"];
 
-export interface QuesoRadioProps {
+export interface QuesoRadioProps<TChoiceData = Record<string, any>> {
     name: string;
     label?: string;
     id?: string;
-    choices: QuesoRadioChoices;
+    choices: QuesoRadioChoices<TChoiceData>;
     isRequired?: boolean;
     isDisabled?: boolean;
     isReadOnly?: boolean;

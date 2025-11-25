@@ -2,20 +2,21 @@ import type { QuesoFieldProps, QuesoFieldBase } from "@components/QuesoField";
 import type { QuesoCheckboxProps, QuesoCheckboxModel } from "@components/QuesoCheckbox";
 
 // Choices
-export interface QuesoCheckboxMultipleChoice {
+export interface QuesoCheckboxMultipleChoice<TChoiceData = Record<string, any>> {
     label: QuesoCheckboxProps["boxLabel"];
     value: string;
     isChecked?: QuesoCheckboxModel;
-    data?: object;
+    data?: TChoiceData;
 }
 
-export type QuesoCheckboxMultipleChoices = QuesoCheckboxMultipleChoice[];
+export type QuesoCheckboxMultipleChoices<TChoiceData = Record<string, any>> =
+    QuesoCheckboxMultipleChoice<TChoiceData>[];
 
 // Model
 export type QuesoCheckboxMultipleModel = QuesoCheckboxMultipleChoice["value"][];
 
 // Props
-export interface QuesoCheckboxMultipleProps extends QuesoFieldProps, QuesoFieldBase {
-    choices: QuesoCheckboxMultipleChoices;
+export interface QuesoCheckboxMultipleProps<TChoiceData = Record<string, any>> extends QuesoFieldProps, QuesoFieldBase {
+    choices: QuesoCheckboxMultipleChoices<TChoiceData>;
     validationMessage?: string;
 }

@@ -83,7 +83,7 @@
     </queso-field>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" generic="TOptionData extends Record<string, any> = Record<string, any>">
 import { useExtendedFieldProps } from "@composables/fields";
 
 import type { QuesoSelectMultipleModel, QuesoSelectMultipleProps } from "./types";
@@ -91,7 +91,7 @@ import type { QuesoSelectMultipleModel, QuesoSelectMultipleProps } from "./types
 import QuesoField from "@components/QuesoField";
 import QuesoDropdown from "@components/QuesoDropdown";
 
-const props = defineProps<QuesoSelectMultipleProps>();
+const props = defineProps<QuesoSelectMultipleProps<TOptionData>>();
 const extendedProps = useExtendedFieldProps(props);
 
 const model = defineModel<QuesoSelectMultipleModel>({ required: true, default: [] });

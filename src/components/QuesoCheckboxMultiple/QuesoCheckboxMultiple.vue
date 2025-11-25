@@ -107,7 +107,7 @@
     </queso-field>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" generic="TChoiceData extends Record<string, any> = Record<string, any>">
 import { computed, ref, reactive, watch } from "vue";
 import { useExtendedFieldProps } from "@composables/fields";
 
@@ -115,18 +115,18 @@ import type { QuesoCheckboxMultipleModel, QuesoCheckboxMultipleProps, QuesoCheck
 
 import QuesoField from "@components/QuesoField";
 
-const props = withDefaults(defineProps<QuesoCheckboxMultipleProps>(), {
+const props = withDefaults(defineProps<QuesoCheckboxMultipleProps<TChoiceData>>(), {
     validationMessage: "Please select at least one option",
 });
 const extendedProps = useExtendedFieldProps(props);
 
 const model = defineModel<QuesoCheckboxMultipleModel>({ required: true, default: [] });
 
-const hoveredChoice = ref<QuesoCheckboxMultipleChoices[number]["value"] | null>(null);
+const hoveredChoice = ref<QuesoCheckboxMultipleChoices<TChoiceData>[number]["value"] | null>(null);
 
 // Convert the choices to reactive objects
 // Add the isChecked property to each choice if not present
-const choices: QuesoCheckboxMultipleChoices = reactive(
+const choices = reactive<QuesoCheckboxMultipleChoices<TChoiceData>>(
     props.choices.map((choice) => ({ isChecked: model.value.includes(choice.value), ...choice })),
 );
 const checkedChoices = computed<QuesoCheckboxMultipleModel>(() =>

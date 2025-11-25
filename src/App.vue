@@ -13,25 +13,45 @@
     <QuesoCheckboxMultiple
         name="checkboxMultiple"
         label="QuesoCheckboxMultiple"
-        :choices="dataChoices"
+        :choices="checkboxMultipleChoices"
         is-required
         v-model="CheckboxMultiple"
-    />
+    >
+        <template #checkboxBox="{ isChecked, data }">
+            <span v-if="isChecked">✔︎</span>
+            <span v-else>✗ {{ data?.icon }}</span>
+        </template>
+    </QuesoCheckboxMultiple>
     <QuesoSelect
         name="select"
         label="QuesoSelect"
         placeholder="Select an option"
-        :options="dataOptions"
+        :options="selectOptions"
         v-model="Select"
-    />
+    >
+        <template #item="{ label, data }">
+            <span class="text">{{ label }}</span>
+            <span class="icon">{{ data?.icon }}</span>
+        </template>
+    </QuesoSelect>
     <QuesoSelectMultiple
         name="selectMultiple"
         label="QuesoSelectMultiple"
         placeholder="Select options"
-        :options="dataOptions"
+        :options="selectMultipleOptions"
         v-model="SelectMultiple"
-    />
-    <QuesoRadio name="radio" label="QuesoRadio" :choices="dataChoices" v-model="Radio" />
+    >
+        <template #item="{ label, data }">
+            <span class="text">{{ label }}</span>
+            <span class="icon">{{ data?.icon }}</span>
+        </template>
+    </QuesoSelectMultiple>
+    <QuesoRadio name="radio" label="QuesoRadio" :choices="radioChoices" v-model="Radio">
+        <template #radioBox="{ isSelected, data }">
+            <span v-if="isSelected">✔︎</span>
+            <span v-else>✗ {{ data?.icon }}</span>
+        </template>
+    </QuesoRadio>
     <hr />
 
     <h3>QuesoClickable</h3>
@@ -40,9 +60,9 @@
 
     <h3>QuesoDropdown</h3>
     <h5>Single choice</h5>
-    <QuesoDropdown :options="dataOptions" />
+    <QuesoDropdown :options="dropdownOptions" />
     <h5>Multiple choice</h5>
-    <QuesoDropdown :options="dataOptions" multiple />
+    <QuesoDropdown :options="dropdownOptions" multiple />
     <hr />
 
     <h3>QuesoModal</h3>
@@ -141,78 +161,65 @@ import {
     QuesoRadio,
 } from "./components";
 
-const dataOptions = [
+import type { QuesoDropdownOptions } from "./components/QuesoDropdown";
+import type { QuesoSelectOptions } from "./components/QuesoSelect";
+import type { QuesoSelectMultipleOptions } from "./components/QuesoSelectMultiple";
+import type { QuesoRadioChoices } from "./components/QuesoRadio";
+import type { QuesoCheckboxMultipleChoices } from "./components/QuesoCheckboxMultiple";
+
+interface DataOption {
+    icon: string;
+    color: string;
+}
+
+const defaultOptionsOrChoices = [
     {
         value: "heavy-metal",
         label: "Heavy Metal",
         data: {
-            icon: "bell",
+            icon: "🎸",
+            color: "red",
         },
     },
     {
         value: "classic",
         label: "Classic",
         data: {
-            icon: "link",
+            icon: "🎹",
+            color: "blue",
         },
     },
     {
         value: "funk-and-disco",
         label: "Funk and Disco",
         data: {
-            icon: "funnel",
-        },
-    },
-    {
-        value: "folk-and-acoustic",
-        label: "Folk and Acoustic",
-        data: {
-            icon: "garbage",
+            icon: "🪩",
+            color: "green",
         },
     },
     {
         value: "country",
         label: "Country",
         data: {
-            icon: "lock",
+            icon: "🪕",
+            color: "purple",
         },
     },
     {
         value: "dance-and-electronic",
         label: "Dance and Electronic",
         data: {
-            icon: "magnify_glass",
+            icon: "🎛️",
+            color: "orange",
         },
     },
 ];
 
-const dataChoices = [
-    {
-        value: "heavy-metal",
-        label: "Heavy Metal",
-    },
-    {
-        value: "classic",
-        label: "Classic",
-        isChecked: true,
-    },
-    {
-        value: "funk-and-disco",
-        label: "Funk and Disco",
-    },
-    {
-        value: "folk-and-acoustic",
-        label: "Folk and Acoustic",
-    },
-    {
-        value: "country",
-        label: "Country",
-    },
-    {
-        value: "dance-and-electronic",
-        label: "Dance and Electronic",
-    },
-];
+const dropdownOptions: QuesoDropdownOptions<DataOption> = defaultOptionsOrChoices;
+const selectOptions: QuesoSelectOptions<DataOption> = defaultOptionsOrChoices;
+const selectMultipleOptions: QuesoSelectMultipleOptions<DataOption> = defaultOptionsOrChoices;
+const radioChoices: QuesoRadioChoices<DataOption> = defaultOptionsOrChoices;
+const checkboxMultipleChoices: QuesoCheckboxMultipleChoices<DataOption> = defaultOptionsOrChoices;
 
 // Modal
 const myModal = ref<InstanceType<typeof QuesoModal> | null>(null);

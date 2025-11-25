@@ -28,9 +28,9 @@ const options = [
 
 ### `options`
 
--   **Type:** `QuesoDropdownOption[]`
+-   **Type:** `QuesoDropdownOption<TOptionData>[]`
 -   **Required:** `true`
--   **Description:** Array of options to display in the dropdown. Each option must have a `value` and `label`, with optional `data`.
+-   **Description:** Array of options to display in the dropdown. Each option must have a `value` and `label`, with optional `data`. `TOptionData` defaults to `Record<string, any>` and lets you strongly type the shape of `data`.
 
 ### `multiple`
 
@@ -95,7 +95,7 @@ const options = [
 
 ### `popoverItem`
 
--   **Props:** `{ index: number, value: string, label: string, data?: object, openDropdown: () => void, closeDropdown: () => void }`
+-   **Props:** `{ index: number, value: string, label: string, data?: TOptionData, isSelected: boolean, openDropdown: () => void, closeDropdown: () => void }`
 -   **Description:** Content for each dropdown option.
 
 ### `popoverFooter`
@@ -403,17 +403,18 @@ The component applies the following CSS classes:
 export type QuesoDropdownOptionValue = string;
 export type QuesoDropdownOptionValues = QuesoDropdownOptionValue[];
 
-export interface QuesoDropdownOption {
+export interface QuesoDropdownOption<TOptionData = Record<string, any>> {
     value: QuesoDropdownOptionValue;
     label: string;
-    data?: object;
+    data?: TOptionData;
 }
-export type QuesoDropdownOptions = QuesoDropdownOption[];
+export type QuesoDropdownOptions<TOptionData = Record<string, any>> =
+    QuesoDropdownOption<TOptionData>[];
 
 export type QuesoDropdownModel = QuesoDropdownOptionValues;
 
-export interface QuesoDropdownProps {
-    options: QuesoDropdownOptions;
+export interface QuesoDropdownProps<TOptionData = Record<string, any>> {
+    options: QuesoDropdownOptions<TOptionData>;
     multiple?: boolean;
     stayOpenOnSelection?: boolean;
 }
