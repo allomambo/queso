@@ -4,8 +4,8 @@ export type QuesoModalOpen = () => void;
 export type QuesoModalClose = () => void;
 
 export interface QuesoModalMethods {
-    open: QuesoModalOpen;
-    close: QuesoModalClose;
+    openModal: QuesoModalOpen;
+    closeModal: QuesoModalClose;
 }
 
 export const QuesoModalMethodsKey: InjectionKey<QuesoModalMethods> = Symbol();

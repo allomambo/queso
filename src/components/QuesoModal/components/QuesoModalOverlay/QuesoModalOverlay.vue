@@ -1,5 +1,5 @@
 <template>
-    <div class="queso-modal__overlay" @click="close"></div>
+    <div class="queso-modal__overlay" @click="closeModal"></div>
 </template>
 
 <script setup lang="ts">
@@ -8,7 +8,7 @@ import { inject } from "vue";
 import { QuesoModalMethodsKey } from "../../types";
 
 const methods = inject(QuesoModalMethodsKey);
-const close = methods?.close;
+const closeModal = methods?.closeModal;
 </script>
 
 <style lang="scss">
