@@ -95,7 +95,7 @@ const options = [
 
 ### `popoverItem`
 
--   **Props:** `{ index: number, value: string, label: string, data?: TOptionData, openDropdown: () => void, closeDropdown: () => void }`
+-   **Props:** `{ index: number, value: string, label: string, data?: TOptionData, isSelected: boolean, openDropdown: () => void, closeDropdown: () => void }`
 -   **Description:** Content for each dropdown option.
 
 ### `popoverFooter`

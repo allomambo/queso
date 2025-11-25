@@ -38,12 +38,24 @@
                         :key="option.value"
                         ref="optionsRefs"
                         class="queso-dropdown__popover__options-list__item"
-                        :class="{ 'is-option-active': model.includes(option.value) }"
+                        :class="{
+                            'is-option-active': model.includes(option.value),
+                            'is-option-selected': model.includes(option.value),
+                        }"
                         :tabindex="isDropdownOpen ? '0' : '-1'"
                         @click="updateOption(option.value)"
                         @keydown="handleKeydownUpdateOption(option.value, $event)"
                     >
-                        <slot name="popoverItem" v-bind="{ index, ...option, openDropdown, closeDropdown }">
+                        <slot
+                            name="popoverItem"
+                            v-bind="{
+                                index,
+                                ...option,
+                                isSelected: model.includes(option.value),
+                                openDropdown,
+                                closeDropdown,
+                            }"
+                        >
                             {{ option }}
                         </slot>
                     </li>

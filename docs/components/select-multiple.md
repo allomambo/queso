@@ -133,7 +133,9 @@ const tagOptions = [
 -   **Props:** `ExposedData & { isDropdownOpen: boolean }`
 -   **Description:** Custom dropdown icon. Defaults to "+".
 
--   **Props:** `ExposedData & { index: number, value: string, label: string, data?: TOptionData }`
+### `item`
+
+-   **Props:** `ExposedData & { index: number, value: string, label: string, data?: TOptionData, isSelected: boolean }`
 -   **Description:** Custom dropdown item content. Defaults to displaying the option label.
 
 ### `readOnly`

@@ -135,7 +135,7 @@ const countryOptions = [
 
 ### `item`
 
--   **Props:** `ExposedData & { index: number, value: string, label: string, data?: TOptionData }`
+-   **Props:** `ExposedData & { index: number, value: string, label: string, data?: TOptionData, isSelected: boolean }`
 -   **Description:** Custom dropdown item content. Defaults to displaying the option label.
 
 ### `readOnly`
