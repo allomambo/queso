@@ -33,7 +33,7 @@
         name="selectMultiple"
         label="QuesoSelectMultiple"
         placeholder="Select options"
-        :options="selectOptions"
+        :options="selectMultipleOptions"
         v-model="SelectMultiple"
     />
     <QuesoRadio name="radio" label="QuesoRadio" :choices="radioChoices" v-model="Radio">
@@ -151,10 +151,11 @@ import {
     QuesoRadio,
 } from "./components";
 
-import type { QuesoDropdownOptions } from "./components/QuesoDropdown/types";
-import type { QuesoSelectOptions } from "./components/QuesoSelect/types";
-import type { QuesoRadioChoices } from "./components/QuesoRadio/types";
-import type { QuesoCheckboxMultipleChoices } from "./components/QuesoCheckboxMultiple/types";
+import type { QuesoDropdownOptions } from "./components/QuesoDropdown";
+import type { QuesoSelectOptions } from "./components/QuesoSelect";
+import type { QuesoSelectMultipleOptions } from "./components/QuesoSelectMultiple";
+import type { QuesoRadioChoices } from "./components/QuesoRadio";
+import type { QuesoCheckboxMultipleChoices } from "./components/QuesoCheckboxMultiple";
 
 interface DataOption {
     icon: string;
@@ -206,6 +207,7 @@ const defaultOptionsOrChoices = [
 
 const dropdownOptions: QuesoDropdownOptions<DataOption> = defaultOptionsOrChoices;
 const selectOptions: QuesoSelectOptions<DataOption> = defaultOptionsOrChoices;
+const selectMultipleOptions: QuesoSelectMultipleOptions<DataOption> = defaultOptionsOrChoices;
 const radioChoices: QuesoRadioChoices<DataOption> = defaultOptionsOrChoices;
 const checkboxMultipleChoices: QuesoCheckboxMultipleChoices<DataOption> = defaultOptionsOrChoices;
 
