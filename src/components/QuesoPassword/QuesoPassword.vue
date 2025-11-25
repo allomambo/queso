@@ -53,7 +53,7 @@
                     name="toggleVisibilityButton"
                     v-bind="{ ...exposedData, isPasswordShow, togglePasswordVisibility, showPassword, hidePassword }"
                 >
-                    <button class="queso-password__visibility-button" @click="togglePasswordVisibility()">
+                    <button class="queso-password__visibility-button" type="button" @click="togglePasswordVisibility()">
                         <slot
                             name="toggleVisibilityButtonIcon"
                             v-bind="{
