@@ -1,7 +1,25 @@
 <template>
     <div class="queso-scrollable" :class="scrollableClasses">
+        <div
+            v-if="$slots.topIndicator && !shadows"
+            class="queso-scrollable__top-indicator"
+            :class="{ 'is-hidden': isArrivedAtTop }"
+            role="presentation"
+        >
+            <slot name="topIndicator"></slot>
+        </div>
+
         <div ref="content" class="queso-scrollable__content">
             <slot></slot>
+        </div>
+
+        <div
+            v-if="$slots.bottomIndicator && !shadows"
+            class="queso-scrollable__bottom-indicator"
+            :class="{ 'is-hidden': isArrivedAtBottom }"
+            role="presentation"
+        >
+            <slot name="bottomIndicator"></slot>
         </div>
     </div>
 </template>
@@ -77,6 +95,45 @@ const scrollableClasses = computed(() => ({
         @include clearfix;
         @include overflow;
         height: var(--queso-scrollable-content-height, 100%);
+    }
+
+    //--- INDICATOR SLOTS ---//
+    &__top-indicator,
+    &__bottom-indicator {
+        @include unselectable;
+
+        position: var(--queso-scrollable-indicator-position, absolute);
+        z-index: var(--queso-scrollable-indicator-z, 9);
+        left: var(--queso-scrollable-indicator-offset-left, var(--queso-scrollable-indicator-offset, 0));
+        right: var(--queso-scrollable-indicator-offset-right, var(--queso-scrollable-indicator-offset, 0));
+        background: var(
+            --queso-scrollable-top-indicator-background,
+            linear-gradient(
+                var(--queso-scrollable-indicator-direction),
+                var(--queso-scrollable-indicator-color, white),
+                transparent
+            )
+        );
+    }
+
+    &__top-indicator {
+        --queso-scrollable-indicator-direction: 180deg;
+        top: var(--queso-scrollable-indicator-before-top, 0);
+        opacity: var(--queso-scrollable-top-indicator-opacity, 1);
+
+        &.is-hidden {
+            --queso-scrollable-top-indicator-opacity: 0;
+        }
+    }
+
+    &__bottom-indicator {
+        --queso-scrollable-indicator-direction: 0deg;
+        bottom: var(--queso-scrollable-indicator-after-bottom, 0);
+        opacity: var(--queso-scrollable-bottom-indicator-opacity, 1);
+
+        &.is-hidden {
+            --queso-scrollable-bottom-indicator-opacity: 0;
+        }
     }
 
     //--- SHADOWS ---//
