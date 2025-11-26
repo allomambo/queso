@@ -16,13 +16,14 @@ describe("QuesoCheckbox", () => {
 
     test("renders correctly the label", () => {
         const data = {
-            label: "field-label",
+            name: "field-name",
+            boxLabel: "field-label",
         };
 
         const wrapper = mount(QuesoCheckbox, {
             props: data,
         });
-        expect(wrapper.find(".queso-checkbox__label__text").text()).toBe(data.label);
+        expect(wrapper.find(".queso-checkbox__label__text").text()).toBe(data.boxLabel);
     });
 
     test("renders correctly the checkbox symbol", () => {
