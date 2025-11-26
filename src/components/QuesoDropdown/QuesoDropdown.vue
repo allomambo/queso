@@ -280,8 +280,7 @@ defineExpose({ isDropdownOpen, openDropdown, closeDropdown });
 
     &.is-disabled {
         #{$_}__selector {
-            cursor: not-allowed;
-            pointer-events: none;
+            @include unselectable;
         }
     }
 
