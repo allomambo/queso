@@ -4,8 +4,8 @@
             class="queso-dropdown__selector"
             :aria-expanded="isDropdownOpen"
             :aria-controls="uniqueId"
-            tabindex="0"
-            @click="toggleDropdown()"
+            :tabindex="props.isDisabled ? -1 : 0"
+            @click="handleClickToggleDropdown()"
             @keydown="handleKeydownToggleDropdown($event)"
         >
             <slot name="selector" v-bind="{ isDropdownOpen, options, activeOptions }">
@@ -71,7 +71,7 @@
 </template>
 
 <script setup lang="ts" generic="TOptionData extends Record<string, any> = Record<string, any>">
-import { computed, ref, toRefs } from "vue";
+import { computed, ref, toRefs, watch } from "vue";
 import { onClickOutside, useScroll } from "@vueuse/core";
 import { onKeyStroke } from "@vueuse/core";
 import { useFocusTrap } from "@vueuse/integrations/useFocusTrap";
@@ -105,6 +105,7 @@ const dropdownClasses = computed(() => ({
     "is-multiple": props.multiple,
     "is-dropdown-open": isDropdownOpen.value,
     "is-dropdown-close": !isDropdownOpen.value,
+    "is-disabled": props.isDisabled,
 }));
 
 // Focus Trap
@@ -192,8 +193,17 @@ const toggleDropdown = () => {
     }
 };
 
+const handleClickToggleDropdown = () => {
+    if (!props.isDisabled) {
+        toggleDropdown();
+    }
+};
+
 // Open dropdown on space key
 const handleKeydownToggleDropdown = (event: KeyboardEvent) => {
+    if (props.isDisabled) {
+        return;
+    }
     if (event.key === " " || event.key === "Space") {
         event.preventDefault();
         toggleDropdown();
@@ -209,6 +219,16 @@ onKeyStroke("Escape", () => {
 
 // Close dropdown on click outside
 onClickOutside(dropdown, () => closeDropdown());
+
+// Close dropdown when disabled
+watch(
+    () => props.isDisabled,
+    (isDisabled) => {
+        if (isDisabled && isDropdownOpen.value) {
+            closeDropdown();
+        }
+    },
+);
 
 /**
  * CHOICES OVERFLOW
@@ -255,6 +275,12 @@ defineExpose({ isDropdownOpen, openDropdown, closeDropdown });
 
         &__icon {
             margin-left: auto;
+        }
+    }
+
+    &.is-disabled {
+        #{$_}__selector {
+            @include unselectable;
         }
     }
 

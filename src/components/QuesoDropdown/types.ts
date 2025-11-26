@@ -15,4 +15,5 @@ export interface QuesoDropdownProps<TOptionData = Record<string, any>> {
     options: QuesoDropdownOptions<TOptionData>;
     multiple?: boolean;
     stayOpenOnSelection?: boolean;
+    isDisabled?: boolean;
 }
