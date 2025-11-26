@@ -5,120 +5,15 @@ A modal component with comprehensive accessibility support, focus management, an
 ## Breaking Changes
 
 ::: danger Breaking Change
-**Version:** These breaking changes are introduced in version `0.4.2`. If you're upgrading from version `0.4.1` or earlier to `0.4.2`, you must follow the migration guide below to update your code.
+**Version:** These breaking changes are introduced in version `0.4.2`. If you're upgrading from version `0.4.1` or earlier to `0.4.2`, you must follow the migration guide to update your code.
 
 Two breaking changes have been introduced:
 
 1. **Method names changed:** `open()`/`close()` → `openModal()`/`closeModal()` for better clarity
 2. **New recommended approach:** Use the `trigger` slot instead of `ref` for simpler code
 
-**Migration required:** Update all references from `open` → `openModal` and `close` → `closeModal`, and consider migrating to the `trigger` slot approach.
+**Migration required:** Update all references from `open` → `openModal` and `close` → `closeModal`, and consider migrating to the `trigger` slot approach. See the [QuesoModal migration guide](/components/modal-migration) for full examples and steps.
 :::
-
-### Migration Guide
-
-#### Recommended: Migrate to trigger slot
-
-**Before (with ref):**
-
-```vue
-<template>
-    <button @click="openModal()">Open modal</button>
-
-    <queso-modal ref="myModal">
-        <p>This is the modal content.</p>
-    </queso-modal>
-</template>
-
-<script setup lang="ts">
-import { ref } from "vue";
-import { QuesoModal } from "@components/QuesoModal";
-
-const myModal = ref<InstanceType<typeof QuesoModal> | null>(null);
-
-const openModal = () => {
-    myModal.value?.open();
-};
-
-const closeModal = () => {
-    myModal.value?.close();
-};
-</script>
-```
-
-**After (with trigger slot - recommended):**
-
-```vue
-<template>
-    <queso-modal>
-        <template #trigger="{ openModal }">
-            <button @click="openModal">Open modal</button>
-        </template>
-
-        <p>This is the modal content.</p>
-    </queso-modal>
-</template>
-
-<script setup lang="ts">
-import { QuesoModal } from "@components/QuesoModal";
-</script>
-```
-
-#### Alternative: Keep using ref (update method names)
-
-If you need to keep using `ref` for programmatic control, update the method names:
-
-**Before:**
-
-```vue
-<template>
-    <button @click="openModal()">Open modal</button>
-
-    <queso-modal ref="myModal">
-        <template #default="{ close }">
-            <button @click="close">Close</button>
-        </template>
-    </queso-modal>
-</template>
-
-<script setup lang="ts">
-const myModal = ref<InstanceType<typeof QuesoModal> | null>(null);
-
-const openModal = () => {
-    myModal.value?.open();
-};
-
-const closeModal = () => {
-    myModal.value?.close();
-};
-</script>
-```
-
-**After:**
-
-```vue
-<template>
-    <button @click="openModal()">Open modal</button>
-
-    <queso-modal ref="myModal">
-        <template #default="{ closeModal }">
-            <button @click="closeModal">Close</button>
-        </template>
-    </queso-modal>
-</template>
-
-<script setup lang="ts">
-const myModal = ref<InstanceType<typeof QuesoModal> | null>(null);
-
-const openModal = () => {
-    myModal.value?.openModal();
-};
-
-const closeModal = () => {
-    myModal.value?.closeModal();
-};
-</script>
-```
 
 ## Basic Usage
 
@@ -143,7 +38,7 @@ import { QuesoModal } from "@components/QuesoModal";
 ::: warning Warning
 The method below is still supported for backward compatibility, but the `trigger` slot approach is preferred for new code. Use it only if you need programmatic control from multiple places or complex conditional logic.
 
-See the [Migration Guide](#breaking-changes) for detailed examples and migration steps.
+See the [QuesoModal migration guide](/components/modal-migration) for detailed examples and migration steps.
 :::
 
 <details>
