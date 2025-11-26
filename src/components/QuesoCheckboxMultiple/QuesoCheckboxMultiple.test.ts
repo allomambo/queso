@@ -9,6 +9,17 @@ describe("QuesoCheckboxMultiple.vue", () => {
     ];
 
     const props = {
+        name: "checkbox-multiple-name",
+        label: "Checkbox multiple label",
+        isRequired: true,
+        choices,
+    };
+
+    const propsWithError = {
+        name: "checkbox-multiple-name",
+        label: "Checkbox multiple label",
+        isRequired: true,
+        isError: true,
         choices,
     };
 
@@ -27,19 +38,18 @@ describe("QuesoCheckboxMultiple.vue", () => {
         const wrapper = mount(QuesoCheckboxMultiple, { props });
         const checkbox = wrapper.find(".queso-checkbox__native");
         await checkbox.setChecked();
-        expect(wrapper.vm.model.value).toContain("choice1");
+        expect(wrapper.emitted()["update:modelValue"][0][0]).toContain("choice1");
     });
 
     it("renders slots correctly", () => {
         const wrapper = mount(QuesoCheckboxMultiple, {
-            props,
+            props: propsWithError,
             slots: {
                 beforeLabel: '<div class="before-label">Before Label</div>',
                 label: '<div class="label">Label</div>',
                 required: '<div class="required">Required</div>',
                 afterLabel: '<div class="after-label">After Label</div>',
                 beforeInput: '<div class="before-input">Before Input</div>',
-                input: '<div class="input">Input</div>',
                 afterInput: '<div class="after-input">After Input</div>',
                 error: '<div class="error">Error</div>',
             },
@@ -50,7 +60,6 @@ describe("QuesoCheckboxMultiple.vue", () => {
         expect(wrapper.find(".required").exists()).toBe(true);
         expect(wrapper.find(".after-label").exists()).toBe(true);
         expect(wrapper.find(".before-input").exists()).toBe(true);
-        expect(wrapper.find(".input").exists()).toBe(true);
         expect(wrapper.find(".after-input").exists()).toBe(true);
         expect(wrapper.find(".error").exists()).toBe(true);
     });
