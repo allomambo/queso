@@ -27,6 +27,7 @@
                 v-else
                 class="queso-select"
                 :options="options"
+                :isDisabled="exposedData.isDisabled"
                 multiple
                 @mouseover="exposedData.toggleIsHover(true)"
                 @mouseleave="exposedData.toggleIsHover(false)"
