@@ -2,10 +2,8 @@
 
 A modal component with comprehensive accessibility support, focus management, and automatic body scroll locking. It uses Vue's Teleport to render at the document body level and provides automatic ARIA attributes and keyboard navigation.
 
-## Breaking Changes
-
 ::: danger Breaking Change
-**Version:** These breaking changes are introduced in version `0.4.2`. If you're upgrading from version `0.4.1` or earlier to `0.4.2`, you must follow the migration guide to update your code.
+**Version:** These breaking changes are introduced in version `0.5`. If you're upgrading from version `0.4.1` or earlier to `0.5`, you must follow the migration guide to update your code.
 
 Two breaking changes have been introduced:
 
@@ -24,7 +22,9 @@ Two breaking changes have been introduced:
             <button @click="openModal">Open modal</button>
         </template>
 
-        <p>This is the modal content.</p>
+        <template #content>
+            <p>This is the modal content.</p>
+        </template>
     </queso-modal>
 </template>
 
@@ -71,6 +71,20 @@ const closeModal = () => {
 
 </details>
 
+## Props
+
+### `hasOverlay`
+
+-   **Type:** `boolean`
+-   **Default:** `true`
+-   **Description:** Whether to show the overlay when the modal is open.
+
+### `isScrollLocked`
+
+-   **Type:** `boolean`
+-   **Default:** `true`
+-   **Description:** Whether to lock the scroll of the document body when the modal is open
+
 ## Emits
 
 ### `modal:open`
@@ -87,7 +101,7 @@ const closeModal = () => {
 
 ### `trigger`
 
--   **Props:** `{ openModal: () => void }`
+-   **Props:** `{ isModalOpen: boolean, openModal: () => void, closeModal: () => void }`
 -   **Description:** The trigger element that opens the modal. This slot is rendered outside the Teleport, allowing you to place the trigger anywhere in your component. Use the `openModal` function to open the modal when the trigger is clicked.
 
 ### `default`
@@ -113,9 +127,13 @@ const closeModal = () => {
 ### `overlay`
 
 -   **Props:** `{ isModalOpen: boolean, openModal: () => void, closeModal: () => void }`
--   **Description:** Custom overlay component. Defaults to `<queso-modal-overlay />`.
+-   **Description:** Custom overlay component. Defaults to `<queso-modal-overlay />`. Only displayed if `hasOverlay` is `true`.
 
-## Exposed Methods
+## Exposed Data
+
+### `isModalOpen`
+
+Reactive boolean indicating the current open state.
 
 ### `openModal()`
 
@@ -124,10 +142,6 @@ Opens the modal and activates focus trapping.
 ### `closeModal()`
 
 Closes the modal and deactivates focus trapping.
-
-### `isModalOpen`
-
-Reactive boolean indicating the current open state.
 
 ## Behavior
 

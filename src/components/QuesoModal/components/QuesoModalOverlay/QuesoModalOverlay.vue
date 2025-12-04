@@ -7,8 +7,7 @@ import { inject } from "vue";
 
 import { QuesoModalMethodsKey } from "../../types";
 
-const methods = inject(QuesoModalMethodsKey);
-const closeModal = methods?.closeModal;
+const { closeModal } = inject(QuesoModalMethodsKey)!;
 </script>
 
 <style lang="scss">
