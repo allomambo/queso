@@ -28,9 +28,9 @@ const options = [
 
 ### `options`
 
--   **Type:** `QuesoDropdownOption[]`
+-   **Type:** `QuesoDropdownOption<TOptionData>[]`
 -   **Required:** `true`
--   **Description:** Array of options to display in the dropdown. Each option must have a `value` and `label`, with optional `data`.
+-   **Description:** Array of options to display in the dropdown. Each option must have a `value` and `label`, with optional `data`. `TOptionData` defaults to `Record<string, any>` and lets you strongly type the shape of `data`.
 
 ### `multiple`
 
@@ -43,6 +43,12 @@ const options = [
 -   **Type:** `boolean`
 -   **Default:** `false`
 -   **Description:** When `true`, the dropdown stays open after selecting an option (only applies when `multiple` is `false`).
+
+### `isDisabled`
+
+-   **Type:** `boolean`
+-   **Default:** `false`
+-   **Description:** When `true`, disables the dropdown. The dropdown cannot be focused, opened by click, or opened with the space key. If the dropdown is open when disabled, it will automatically close.
 
 ## Emits
 
@@ -95,7 +101,7 @@ const options = [
 
 ### `popoverItem`
 
--   **Props:** `{ index: number, value: string, label: string, data?: object, openDropdown: () => void, closeDropdown: () => void }`
+-   **Props:** `{ index: number, value: string, label: string, data?: TOptionData, isSelected: boolean, openDropdown: () => void, closeDropdown: () => void }`
 -   **Description:** Content for each dropdown option.
 
 ### `popoverFooter`
@@ -331,6 +337,35 @@ const handleClose = () => {
 </script>
 ```
 
+### Disabled State
+
+```vue
+<template>
+    <queso-dropdown
+        :options="options"
+        :isDisabled="isDisabled"
+        v-model="selectedOption"
+    >
+        <template #selectorPlaceholder> Choose a fruit </template>
+    </queso-dropdown>
+    <button @click="isDisabled = !isDisabled">
+        {{ isDisabled ? "Enable" : "Disable" }} Dropdown
+    </button>
+</template>
+
+<script setup>
+import { ref } from "vue";
+
+const selectedOption = ref([]);
+const isDisabled = ref(false);
+const options = [
+    { value: "apple", label: "Apple" },
+    { value: "banana", label: "Banana" },
+    { value: "orange", label: "Orange" },
+];
+</script>
+```
+
 ## Exposed Methods
 
 ### `openDropdown()`
@@ -375,6 +410,7 @@ The component applies the following CSS classes:
 -   `.is-dropdown-open` - Applied when dropdown is open
 -   `.is-dropdown-close` - Applied when dropdown is closed
 -   `.is-multiple` - Applied when multiple selection is enabled
+-   `.is-disabled` - Applied when dropdown is disabled
 -   `.queso-dropdown__selector` - Selector container
 -   `.queso-dropdown__popover` - Popover container
 -   `.queso-dropdown__popover__options-list__item` - Individual option item
@@ -403,18 +439,20 @@ The component applies the following CSS classes:
 export type QuesoDropdownOptionValue = string;
 export type QuesoDropdownOptionValues = QuesoDropdownOptionValue[];
 
-export interface QuesoDropdownOption {
+export interface QuesoDropdownOption<TOptionData = Record<string, any>> {
     value: QuesoDropdownOptionValue;
     label: string;
-    data?: object;
+    data?: TOptionData;
 }
-export type QuesoDropdownOptions = QuesoDropdownOption[];
+export type QuesoDropdownOptions<TOptionData = Record<string, any>> =
+    QuesoDropdownOption<TOptionData>[];
 
 export type QuesoDropdownModel = QuesoDropdownOptionValues;
 
-export interface QuesoDropdownProps {
-    options: QuesoDropdownOptions;
+export interface QuesoDropdownProps<TOptionData = Record<string, any>> {
+    options: QuesoDropdownOptions<TOptionData>;
     multiple?: boolean;
     stayOpenOnSelection?: boolean;
+    isDisabled?: boolean;
 }
 ```

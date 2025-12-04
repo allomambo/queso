@@ -1,13 +1,11 @@
-// import { localVue, i18n } from "../testUtils";
 import { mount, shallowMount } from "@vue/test-utils";
 import { describe, expect, it, test } from "vitest";
 import QuesoClickable from "./QuesoClickable.vue";
 
 describe("QuesoClickable", () => {
     const data = {
-        label: "label test",
-        href: "https://www.google.ca/",
-        tag: "a",
+        url: "https://www.google.ca/",
+        markup: "a",
         isExternal: true,
     };
 
@@ -19,28 +17,28 @@ describe("QuesoClickable", () => {
     // Anchor
     test("renders correctly anchor", () => {
         const wrapper = shallowMount(QuesoClickable, {
-            propsData: data,
+            props: data,
         });
         expect(wrapper.element.tagName).toBe("A");
     });
 
     test("renders correctly anchor with a href", () => {
         const wrapper = shallowMount(QuesoClickable, {
-            propsData: data,
+            props: data,
         });
-        expect(wrapper.attributes("href")).toBe(data.href);
+        expect(wrapper.attributes("href")).toBe(data.url);
     });
 
     test("renders correctly anchor with target blank", () => {
         const wrapper = shallowMount(QuesoClickable, {
-            propsData: data,
+            props: data,
         });
         expect(wrapper.attributes("target")).toBe("_blank");
     });
     // Disabled
     test("renders correctly disabled button", () => {
         const wrapper = shallowMount(QuesoClickable, {
-            propsData: { isDisabled: true },
+            props: { isDisabled: true },
         });
         expect(wrapper.attributes("disabled")).toBe("");
     });

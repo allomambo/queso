@@ -3,35 +3,30 @@ import { describe, expect, test } from "vitest";
 import QuesoCheckbox from "./QuesoCheckbox.vue";
 
 describe("QuesoCheckbox", () => {
-    test("renders correctly the object", () => {
-        const data = {
-            name: "field-name",
-        };
+    const props = {
+        name: "checkbox-name",
+        label: "Checkbox label",
+        boxLabel: "Checkbox box label",
+        modelValue: true,
+    };
 
+    test("renders correctly the object", () => {
         const wrapper = shallowMount(QuesoCheckbox, {
-            props: data,
+            props,
         });
         expect(wrapper.vm).toBeTruthy();
     });
 
     test("renders correctly the label", () => {
-        const data = {
-            label: "field-label",
-        };
-
         const wrapper = mount(QuesoCheckbox, {
-            props: data,
+            props,
         });
-        expect(wrapper.find(".queso-checkbox__label__text").text()).toBe(data.label);
+        expect(wrapper.find(".queso-checkbox__label__text").text()).toBe(props.boxLabel);
     });
 
     test("renders correctly the checkbox symbol", () => {
-        const data = {
-            name: "field-name",
-        };
-
         const wrapper = mount(QuesoCheckbox, {
-            props: data,
+            props,
         });
         expect(wrapper.find(".queso-checkbox__box__symbol").exists()).toBe(true);
     });

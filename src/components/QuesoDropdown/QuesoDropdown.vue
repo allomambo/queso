@@ -4,8 +4,8 @@
             class="queso-dropdown__selector"
             :aria-expanded="isDropdownOpen"
             :aria-controls="uniqueId"
-            tabindex="0"
-            @click="toggleDropdown()"
+            :tabindex="props.isDisabled ? -1 : 0"
+            @click="handleClickToggleDropdown()"
             @keydown="handleKeydownToggleDropdown($event)"
         >
             <slot name="selector" v-bind="{ isDropdownOpen, options, activeOptions }">
@@ -38,12 +38,24 @@
                         :key="option.value"
                         ref="optionsRefs"
                         class="queso-dropdown__popover__options-list__item"
-                        :class="{ 'is-option-active': model.includes(option.value) }"
+                        :class="{
+                            'is-option-active': model.includes(option.value),
+                            'is-option-selected': model.includes(option.value),
+                        }"
                         :tabindex="isDropdownOpen ? '0' : '-1'"
                         @click="updateOption(option.value)"
                         @keydown="handleKeydownUpdateOption(option.value, $event)"
                     >
-                        <slot name="popoverItem" v-bind="{ index, ...option, openDropdown, closeDropdown }">
+                        <slot
+                            name="popoverItem"
+                            v-bind="{
+                                index,
+                                ...option,
+                                isSelected: model.includes(option.value),
+                                openDropdown,
+                                closeDropdown,
+                            }"
+                        >
                             {{ option }}
                         </slot>
                     </li>
@@ -58,8 +70,8 @@
     </div>
 </template>
 
-<script setup lang="ts">
-import { computed, ref, toRefs } from "vue";
+<script setup lang="ts" generic="TOptionData extends Record<string, any> = Record<string, any>">
+import { computed, ref, toRefs, watch } from "vue";
 import { onClickOutside, useScroll } from "@vueuse/core";
 import { onKeyStroke } from "@vueuse/core";
 import { useFocusTrap } from "@vueuse/integrations/useFocusTrap";
@@ -67,7 +79,7 @@ import { useFocusTrap } from "@vueuse/integrations/useFocusTrap";
 import { QuesoDropdownModel, QuesoDropdownProps, QuesoDropdownOptions, QuesoDropdownOptionValue } from "./types";
 
 // Props / Emits
-const props = defineProps<QuesoDropdownProps>();
+const props = defineProps<QuesoDropdownProps<TOptionData>>();
 
 const emit = defineEmits<{
     "dropdown:open": [];
@@ -86,13 +98,14 @@ const isDropdownOpen = ref<boolean>(false);
 // Variables
 const { options } = toRefs(props);
 const uniqueId = "queso-collapsible__" + Math.random().toString(36).substring(2, 9);
-const activeOptions = computed<QuesoDropdownOptions>(() => {
+const activeOptions = computed<QuesoDropdownOptions<TOptionData>>(() => {
     return options.value.filter((option) => model.value.includes(option.value));
 });
 const dropdownClasses = computed(() => ({
     "is-multiple": props.multiple,
     "is-dropdown-open": isDropdownOpen.value,
     "is-dropdown-close": !isDropdownOpen.value,
+    "is-disabled": props.isDisabled,
 }));
 
 // Focus Trap
@@ -180,8 +193,17 @@ const toggleDropdown = () => {
     }
 };
 
+const handleClickToggleDropdown = () => {
+    if (!props.isDisabled) {
+        toggleDropdown();
+    }
+};
+
 // Open dropdown on space key
 const handleKeydownToggleDropdown = (event: KeyboardEvent) => {
+    if (props.isDisabled) {
+        return;
+    }
     if (event.key === " " || event.key === "Space") {
         event.preventDefault();
         toggleDropdown();
@@ -197,6 +219,16 @@ onKeyStroke("Escape", () => {
 
 // Close dropdown on click outside
 onClickOutside(dropdown, () => closeDropdown());
+
+// Close dropdown when disabled
+watch(
+    () => props.isDisabled,
+    (isDisabled) => {
+        if (isDisabled && isDropdownOpen.value) {
+            closeDropdown();
+        }
+    },
+);
 
 /**
  * CHOICES OVERFLOW
@@ -243,6 +275,12 @@ defineExpose({ isDropdownOpen, openDropdown, closeDropdown });
 
         &__icon {
             margin-left: auto;
+        }
+    }
+
+    &.is-disabled {
+        #{$_}__selector {
+            @include unselectable;
         }
     }
 

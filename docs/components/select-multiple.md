@@ -51,9 +51,9 @@ const tagOptions = [
 
 ### `options`
 
--   **Type:** `QuesoSelectMultipleOptions`
+-   **Type:** `QuesoSelectMultipleOptions<TOptionData>`
 -   **Required:** `true`
--   **Description:** Array of options for the select dropdown. Each option must have a `label` and `value`.
+-   **Description:** Array of options for the select dropdown. Each option must have a `label` and `value`. `TOptionData` matches the dropdown option data payload and defaults to `Record<string, any>` so slot props stay typed.
 
 ### `placeholder`
 
@@ -125,7 +125,7 @@ const tagOptions = [
 
 ### `selector`
 
--   **Props:** `ExposedData & { isDropdownOpen: boolean, activeOptions: QuesoSelectMultipleOptions }`
+-   **Props:** `ExposedData & { isDropdownOpen: boolean, activeOptions: QuesoSelectMultipleOptions<TOptionData> }`
 -   **Description:** Custom selector content showing the selected option(s). Defaults to displaying the selected option labels.
 
 ### `icon`
@@ -135,7 +135,7 @@ const tagOptions = [
 
 ### `item`
 
--   **Props:** `ExposedData & { index: number, value: string, label: string, data: any }`
+-   **Props:** `ExposedData & { index: number, value: string, label: string, data?: TOptionData, isSelected: boolean }`
 -   **Description:** Custom dropdown item content. Defaults to displaying the option label.
 
 ### `readOnly`
@@ -478,15 +478,17 @@ export interface ExposedData {
     isHover: boolean;
 }
 
-export type QuesoSelectMultipleOption = QuesoDropdownOption;
-export type QuesoSelectMultipleOptions = QuesoDropdownOptions;
+export type QuesoSelectMultipleOption<TOptionData = Record<string, any>> =
+    QuesoDropdownOption<TOptionData>;
+export type QuesoSelectMultipleOptions<TOptionData = Record<string, any>> =
+    QuesoDropdownOptions<TOptionData>;
 export type QuesoSelectMultipleModel = QuesoDropdownModel;
 
-export interface QuesoSelectMultipleProps {
+export interface QuesoSelectMultipleProps<TOptionData = Record<string, any>> {
     name: string;
     label?: string;
     id?: string;
-    options: QuesoSelectMultipleOptions;
+    options: QuesoSelectMultipleOptions<TOptionData>;
     placeholder?: string;
     isRequired?: boolean;
     isDisabled?: boolean;

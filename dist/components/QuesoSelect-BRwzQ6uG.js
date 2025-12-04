@@ -1,7 +1,7 @@
 import { defineComponent as M, mergeModels as h, useModel as B, computed as V, openBlock as u, createBlock as g, unref as v, mergeProps as p, withCtx as s, renderSlot as r, normalizeProps as t, guardReactiveProps as n, createElementVNode as a, createTextVNode as y, toDisplayString as m, createElementBlock as c, Fragment as _, renderList as q, withDirectives as k, vModelSelect as L } from "vue";
 import { u as P } from "./QuesoCheckbox-oMH7omFq.js";
 import { _ as A } from "./QuesoField-DYBEGM8C.js";
-import { _ as O } from "./QuesoDropdown-iupHTqQe.js";
+import { _ as O } from "./QuesoDropdown-DHvVnv75.js";
 import '../assets/components/QuesoSelect.css';const R = { class: "queso-select__read-only" }, E = ["innerHTML"], F = { class: "text" }, H = ["id", "name", "required", "disabled", "onFocus", "onBlur"], S = /* @__PURE__ */ a("option", null, null, -1), N = ["value"], Q = /* @__PURE__ */ M({
   __name: "QuesoSelect",
   props: /* @__PURE__ */ h({
@@ -20,8 +20,8 @@ import '../assets/components/QuesoSelect.css';const R = { class: "queso-select__
     modelModifiers: {}
   }),
   emits: ["update:modelValue"],
-  setup(f) {
-    const I = P(f), i = B(f, "modelValue"), b = V({
+  setup(b) {
+    const I = P(b), i = B(b, "modelValue"), f = V({
       get() {
         return i.value ? [i.value] : [];
       },
@@ -57,10 +57,11 @@ import '../assets/components/QuesoSelect.css';const R = { class: "queso-select__
           key: 1,
           class: "queso-select",
           options: o.options,
+          "is-disabled": e.isDisabled,
           onMouseover: (l) => e.toggleIsHover(!0),
           onMouseleave: (l) => e.toggleIsHover(!1),
-          modelValue: b.value,
-          "onUpdate:modelValue": d[1] || (d[1] = (l) => b.value = l)
+          modelValue: f.value,
+          "onUpdate:modelValue": d[1] || (d[1] = (l) => f.value = l)
         }, {
           selectorPlaceholder: s((l) => [
             r(o.$slots, "placeholder", t(n({ ...e, ...l })), () => [
@@ -107,7 +108,7 @@ import '../assets/components/QuesoSelect.css';const R = { class: "queso-select__
             ])
           ]),
           _: 2
-        }, 1032, ["options", "onMouseover", "onMouseleave", "modelValue"]))
+        }, 1032, ["options", "is-disabled", "onMouseover", "onMouseleave", "modelValue"]))
       ]),
       afterInput: s((e) => [
         r(o.$slots, "afterInput", t(n(e)))

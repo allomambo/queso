@@ -1,6 +1,6 @@
 {
     "name": "@allomambo/queso",
-    "version": "0.4.1",
+    "version": "0.5.0",
     "description": "VueJS component library to use in conjunction with Arepa",
     "repository": "https://github.com/allomambo/queso.git",
     "homepage": "https://allomambo.github.io/queso/",
@@ -55,7 +55,6 @@
     "dependencies": {
         "@vueuse/core": "^10.9.0",
         "@vueuse/integrations": "^11.0.3",
-        "focus-trap": "^7",
         "vite-plugin-lib-inject-css": "^2.1.0",
         "vue": "^3.4.27"
     },

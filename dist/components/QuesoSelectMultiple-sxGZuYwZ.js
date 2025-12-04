@@ -1,7 +1,7 @@
-import { defineComponent as I, mergeModels as M, useModel as h, openBlock as i, createBlock as $, unref as c, mergeProps as v, withCtx as s, renderSlot as t, normalizeProps as r, guardReactiveProps as n, createElementVNode as a, createTextVNode as y, toDisplayString as m, createElementBlock as p, Fragment as g, renderList as _, withDirectives as B, vModelSelect as V } from "vue";
+import { defineComponent as I, mergeModels as M, useModel as h, openBlock as i, createBlock as $, unref as c, mergeProps as v, withCtx as s, renderSlot as r, normalizeProps as t, guardReactiveProps as n, createElementVNode as a, createTextVNode as y, toDisplayString as m, createElementBlock as p, Fragment as g, renderList as _, withDirectives as B, vModelSelect as V } from "vue";
 import { u as k } from "./QuesoCheckbox-oMH7omFq.js";
 import { _ as L } from "./QuesoField-DYBEGM8C.js";
-import { _ as P } from "./QuesoDropdown-iupHTqQe.js";
+import { _ as P } from "./QuesoDropdown-DHvVnv75.js";
 import '../assets/components/QuesoCheckboxMultiple.css';const A = { class: "queso-select__read-only" }, O = ["innerHTML"], R = { class: "text" }, E = ["id", "name", "required", "disabled", "onFocus", "onBlur"], F = /* @__PURE__ */ a("option", null, null, -1), H = ["value"], w = /* @__PURE__ */ I({
   __name: "QuesoSelectMultiple",
   props: /* @__PURE__ */ M({
@@ -20,26 +20,26 @@ import '../assets/components/QuesoCheckboxMultiple.css';const A = { class: "ques
     modelModifiers: {}
   }),
   emits: ["update:modelValue"],
-  setup(f) {
-    const q = k(f), u = h(f, "modelValue");
+  setup(b) {
+    const q = k(b), u = h(b, "modelValue");
     return (o, d) => (i(), $(c(L), v({ class: "-select-multiple" }, c(q)), {
       beforeLabel: s((e) => [
-        t(o.$slots, "beforeLabel", r(n(e)))
+        r(o.$slots, "beforeLabel", t(n(e)))
       ]),
       label: s((e) => [
-        t(o.$slots, "label", r(n(e)))
+        r(o.$slots, "label", t(n(e)))
       ]),
       required: s((e) => [
-        t(o.$slots, "required", r(n(e)))
+        r(o.$slots, "required", t(n(e)))
       ]),
       afterLabel: s((e) => [
-        t(o.$slots, "afterLabel", r(n(e)))
+        r(o.$slots, "afterLabel", t(n(e)))
       ]),
       beforeInput: s((e) => [
-        t(o.$slots, "beforeInput", r(n(e)))
+        r(o.$slots, "beforeInput", t(n(e)))
       ]),
       input: s((e) => [
-        e.isReadOnly ? t(o.$slots, "readOnly", r(v({ key: 0 }, e)), () => [
+        e.isReadOnly ? r(o.$slots, "readOnly", t(v({ key: 0 }, e)), () => [
           a("div", A, [
             a("span", {
               class: "queso-select__read-only__label",
@@ -50,6 +50,7 @@ import '../assets/components/QuesoCheckboxMultiple.css';const A = { class: "ques
           key: 1,
           class: "queso-select",
           options: o.options,
+          "is-disabled": e.isDisabled,
           multiple: "",
           onMouseover: (l) => e.toggleIsHover(!0),
           onMouseleave: (l) => e.toggleIsHover(!1),
@@ -57,24 +58,24 @@ import '../assets/components/QuesoCheckboxMultiple.css';const A = { class: "ques
           "onUpdate:modelValue": d[1] || (d[1] = (l) => u.value = l)
         }, {
           selectorPlaceholder: s((l) => [
-            t(o.$slots, "placeholder", r(n({ ...e, ...l })), () => [
+            r(o.$slots, "placeholder", t(n({ ...e, ...l })), () => [
               y(m(o.placeholder), 1)
             ])
           ]),
           selectorActiveOptions: s((l) => [
-            t(o.$slots, "selector", r(n({ ...e, ...l })), () => [
-              (i(!0), p(g, null, _(l.activeOptions, (b) => (i(), p("span", {
-                key: b.value
-              }, m(b.label), 1))), 128))
+            r(o.$slots, "selector", t(n({ ...e, ...l })), () => [
+              (i(!0), p(g, null, _(l.activeOptions, (f) => (i(), p("span", {
+                key: f.value
+              }, m(f.label), 1))), 128))
             ])
           ]),
           selectorIcon: s((l) => [
-            t(o.$slots, "icon", r(n({ ...e, ...l })), () => [
+            r(o.$slots, "icon", t(n({ ...e, ...l })), () => [
               y("+")
             ])
           ]),
           popoverItem: s((l) => [
-            t(o.$slots, "item", r(n({ ...e, ...l })), () => [
+            r(o.$slots, "item", t(n({ ...e, ...l })), () => [
               a("span", R, m(l.label), 1)
             ])
           ]),
@@ -101,13 +102,13 @@ import '../assets/components/QuesoCheckboxMultiple.css';const A = { class: "ques
             ])
           ]),
           _: 2
-        }, 1032, ["options", "onMouseover", "onMouseleave", "modelValue"]))
+        }, 1032, ["options", "is-disabled", "onMouseover", "onMouseleave", "modelValue"]))
       ]),
       afterInput: s((e) => [
-        t(o.$slots, "afterInput", r(n(e)))
+        r(o.$slots, "afterInput", t(n(e)))
       ]),
       error: s((e) => [
-        t(o.$slots, "error", r(n(e)))
+        r(o.$slots, "error", t(n(e)))
       ]),
       _: 3
     }, 16));

@@ -1,38 +1,46 @@
-import { mount, shallowMount } from "@vue/test-utils";
+import { mount } from "@vue/test-utils";
 import { describe, expect, test } from "vitest";
 import QuesoSelect from "./QuesoSelect.vue";
 
 describe("QuesoSelect", () => {
-    const data = {
+    const props = {
         name: "select-name",
         label: "Genre musical",
+        modelValue: "",
         options: [
-            {
-                key: 1,
-                data: {
-                    label: "Heavy Metal",
-                },
-            },
-            {
-                key: 2,
-                data: {
-                    label: "Classique",
-                },
-            },
-            {
-                key: 3,
-                data: {
-                    label: "Funk and Disco",
-                },
-            },
+            { value: "1", label: "Heavy Metal" },
+            { value: "2", label: "Classique" },
+            { value: "3", label: "Funk and Disco" },
         ],
     };
 
     test("renders correctly the object", () => {
-        const wrapper = shallowMount(QuesoSelect, {
-            propsData: data,
-        });
+        const wrapper = mount(QuesoSelect, { props });
         expect(wrapper.vm).toBeTruthy();
+    });
+
+    test("passes isDisabled to QuesoDropdown", () => {
+        const wrapper = mount(QuesoSelect, {
+            props: {
+                ...props,
+                isDisabled: true,
+            },
+        });
+
+        const dropdown = wrapper.findComponent({ name: "QuesoDropdown" });
+        expect(dropdown.props("isDisabled")).toBe(true);
+    });
+
+    test("applies is-disabled class to field when disabled", () => {
+        const wrapper = mount(QuesoSelect, {
+            props: {
+                ...props,
+                isDisabled: true,
+            },
+        });
+
+        const field = wrapper.findComponent({ name: "QuesoField" });
+        expect(field.classes()).toContain("is-disabled");
     });
 
     // Hiding it for now

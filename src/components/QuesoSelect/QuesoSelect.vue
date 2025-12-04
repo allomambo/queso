@@ -27,6 +27,7 @@
                 v-else
                 class="queso-select"
                 :options="options"
+                :is-disabled="exposedData.isDisabled"
                 @mouseover="exposedData.toggleIsHover(true)"
                 @mouseleave="exposedData.toggleIsHover(false)"
                 v-model="dropdownModel"
@@ -82,7 +83,7 @@
     </queso-field>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" generic="TOptionData extends Record<string, any> = Record<string, any>">
 import { computed } from "vue";
 import { useExtendedFieldProps } from "@composables/fields";
 
@@ -92,7 +93,7 @@ import type { QuesoDropdownOptionValues } from "@components/QuesoDropdown/types"
 import QuesoField from "@components/QuesoField";
 import QuesoDropdown from "@components/QuesoDropdown";
 
-const props = defineProps<QuesoSelectProps>();
+const props = defineProps<QuesoSelectProps<TOptionData>>();
 const extendedProps = useExtendedFieldProps(props);
 
 const model = defineModel<QuesoSelectModel>({ required: true });

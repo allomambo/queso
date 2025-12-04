@@ -2,7 +2,47 @@
 
 A modal component with comprehensive accessibility support, focus management, and automatic body scroll locking. It uses Vue's Teleport to render at the document body level and provides automatic ARIA attributes and keyboard navigation.
 
+::: danger Breaking Change
+**Version:** These breaking changes are introduced in version `0.5.0`. If you're upgrading from version `0.4.1` or earlier to `0.5.0`, you must follow the migration guide to update your code.
+
+Two breaking changes have been introduced:
+
+1. **Method names changed:** `open()`/`close()` → `openModal()`/`closeModal()` for better clarity
+2. **New recommended approach:** Use the `trigger` slot instead of `ref` for simpler code
+
+**Migration required:** Update all references from `open` → `openModal` and `close` → `closeModal`, and consider migrating to the `trigger` slot approach. See the [QuesoModal migration guide](/components/modal-migration) for full examples and steps.
+:::
+
 ## Basic Usage
+
+```vue
+<template>
+    <queso-modal>
+        <template #trigger="{ openModal }">
+            <button @click="openModal">Open modal</button>
+        </template>
+
+        <template #content>
+            <p>This is the modal content.</p>
+        </template>
+    </queso-modal>
+</template>
+
+<script setup lang="ts">
+import { QuesoModal } from "@components/QuesoModal";
+</script>
+```
+
+### Legacy Usage
+
+::: warning Warning
+The method below is still supported for backward compatibility, but the `trigger` slot approach is preferred for new code. Use it only if you need programmatic control from multiple places or complex conditional logic.
+
+See the [QuesoModal migration guide](/components/modal-migration) for detailed examples and migration steps.
+:::
+
+<details>
+<summary><strong>Show example code</strong></summary>
 
 ```vue
 <template>
@@ -15,20 +55,35 @@ A modal component with comprehensive accessibility support, focus management, an
 
 <script setup lang="ts">
 import { ref } from "vue";
-
 import { QuesoModal } from "@components/QuesoModal";
 
 const myModal = ref<InstanceType<typeof QuesoModal> | null>(null);
 
 const openModal = () => {
-    myModal.value?.open();
+    myModal.value?.openModal();
 };
 
 const closeModal = () => {
-    myModal.value?.close();
+    myModal.value?.closeModal();
 };
 </script>
 ```
+
+</details>
+
+## Props
+
+### `hasOverlay`
+
+-   **Type:** `boolean`
+-   **Default:** `true`
+-   **Description:** Whether to show the overlay when the modal is open.
+
+### `isScrollLocked`
+
+-   **Type:** `boolean`
+-   **Default:** `true`
+-   **Description:** Whether to lock the scroll of the document body when the modal is open
 
 ## Emits
 
@@ -44,44 +99,49 @@ const closeModal = () => {
 
 ## Slots
 
+### `trigger`
+
+-   **Props:** `{ isModalOpen: boolean, openModal: () => void, closeModal: () => void }`
+-   **Description:** The trigger element that opens the modal. This slot is rendered outside the Teleport, allowing you to place the trigger anywhere in your component. Use the `openModal` function to open the modal when the trigger is clicked.
+
 ### `default`
 
--   **Props:** `{ isModalOpen: boolean, open: () => void, close: () => void }`
+-   **Props:** `{ isModalOpen: boolean, openModal: () => void, closeModal: () => void }`
 -   **Description:** The main modal content.
 
 ### `beforeContent`
 
--   **Props:** `{ isModalOpen: boolean, open: () => void, close: () => void }`
+-   **Props:** `{ isModalOpen: boolean, openModal: () => void, closeModal: () => void }`
 -   **Description:** Content to display before the main modal content.
 
 ### `content` (alias for `default`)
 
--   **Props:** `{ isModalOpen: boolean, open: () => void, close: () => void }`
+-   **Props:** `{ isModalOpen: boolean, openModal: () => void, closeModal: () => void }`
 -   **Description:** The main modal content. This slot is an alias for the default slot - you can use either `#content` or `#default` slot.
 
 ### `afterContent`
 
--   **Props:** `{ isModalOpen: boolean, open: () => void, close: () => void }`
+-   **Props:** `{ isModalOpen: boolean, openModal: () => void, closeModal: () => void }`
 -   **Description:** Content to display after the main modal content.
 
 ### `overlay`
 
--   **Props:** `{ isModalOpen: boolean, open: () => void, close: () => void }`
--   **Description:** Custom overlay component. Defaults to `<queso-modal-overlay />`.
+-   **Props:** `{ isModalOpen: boolean, openModal: () => void, closeModal: () => void }`
+-   **Description:** Custom overlay component. Defaults to `<queso-modal-overlay />`. Only displayed if `hasOverlay` is `true`.
 
-## Exposed Methods
-
-### `open()`
-
-Opens the modal and activates focus trapping.
-
-### `close()`
-
-Closes the modal and deactivates focus trapping.
+## Exposed Data
 
 ### `isModalOpen`
 
 Reactive boolean indicating the current open state.
+
+### `openModal()`
+
+Opens the modal and activates focus trapping.
+
+### `closeModal()`
+
+Closes the modal and deactivates focus trapping.
 
 ## Behavior
 
