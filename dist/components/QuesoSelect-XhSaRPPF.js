@@ -1,10 +1,10 @@
-import { defineComponent as I, mergeModels as M, useModel as h, openBlock as i, createBlock as $, unref as c, mergeProps as v, withCtx as s, renderSlot as r, normalizeProps as t, guardReactiveProps as n, createElementVNode as a, createTextVNode as y, toDisplayString as m, createElementBlock as p, Fragment as g, renderList as _, withDirectives as B, vModelSelect as V } from "vue";
-import { u as k } from "./QuesoCheckbox-oMH7omFq.js";
-import { _ as L } from "./QuesoField-DYBEGM8C.js";
-import { _ as P } from "./QuesoDropdown-DHvVnv75.js";
-import '../assets/components/QuesoCheckboxMultiple.css';const A = { class: "queso-select__read-only" }, O = ["innerHTML"], R = { class: "text" }, E = ["id", "name", "required", "disabled", "onFocus", "onBlur"], F = /* @__PURE__ */ a("option", null, null, -1), H = ["value"], w = /* @__PURE__ */ I({
-  __name: "QuesoSelectMultiple",
-  props: /* @__PURE__ */ M({
+import { defineComponent as M, mergeModels as h, useModel as B, computed as V, openBlock as u, createBlock as g, unref as v, mergeProps as p, withCtx as s, renderSlot as r, normalizeProps as t, guardReactiveProps as n, createElementVNode as a, createTextVNode as y, toDisplayString as m, createElementBlock as c, Fragment as _, renderList as q, withDirectives as k, vModelSelect as L } from "vue";
+import { u as P } from "./QuesoCheckbox-oMH7omFq.js";
+import { _ as A } from "./QuesoField-DYBEGM8C.js";
+import { _ as O } from "./QuesoDropdown-Dxd1nopn.js";
+import '../assets/components/QuesoSelect.css';const R = { class: "queso-select__read-only" }, E = ["innerHTML"], F = { class: "text" }, H = ["id", "name", "required", "disabled", "onFocus", "onBlur"], S = /* @__PURE__ */ a("option", null, null, -1), N = ["value"], Q = /* @__PURE__ */ M({
+  __name: "QuesoSelect",
+  props: /* @__PURE__ */ h({
     options: {},
     placeholder: {},
     id: {},
@@ -16,13 +16,20 @@ import '../assets/components/QuesoCheckboxMultiple.css';const A = { class: "ques
     isReadOnly: { type: Boolean },
     extraAttributes: {}
   }, {
-    modelValue: { required: !0, default: [] },
+    modelValue: { required: !0 },
     modelModifiers: {}
   }),
   emits: ["update:modelValue"],
   setup(b) {
-    const q = k(b), u = h(b, "modelValue");
-    return (o, d) => (i(), $(c(L), v({ class: "-select-multiple" }, c(q)), {
+    const I = P(b), i = B(b, "modelValue"), f = V({
+      get() {
+        return i.value ? [i.value] : [];
+      },
+      set(o) {
+        i.value = o[0];
+      }
+    });
+    return (o, d) => (u(), g(v(A), p({ class: "-select" }, v(I)), {
       beforeLabel: s((e) => [
         r(o.$slots, "beforeLabel", t(n(e)))
       ]),
@@ -39,23 +46,22 @@ import '../assets/components/QuesoCheckboxMultiple.css';const A = { class: "ques
         r(o.$slots, "beforeInput", t(n(e)))
       ]),
       input: s((e) => [
-        e.isReadOnly ? r(o.$slots, "readOnly", t(v({ key: 0 }, e)), () => [
-          a("div", A, [
+        e.isReadOnly ? r(o.$slots, "readOnly", t(p({ key: 0 }, e)), () => [
+          a("div", R, [
             a("span", {
               class: "queso-select__read-only__label",
-              innerHTML: u.value
-            }, null, 8, O)
+              innerHTML: i.value
+            }, null, 8, E)
           ])
-        ]) : (i(), $(c(P), {
+        ]) : (u(), g(v(O), {
           key: 1,
           class: "queso-select",
           options: o.options,
           "is-disabled": e.isDisabled,
-          multiple: "",
           onMouseover: (l) => e.toggleIsHover(!0),
           onMouseleave: (l) => e.toggleIsHover(!1),
-          modelValue: u.value,
-          "onUpdate:modelValue": d[1] || (d[1] = (l) => u.value = l)
+          modelValue: f.value,
+          "onUpdate:modelValue": d[1] || (d[1] = (l) => f.value = l)
         }, {
           selectorPlaceholder: s((l) => [
             r(o.$slots, "placeholder", t(n({ ...e, ...l })), () => [
@@ -64,9 +70,9 @@ import '../assets/components/QuesoCheckboxMultiple.css';const A = { class: "ques
           ]),
           selectorActiveOptions: s((l) => [
             r(o.$slots, "selector", t(n({ ...e, ...l })), () => [
-              (i(!0), p(g, null, _(l.activeOptions, (f) => (i(), p("span", {
-                key: f.value
-              }, m(f.label), 1))), 128))
+              (u(!0), c(_, null, q(l.activeOptions, ($) => (u(), c("span", {
+                key: $.value
+              }, m($.label), 1))), 128))
             ])
           ]),
           selectorIcon: s((l) => [
@@ -76,29 +82,29 @@ import '../assets/components/QuesoCheckboxMultiple.css';const A = { class: "ques
           ]),
           popoverItem: s((l) => [
             r(o.$slots, "item", t(n({ ...e, ...l })), () => [
-              a("span", R, m(l.label), 1)
+              a("span", F, m(l.label), 1)
             ])
           ]),
           afterDropdown: s(() => [
-            B(a("select", v({
+            k(a("select", p({
               class: "queso-select__select-native",
               id: e.fieldID,
               name: e.fieldName,
               required: e.isRequired,
               disabled: e.isDisabled,
-              multiple: "",
               onFocus: (l) => e.toggleIsActive(!0),
               onBlur: (l) => e.toggleIsActive(!1)
             }, o.extraAttributes, {
-              "onUpdate:modelValue": d[0] || (d[0] = (l) => u.value = l)
+              "onUpdate:modelValue": d[0] || (d[0] = (l) => i.value = l),
+              tabindex: "-1"
             }), [
-              F,
-              (i(!0), p(g, null, _(o.options, (l) => (i(), p("option", {
+              S,
+              (u(!0), c(_, null, q(o.options, (l) => (u(), c("option", {
                 key: l.value,
                 value: l.value
-              }, m(l.label), 9, H))), 128))
-            ], 16, E), [
-              [V, u.value]
+              }, m(l.label), 9, N))), 128))
+            ], 16, H), [
+              [L, i.value]
             ])
           ]),
           _: 2
@@ -115,5 +121,5 @@ import '../assets/components/QuesoCheckboxMultiple.css';const A = { class: "ques
   }
 });
 export {
-  w as _
+  Q as _
 };
