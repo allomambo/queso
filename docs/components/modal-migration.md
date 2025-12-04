@@ -2,9 +2,9 @@
 next: false
 ---
 
-# QuesoModal Migration Guide (0.4.1 → 0.5)
+# QuesoModal Migration Guide (0.4.1 → 0.5.0)
 
-This guide explains how to migrate your code when upgrading `QuesoModal` from version `0.4.1` (and earlier) to `0.5`.
+This guide explains how to migrate your code when upgrading `QuesoModal` from version `0.4.1` (and earlier) to `0.5.0`.
 
 Two breaking changes have been introduced:
 
