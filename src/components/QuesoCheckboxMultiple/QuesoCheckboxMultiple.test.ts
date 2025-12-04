@@ -13,6 +13,7 @@ describe("QuesoCheckboxMultiple.vue", () => {
         label: "Checkbox multiple label",
         isRequired: true,
         choices,
+        modelValue: [],
     };
 
     const propsWithError = {
@@ -21,6 +22,7 @@ describe("QuesoCheckboxMultiple.vue", () => {
         isRequired: true,
         isError: true,
         choices,
+        modelValue: [],
     };
 
     it("renders correctly", () => {
