@@ -13,7 +13,9 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<__
 }, {
     offset: number;
 }, {}>, {
+    topIndicator?(_: {}): any;
     default?(_: {}): any;
+    bottomIndicator?(_: {}): any;
 }>;
 export default _default;
 type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;

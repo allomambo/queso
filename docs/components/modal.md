@@ -3,7 +3,7 @@
 A modal component with comprehensive accessibility support, focus management, and automatic body scroll locking. It uses Vue's Teleport to render at the document body level and provides automatic ARIA attributes and keyboard navigation.
 
 ::: danger Breaking Change
-**Version:** These breaking changes are introduced in version `0.5`. If you're upgrading from version `0.4.1` or earlier to `0.5`, you must follow the migration guide to update your code.
+**Version:** These breaking changes are introduced in version `0.5.0`. If you're upgrading from version `0.4.1` or earlier to `0.5.0`, you must follow the migration guide to update your code.
 
 Two breaking changes have been introduced:
 
