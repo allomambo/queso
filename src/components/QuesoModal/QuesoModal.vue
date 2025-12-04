@@ -1,5 +1,5 @@
 <template>
-    <slot name="trigger" v-bind="{ openModal }"></slot>
+    <slot name="trigger" v-bind="exposedData"></slot>
 
     <Teleport to="body">
         <div
@@ -9,17 +9,17 @@
             :aria-expanded="isModalOpen"
             v-bind="$attrs"
         >
-            <slot name="beforeContent" v-bind="{ isModalOpen, openModal, closeModal }"></slot>
+            <slot name="beforeContent" v-bind="exposedData"></slot>
 
             <div class="queso-modal__content">
-                <slot name="content" v-bind="{ isModalOpen, openModal, closeModal }">
-                    <slot v-bind="{ isModalOpen, openModal, closeModal }"></slot>
+                <slot name="content" v-bind="exposedData">
+                    <slot v-bind="exposedData"></slot>
                 </slot>
             </div>
 
-            <slot name="afterContent" v-bind="{ isModalOpen, openModal, closeModal }"></slot>
+            <slot name="afterContent" v-bind="exposedData"></slot>
 
-            <slot name="overlay" v-bind="{ isModalOpen, openModal, closeModal }">
+            <slot v-if="hasOverlay" name="overlay" v-bind="exposedData">
                 <queso-modal-overlay />
             </slot>
         </div>
@@ -27,14 +27,19 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, onMounted, provide, computed } from "vue";
+import { ref, watch, onMounted, provide, computed, reactive } from "vue";
 import { useFocusTrap } from "@vueuse/integrations/useFocusTrap";
 import { onKeyStroke } from "@vueuse/core";
 
-import { QuesoModalMethodsKey } from "./types";
-import type { QuesoModalMethods, QuesoModalOpen, QuesoModalClose } from "./types";
-
 import QuesoModalOverlay from "./components/QuesoModalOverlay";
+
+import { QuesoModalMethodsKey } from "./types";
+import type { QuesoModalProps, QuesoModalOpen, QuesoModalClose } from "./types";
+
+const props = withDefaults(defineProps<QuesoModalProps>(), {
+    hasOverlay: true,
+    isScrollLocked: true,
+});
 
 const emit = defineEmits(["modal:open", "modal:close"]);
 
@@ -79,9 +84,14 @@ const closeModal: QuesoModalClose = () => {
     isModalOpen.value = false;
 };
 
+// Provide open/close methods
+provide(QuesoModalMethodsKey, { openModal, closeModal });
+
 // Lock scrolling when modal is open
 const toggleOverflowOnDocument = (bool: boolean = true) => {
-    document.documentElement.style.overflow = bool ? "hidden" : "";
+    if (props.isScrollLocked) {
+        document.documentElement.style.overflow = bool ? "hidden" : "";
+    }
 };
 
 // Update opened state and focus trap
@@ -110,10 +120,16 @@ onKeyStroke("Escape", () => {
     }
 });
 
-// Provide and Expose open/close methods
-provide(QuesoModalMethodsKey, { openModal, closeModal } as QuesoModalMethods);
+// Exposed data
+const exposedData = reactive({
+    // States
+    isModalOpen,
+    // Methods
+    openModal,
+    closeModal,
+});
 
-defineExpose({ isModalOpen, openModal, closeModal });
+defineExpose({ ...exposedData });
 </script>
 
 <style lang="scss">

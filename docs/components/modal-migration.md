@@ -2,9 +2,9 @@
 next: false
 ---
 
-# QuesoModal Migration Guide (0.4.1 → 0.4.2)
+# QuesoModal Migration Guide (0.4.1 → 0.5)
 
-This guide explains how to migrate your code when upgrading `QuesoModal` from version `0.4.1` (and earlier) to `0.4.2`.
+This guide explains how to migrate your code when upgrading `QuesoModal` from version `0.4.1` (and earlier) to `0.5`.
 
 Two breaking changes have been introduced:
 
@@ -51,7 +51,9 @@ const closeModal = () => {
             <button @click="openModal">Open modal</button>
         </template>
 
-        <p>This is the modal content.</p>
+        <template #content>
+            <p>This is the modal content.</p>
+        </template>
     </queso-modal>
 </template>
 
