@@ -4,12 +4,12 @@ import QuesoField from "./QuesoField.vue";
 
 describe("QuesoField", () => {
     test("renders correctly the object", () => {
-        const data = {
-            string: "Un test bidon",
+        const props = {
+            name: "field-name",
         };
 
         const wrapper = shallowMount(QuesoField, {
-            propsData: data,
+            props,
         });
         expect(wrapper.vm).toBeTruthy();
     });

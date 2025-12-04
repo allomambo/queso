@@ -3,35 +3,29 @@ import { describe, expect, test } from "vitest";
 import QuesoTextArea from "./QuesoTextArea.vue";
 
 describe("QuesoTextArea", () => {
-    test("renders correctly the object", () => {
-        const data = {
-            name: "field-name",
-        };
+    const props = {
+        name: "text-area-name",
+        label: "Text area label",
+        modelValue: "Text area model value",
+    };
 
+    test("renders correctly the object", () => {
         const wrapper = shallowMount(QuesoTextArea, {
-            props: data,
+            props,
         });
         expect(wrapper.vm).toBeTruthy();
     });
 
     test("renders correctly the label", () => {
-        const data = {
-            label: "field-label",
-        };
-
         const wrapper = mount(QuesoTextArea, {
-            props: data,
+            props,
         });
-        expect(wrapper.find(".queso-field__label").text()).toBe(data.label);
+        expect(wrapper.find(".queso-field__label").text()).toBe(props.label);
     });
 
     test("renders correctly the input", () => {
-        const data = {
-            name: "field-name",
-        };
-
         const wrapper = mount(QuesoTextArea, {
-            props: data,
+            props,
         });
         expect(wrapper.find(".queso-field__input").exists()).toBe(true);
     });
