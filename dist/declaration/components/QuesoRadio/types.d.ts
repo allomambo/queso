@@ -1,12 +1,12 @@
 import { QuesoFieldProps, QuesoFieldBase } from '../QuesoField';
 
-export interface QuesoRadioChoice {
+export interface QuesoRadioChoice<TChoiceData = Record<string, any>> {
     label: string;
     value: string;
-    data?: object;
+    data?: TChoiceData;
 }
-export type QuesoRadioChoices = QuesoRadioChoice[];
+export type QuesoRadioChoices<TChoiceData = Record<string, any>> = QuesoRadioChoice<TChoiceData>[];
 export type QuesoRadioModel = QuesoRadioChoice["value"];
-export interface QuesoRadioProps extends QuesoFieldProps, QuesoFieldBase {
-    choices: QuesoRadioChoices;
+export interface QuesoRadioProps<TChoiceData = Record<string, any>> extends QuesoFieldProps, QuesoFieldBase {
+    choices: QuesoRadioChoices<TChoiceData>;
 }

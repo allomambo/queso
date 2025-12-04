@@ -1,4 +1,4 @@
-import { defineComponent as g, mergeModels as P, useModel as h, ref as I, computed as q, openBlock as b, createBlock as B, unref as c, mergeProps as m, withCtx as i, renderSlot as o, normalizeProps as l, guardReactiveProps as r, createElementVNode as f, withDirectives as M, createElementBlock as V, vModelDynamic as k, createTextVNode as L } from "vue";
+import { defineComponent as g, mergeModels as P, useModel as h, ref as I, computed as q, openBlock as w, createBlock as B, unref as c, mergeProps as m, withCtx as n, renderSlot as o, normalizeProps as l, guardReactiveProps as r, createElementVNode as f, withDirectives as M, createElementBlock as V, vModelDynamic as k, createTextVNode as L } from "vue";
 import { u as S } from "./QuesoCheckbox-oMH7omFq.js";
 import { _ as R } from "./QuesoField-DYBEGM8C.js";
 import '../assets/components/QuesoCheckboxMultiple.css';const A = { class: "queso-password" }, E = ["innerHTML"], H = ["type", "id", "name", "placeholder", "required", "disabled", "onMouseover", "onMouseleave", "onFocus", "onBlur"], T = /* @__PURE__ */ g({
@@ -18,31 +18,31 @@ import '../assets/components/QuesoCheckboxMultiple.css';const A = { class: "ques
     modelModifiers: {}
   }),
   emits: ["update:modelValue"],
-  setup(w) {
-    const y = S(w), v = h(w, "modelValue"), t = I(!1), $ = q(() => t.value ? "text" : "password"), a = () => {
+  setup(b) {
+    const y = S(b), v = h(b, "modelValue"), t = I(!1), $ = q(() => t.value ? "text" : "password"), a = () => {
       t.value = !0;
     }, d = () => {
       t.value = !1;
     }, u = () => {
       t.value = !t.value;
     };
-    return (s, p) => (b(), B(c(R), m({ class: "-password" }, c(y)), {
-      beforeLabel: i((e) => [
+    return (s, p) => (w(), B(c(R), m({ class: "-password" }, c(y)), {
+      beforeLabel: n((e) => [
         o(s.$slots, "beforeLabel", l(r(e)))
       ]),
-      label: i((e) => [
+      label: n((e) => [
         o(s.$slots, "label", l(r(e)))
       ]),
-      required: i((e) => [
+      required: n((e) => [
         o(s.$slots, "required", l(r(e)))
       ]),
-      afterLabel: i((e) => [
+      afterLabel: n((e) => [
         o(s.$slots, "afterLabel", l(r(e)))
       ]),
-      beforeInput: i((e) => [
+      beforeInput: n((e) => [
         o(s.$slots, "beforeInput", l(r(e)))
       ]),
-      input: i((e) => [
+      input: n((e) => [
         f("div", A, [
           o(s.$slots, "beforePasswordInput", l(r({ ...e, isPasswordShow: t.value, togglePasswordVisibility: u, showPassword: a, hidePassword: d }))),
           e.isReadOnly ? o(s.$slots, "readOnly", l(m({ key: 0 }, e)), () => [
@@ -50,7 +50,7 @@ import '../assets/components/QuesoCheckboxMultiple.css';const A = { class: "ques
               class: "queso-password__readonly",
               innerHTML: v.value
             }, null, 8, E)
-          ]) : M((b(), V("input", m({
+          ]) : M((w(), V("input", m({
             key: 1,
             class: "queso-password__input",
             type: $.value,
@@ -59,12 +59,12 @@ import '../assets/components/QuesoCheckboxMultiple.css';const A = { class: "ques
             placeholder: s.placeholder,
             required: e.isRequired,
             disabled: e.isDisabled,
-            onMouseover: (n) => e.toggleIsHover(!0),
-            onMouseleave: (n) => e.toggleIsHover(!1),
-            onFocus: (n) => e.toggleIsActive(!0),
-            onBlur: (n) => e.toggleIsActive(!1)
+            onMouseover: (i) => e.toggleIsHover(!0),
+            onMouseleave: (i) => e.toggleIsHover(!1),
+            onFocus: (i) => e.toggleIsActive(!0),
+            onBlur: (i) => e.toggleIsActive(!1)
           }, s.extraAttributes, {
-            "onUpdate:modelValue": p[0] || (p[0] = (n) => v.value = n)
+            "onUpdate:modelValue": p[0] || (p[0] = (i) => v.value = i)
           }), null, 16, H)), [
             [k, v.value]
           ]),
@@ -72,7 +72,8 @@ import '../assets/components/QuesoCheckboxMultiple.css';const A = { class: "ques
           o(s.$slots, "toggleVisibilityButton", l(r({ ...e, isPasswordShow: t.value, togglePasswordVisibility: u, showPassword: a, hidePassword: d })), () => [
             f("button", {
               class: "queso-password__visibility-button",
-              onClick: p[1] || (p[1] = (n) => u())
+              type: "button",
+              onClick: p[1] || (p[1] = (i) => u())
             }, [
               o(s.$slots, "toggleVisibilityButtonIcon", l(r({
                 ...e,
@@ -87,10 +88,10 @@ import '../assets/components/QuesoCheckboxMultiple.css';const A = { class: "ques
           ])
         ])
       ]),
-      afterInput: i((e) => [
+      afterInput: n((e) => [
         o(s.$slots, "afterInput", l(r(e)))
       ]),
-      error: i((e) => [
+      error: n((e) => [
         o(s.$slots, "error", l(r(e)))
       ]),
       _: 3

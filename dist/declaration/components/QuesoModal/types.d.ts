@@ -1,9 +1,13 @@
 import { InjectionKey } from 'vue';
 
+export type QuesoModalProps = {
+    hasOverlay?: boolean;
+    isScrollLocked?: boolean;
+};
 export type QuesoModalOpen = () => void;
 export type QuesoModalClose = () => void;
 export interface QuesoModalMethods {
-    open: QuesoModalOpen;
-    close: QuesoModalClose;
+    openModal: QuesoModalOpen;
+    closeModal: QuesoModalClose;
 }
 export declare const QuesoModalMethodsKey: InjectionKey<QuesoModalMethods>;

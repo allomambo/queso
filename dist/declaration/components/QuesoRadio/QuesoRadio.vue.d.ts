@@ -1,239 +1,549 @@
-declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<{
-    modelValue: {
-        required: true;
-        type: import('vue').PropType<string>;
+import { QuesoRadioModel } from './types';
+
+declare const _default: <TChoiceData extends Record<string, any> = Record<string, any>>(__VLS_props: {
+    id?: string | undefined;
+    name: string;
+    label?: string | undefined;
+    isError?: boolean | undefined;
+    isRequired?: boolean | undefined;
+    isDisabled?: boolean | undefined;
+    isReadOnly?: boolean | undefined;
+    extraAttributes?: import('../QuesoField').QuesoFieldBaseExtraAttributes | undefined;
+    modelValue: QuesoRadioModel;
+    choices: import('./types').QuesoRadioChoices<TChoiceData>;
+} & import('vue').VNodeProps & import('vue').AllowedComponentProps & import('vue').ComponentCustomProps, __VLS_ctx?: {
+    attrs: any;
+    slots: {
+        beforeLabel?(_: {
+            fieldID: string;
+            fieldName: string;
+            fieldLabel: string | undefined;
+            isRequired: boolean;
+            isActive: boolean;
+            isHover: boolean;
+            isDisabled: boolean;
+            isError: boolean;
+            isReadOnly: boolean;
+            toggleIsActive: (bool?: boolean) => void;
+            toggleIsHover: (bool?: boolean) => void;
+        }): any;
+        label?(_: {
+            fieldID: string;
+            fieldName: string;
+            fieldLabel: string | undefined;
+            isRequired: boolean;
+            isActive: boolean;
+            isHover: boolean;
+            isDisabled: boolean;
+            isError: boolean;
+            isReadOnly: boolean;
+            toggleIsActive: (bool?: boolean) => void;
+            toggleIsHover: (bool?: boolean) => void;
+        }): any;
+        required?(_: {
+            fieldID: string;
+            fieldName: string;
+            fieldLabel: string | undefined;
+            isRequired: boolean;
+            isActive: boolean;
+            isHover: boolean;
+            isDisabled: boolean;
+            isError: boolean;
+            isReadOnly: boolean;
+            toggleIsActive: (bool?: boolean) => void;
+            toggleIsHover: (bool?: boolean) => void;
+        }): any;
+        afterLabel?(_: {
+            fieldID: string;
+            fieldName: string;
+            fieldLabel: string | undefined;
+            isRequired: boolean;
+            isActive: boolean;
+            isHover: boolean;
+            isDisabled: boolean;
+            isError: boolean;
+            isReadOnly: boolean;
+            toggleIsActive: (bool?: boolean) => void;
+            toggleIsHover: (bool?: boolean) => void;
+        }): any;
+        beforeInput?(_: {
+            fieldID: string;
+            fieldName: string;
+            fieldLabel: string | undefined;
+            isRequired: boolean;
+            isActive: boolean;
+            isHover: boolean;
+            isDisabled: boolean;
+            isError: boolean;
+            isReadOnly: boolean;
+            toggleIsActive: (bool?: boolean) => void;
+            toggleIsHover: (bool?: boolean) => void;
+        }): any;
+        radio?(_: {
+            isHovered: boolean;
+            isSelected: boolean;
+            label: string;
+            value: string;
+            data?: TChoiceData | undefined;
+            fieldID: string;
+            fieldName: string;
+            fieldLabel: string | undefined;
+            isRequired: boolean;
+            isActive: boolean;
+            isHover: boolean;
+            isDisabled: boolean;
+            isError: boolean;
+            isReadOnly: boolean;
+            toggleIsActive: (bool?: boolean) => void;
+            toggleIsHover: (bool?: boolean) => void;
+        }): any;
+        radioBox?(_: {
+            isHovered: boolean;
+            isSelected: boolean;
+            label: string;
+            value: string;
+            data?: TChoiceData | undefined;
+            fieldID: string;
+            fieldName: string;
+            fieldLabel: string | undefined;
+            isRequired: boolean;
+            isActive: boolean;
+            isHover: boolean;
+            isDisabled: boolean;
+            isError: boolean;
+            isReadOnly: boolean;
+            toggleIsActive: (bool?: boolean) => void;
+            toggleIsHover: (bool?: boolean) => void;
+        }): any;
+        radioBoxSymbol?(_: {
+            isHovered: boolean;
+            isSelected: boolean;
+            label: string;
+            value: string;
+            data?: TChoiceData | undefined;
+            fieldID: string;
+            fieldName: string;
+            fieldLabel: string | undefined;
+            isRequired: boolean;
+            isActive: boolean;
+            isHover: boolean;
+            isDisabled: boolean;
+            isError: boolean;
+            isReadOnly: boolean;
+            toggleIsActive: (bool?: boolean) => void;
+            toggleIsHover: (bool?: boolean) => void;
+        }): any;
+        radioLabel?(_: {
+            isHovered: boolean;
+            isSelected: boolean;
+            label: string;
+            value: string;
+            data?: TChoiceData | undefined;
+            fieldID: string;
+            fieldName: string;
+            fieldLabel: string | undefined;
+            isRequired: boolean;
+            isActive: boolean;
+            isHover: boolean;
+            isDisabled: boolean;
+            isError: boolean;
+            isReadOnly: boolean;
+            toggleIsActive: (bool?: boolean) => void;
+            toggleIsHover: (bool?: boolean) => void;
+        }): any;
+        afterInput?(_: {
+            fieldID: string;
+            fieldName: string;
+            fieldLabel: string | undefined;
+            isRequired: boolean;
+            isActive: boolean;
+            isHover: boolean;
+            isDisabled: boolean;
+            isError: boolean;
+            isReadOnly: boolean;
+            toggleIsActive: (bool?: boolean) => void;
+            toggleIsHover: (bool?: boolean) => void;
+        }): any;
+        error?(_: {
+            fieldID: string;
+            fieldName: string;
+            fieldLabel: string | undefined;
+            isRequired: boolean;
+            isActive: boolean;
+            isHover: boolean;
+            isDisabled: boolean;
+            isError: boolean;
+            isReadOnly: boolean;
+            toggleIsActive: (bool?: boolean) => void;
+            toggleIsHover: (bool?: boolean) => void;
+        }): any;
     };
-    choices: {
-        type: import('vue').PropType<import('./types').QuesoRadioChoices>;
-        required: true;
+    emit: any;
+} | undefined, __VLS_expose?: ((exposed: import('vue').ShallowUnwrapRef<{}>) => void) | undefined, __VLS_setup?: Promise<{
+    props: {
+        id?: string | undefined;
+        name: string;
+        label?: string | undefined;
+        isError?: boolean | undefined;
+        isRequired?: boolean | undefined;
+        isDisabled?: boolean | undefined;
+        isReadOnly?: boolean | undefined;
+        extraAttributes?: import('../QuesoField').QuesoFieldBaseExtraAttributes | undefined;
+        modelValue: QuesoRadioModel;
+        choices: import('./types').QuesoRadioChoices<TChoiceData>;
+    } & import('vue').VNodeProps & import('vue').AllowedComponentProps & import('vue').ComponentCustomProps;
+    expose(exposed: import('vue').ShallowUnwrapRef<{}>): void;
+    attrs: any;
+    slots: {
+        beforeLabel?(_: {
+            fieldID: string;
+            fieldName: string;
+            fieldLabel: string | undefined;
+            isRequired: boolean;
+            isActive: boolean;
+            isHover: boolean;
+            isDisabled: boolean;
+            isError: boolean;
+            isReadOnly: boolean;
+            toggleIsActive: (bool?: boolean) => void;
+            toggleIsHover: (bool?: boolean) => void;
+        }): any;
+        label?(_: {
+            fieldID: string;
+            fieldName: string;
+            fieldLabel: string | undefined;
+            isRequired: boolean;
+            isActive: boolean;
+            isHover: boolean;
+            isDisabled: boolean;
+            isError: boolean;
+            isReadOnly: boolean;
+            toggleIsActive: (bool?: boolean) => void;
+            toggleIsHover: (bool?: boolean) => void;
+        }): any;
+        required?(_: {
+            fieldID: string;
+            fieldName: string;
+            fieldLabel: string | undefined;
+            isRequired: boolean;
+            isActive: boolean;
+            isHover: boolean;
+            isDisabled: boolean;
+            isError: boolean;
+            isReadOnly: boolean;
+            toggleIsActive: (bool?: boolean) => void;
+            toggleIsHover: (bool?: boolean) => void;
+        }): any;
+        afterLabel?(_: {
+            fieldID: string;
+            fieldName: string;
+            fieldLabel: string | undefined;
+            isRequired: boolean;
+            isActive: boolean;
+            isHover: boolean;
+            isDisabled: boolean;
+            isError: boolean;
+            isReadOnly: boolean;
+            toggleIsActive: (bool?: boolean) => void;
+            toggleIsHover: (bool?: boolean) => void;
+        }): any;
+        beforeInput?(_: {
+            fieldID: string;
+            fieldName: string;
+            fieldLabel: string | undefined;
+            isRequired: boolean;
+            isActive: boolean;
+            isHover: boolean;
+            isDisabled: boolean;
+            isError: boolean;
+            isReadOnly: boolean;
+            toggleIsActive: (bool?: boolean) => void;
+            toggleIsHover: (bool?: boolean) => void;
+        }): any;
+        radio?(_: {
+            isHovered: boolean;
+            isSelected: boolean;
+            label: string;
+            value: string;
+            data?: TChoiceData | undefined;
+            fieldID: string;
+            fieldName: string;
+            fieldLabel: string | undefined;
+            isRequired: boolean;
+            isActive: boolean;
+            isHover: boolean;
+            isDisabled: boolean;
+            isError: boolean;
+            isReadOnly: boolean;
+            toggleIsActive: (bool?: boolean) => void;
+            toggleIsHover: (bool?: boolean) => void;
+        }): any;
+        radioBox?(_: {
+            isHovered: boolean;
+            isSelected: boolean;
+            label: string;
+            value: string;
+            data?: TChoiceData | undefined;
+            fieldID: string;
+            fieldName: string;
+            fieldLabel: string | undefined;
+            isRequired: boolean;
+            isActive: boolean;
+            isHover: boolean;
+            isDisabled: boolean;
+            isError: boolean;
+            isReadOnly: boolean;
+            toggleIsActive: (bool?: boolean) => void;
+            toggleIsHover: (bool?: boolean) => void;
+        }): any;
+        radioBoxSymbol?(_: {
+            isHovered: boolean;
+            isSelected: boolean;
+            label: string;
+            value: string;
+            data?: TChoiceData | undefined;
+            fieldID: string;
+            fieldName: string;
+            fieldLabel: string | undefined;
+            isRequired: boolean;
+            isActive: boolean;
+            isHover: boolean;
+            isDisabled: boolean;
+            isError: boolean;
+            isReadOnly: boolean;
+            toggleIsActive: (bool?: boolean) => void;
+            toggleIsHover: (bool?: boolean) => void;
+        }): any;
+        radioLabel?(_: {
+            isHovered: boolean;
+            isSelected: boolean;
+            label: string;
+            value: string;
+            data?: TChoiceData | undefined;
+            fieldID: string;
+            fieldName: string;
+            fieldLabel: string | undefined;
+            isRequired: boolean;
+            isActive: boolean;
+            isHover: boolean;
+            isDisabled: boolean;
+            isError: boolean;
+            isReadOnly: boolean;
+            toggleIsActive: (bool?: boolean) => void;
+            toggleIsHover: (bool?: boolean) => void;
+        }): any;
+        afterInput?(_: {
+            fieldID: string;
+            fieldName: string;
+            fieldLabel: string | undefined;
+            isRequired: boolean;
+            isActive: boolean;
+            isHover: boolean;
+            isDisabled: boolean;
+            isError: boolean;
+            isReadOnly: boolean;
+            toggleIsActive: (bool?: boolean) => void;
+            toggleIsHover: (bool?: boolean) => void;
+        }): any;
+        error?(_: {
+            fieldID: string;
+            fieldName: string;
+            fieldLabel: string | undefined;
+            isRequired: boolean;
+            isActive: boolean;
+            isHover: boolean;
+            isDisabled: boolean;
+            isError: boolean;
+            isReadOnly: boolean;
+            toggleIsActive: (bool?: boolean) => void;
+            toggleIsHover: (bool?: boolean) => void;
+        }): any;
     };
-    id: {
-        type: import('vue').PropType<string>;
-    };
-    name: {
-        type: import('vue').PropType<string>;
-        required: true;
-    };
-    label: {
-        type: import('vue').PropType<string>;
-    };
-    isError: {
-        type: import('vue').PropType<boolean>;
-    };
-    isRequired: {
-        type: import('vue').PropType<boolean>;
-    };
-    isDisabled: {
-        type: import('vue').PropType<boolean>;
-    };
-    isReadOnly: {
-        type: import('vue').PropType<boolean>;
-    };
-    extraAttributes: {
-        type: import('vue').PropType<import('../QuesoField').QuesoFieldBaseExtraAttributes>;
-    };
-}, {}, unknown, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<{
-    modelValue: {
-        required: true;
-        type: import('vue').PropType<string>;
-    };
-    choices: {
-        type: import('vue').PropType<import('./types').QuesoRadioChoices>;
-        required: true;
-    };
-    id: {
-        type: import('vue').PropType<string>;
-    };
-    name: {
-        type: import('vue').PropType<string>;
-        required: true;
-    };
-    label: {
-        type: import('vue').PropType<string>;
-    };
-    isError: {
-        type: import('vue').PropType<boolean>;
-    };
-    isRequired: {
-        type: import('vue').PropType<boolean>;
-    };
-    isDisabled: {
-        type: import('vue').PropType<boolean>;
-    };
-    isReadOnly: {
-        type: import('vue').PropType<boolean>;
-    };
-    extraAttributes: {
-        type: import('vue').PropType<import('../QuesoField').QuesoFieldBaseExtraAttributes>;
-    };
-}>>, {}, {}>, {
-    beforeLabel?(_: {
-        fieldID: string;
-        fieldName: string;
-        fieldLabel: string | undefined;
-        isRequired: boolean;
-        isActive: boolean;
-        isHover: boolean;
-        isDisabled: boolean;
-        isError: boolean;
-        isReadOnly: boolean;
-        toggleIsActive: (bool?: boolean) => void;
-        toggleIsHover: (bool?: boolean) => void;
-    }): any;
-    label?(_: {
-        fieldID: string;
-        fieldName: string;
-        fieldLabel: string | undefined;
-        isRequired: boolean;
-        isActive: boolean;
-        isHover: boolean;
-        isDisabled: boolean;
-        isError: boolean;
-        isReadOnly: boolean;
-        toggleIsActive: (bool?: boolean) => void;
-        toggleIsHover: (bool?: boolean) => void;
-    }): any;
-    required?(_: {
-        fieldID: string;
-        fieldName: string;
-        fieldLabel: string | undefined;
-        isRequired: boolean;
-        isActive: boolean;
-        isHover: boolean;
-        isDisabled: boolean;
-        isError: boolean;
-        isReadOnly: boolean;
-        toggleIsActive: (bool?: boolean) => void;
-        toggleIsHover: (bool?: boolean) => void;
-    }): any;
-    afterLabel?(_: {
-        fieldID: string;
-        fieldName: string;
-        fieldLabel: string | undefined;
-        isRequired: boolean;
-        isActive: boolean;
-        isHover: boolean;
-        isDisabled: boolean;
-        isError: boolean;
-        isReadOnly: boolean;
-        toggleIsActive: (bool?: boolean) => void;
-        toggleIsHover: (bool?: boolean) => void;
-    }): any;
-    beforeInput?(_: {
-        fieldID: string;
-        fieldName: string;
-        fieldLabel: string | undefined;
-        isRequired: boolean;
-        isActive: boolean;
-        isHover: boolean;
-        isDisabled: boolean;
-        isError: boolean;
-        isReadOnly: boolean;
-        toggleIsActive: (bool?: boolean) => void;
-        toggleIsHover: (bool?: boolean) => void;
-    }): any;
-    radio?(_: {
-        isHovered: boolean;
-        isSelected: boolean;
-        label: string;
-        value: string;
-        data?: object | undefined;
-        fieldID: string;
-        fieldName: string;
-        fieldLabel: string | undefined;
-        isRequired: boolean;
-        isActive: boolean;
-        isHover: boolean;
-        isDisabled: boolean;
-        isError: boolean;
-        isReadOnly: boolean;
-        toggleIsActive: (bool?: boolean) => void;
-        toggleIsHover: (bool?: boolean) => void;
-    }): any;
-    radioBox?(_: {
-        isHovered: boolean;
-        isSelected: boolean;
-        label: string;
-        value: string;
-        data?: object | undefined;
-        fieldID: string;
-        fieldName: string;
-        fieldLabel: string | undefined;
-        isRequired: boolean;
-        isActive: boolean;
-        isHover: boolean;
-        isDisabled: boolean;
-        isError: boolean;
-        isReadOnly: boolean;
-        toggleIsActive: (bool?: boolean) => void;
-        toggleIsHover: (bool?: boolean) => void;
-    }): any;
-    radioBoxSymbol?(_: {
-        isHovered: boolean;
-        isSelected: boolean;
-        label: string;
-        value: string;
-        data?: object | undefined;
-        fieldID: string;
-        fieldName: string;
-        fieldLabel: string | undefined;
-        isRequired: boolean;
-        isActive: boolean;
-        isHover: boolean;
-        isDisabled: boolean;
-        isError: boolean;
-        isReadOnly: boolean;
-        toggleIsActive: (bool?: boolean) => void;
-        toggleIsHover: (bool?: boolean) => void;
-    }): any;
-    radioLabel?(_: {
-        isHovered: boolean;
-        isSelected: boolean;
-        label: string;
-        value: string;
-        data?: object | undefined;
-        fieldID: string;
-        fieldName: string;
-        fieldLabel: string | undefined;
-        isRequired: boolean;
-        isActive: boolean;
-        isHover: boolean;
-        isDisabled: boolean;
-        isError: boolean;
-        isReadOnly: boolean;
-        toggleIsActive: (bool?: boolean) => void;
-        toggleIsHover: (bool?: boolean) => void;
-    }): any;
-    afterInput?(_: {
-        fieldID: string;
-        fieldName: string;
-        fieldLabel: string | undefined;
-        isRequired: boolean;
-        isActive: boolean;
-        isHover: boolean;
-        isDisabled: boolean;
-        isError: boolean;
-        isReadOnly: boolean;
-        toggleIsActive: (bool?: boolean) => void;
-        toggleIsHover: (bool?: boolean) => void;
-    }): any;
-    error?(_: {
-        fieldID: string;
-        fieldName: string;
-        fieldLabel: string | undefined;
-        isRequired: boolean;
-        isActive: boolean;
-        isHover: boolean;
-        isDisabled: boolean;
-        isError: boolean;
-        isReadOnly: boolean;
-        toggleIsActive: (bool?: boolean) => void;
-        toggleIsHover: (bool?: boolean) => void;
-    }): any;
-}>;
-export default _default;
-type __VLS_WithTemplateSlots<T, S> = T & {
-    new (): {
-        $slots: S;
-    };
+    emit: any;
+}>) => import('vue').VNode<import('vue').RendererNode, import('vue').RendererElement, {
+    [key: string]: any;
+}> & {
+    __ctx?: {
+        props: {
+            id?: string | undefined;
+            name: string;
+            label?: string | undefined;
+            isError?: boolean | undefined;
+            isRequired?: boolean | undefined;
+            isDisabled?: boolean | undefined;
+            isReadOnly?: boolean | undefined;
+            extraAttributes?: import('../QuesoField').QuesoFieldBaseExtraAttributes | undefined;
+            modelValue: QuesoRadioModel;
+            choices: import('./types').QuesoRadioChoices<TChoiceData>;
+        } & import('vue').VNodeProps & import('vue').AllowedComponentProps & import('vue').ComponentCustomProps;
+        expose(exposed: import('vue').ShallowUnwrapRef<{}>): void;
+        attrs: any;
+        slots: {
+            beforeLabel?(_: {
+                fieldID: string;
+                fieldName: string;
+                fieldLabel: string | undefined;
+                isRequired: boolean;
+                isActive: boolean;
+                isHover: boolean;
+                isDisabled: boolean;
+                isError: boolean;
+                isReadOnly: boolean;
+                toggleIsActive: (bool?: boolean) => void;
+                toggleIsHover: (bool?: boolean) => void;
+            }): any;
+            label?(_: {
+                fieldID: string;
+                fieldName: string;
+                fieldLabel: string | undefined;
+                isRequired: boolean;
+                isActive: boolean;
+                isHover: boolean;
+                isDisabled: boolean;
+                isError: boolean;
+                isReadOnly: boolean;
+                toggleIsActive: (bool?: boolean) => void;
+                toggleIsHover: (bool?: boolean) => void;
+            }): any;
+            required?(_: {
+                fieldID: string;
+                fieldName: string;
+                fieldLabel: string | undefined;
+                isRequired: boolean;
+                isActive: boolean;
+                isHover: boolean;
+                isDisabled: boolean;
+                isError: boolean;
+                isReadOnly: boolean;
+                toggleIsActive: (bool?: boolean) => void;
+                toggleIsHover: (bool?: boolean) => void;
+            }): any;
+            afterLabel?(_: {
+                fieldID: string;
+                fieldName: string;
+                fieldLabel: string | undefined;
+                isRequired: boolean;
+                isActive: boolean;
+                isHover: boolean;
+                isDisabled: boolean;
+                isError: boolean;
+                isReadOnly: boolean;
+                toggleIsActive: (bool?: boolean) => void;
+                toggleIsHover: (bool?: boolean) => void;
+            }): any;
+            beforeInput?(_: {
+                fieldID: string;
+                fieldName: string;
+                fieldLabel: string | undefined;
+                isRequired: boolean;
+                isActive: boolean;
+                isHover: boolean;
+                isDisabled: boolean;
+                isError: boolean;
+                isReadOnly: boolean;
+                toggleIsActive: (bool?: boolean) => void;
+                toggleIsHover: (bool?: boolean) => void;
+            }): any;
+            radio?(_: {
+                isHovered: boolean;
+                isSelected: boolean;
+                label: string;
+                value: string;
+                data?: TChoiceData | undefined;
+                fieldID: string;
+                fieldName: string;
+                fieldLabel: string | undefined;
+                isRequired: boolean;
+                isActive: boolean;
+                isHover: boolean;
+                isDisabled: boolean;
+                isError: boolean;
+                isReadOnly: boolean;
+                toggleIsActive: (bool?: boolean) => void;
+                toggleIsHover: (bool?: boolean) => void;
+            }): any;
+            radioBox?(_: {
+                isHovered: boolean;
+                isSelected: boolean;
+                label: string;
+                value: string;
+                data?: TChoiceData | undefined;
+                fieldID: string;
+                fieldName: string;
+                fieldLabel: string | undefined;
+                isRequired: boolean;
+                isActive: boolean;
+                isHover: boolean;
+                isDisabled: boolean;
+                isError: boolean;
+                isReadOnly: boolean;
+                toggleIsActive: (bool?: boolean) => void;
+                toggleIsHover: (bool?: boolean) => void;
+            }): any;
+            radioBoxSymbol?(_: {
+                isHovered: boolean;
+                isSelected: boolean;
+                label: string;
+                value: string;
+                data?: TChoiceData | undefined;
+                fieldID: string;
+                fieldName: string;
+                fieldLabel: string | undefined;
+                isRequired: boolean;
+                isActive: boolean;
+                isHover: boolean;
+                isDisabled: boolean;
+                isError: boolean;
+                isReadOnly: boolean;
+                toggleIsActive: (bool?: boolean) => void;
+                toggleIsHover: (bool?: boolean) => void;
+            }): any;
+            radioLabel?(_: {
+                isHovered: boolean;
+                isSelected: boolean;
+                label: string;
+                value: string;
+                data?: TChoiceData | undefined;
+                fieldID: string;
+                fieldName: string;
+                fieldLabel: string | undefined;
+                isRequired: boolean;
+                isActive: boolean;
+                isHover: boolean;
+                isDisabled: boolean;
+                isError: boolean;
+                isReadOnly: boolean;
+                toggleIsActive: (bool?: boolean) => void;
+                toggleIsHover: (bool?: boolean) => void;
+            }): any;
+            afterInput?(_: {
+                fieldID: string;
+                fieldName: string;
+                fieldLabel: string | undefined;
+                isRequired: boolean;
+                isActive: boolean;
+                isHover: boolean;
+                isDisabled: boolean;
+                isError: boolean;
+                isReadOnly: boolean;
+                toggleIsActive: (bool?: boolean) => void;
+                toggleIsHover: (bool?: boolean) => void;
+            }): any;
+            error?(_: {
+                fieldID: string;
+                fieldName: string;
+                fieldLabel: string | undefined;
+                isRequired: boolean;
+                isActive: boolean;
+                isHover: boolean;
+                isDisabled: boolean;
+                isError: boolean;
+                isReadOnly: boolean;
+                toggleIsActive: (bool?: boolean) => void;
+                toggleIsHover: (bool?: boolean) => void;
+            }): any;
+        };
+        emit: any;
+    } | undefined;
 };
+export default _default;
