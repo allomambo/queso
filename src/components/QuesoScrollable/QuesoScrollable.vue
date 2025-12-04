@@ -2,8 +2,8 @@
     <div class="queso-scrollable" :class="scrollableClasses">
         <div
             v-if="hasTopIndicatorSlot"
-            class="queso-scrollable__top-indicator"
-            :class="{ 'is-hidden': isArrivedAtTop }"
+            class="queso-scrollable__indicator -top"
+            :class="{ 'is-hidden': isArrivedAtTop, 'is-visible': !isArrivedAtTop }"
             role="presentation"
         >
             <slot name="topIndicator"></slot>
@@ -15,8 +15,8 @@
 
         <div
             v-if="hasBottomIndicatorSlot"
-            class="queso-scrollable__bottom-indicator"
-            :class="{ 'is-hidden': isArrivedAtBottom }"
+            class="queso-scrollable__indicator -bottom"
+            :class="{ 'is-hidden': isArrivedAtBottom, 'is-visible': !isArrivedAtBottom }"
             role="presentation"
         >
             <slot name="bottomIndicator"></slot>
@@ -84,6 +84,7 @@ const hasBottomIndicatorSlot = computed(() => !!(slots.bottomIndicator && !props
 
 const scrollableClasses = computed(() => ({
     "has-shadows": props.shadows,
+    "has-indicators": hasTopIndicatorSlot.value || hasBottomIndicatorSlot.value,
     "is-scrolled-top": isArrivedAtTop.value,
     "is-scrolled-bottom": isArrivedAtBottom.value,
 }));
@@ -111,45 +112,36 @@ watchEffect(() => {
     }
 
     //--- INDICATOR SLOTS ---//
-    &__top-indicator,
-    &__bottom-indicator {
+
+    &__indicator {
         @include unselectable;
 
         position: var(--queso-scrollable-indicator-position, absolute);
-        z-index: var(--queso-scrollable-indicator-z, 9);
         left: var(--queso-scrollable-indicator-offset-left, var(--queso-scrollable-indicator-offset, 0));
         right: var(--queso-scrollable-indicator-offset-right, var(--queso-scrollable-indicator-offset, 0));
-        background: var(
-            --queso-scrollable-top-indicator-background,
-            linear-gradient(
-                var(--queso-scrollable-indicator-direction),
-                var(--queso-scrollable-indicator-color, white),
-                transparent
-            )
-        );
-    }
+        z-index: var(--queso-scrollable-indicator-z, 9);
 
-    &__top-indicator {
-        --queso-scrollable-indicator-direction: 180deg;
-        top: var(--queso-scrollable-indicator-before-top, 0);
-        opacity: var(--queso-scrollable-top-indicator-opacity, 1);
+        &.-top {
+            top: var(--queso-scrollable-indicator-before-top, 0);
+            opacity: var(--queso-scrollable-top-indicator-opacity, 1);
 
-        &.is-hidden {
-            --queso-scrollable-top-indicator-opacity: 0;
+            &.is-hidden {
+                --queso-scrollable-top-indicator-opacity: 0;
+            }
+        }
+
+        &.-bottom {
+            bottom: var(--queso-scrollable-indicator-after-bottom, 0);
+            opacity: var(--queso-scrollable-bottom-indicator-opacity, 1);
+
+            &.is-hidden {
+                --queso-scrollable-bottom-indicator-opacity: 0;
+            }
         }
     }
 
-    &__bottom-indicator {
-        --queso-scrollable-indicator-direction: 0deg;
-        bottom: var(--queso-scrollable-indicator-after-bottom, 0);
-        opacity: var(--queso-scrollable-bottom-indicator-opacity, 1);
+    //--- GRADIENT SHADOWS ---//
 
-        &.is-hidden {
-            --queso-scrollable-bottom-indicator-opacity: 0;
-        }
-    }
-
-    //--- SHADOWS ---//
     &.has-shadows {
         @include overflow-shadows;
 
