@@ -4,7 +4,7 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<__
     hasOverlay: boolean;
     isScrollLocked: boolean;
 }>, {
-    isModalOpen: boolean;
+    isModalOpen: import('vue').ComputedRef<boolean>;
     openModal: QuesoModalOpen;
     closeModal: QuesoModalClose;
 }, unknown, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
