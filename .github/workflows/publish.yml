@@ -12,22 +12,28 @@ jobs:
     build:
         runs-on: macos-latest
         steps:
-            - uses: actions/checkout@v3
-            - uses: actions/setup-node@v3
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
               with:
                   node-version: 20
-            - run: yarn ci
-            - run: yarn build:lib
+            # Ensure npm 11.5.1 or later is installed
+            - name: Update npm
+              run: npm install -g npm@latest
+            - run: npm ci
+            - run: npm run build:lib
 
     publish:
         needs: build
         runs-on: macos-latest
         steps:
-            - uses: actions/checkout@v3
-            - uses: actions/setup-node@v3
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
               with:
                   node-version: 20
                   registry-url: https://registry.npmjs.org/
-            - run: npm publish --access public
+            # Ensure npm 11.5.1 or later is installed
+            - name: Update npm
+              run: npm install -g npm@latest
+            - run: npm publish
             #   env:
-            #   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+            #       NODE_AUTH_TOKEN: ${{ secrets.NPM_GRANULAR_TOKEN }}
