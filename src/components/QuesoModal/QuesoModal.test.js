@@ -15,29 +15,35 @@ describe("QuesoModal", () => {
 
     test("openModal opens the modal", async () => {
         const wrapper = mount(QuesoModal, {});
-        await wrapper.vm.openModal();
+        wrapper.vm.openModal();
+        await wrapper.vm.$nextTick();
         expect(wrapper.vm.isModalOpen).toBe(true);
     });
 
     test("closeModal closes the modal", async () => {
         const wrapper = mount(QuesoModal, {});
-        await wrapper.vm.openModal();
+        wrapper.vm.openModal();
+        await wrapper.vm.$nextTick();
         expect(wrapper.vm.isModalOpen).toBe(true);
-        await wrapper.vm.closeModal();
+        wrapper.vm.closeModal();
+        await wrapper.vm.$nextTick();
         expect(wrapper.vm.isModalOpen).toBe(false);
     });
 
     test("emits modal:open when opened", async () => {
         const wrapper = mount(QuesoModal, {});
-        await wrapper.vm.openModal();
+        wrapper.vm.openModal();
+        await wrapper.vm.$nextTick();
         expect(wrapper.emitted("modal:open")).toBeTruthy();
         expect(wrapper.emitted("modal:open")).toHaveLength(1);
     });
 
     test("emits modal:close when closed", async () => {
         const wrapper = mount(QuesoModal, {});
-        await wrapper.vm.openModal();
-        await wrapper.vm.closeModal();
+        wrapper.vm.openModal();
+        await wrapper.vm.$nextTick();
+        wrapper.vm.closeModal();
+        await wrapper.vm.$nextTick();
         expect(wrapper.emitted("modal:close")).toBeTruthy();
         expect(wrapper.emitted("modal:close")).toHaveLength(1);
     });

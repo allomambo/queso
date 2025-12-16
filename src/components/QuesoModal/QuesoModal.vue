@@ -129,7 +129,11 @@ const exposedData = reactive({
     closeModal,
 });
 
-defineExpose({ ...exposedData });
+defineExpose({
+    isModalOpen: computed(() => isModalOpen.value),
+    openModal,
+    closeModal,
+});
 </script>
 
 <style lang="scss">

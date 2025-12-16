@@ -9,7 +9,7 @@ import type {
     QuesoDropdownOptions,
     QuesoDropdownProps,
 } from "@components/QuesoDropdown";
-import type { QuesoModalOpen, QuesoModalClose, QuesoModalMethods } from "@components/QuesoModal";
+import type { QuesoModalProps, QuesoModalOpen, QuesoModalClose, QuesoModalMethods } from "@components/QuesoModal";
 import type { QuesoScrollableProps } from "@components/QuesoScrollable";
 
 // Fields
@@ -23,7 +23,12 @@ import type {
     QuesoCheckboxMultipleChoices,
     QuesoCheckboxMultipleProps,
 } from "@components/QuesoCheckboxMultiple";
-import type { QuesoSelectModel, QuesoSelectProps } from "@components/QuesoSelect";
+import type {
+    QuesoSelectModel,
+    QuesoSelectOption,
+    QuesoSelectOptions,
+    QuesoSelectProps,
+} from "@components/QuesoSelect";
 import type {
     QuesoSelectMultipleModel,
     QuesoSelectMultipleOption,
@@ -53,6 +58,7 @@ export type {
     QuesoDropdownOptions,
     QuesoDropdownProps,
     // Modal
+    QuesoModalProps,
     QuesoModalOpen,
     QuesoModalClose,
     QuesoModalMethods,
@@ -81,6 +87,8 @@ export type {
     QuesoCheckboxMultipleProps,
     // Select
     QuesoSelectModel,
+    QuesoSelectOption,
+    QuesoSelectOptions,
     QuesoSelectProps,
     QuesoSelectMultipleModel,
     QuesoSelectMultipleOption,

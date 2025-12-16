@@ -185,3 +185,21 @@ The component applies the following CSS classes:
 -   `--queso-modal-max-width` - Content max width (default: 80%)
 -   `--queso-modal-max-height` - Content max height (default: 80%)
 -   `--queso-modal-z` - Modal z-index (default: 400)
+
+## Type Declaration
+
+```ts
+export type QuesoModalProps = {
+    hasOverlay?: boolean;
+    isScrollLocked?: boolean;
+};
+
+// Methods
+export type QuesoModalOpen = () => void;
+export type QuesoModalClose = () => void;
+
+export interface QuesoModalMethods {
+    openModal: QuesoModalOpen;
+    closeModal: QuesoModalClose;
+}
+```

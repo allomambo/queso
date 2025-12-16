@@ -3,15 +3,23 @@ name: Publish package on NPM 📦
 on:
     release:
         types: [created]
+    workflow_dispatch:
+
+permissions:
+    id-token: write # Required for OIDC
+    contents: read
 
 jobs:
     build:
         runs-on: macos-latest
         steps:
-            - uses: actions/checkout@v3
-            - uses: actions/setup-node@v3
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
               with:
                   node-version: 20
+            # Ensure npm 11.5.1 or later is installed
+            - name: Update npm
+              run: npm install -g npm@latest
             - run: yarn ci
             - run: yarn build:lib
 
@@ -19,11 +27,12 @@ jobs:
         needs: build
         runs-on: macos-latest
         steps:
-            - uses: actions/checkout@v3
-            - uses: actions/setup-node@v3
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
               with:
                   node-version: 20
                   registry-url: https://registry.npmjs.org/
-            - run: npm publish --access public
-              env:
-                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+            # Ensure npm 11.5.1 or later is installed
+            - name: Update npm
+              run: npm install -g npm@latest
+            - run: npm publish

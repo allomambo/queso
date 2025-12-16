@@ -119,3 +119,12 @@ The component applies the following CSS classes:
 
 -   `--overflow-shadow-before-opacity` - Top shadow opacity (controlled by component)
 -   `--overflow-shadow-after-opacity` - Bottom shadow opacity (controlled by component)
+
+## Type Declaration
+
+```ts
+export interface QuesoScrollableProps {
+    shadows?: boolean;
+    offset?: number;
+}
+```
