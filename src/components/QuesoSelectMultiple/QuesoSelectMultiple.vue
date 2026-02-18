@@ -1,5 +1,5 @@
 <template>
-    <queso-field class="-select-multiple" v-bind="extendedProps">
+    <queso-field class="-select-multiple" v-bind="{ ...extendedProps, hasValue: hasContent }">
         <template #beforeLabel="exposedData">
             <slot name="beforeLabel" v-bind="exposedData"></slot>
         </template>
@@ -85,6 +85,7 @@
 </template>
 
 <script setup lang="ts" generic="TOptionData extends Record<string, any> = Record<string, any>">
+import { computed } from "vue";
 import { useExtendedFieldProps } from "@composables/fields";
 
 import type { QuesoSelectMultipleModel, QuesoSelectMultipleProps } from "./types";
@@ -96,6 +97,7 @@ const props = defineProps<QuesoSelectMultipleProps<TOptionData>>();
 const extendedProps = useExtendedFieldProps(props);
 
 const model = defineModel<QuesoSelectMultipleModel>({ required: true, default: [] });
+const hasContent = computed(() => Array.isArray(model.value) && model.value.length > 0);
 </script>
 
 <style lang="scss">

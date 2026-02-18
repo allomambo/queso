@@ -1,6 +1,9 @@
 <template>
     <h3>Fields</h3>
     <QuesoTextField name="textfield" label="QuesoTextField" v-model="TextField" />
+    <QuesoTextField name="textfield" label="QuesoTextField" v-model="TextField">
+        <template #afterInput>test</template>
+    </QuesoTextField>
     <QuesoPassword name="password" label="QuesoPassword" v-model="PasswordField" />
     <QuesoTextArea name="textarea" label="QuesoTextArea" v-model="TextArea" />
     <QuesoCheckbox

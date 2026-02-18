@@ -20,6 +20,7 @@ export interface QuesoFieldProps {
 
 export interface QuesoFieldPrivateProps extends QuesoFieldProps {
     hasStaticLabel?: boolean;
+    hasValue?: boolean;
 }
 
 // Typeguard

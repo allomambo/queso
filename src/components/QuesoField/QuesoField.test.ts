@@ -13,4 +13,33 @@ describe("QuesoField", () => {
         });
         expect(wrapper.vm).toBeTruthy();
     });
+
+    test("applies has-value class when hasValue prop is true", () => {
+        const wrapper = mount(QuesoField, {
+            props: {
+                name: "field-name",
+                hasValue: true,
+            },
+        });
+        expect(wrapper.classes()).toContain("has-value");
+    });
+
+    test("does not apply has-value class when hasValue prop is false", () => {
+        const wrapper = mount(QuesoField, {
+            props: {
+                name: "field-name",
+                hasValue: false,
+            },
+        });
+        expect(wrapper.classes()).not.toContain("has-value");
+    });
+
+    test("does not apply has-value class when hasValue prop is undefined", () => {
+        const wrapper = mount(QuesoField, {
+            props: {
+                name: "field-name",
+            },
+        });
+        expect(wrapper.classes()).not.toContain("has-value");
+    });
 });

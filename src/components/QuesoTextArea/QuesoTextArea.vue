@@ -1,5 +1,5 @@
 <template>
-    <queso-field class="-text-area" v-bind="extendedProps">
+    <queso-field class="-text-area" v-bind="{ ...extendedProps, hasValue: hasContent }">
         <template #beforeLabel="exposedData">
             <slot name="beforeLabel" v-bind="exposedData"></slot>
         </template>
@@ -54,6 +54,7 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from "vue";
 import { useExtendedFieldProps } from "@composables/fields";
 
 import type { QuesoTextAreaModel, QuesoTextAreaProps } from "./types";
@@ -64,6 +65,7 @@ const props = defineProps<QuesoTextAreaProps>();
 const extendedProps = useExtendedFieldProps(props);
 
 const model = defineModel<QuesoTextAreaModel>({ required: true, default: "" });
+const hasContent = computed(() => String(model.value ?? "").trim().length > 0);
 </script>
 
 <style lang="scss">

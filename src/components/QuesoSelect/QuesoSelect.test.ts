@@ -43,6 +43,30 @@ describe("QuesoSelect", () => {
         expect(field.classes()).toContain("is-disabled");
     });
 
+    test("applies has-value class when model has a selected value", () => {
+        const wrapper = mount(QuesoSelect, {
+            props: {
+                ...props,
+                modelValue: "1",
+            },
+        });
+
+        const field = wrapper.findComponent({ name: "QuesoField" });
+        expect(field.classes()).toContain("has-value");
+    });
+
+    test("does not apply has-value class when model is empty", () => {
+        const wrapper = mount(QuesoSelect, {
+            props: {
+                ...props,
+                modelValue: "",
+            },
+        });
+
+        const field = wrapper.findComponent({ name: "QuesoField" });
+        expect(field.classes()).not.toContain("has-value");
+    });
+
     // Hiding it for now
     // test("renders correctly the label", () => {
     //     const wrapper = shallowMount(QuesoSelect, {

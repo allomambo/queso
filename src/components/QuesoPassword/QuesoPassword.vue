@@ -1,5 +1,5 @@
 <template>
-    <queso-field class="-password" v-bind="extendedProps">
+    <queso-field class="-password" v-bind="{ ...extendedProps, hasValue: hasContent }">
         <template #beforeLabel="exposedData">
             <slot name="beforeLabel" v-bind="exposedData"></slot>
         </template>
@@ -92,6 +92,7 @@ const props = withDefaults(defineProps<QuesoPasswordProps>(), {});
 const extendedProps = useExtendedFieldProps(props);
 
 const model = defineModel<QuesoPasswordModel>({ required: true, default: "" });
+const hasContent = computed(() => String(model.value ?? "").trim().length > 0);
 
 const isPasswordShow = ref<boolean>(false);
 const type = computed(() => (isPasswordShow.value ? "text" : "password"));
