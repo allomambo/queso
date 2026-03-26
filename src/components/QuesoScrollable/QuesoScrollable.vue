@@ -25,7 +25,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, nextTick, onMounted, ref, useSlots, watchEffect } from "vue";
+import { computed, nextTick, onMounted, ref, useSlots, watch, watchEffect } from "vue";
 import { useScroll, useResizeObserver } from "@vueuse/core";
 
 import type { QuesoScrollableProps } from "./types";
@@ -97,6 +97,36 @@ watchEffect(() => {
         emit("scrollable:bottom:reached");
     }
 });
+
+// The container's rendered height is fixed (height: 100%), so useResizeObserver on it
+// never fires when slot content grows or shrinks. Observe children directly instead.
+watch(
+    content,
+    (el, _, onCleanup) => {
+        if (!el) return;
+
+        const childResizeObserver = new ResizeObserver(updateContentDimensions);
+
+        const observeChildren = () => {
+            childResizeObserver.disconnect();
+            Array.from(el.children).forEach((child) => childResizeObserver.observe(child));
+        };
+
+        const mutationObserver = new MutationObserver(() => {
+            observeChildren();
+            updateContentDimensions();
+        });
+
+        observeChildren();
+        mutationObserver.observe(el, { childList: true });
+
+        onCleanup(() => {
+            childResizeObserver.disconnect();
+            mutationObserver.disconnect();
+        });
+    },
+    { immediate: true, flush: "post" },
+);
 </script>
 
 <style lang="scss">
