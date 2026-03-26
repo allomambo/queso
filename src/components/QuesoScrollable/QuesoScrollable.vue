@@ -28,7 +28,7 @@
 import { computed, nextTick, onMounted, ref, useSlots, watch, watchEffect } from "vue";
 import { useScroll, useResizeObserver } from "@vueuse/core";
 
-import type { QuesoScrollableProps } from "./types";
+import type { QuesoScrollableProps } from "./QuesoScrollable.types";
 
 const props = withDefaults(defineProps<QuesoScrollableProps>(), {
     offset: 0,
@@ -46,7 +46,6 @@ const { arrivedState } = useScroll(content, {
     offset: { top: props.offset, bottom: props.offset },
 });
 
-// Check manually if content is overflowing because arrivedState doesn't update on resize
 const contentScrollHeight = ref<number>(0);
 const contentClientHeight = ref<number>(0);
 
@@ -60,6 +59,36 @@ const updateContentDimensions = () => {
 useResizeObserver(content, () => {
     updateContentDimensions();
 });
+
+// The container's rendered height is fixed (height: 100%), so useResizeObserver on it
+// won't fire when slot content grows or shrinks. We need to observe children directly.
+watch(
+    content,
+    (el, _, onCleanup) => {
+        if (!el) return;
+
+        const childResizeObserver = new ResizeObserver(updateContentDimensions);
+
+        const observeChildren = () => {
+            childResizeObserver.disconnect();
+            Array.from(el.children).forEach((child) => childResizeObserver.observe(child));
+        };
+
+        const mutationObserver = new MutationObserver(() => {
+            observeChildren();
+            updateContentDimensions();
+        });
+
+        observeChildren();
+        mutationObserver.observe(el, { childList: true });
+
+        onCleanup(() => {
+            childResizeObserver.disconnect();
+            mutationObserver.disconnect();
+        });
+    },
+    { immediate: true, flush: "post" },
+);
 
 onMounted(() => {
     nextTick(() => {
@@ -97,36 +126,6 @@ watchEffect(() => {
         emit("scrollable:bottom:reached");
     }
 });
-
-// The container's rendered height is fixed (height: 100%), so useResizeObserver on it
-// never fires when slot content grows or shrinks. Observe children directly instead.
-watch(
-    content,
-    (el, _, onCleanup) => {
-        if (!el) return;
-
-        const childResizeObserver = new ResizeObserver(updateContentDimensions);
-
-        const observeChildren = () => {
-            childResizeObserver.disconnect();
-            Array.from(el.children).forEach((child) => childResizeObserver.observe(child));
-        };
-
-        const mutationObserver = new MutationObserver(() => {
-            observeChildren();
-            updateContentDimensions();
-        });
-
-        observeChildren();
-        mutationObserver.observe(el, { childList: true });
-
-        onCleanup(() => {
-            childResizeObserver.disconnect();
-            mutationObserver.disconnect();
-        });
-    },
-    { immediate: true, flush: "post" },
-);
 </script>
 
 <style lang="scss">
