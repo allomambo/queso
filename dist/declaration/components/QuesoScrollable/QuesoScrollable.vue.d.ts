@@ -2,16 +2,19 @@ import { QuesoScrollableProps } from './types';
 
 declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<QuesoScrollableProps>, {
     offset: number;
+    hideScrollbars: boolean;
 }>, {}, unknown, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
     "scrollable:top:reached": () => void;
     "scrollable:bottom:reached": () => void;
 }, string, import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<QuesoScrollableProps>, {
     offset: number;
+    hideScrollbars: boolean;
 }>>> & {
     "onScrollable:top:reached"?: (() => any) | undefined;
     "onScrollable:bottom:reached"?: (() => any) | undefined;
 }, {
     offset: number;
+    hideScrollbars: boolean;
 }, {}>, {
     topIndicator?(_: {}): any;
     default?(_: {}): any;
