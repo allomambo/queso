@@ -32,6 +32,7 @@ import type { QuesoScrollableProps } from "./QuesoScrollable.types";
 
 const props = withDefaults(defineProps<QuesoScrollableProps>(), {
     offset: 0,
+    hideScrollbars: true,
 });
 
 const emit = defineEmits<{
@@ -114,6 +115,7 @@ const hasBottomIndicatorSlot = computed(() => !!(slots.bottomIndicator && !props
 const scrollableClasses = computed(() => ({
     "has-shadows": props.shadows,
     "has-indicators": hasTopIndicatorSlot.value || hasBottomIndicatorSlot.value,
+    "has-hidden-scrollbars": props.hideScrollbars,
     "is-scrolled-top": isArrivedAtTop.value,
     "is-scrolled-bottom": isArrivedAtBottom.value,
 }));
@@ -130,14 +132,19 @@ watchEffect(() => {
 
 <style lang="scss">
 .queso-scrollable {
+    $self: &;
     height: var(--queso-scrollable-height, auto);
     position: relative;
     overflow: hidden;
 
     &__content {
         @include clearfix;
-        @include overflow;
+        @include overflow("vertical", false);
         height: var(--queso-scrollable-content-height, 100%);
+
+        @at-root #{$self}.has-hidden-scrollbars & {
+            @include hide-scrollbar;
+        }
     }
 
     //--- INDICATOR SLOTS ---//
