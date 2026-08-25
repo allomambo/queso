@@ -28,7 +28,7 @@
 import { computed, nextTick, onMounted, ref, useSlots, watch, watchEffect } from "vue";
 import { useScroll, useResizeObserver, useMutationObserver } from "@vueuse/core";
 
-import type { QuesoScrollableProps } from "./QuesoScrollable.types";
+import type { QuesoScrollableProps } from "./types";
 
 const props = withDefaults(defineProps<QuesoScrollableProps>(), {
     offset: 0,
