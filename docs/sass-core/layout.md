@@ -113,17 +113,22 @@ Hides scrollbars while maintaining scroll functionality.
 
 ## `overflow()`
 
-Creates scrollable overflow with hidden scrollbars.
+Creates scrollable overflow with optional hidden scrollbars.
 
-| Parameter      | Type     | Default&nbsp;Value | Description                                         |
-| -------------- | -------- | ------------------ | --------------------------------------------------- |
-| `$orientation` | `string` | `"vertical"`       | The overflow direction (horizontal, vertical, both) |
+| Parameter        | Type      | Default&nbsp;Value | Description                                                 |
+| ---------------- | --------- | ------------------ | ----------------------------------------------------------- |
+| `$orientation`   | `string`  | `"vertical"`       | The overflow direction (horizontal, vertical, both)         |
+| `$hideScrollbar` | `boolean` | `true`             | When `true`, hides scrollbars while keeping scroll behavior |
 
 ::: code-group
 
 ```scss [Usage]
 .content {
     @include overflow(vertical);
+}
+
+.content-with-scrollbar {
+    @include overflow(vertical, false);
 }
 ```
 
@@ -139,6 +144,10 @@ Creates scrollable overflow with hidden scrollbars.
     width: 0;
     height: 0;
     background-color: transparent;
+}
+
+.content-with-scrollbar {
+    overflow-y: auto;
 }
 ```
 

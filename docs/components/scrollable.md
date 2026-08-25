@@ -21,6 +21,10 @@ A scrollable container component that provides scroll detection, overflow shadow
             <!-- Your bottom indicator content here -->
         </template>
     </queso-scrollable>
+
+    <queso-scrollable :hide-scrollbars="false">
+        <!-- Native scrollbars are visible -->
+    </queso-scrollable>
 </template>
 
 <script setup lang="ts">
@@ -41,6 +45,12 @@ import { QuesoScrollable } from "@components/QuesoScrollable";
 -   **Type:** `boolean`
 -   **Default:** `false`
 -   **Description:** Enables automatic overflow shadows that appear when content is scrollable. Shadows fade when reaching scroll boundaries. When enabled, custom indicator slots are not displayed.
+
+### `hideScrollbars`
+
+-   **Type:** `boolean`
+-   **Default:** `true`
+-   **Description:** Hides native scrollbars while keeping the content scrollable. Set to `false` to show the browser scrollbars. When scrollbars are hidden, consider using `shadows` or indicator slots so overflow remains visually discoverable.
 
 ## Slots
 
@@ -69,7 +79,7 @@ import { QuesoScrollable } from "@components/QuesoScrollable";
 -   **Overflow Detection:** Automatically detects when content overflows vertically
 -   **Scroll Boundaries:** Tracks arrival at top and bottom boundaries with configurable offset
 -   **Event Emission:** Emits events when reaching scroll boundaries
--   **Visual Feedback:** Optional automatic shadows or custom indicators that fade when reaching boundaries
+-   **Visual Feedback:** Optional automatic shadows or custom indicators that fade when reaching boundaries. Native scrollbars are hidden by default; set `hideScrollbars` to `false` to show them
 -   **Responsive:** Adapts to content size changes through resize observation
 
 ## Accessibility
@@ -79,6 +89,7 @@ The component provides:
 -   **Semantic Structure:** Proper container structure for scrollable content
 -   **Visual Indicators:** Optional automatic shadows or custom indicators provide visual feedback about scroll state
 -   **Event Handling:** Events can be used to implement infinite scrolling or other accessibility features
+-   **Scroll Affordance:** Content remains scrollable via keyboard, wheel, and touch when scrollbars are hidden; prefer `shadows` or indicator slots so overflow is still discoverable
 
 ## CSS
 
@@ -91,6 +102,7 @@ The component applies the following CSS classes:
 -   `.queso-scrollable__top-indicator` - Container for top indicator slot
 -   `.queso-scrollable__bottom-indicator` - Container for bottom indicator slot
 -   `.has-shadows` - Applied when automatic shadows are enabled
+-   `.has-hidden-scrollbars` - Applied when native scrollbars are hidden
 -   `.is-scrolled-top` - Applied when scrolled to the top
 -   `.is-scrolled-bottom` - Applied when scrolled to the bottom
 
@@ -126,5 +138,6 @@ The component applies the following CSS classes:
 export interface QuesoScrollableProps {
     shadows?: boolean;
     offset?: number;
+    hideScrollbars?: boolean;
 }
 ```
