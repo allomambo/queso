@@ -25,7 +25,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, nextTick, onMounted, ref, useSlots, watch, watchEffect } from "vue";
+import { computed, nextTick, onMounted, ref, useSlots, watchEffect } from "vue";
 import { useScroll, useResizeObserver, useMutationObserver } from "@vueuse/core";
 
 import type { QuesoScrollableProps } from "./types";
@@ -47,29 +47,13 @@ const { arrivedState, measure } = useScroll(content, {
     offset: { top: props.offset, bottom: props.offset },
 });
 
-// Check manually if content is overflowing because arrivedState doesn't update on resize
-const contentScrollHeight = ref<number>(0);
-const contentClientHeight = ref<number>(0);
-
 const updateContentDimensions = () => {
-    if (content.value) {
-        contentScrollHeight.value = content.value.scrollHeight;
-        contentClientHeight.value = content.value.clientHeight;
-    }
     measure();
 };
 
-useResizeObserver(content, () => {
-    updateContentDimensions();
-});
+useResizeObserver(content, updateContentDimensions);
 
-useMutationObserver(
-    content,
-    () => {
-        updateContentDimensions();
-    },
-    { childList: true, subtree: true },
-);
+useMutationObserver(content, updateContentDimensions, { childList: true, subtree: true });
 
 onMounted(() => {
     nextTick(() => {
@@ -77,17 +61,8 @@ onMounted(() => {
     });
 });
 
-const contentIsOverflowingVertically = computed<boolean>(() => contentScrollHeight.value > contentClientHeight.value);
-
 const isArrivedAtTop = computed(() => arrivedState.top);
-const isArrivedAtBottom = computed(() => {
-    if (contentIsOverflowingVertically.value && arrivedState.top) {
-        return false;
-    } else if (!contentIsOverflowingVertically.value && arrivedState.top) {
-        return true;
-    }
-    return arrivedState.bottom;
-});
+const isArrivedAtBottom = computed(() => arrivedState.bottom);
 
 const hasTopIndicatorSlot = computed(() => !!(slots.topIndicator && !props.shadows));
 const hasBottomIndicatorSlot = computed(() => !!(slots.bottomIndicator && !props.shadows));
