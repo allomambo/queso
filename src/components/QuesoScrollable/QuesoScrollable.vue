@@ -26,7 +26,7 @@
 
 <script setup lang="ts">
 import { computed, nextTick, onMounted, ref, useSlots, watch, watchEffect } from "vue";
-import { useScroll, useResizeObserver } from "@vueuse/core";
+import { useScroll, useResizeObserver, useMutationObserver } from "@vueuse/core";
 
 import type { QuesoScrollableProps } from "./QuesoScrollable.types";
 
@@ -43,10 +43,11 @@ const emit = defineEmits<{
 const slots = useSlots();
 const content = ref<HTMLElement>();
 
-const { arrivedState } = useScroll(content, {
+const { arrivedState, measure } = useScroll(content, {
     offset: { top: props.offset, bottom: props.offset },
 });
 
+// Check manually if content is overflowing because arrivedState doesn't update on resize
 const contentScrollHeight = ref<number>(0);
 const contentClientHeight = ref<number>(0);
 
@@ -55,40 +56,19 @@ const updateContentDimensions = () => {
         contentScrollHeight.value = content.value.scrollHeight;
         contentClientHeight.value = content.value.clientHeight;
     }
+    measure();
 };
 
 useResizeObserver(content, () => {
     updateContentDimensions();
 });
 
-// The container's rendered height is fixed (height: 100%), so useResizeObserver on it
-// won't fire when slot content grows or shrinks. We need to observe children directly.
-watch(
+useMutationObserver(
     content,
-    (el, _, onCleanup) => {
-        if (!el) return;
-
-        const childResizeObserver = new ResizeObserver(updateContentDimensions);
-
-        const observeChildren = () => {
-            childResizeObserver.disconnect();
-            Array.from(el.children).forEach((child) => childResizeObserver.observe(child));
-        };
-
-        const mutationObserver = new MutationObserver(() => {
-            observeChildren();
-            updateContentDimensions();
-        });
-
-        observeChildren();
-        mutationObserver.observe(el, { childList: true });
-
-        onCleanup(() => {
-            childResizeObserver.disconnect();
-            mutationObserver.disconnect();
-        });
+    () => {
+        updateContentDimensions();
     },
-    { immediate: true, flush: "post" },
+    { childList: true, subtree: true },
 );
 
 onMounted(() => {
