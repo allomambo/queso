@@ -135,8 +135,8 @@
     <br />
     <br />
 
-    <h4>Hidden scrollbars</h4>
-    <QuesoScrollable hide-scrollbar>
+    <h4>Show scrollbars</h4>
+    <QuesoScrollable :hide-scrollbars="false">
         <p v-for="i in 8">
             Consectetur adipiscing elit. Vivamus sed neque quis magna maximus finibus vel vitae mi. Lorem ipsum dolor
             sit amet, consectetur adipiscing elit. Integer aliquet libero imperdiet, imperdiet sem vel, tempor justo.

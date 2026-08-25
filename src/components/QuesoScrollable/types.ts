@@ -1,5 +1,5 @@
 export interface QuesoScrollableProps {
     shadows?: boolean;
     offset?: number;
-    hideScrollbar?: boolean;
+    hideScrollbars?: boolean;
 }

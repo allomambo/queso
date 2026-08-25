@@ -48,7 +48,7 @@
     }
 }
 
-@mixin overflow($orientation: "vertical", $hideScrollbar: false) {
+@mixin overflow($orientation: "vertical", $hideScrollbar: true) {
     $valid-orientation: horizontal, vertical, both;
     @if not index($valid-orientation, $orientation) {
         @error "'#{$orientation}' is not a valid orientation. Choose between : #{$valid-orientation}.";
