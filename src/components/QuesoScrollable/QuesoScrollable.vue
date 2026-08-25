@@ -10,7 +10,9 @@
         </div>
 
         <div ref="content" class="queso-scrollable__content">
-            <slot></slot>
+            <div ref="contentInner" class="queso-scrollable__content__inner">
+                <slot></slot>
+            </div>
         </div>
 
         <div
@@ -42,43 +44,14 @@ const emit = defineEmits<{
 
 const slots = useSlots();
 const content = ref<HTMLElement>();
+const contentInner = ref<HTMLElement>();
 
-const { arrivedState } = useScroll(content, {
+const { arrivedState, measure } = useScroll(content, {
     offset: { top: props.offset, bottom: props.offset },
 });
 
-// Check manually if content is overflowing because arrivedState doesn't update on resize
-const contentScrollHeight = ref<number>(0);
-const contentClientHeight = ref<number>(0);
-
-const updateContentDimensions = () => {
-    if (content.value) {
-        contentScrollHeight.value = content.value.scrollHeight;
-        contentClientHeight.value = content.value.clientHeight;
-    }
-};
-
-useResizeObserver(content, () => {
-    updateContentDimensions();
-});
-
-onMounted(() => {
-    nextTick(() => {
-        updateContentDimensions();
-    });
-});
-
-const contentIsOverflowingVertically = computed<boolean>(() => contentScrollHeight.value > contentClientHeight.value);
-
 const isArrivedAtTop = computed(() => arrivedState.top);
-const isArrivedAtBottom = computed(() => {
-    if (contentIsOverflowingVertically.value && arrivedState.top) {
-        return false;
-    } else if (!contentIsOverflowingVertically.value && arrivedState.top) {
-        return true;
-    }
-    return arrivedState.bottom;
-});
+const isArrivedAtBottom = computed(() => arrivedState.bottom);
 
 const hasTopIndicatorSlot = computed(() => !!(slots.topIndicator && !props.shadows));
 const hasBottomIndicatorSlot = computed(() => !!(slots.bottomIndicator && !props.shadows));
@@ -99,6 +72,13 @@ watchEffect(() => {
         emit("scrollable:bottom:reached");
     }
 });
+
+// Observer to update the scroll indicators visibility when the content changes
+useResizeObserver([content, contentInner], measure);
+
+onMounted(() => {
+    nextTick(measure);
+});
 </script>
 
 <style lang="scss">
@@ -109,12 +89,15 @@ watchEffect(() => {
     overflow: hidden;
 
     &__content {
-        @include clearfix;
         @include overflow("vertical", false);
         height: var(--queso-scrollable-content-height, 100%);
 
         @at-root #{$self}.has-hidden-scrollbars & {
             @include hide-scrollbar;
+        }
+
+        &__inner {
+            @include clearfix;
         }
     }
 
