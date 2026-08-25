@@ -99,6 +99,7 @@ The component applies the following CSS classes:
 
 -   `.queso-scrollable` - Base container class
 -   `.queso-scrollable__content` - Content wrapper
+-   `.queso-scrollable__content__inner` - Inner wrapper that sizes to the slot content
 -   `.queso-scrollable__top-indicator` - Container for top indicator slot
 -   `.queso-scrollable__bottom-indicator` - Container for bottom indicator slot
 -   `.has-shadows` - Applied when automatic shadows are enabled

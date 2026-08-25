@@ -10,7 +10,9 @@
         </div>
 
         <div ref="content" class="queso-scrollable__content">
-            <slot></slot>
+            <div ref="contentInner" class="queso-scrollable__content__inner">
+                <slot></slot>
+            </div>
         </div>
 
         <div
@@ -26,7 +28,7 @@
 
 <script setup lang="ts">
 import { computed, nextTick, onMounted, ref, useSlots, watchEffect } from "vue";
-import { useScroll, useResizeObserver, useMutationObserver } from "@vueuse/core";
+import { useScroll, useResizeObserver } from "@vueuse/core";
 
 import type { QuesoScrollableProps } from "./types";
 
@@ -42,23 +44,10 @@ const emit = defineEmits<{
 
 const slots = useSlots();
 const content = ref<HTMLElement>();
+const contentInner = ref<HTMLElement>();
 
 const { arrivedState, measure } = useScroll(content, {
     offset: { top: props.offset, bottom: props.offset },
-});
-
-const updateContentDimensions = () => {
-    measure();
-};
-
-useResizeObserver(content, updateContentDimensions);
-
-useMutationObserver(content, updateContentDimensions, { childList: true, subtree: true });
-
-onMounted(() => {
-    nextTick(() => {
-        updateContentDimensions();
-    });
 });
 
 const isArrivedAtTop = computed(() => arrivedState.top);
@@ -83,6 +72,13 @@ watchEffect(() => {
         emit("scrollable:bottom:reached");
     }
 });
+
+// Observer to update the scroll indicators visibility when the content changes
+useResizeObserver([content, contentInner], measure);
+
+onMounted(() => {
+    nextTick(measure);
+});
 </script>
 
 <style lang="scss">
@@ -93,12 +89,15 @@ watchEffect(() => {
     overflow: hidden;
 
     &__content {
-        @include clearfix;
         @include overflow("vertical", false);
         height: var(--queso-scrollable-content-height, 100%);
 
         @at-root #{$self}.has-hidden-scrollbars & {
             @include hide-scrollbar;
+        }
+
+        &__inner {
+            @include clearfix;
         }
     }
 
