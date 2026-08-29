@@ -50,7 +50,7 @@ const emit = defineEmits<{
 /**
  * STATES
  */
-const { isRequired, isDisabled, isError, isReadOnly } = toRefs(props);
+const { isRequired, isDisabled, isError, isReadOnly, hasValue } = toRefs(props);
 
 // Active
 const isActive = ref<boolean>(false);
@@ -93,6 +93,7 @@ const fieldClasses = computed<HTMLAttributes["class"]>(() => ({
     "is-active": isActive.value,
     "is-hover": isHover.value,
     "is-read-only": isReadOnly.value,
+    "has-value": hasValue.value,
 }));
 
 /**

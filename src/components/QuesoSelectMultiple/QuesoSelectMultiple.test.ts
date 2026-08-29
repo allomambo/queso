@@ -93,4 +93,28 @@ describe("QuesoSelectMultiple.vue", () => {
         const field = wrapper.findComponent({ name: "QuesoField" });
         expect(field.classes()).toContain("is-disabled");
     });
+
+    test("applies has-value class when model has selected values", () => {
+        const wrapper = mount(QuesoSelectMultiple, {
+            props: {
+                ...props,
+                modelValue: ["option1"],
+            },
+        });
+
+        const field = wrapper.findComponent({ name: "QuesoField" });
+        expect(field.classes()).toContain("has-value");
+    });
+
+    test("does not apply has-value class when model is empty", () => {
+        const wrapper = mount(QuesoSelectMultiple, {
+            props: {
+                ...props,
+                modelValue: [],
+            },
+        });
+
+        const field = wrapper.findComponent({ name: "QuesoField" });
+        expect(field.classes()).not.toContain("has-value");
+    });
 });

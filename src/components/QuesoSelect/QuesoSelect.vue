@@ -1,5 +1,5 @@
 <template>
-    <queso-field class="-select" v-bind="extendedProps">
+    <queso-field class="-select" v-bind="{ ...extendedProps, hasValue: hasContent }">
         <template #beforeLabel="exposedData">
             <slot name="beforeLabel" v-bind="exposedData"></slot>
         </template>
@@ -97,6 +97,11 @@ const props = defineProps<QuesoSelectProps<TOptionData>>();
 const extendedProps = useExtendedFieldProps(props);
 
 const model = defineModel<QuesoSelectModel>({ required: true });
+
+const hasContent = computed(() => {
+    const val = model.value;
+    return val != null && val !== "";
+});
 
 // Writable computed because QuesoDropdown expects an array
 const dropdownModel = computed<QuesoDropdownOptionValues>({

@@ -29,4 +29,37 @@ describe("QuesoTextField", () => {
         });
         expect(wrapper.find(".queso-field__input").exists()).toBe(true);
     });
+
+    test("applies has-value class when model has content", () => {
+        const wrapper = mount(QuesoTextField, {
+            props: {
+                name: "field-name",
+                modelValue: "hello",
+            },
+        });
+        const field = wrapper.findComponent({ name: "QuesoField" });
+        expect(field.classes()).toContain("has-value");
+    });
+
+    test("does not apply has-value class when model is empty", () => {
+        const wrapper = mount(QuesoTextField, {
+            props: {
+                name: "field-name",
+                modelValue: "",
+            },
+        });
+        const field = wrapper.findComponent({ name: "QuesoField" });
+        expect(field.classes()).not.toContain("has-value");
+    });
+
+    test("does not apply has-value class when model has only whitespace", () => {
+        const wrapper = mount(QuesoTextField, {
+            props: {
+                name: "field-name",
+                modelValue: "   ",
+            },
+        });
+        const field = wrapper.findComponent({ name: "QuesoField" });
+        expect(field.classes()).not.toContain("has-value");
+    });
 });
