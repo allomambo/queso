@@ -7,11 +7,22 @@ Queso is a lightweight, unstyled Vue component library designed for maximum flex
 Before installing Queso, make sure your project meets these requirements:
 
 -   **Node.js** ≥ 20.10.0
--   **Vue.js** ≥ 3.2.37
+-   **Vue.js** ≥ 3.5.0 (peer dependency, installed by your project)
 
 ::: tip Compatibility
 Queso is built with Vue 3 Composition API and TypeScript. While TypeScript is not required, it's highly recommended for the best development experience.
 :::
+
+## Server-side rendering
+
+Queso works with Vue server-side rendering. Components that link elements together, such as `QuesoDropdown` and `QuesoCollapsible`, build their ids with Vue's [`useId()`](https://vuejs.org/api/composition-api-helpers.html#useid), so the server HTML and the hydrated DOM get the same ids (`queso-dropdown__v-0`, `queso-collapsible__v-1`…).
+
+If several Vue apps render on the same page, give each one its own prefix to keep ids unique:
+
+```ts
+const app = createApp(App);
+app.config.idPrefix = "header";
+```
 
 ## Install the package
 

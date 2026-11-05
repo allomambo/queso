@@ -95,7 +95,7 @@ import QuesoDropdown from "@components/QuesoDropdown";
 const props = defineProps<QuesoSelectMultipleProps<TOptionData>>();
 const extendedProps = useExtendedFieldProps(props);
 
-const model = defineModel<QuesoSelectMultipleModel>({ required: true, default: [] });
+const model = defineModel<QuesoSelectMultipleModel>({ default: () => [] });
 </script>
 
 <style lang="scss">

@@ -1,5 +1,7 @@
+import { defineComponent, h } from "vue";
 import { mount, shallowMount } from "@vue/test-utils";
 import { describe, expect, test } from "vitest";
+import { renderAndHydrate } from "../../../tests/ssr";
 import QuesoDropdown from "./QuesoDropdown.vue";
 
 describe("QuesoDropdown", () => {
@@ -75,5 +77,35 @@ describe("QuesoDropdown", () => {
         });
 
         expect(wrapper.classes()).toContain("is-disabled");
+    });
+
+    test("aria-controls points to an element with a dropdown id", () => {
+        const wrapper = mount(QuesoDropdown, { props: { options } });
+        const controls = wrapper.find(".queso-dropdown__selector").attributes("aria-controls");
+
+        expect(controls).toMatch(/^queso-dropdown__/);
+        expect(wrapper.find(`[id="${controls}"]`).exists()).toBe(true);
+    });
+
+    test("two instances get distinct ids", () => {
+        const wrapper = mount(
+            defineComponent({
+                render: () => h("div", [h(QuesoDropdown, { options }), h(QuesoDropdown, { options })]),
+            }),
+        );
+        const ids = wrapper
+            .findAll(".queso-dropdown__selector")
+            .map((selector) => selector.attributes("aria-controls"));
+
+        expect(ids).toHaveLength(2);
+        expect(ids[0]).not.toBe(ids[1]);
+    });
+
+    test("hydrates server HTML without mismatch", async () => {
+        const { logs, unmount } = await renderAndHydrate(QuesoDropdown, { options, modelValue: ["option2"] });
+
+        expect(logs).toEqual([]);
+
+        unmount();
     });
 });
