@@ -171,6 +171,15 @@ const setFocusedIndex = (index: number) => {
     nextTick(() => scrollOptionIntoView(focusedIndex.value));
 };
 
+// Single mode: Tab confirms the highlighted option without toggling or closing.
+// Closing is up to the caller, so Tab still closes when stayOpenOnSelection is set.
+const selectHighlightedOption = () => {
+    const option = options.value[focusedIndex.value];
+    if (!option) return;
+
+    model.value = [option.value];
+};
+
 const selectOption = (index: number) => {
     const option = options.value[index];
     if (!option) return;
@@ -359,6 +368,8 @@ const handleKeydown = (event: KeyboardEvent) => {
             closeDropdown();
             break;
         case "Tab":
+            // Single mode confirms the highlighted option. Multiple mode already toggles with Space, so Tab only closes.
+            if (!props.multiple) selectHighlightedOption();
             closeDropdown();
             break;
     }

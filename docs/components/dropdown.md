@@ -468,7 +468,7 @@ Reactive boolean indicating the current open state.
 
 ## Behavior
 
--   **Focus Management:** Focus always stays on the selector. The highlighted option is shown with `.is-option-focused` and announced with `aria-activedescendant`. There is no focus trap: Tab leaves the dropdown and closes it
+-   **Focus Management:** Focus always stays on the selector. The highlighted option is shown with `.is-option-focused` and announced with `aria-activedescendant`. There is no focus trap. Tab leaves the dropdown: in single mode it selects the highlighted option first, in multiple mode it only closes
 -   **Pointer:** Moving the pointer over an option highlights it too, so a single option looks highlighted
 -   **Click Outside:** Automatically closes when clicking outside or when focus leaves the dropdown
 -   **Scroll Management:** The options list scrolls to keep the highlighted option visible without moving the page, and scrolls back to the top after closing
@@ -494,9 +494,9 @@ When the dropdown is open:
 | <kbd>↓</kbd>, <kbd>↑</kbd>         | Highlights the next / previous option (stops at the first and last ones) |
 | <kbd>Home</kbd>, <kbd>End</kbd>    | Highlights the first / last option                                       |
 | <kbd>Enter</kbd>, <kbd>Space</kbd> | Selects the highlighted option (toggles it in multiple mode)             |
-| <kbd>Alt</kbd> + <kbd>↑</kbd>      | Closes the dropdown                                                      |
-| <kbd>Escape</kbd>                  | Closes the dropdown                                                      |
-| <kbd>Tab</kbd>                     | Closes the dropdown and moves focus to the next element                  |
+| <kbd>Alt</kbd> + <kbd>↑</kbd>      | Closes the dropdown and keeps the current value                          |
+| <kbd>Escape</kbd>                  | Closes the dropdown and keeps the current value                          |
+| <kbd>Tab</kbd>                     | Selects the highlighted option, closes, and moves focus on. In multiple mode, closes without changing the selection |
 | Printable characters               | Highlights the next option starting with the typed characters            |
 
 Typing several characters quickly (within 500 ms) searches for a label starting with them. Repeating the same character cycles through the options starting with it.

@@ -360,19 +360,47 @@ describe("QuesoDropdown", () => {
             expect(wrapper.emitted("dropdown:close")).toHaveLength(1);
         });
 
-        test("Alt+ArrowUp and Tab close without selecting", async () => {
+        test("Alt+ArrowUp closes without selecting", async () => {
             const wrapper = mountDropdown({ modelValue: ["apple"] });
 
             await press(wrapper, "ArrowDown");
             await press(wrapper, "ArrowDown");
             await press(wrapper, "ArrowUp", { altKey: true });
+
             expect(isOpen(wrapper)).toBe(false);
+            expect(wrapper.props("modelValue")).toEqual(["apple"]);
+        });
+
+        test("Tab selects the highlighted option and closes", async () => {
+            const wrapper = mountDropdown({ modelValue: ["apple"] });
 
             await press(wrapper, "ArrowDown");
+            await press(wrapper, "ArrowDown");
             await press(wrapper, "Tab");
-            expect(isOpen(wrapper)).toBe(false);
 
-            expect(wrapper.props("modelValue")).toEqual(["apple"]);
+            expect(isOpen(wrapper)).toBe(false);
+            expect(wrapper.props("modelValue")).toEqual(["banana"]);
+        });
+
+        test("Tab selects and closes even when stayOpenOnSelection is set", async () => {
+            const wrapper = mountDropdown({ modelValue: ["apple"], stayOpenOnSelection: true });
+
+            await press(wrapper, "ArrowDown");
+            await press(wrapper, "ArrowDown");
+            await press(wrapper, "Tab");
+
+            expect(isOpen(wrapper)).toBe(false);
+            expect(wrapper.props("modelValue")).toEqual(["banana"]);
+        });
+
+        test("Tab in multiple mode closes without toggling", async () => {
+            const wrapper = mountDropdown({ multiple: true, modelValue: ["cherry"] });
+
+            await press(wrapper, "Home");
+            await press(wrapper, "Tab");
+
+            expect(isOpen(wrapper)).toBe(false);
+            expect(wrapper.props("modelValue")).toEqual(["cherry"]);
         });
 
         test("disabled ignores the keyboard", async () => {
