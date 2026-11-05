@@ -3,6 +3,7 @@
         <component
             v-if="label"
             :is="hasStaticLabel ? 'div' : 'label'"
+            :id="fieldLabelID"
             :for="!hasStaticLabel ? fieldID : null"
             class="queso-field__label"
         >
@@ -11,7 +12,7 @@
                 <span class="queso-field__label__text" v-html="fieldLabel"></span>
             </slot>
             <slot v-if="isRequired" name="required" v-bind="{ ...exposedData }">
-                <span class="queso-field__label__required">*</span>
+                <span class="queso-field__label__required" aria-hidden="true">*</span>
             </slot>
             <slot name="afterLabel" v-bind="{ ...exposedData }"></slot>
         </component>
@@ -85,6 +86,7 @@ const toggleIsHover = (bool: boolean = false): void => {
  */
 
 const fieldID = computed<string>(() => props.id || props.name || "");
+const fieldLabelID = computed<string | undefined>(() => (props.label ? `${fieldID.value}-label` : undefined));
 const { name: fieldName, label: fieldLabel } = toRefs(props);
 
 const fieldClasses = computed<HTMLAttributes["class"]>(() => ({
@@ -102,6 +104,7 @@ const fieldClasses = computed<HTMLAttributes["class"]>(() => ({
 const exposedData = reactive({
     // Base
     fieldID,
+    fieldLabelID,
     fieldName,
     fieldLabel,
     // States

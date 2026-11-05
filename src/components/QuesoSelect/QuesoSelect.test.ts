@@ -1,5 +1,7 @@
 import { mount } from "@vue/test-utils";
 import { describe, expect, test } from "vitest";
+import { describeSelectAccessibility } from "../../../tests/select-a11y";
+import { renderAndHydrate } from "../../../tests/ssr";
 import QuesoSelect from "./QuesoSelect.vue";
 
 describe("QuesoSelect", () => {
@@ -42,6 +44,16 @@ describe("QuesoSelect", () => {
         const field = wrapper.findComponent({ name: "QuesoField" });
         expect(field.classes()).toContain("is-disabled");
     });
+
+    test.each(["", "2"])("hydrates server HTML without mismatch (value: %o)", async (modelValue) => {
+        const { logs, unmount } = await renderAndHydrate(QuesoSelect, { ...props, modelValue });
+
+        expect(logs).toEqual([]);
+
+        unmount();
+    });
+
+    describeSelectAccessibility(QuesoSelect, props);
 
     // Hiding it for now
     // test("renders correctly the label", () => {

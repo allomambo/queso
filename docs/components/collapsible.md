@@ -25,7 +25,7 @@ import { QuesoCollapsible } from "@allomambo/queso";
 
 -   **Type:** `boolean`
 -   **Default:** `false`
--   **Description:** When `true`, the collapsible content will be expanded when the component is first mounted.
+-   **Description:** When `true`, the collapsible content is expanded from the first render (server-side rendering included). `collapsible:open` and `collapsible:toggle` are emitted once mounted.
 
 ## Emits
 
@@ -110,14 +110,15 @@ import { QuesoCollapsible } from "@allomambo/queso";
 <div class="queso-collapsible is-collapsible-close">
     <div
         class="queso-collapsible__header"
+        role="button"
         aria-expanded="false"
-        aria-controls="queso-collapsible__abc123"
+        aria-controls="queso-collapsible__v-0"
         tabindex="0"
     >
         <div class="queso-collapsible__header__text">Click to expand</div>
         <div class="queso-collapsible__header__icon">↓</div>
     </div>
-    <div class="queso-collapsible__content" id="queso-collapsible__abc123">
+    <div class="queso-collapsible__content" id="queso-collapsible__v-0">
         <div class="queso-collapsible__content__inner">
             <p>This content can be expanded and collapsed.</p>
         </div>
@@ -174,8 +175,9 @@ import { QuesoCollapsible } from "@allomambo/queso";
 <div class="queso-collapsible is-collapsible-close">
     <div
         class="queso-collapsible__header"
+        role="button"
         aria-expanded="false"
-        aria-controls="queso-collapsible__abc123"
+        aria-controls="queso-collapsible__v-0"
         tabindex="0"
     >
         <span class="icon">📁</span>
@@ -183,7 +185,7 @@ import { QuesoCollapsible } from "@allomambo/queso";
         <span class="badge">3 items</span>
         <div class="queso-collapsible__header__icon">↓</div>
     </div>
-    <div class="queso-collapsible__content" id="queso-collapsible__abc123">
+    <div class="queso-collapsible__content" id="queso-collapsible__v-0">
         <div class="queso-collapsible__content__inner">
             <ul>
                 <li>Item 1</li>
@@ -199,8 +201,9 @@ import { QuesoCollapsible } from "@allomambo/queso";
 <div class="queso-collapsible is-collapsible-open">
     <div
         class="queso-collapsible__header"
+        role="button"
         aria-expanded="true"
-        aria-controls="queso-collapsible__abc123"
+        aria-controls="queso-collapsible__v-0"
         tabindex="0"
     >
         <span class="icon">📁</span>
@@ -208,7 +211,7 @@ import { QuesoCollapsible } from "@allomambo/queso";
         <span class="badge">3 items</span>
         <div class="queso-collapsible__header__icon">↑</div>
     </div>
-    <div class="queso-collapsible__content" id="queso-collapsible__abc123">
+    <div class="queso-collapsible__content" id="queso-collapsible__v-0">
         <div class="queso-collapsible__content__inner">
             <ul>
                 <li>Item 1</li>
@@ -274,7 +277,7 @@ Reactive boolean indicating the current open state.
 ## Behavior
 
 -   **Smooth Animation:** Content expands/collapses with CSS transitions
--   **Keyboard Navigation:** Supports Space key to toggle
+-   **Keyboard Navigation:** Supports Enter and Space keys to toggle
 -   **Accessibility:** Automatic ARIA attributes (`aria-expanded`, `aria-controls`)
 -   **Height Calculation:** Automatically calculates content height for smooth animations
 -   **CSS Customization:** Uses CSS custom properties for timing and easing
@@ -285,8 +288,9 @@ The component automatically handles:
 
 -   `aria-expanded` attribute for screen readers
 -   `aria-controls` attribute linking to the content
--   `tabindex="0"` for keyboard navigation
--   Space key support for toggling
+-   `role="button"` and `tabindex="0"` on the header for keyboard navigation
+-   Enter and Space key support for toggling (keys typed in interactive elements placed inside the header are ignored)
+-   Ids generated with `useId()`, identical on the server and in the browser
 -   Proper semantic structure
 
 ## CSS

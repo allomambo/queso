@@ -12,11 +12,14 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
     modelValue: QuesoSelectModel;
     placeholder?: string | undefined;
     options: import('./types').QuesoSelectOptions<TOptionData>;
+    ariaLabel?: string | undefined;
+    ariaLabelledby?: string | undefined;
 } & import('vue').VNodeProps & import('vue').AllowedComponentProps & import('vue').ComponentCustomProps, __VLS_ctx?: {
     attrs: any;
     slots: {
         beforeLabel?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -30,6 +33,7 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
         }): any;
         label?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -43,6 +47,7 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
         }): any;
         required?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -56,6 +61,7 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
         }): any;
         afterLabel?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -69,6 +75,7 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
         }): any;
         beforeInput?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -82,6 +89,7 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
         }): any;
         readOnly?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -96,6 +104,7 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
         placeholder?(_: {
             isDropdownOpen: boolean;
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -111,6 +120,7 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
             isDropdownOpen: boolean;
             activeOptions: import('../QuesoDropdown').QuesoDropdownOptions<TOptionData>;
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -125,6 +135,7 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
         icon?(_: {
             isDropdownOpen: boolean;
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -138,6 +149,7 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
         }): any;
         item?(_: {
             isSelected: boolean;
+            isFocused: boolean;
             openDropdown: () => void;
             closeDropdown: () => void;
             value: string;
@@ -145,6 +157,7 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
             data?: TOptionData | undefined;
             index: number;
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -158,6 +171,7 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
         }): any;
         afterInput?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -171,6 +185,7 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
         }): any;
         error?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -197,12 +212,15 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
         modelValue: QuesoSelectModel;
         placeholder?: string | undefined;
         options: import('./types').QuesoSelectOptions<TOptionData>;
+        ariaLabel?: string | undefined;
+        ariaLabelledby?: string | undefined;
     } & import('vue').VNodeProps & import('vue').AllowedComponentProps & import('vue').ComponentCustomProps;
     expose(exposed: import('vue').ShallowUnwrapRef<{}>): void;
     attrs: any;
     slots: {
         beforeLabel?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -216,6 +234,7 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
         }): any;
         label?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -229,6 +248,7 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
         }): any;
         required?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -242,6 +262,7 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
         }): any;
         afterLabel?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -255,6 +276,7 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
         }): any;
         beforeInput?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -268,6 +290,7 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
         }): any;
         readOnly?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -282,6 +305,7 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
         placeholder?(_: {
             isDropdownOpen: boolean;
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -297,6 +321,7 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
             isDropdownOpen: boolean;
             activeOptions: import('../QuesoDropdown').QuesoDropdownOptions<TOptionData>;
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -311,6 +336,7 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
         icon?(_: {
             isDropdownOpen: boolean;
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -324,6 +350,7 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
         }): any;
         item?(_: {
             isSelected: boolean;
+            isFocused: boolean;
             openDropdown: () => void;
             closeDropdown: () => void;
             value: string;
@@ -331,6 +358,7 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
             data?: TOptionData | undefined;
             index: number;
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -344,6 +372,7 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
         }): any;
         afterInput?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -357,6 +386,7 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
         }): any;
         error?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -386,12 +416,15 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
             modelValue: QuesoSelectModel;
             placeholder?: string | undefined;
             options: import('./types').QuesoSelectOptions<TOptionData>;
+            ariaLabel?: string | undefined;
+            ariaLabelledby?: string | undefined;
         } & import('vue').VNodeProps & import('vue').AllowedComponentProps & import('vue').ComponentCustomProps;
         expose(exposed: import('vue').ShallowUnwrapRef<{}>): void;
         attrs: any;
         slots: {
             beforeLabel?(_: {
                 fieldID: string;
+                fieldLabelID: string | undefined;
                 fieldName: string;
                 fieldLabel: string | undefined;
                 isRequired: boolean;
@@ -405,6 +438,7 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
             }): any;
             label?(_: {
                 fieldID: string;
+                fieldLabelID: string | undefined;
                 fieldName: string;
                 fieldLabel: string | undefined;
                 isRequired: boolean;
@@ -418,6 +452,7 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
             }): any;
             required?(_: {
                 fieldID: string;
+                fieldLabelID: string | undefined;
                 fieldName: string;
                 fieldLabel: string | undefined;
                 isRequired: boolean;
@@ -431,6 +466,7 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
             }): any;
             afterLabel?(_: {
                 fieldID: string;
+                fieldLabelID: string | undefined;
                 fieldName: string;
                 fieldLabel: string | undefined;
                 isRequired: boolean;
@@ -444,6 +480,7 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
             }): any;
             beforeInput?(_: {
                 fieldID: string;
+                fieldLabelID: string | undefined;
                 fieldName: string;
                 fieldLabel: string | undefined;
                 isRequired: boolean;
@@ -457,6 +494,7 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
             }): any;
             readOnly?(_: {
                 fieldID: string;
+                fieldLabelID: string | undefined;
                 fieldName: string;
                 fieldLabel: string | undefined;
                 isRequired: boolean;
@@ -471,6 +509,7 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
             placeholder?(_: {
                 isDropdownOpen: boolean;
                 fieldID: string;
+                fieldLabelID: string | undefined;
                 fieldName: string;
                 fieldLabel: string | undefined;
                 isRequired: boolean;
@@ -486,6 +525,7 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
                 isDropdownOpen: boolean;
                 activeOptions: import('../QuesoDropdown').QuesoDropdownOptions<TOptionData>;
                 fieldID: string;
+                fieldLabelID: string | undefined;
                 fieldName: string;
                 fieldLabel: string | undefined;
                 isRequired: boolean;
@@ -500,6 +540,7 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
             icon?(_: {
                 isDropdownOpen: boolean;
                 fieldID: string;
+                fieldLabelID: string | undefined;
                 fieldName: string;
                 fieldLabel: string | undefined;
                 isRequired: boolean;
@@ -513,6 +554,7 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
             }): any;
             item?(_: {
                 isSelected: boolean;
+                isFocused: boolean;
                 openDropdown: () => void;
                 closeDropdown: () => void;
                 value: string;
@@ -520,6 +562,7 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
                 data?: TOptionData | undefined;
                 index: number;
                 fieldID: string;
+                fieldLabelID: string | undefined;
                 fieldName: string;
                 fieldLabel: string | undefined;
                 isRequired: boolean;
@@ -533,6 +576,7 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
             }): any;
             afterInput?(_: {
                 fieldID: string;
+                fieldLabelID: string | undefined;
                 fieldName: string;
                 fieldLabel: string | undefined;
                 isRequired: boolean;
@@ -546,6 +590,7 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
             }): any;
             error?(_: {
                 fieldID: string;
+                fieldLabelID: string | undefined;
                 fieldName: string;
                 fieldLabel: string | undefined;
                 isRequired: boolean;

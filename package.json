@@ -1,6 +1,6 @@
 {
     "name": "@allomambo/queso",
-    "version": "0.5.3",
+    "version": "0.6.0",
     "description": "VueJS component library to use in conjunction with Arepa",
     "repository": {
         "type": "git",
@@ -59,8 +59,10 @@
         "@vueuse/core": "^10.9.0",
         "@vueuse/integrations": "^11.0.3",
         "focus-trap": "^7",
-        "vite-plugin-lib-inject-css": "^2.1.0",
-        "vue": "^3.4.27"
+        "vite-plugin-lib-inject-css": "^2.1.0"
+    },
+    "peerDependencies": {
+        "vue": "^3.5.0"
     },
     "devDependencies": {
         "@types/node": "^20.12.11",
@@ -71,6 +73,7 @@
         "@vue/eslint-config-prettier": "^9.0.0",
         "@vue/eslint-config-typescript": "^13.0.0",
         "@vue/test-utils": "^2.4.6",
+        "axe-core": "^4.14.0",
         "eslint": "^9.2.0",
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-markdown": "^5.0.0",
@@ -89,7 +92,8 @@
         "vite-plugin-restart": "^0.4.0",
         "vitepress": "^1.6.3",
         "vitest": "^1.6.0",
+        "vue": "3.5.44",
         "vue-eslint-parser": "^9.4.2",
-        "vue-tsc": "^2.0.17"
+        "vue-tsc": "^2.2.12"
     }
 }

@@ -120,7 +120,7 @@ const props = withDefaults(defineProps<QuesoCheckboxMultipleProps<TChoiceData>>(
 });
 const extendedProps = useExtendedFieldProps(props);
 
-const model = defineModel<QuesoCheckboxMultipleModel>({ required: true, default: [] });
+const model = defineModel<QuesoCheckboxMultipleModel>({ default: () => [] });
 
 const hoveredChoice = ref<QuesoCheckboxMultipleChoices<TChoiceData>[number]["value"] | null>(null);
 

@@ -9,7 +9,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
     isDisabled?: boolean | undefined;
     isReadOnly?: boolean | undefined;
     extraAttributes?: import('../QuesoField').QuesoFieldBaseExtraAttributes | undefined;
-    modelValue: QuesoCheckboxMultipleModel;
+    modelValue?: QuesoCheckboxMultipleModel | undefined;
     choices: QuesoCheckboxMultipleChoices<TChoiceData>;
     validationMessage?: string | undefined;
 } & import('vue').VNodeProps & import('vue').AllowedComponentProps & import('vue').ComponentCustomProps, __VLS_ctx?: {
@@ -17,6 +17,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
     slots: {
         beforeLabel?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -30,6 +31,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
         }): any;
         label?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -43,6 +45,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
         }): any;
         required?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -56,6 +59,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
         }): any;
         afterLabel?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -69,6 +73,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
         }): any;
         beforeInput?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -88,6 +93,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
             isChecked?: boolean | undefined;
             data?: import('vue').UnwrapRef<TChoiceData> | undefined;
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -107,6 +113,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
             isChecked?: boolean | undefined;
             data?: import('vue').UnwrapRef<TChoiceData> | undefined;
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -126,6 +133,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
             isChecked?: boolean | undefined;
             data?: import('vue').UnwrapRef<TChoiceData> | undefined;
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -145,6 +153,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
             isChecked?: boolean | undefined;
             data?: import('vue').UnwrapRef<TChoiceData> | undefined;
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -158,6 +167,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
         }): any;
         afterInput?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -171,6 +181,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
         }): any;
         error?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -194,7 +205,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
         isDisabled?: boolean | undefined;
         isReadOnly?: boolean | undefined;
         extraAttributes?: import('../QuesoField').QuesoFieldBaseExtraAttributes | undefined;
-        modelValue: QuesoCheckboxMultipleModel;
+        modelValue?: QuesoCheckboxMultipleModel | undefined;
         choices: QuesoCheckboxMultipleChoices<TChoiceData>;
         validationMessage?: string | undefined;
     } & import('vue').VNodeProps & import('vue').AllowedComponentProps & import('vue').ComponentCustomProps;
@@ -203,6 +214,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
     slots: {
         beforeLabel?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -216,6 +228,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
         }): any;
         label?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -229,6 +242,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
         }): any;
         required?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -242,6 +256,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
         }): any;
         afterLabel?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -255,6 +270,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
         }): any;
         beforeInput?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -274,6 +290,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
             isChecked?: boolean | undefined;
             data?: import('vue').UnwrapRef<TChoiceData> | undefined;
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -293,6 +310,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
             isChecked?: boolean | undefined;
             data?: import('vue').UnwrapRef<TChoiceData> | undefined;
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -312,6 +330,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
             isChecked?: boolean | undefined;
             data?: import('vue').UnwrapRef<TChoiceData> | undefined;
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -331,6 +350,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
             isChecked?: boolean | undefined;
             data?: import('vue').UnwrapRef<TChoiceData> | undefined;
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -344,6 +364,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
         }): any;
         afterInput?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -357,6 +378,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
         }): any;
         error?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -383,7 +405,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
             isDisabled?: boolean | undefined;
             isReadOnly?: boolean | undefined;
             extraAttributes?: import('../QuesoField').QuesoFieldBaseExtraAttributes | undefined;
-            modelValue: QuesoCheckboxMultipleModel;
+            modelValue?: QuesoCheckboxMultipleModel | undefined;
             choices: QuesoCheckboxMultipleChoices<TChoiceData>;
             validationMessage?: string | undefined;
         } & import('vue').VNodeProps & import('vue').AllowedComponentProps & import('vue').ComponentCustomProps;
@@ -392,6 +414,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
         slots: {
             beforeLabel?(_: {
                 fieldID: string;
+                fieldLabelID: string | undefined;
                 fieldName: string;
                 fieldLabel: string | undefined;
                 isRequired: boolean;
@@ -405,6 +428,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
             }): any;
             label?(_: {
                 fieldID: string;
+                fieldLabelID: string | undefined;
                 fieldName: string;
                 fieldLabel: string | undefined;
                 isRequired: boolean;
@@ -418,6 +442,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
             }): any;
             required?(_: {
                 fieldID: string;
+                fieldLabelID: string | undefined;
                 fieldName: string;
                 fieldLabel: string | undefined;
                 isRequired: boolean;
@@ -431,6 +456,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
             }): any;
             afterLabel?(_: {
                 fieldID: string;
+                fieldLabelID: string | undefined;
                 fieldName: string;
                 fieldLabel: string | undefined;
                 isRequired: boolean;
@@ -444,6 +470,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
             }): any;
             beforeInput?(_: {
                 fieldID: string;
+                fieldLabelID: string | undefined;
                 fieldName: string;
                 fieldLabel: string | undefined;
                 isRequired: boolean;
@@ -463,6 +490,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
                 isChecked?: boolean | undefined;
                 data?: import('vue').UnwrapRef<TChoiceData> | undefined;
                 fieldID: string;
+                fieldLabelID: string | undefined;
                 fieldName: string;
                 fieldLabel: string | undefined;
                 isRequired: boolean;
@@ -482,6 +510,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
                 isChecked?: boolean | undefined;
                 data?: import('vue').UnwrapRef<TChoiceData> | undefined;
                 fieldID: string;
+                fieldLabelID: string | undefined;
                 fieldName: string;
                 fieldLabel: string | undefined;
                 isRequired: boolean;
@@ -501,6 +530,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
                 isChecked?: boolean | undefined;
                 data?: import('vue').UnwrapRef<TChoiceData> | undefined;
                 fieldID: string;
+                fieldLabelID: string | undefined;
                 fieldName: string;
                 fieldLabel: string | undefined;
                 isRequired: boolean;
@@ -520,6 +550,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
                 isChecked?: boolean | undefined;
                 data?: import('vue').UnwrapRef<TChoiceData> | undefined;
                 fieldID: string;
+                fieldLabelID: string | undefined;
                 fieldName: string;
                 fieldLabel: string | undefined;
                 isRequired: boolean;
@@ -533,6 +564,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
             }): any;
             afterInput?(_: {
                 fieldID: string;
+                fieldLabelID: string | undefined;
                 fieldName: string;
                 fieldLabel: string | undefined;
                 isRequired: boolean;
@@ -546,6 +578,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
             }): any;
             error?(_: {
                 fieldID: string;
+                fieldLabelID: string | undefined;
                 fieldName: string;
                 fieldLabel: string | undefined;
                 isRequired: boolean;

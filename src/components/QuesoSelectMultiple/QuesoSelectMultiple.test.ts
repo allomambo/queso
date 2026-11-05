@@ -1,5 +1,7 @@
 import { mount } from "@vue/test-utils";
 import { describe, expect, test } from "vitest";
+import { describeSelectAccessibility } from "../../../tests/select-a11y";
+import { renderAndHydrate } from "../../../tests/ssr";
 import QuesoSelectMultiple from "./QuesoSelectMultiple.vue";
 
 describe("QuesoSelectMultiple.vue", () => {
@@ -93,4 +95,24 @@ describe("QuesoSelectMultiple.vue", () => {
         const field = wrapper.findComponent({ name: "QuesoField" });
         expect(field.classes()).toContain("is-disabled");
     });
+
+    test("listbox is multiselectable", () => {
+        const wrapper = mount(QuesoSelectMultiple, { props });
+
+        expect(wrapper.find('[role="listbox"]').attributes("aria-multiselectable")).toBe("true");
+    });
+
+    test("hydrates server HTML without mismatch", async () => {
+        const { logs, unmount } = await renderAndHydrate(QuesoSelectMultiple, {
+            ...props,
+            label: "Genres",
+            modelValue: ["option2"],
+        });
+
+        expect(logs).toEqual([]);
+
+        unmount();
+    });
+
+    describeSelectAccessibility(QuesoSelectMultiple, props);
 });

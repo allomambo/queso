@@ -17,9 +17,9 @@ jobs:
             - uses: actions/setup-node@v4
               with:
                   node-version: 20
-            # Ensure npm 11.5.1 or later is installed
+            # Trusted publishing needs npm 11.5.1+. Pin to 11.x: npm@latest (12+) requires Node 22.22.2+.
             - name: Update npm
-              run: npm install -g npm@latest
+              run: npm install -g npm@11
             - run: yarn ci
             - run: yarn build:lib
 
@@ -32,7 +32,7 @@ jobs:
               with:
                   node-version: 20
                   registry-url: https://registry.npmjs.org/
-            # Ensure npm 11.5.1 or later is installed
+            # Trusted publishing needs npm 11.5.1+. Pin to 11.x: npm@latest (12+) requires Node 22.22.2+.
             - name: Update npm
-              run: npm install -g npm@latest
+              run: npm install -g npm@11
             - run: npm publish

@@ -1,13 +1,17 @@
 import { QuesoDropdownOptions } from './types';
 
 declare const _default: <TOptionData extends Record<string, any> = Record<string, any>>(__VLS_props: {
+    isError?: boolean | undefined;
+    isRequired?: boolean | undefined;
     isDisabled?: boolean | undefined;
     modelValue?: import('./types').QuesoDropdownOptionValues | undefined;
-    multiple?: boolean | undefined;
-    "onDropdown:open"?: (() => any) | undefined;
-    "onDropdown:close"?: (() => any) | undefined;
+    readonly "onDropdown:open"?: (() => any) | undefined;
+    readonly "onDropdown:close"?: (() => any) | undefined;
     options: QuesoDropdownOptions<TOptionData>;
+    multiple?: boolean | undefined;
     stayOpenOnSelection?: boolean | undefined;
+    ariaLabel?: string | undefined;
+    ariaLabelledby?: string | undefined;
 } & import('vue').VNodeProps & import('vue').AllowedComponentProps & import('vue').ComponentCustomProps, __VLS_ctx?: {
     attrs: any;
     slots: {
@@ -42,6 +46,7 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
         }): any;
         popoverItem?(_: {
             isSelected: boolean;
+            isFocused: boolean;
             openDropdown: () => void;
             closeDropdown: () => void;
             value: string;
@@ -56,25 +61,31 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
         afterDropdown?(_: {}): any;
     };
     emit: ((evt: "dropdown:open") => void) & ((evt: "dropdown:close") => void);
-} | undefined, __VLS_expose?: ((exposed: import('vue').ShallowUnwrapRef<{
-    isDropdownOpen: import('vue').Ref<boolean>;
+} | undefined, __VLS_expose?: ((exposed: {
+    isDropdownOpen: boolean;
     openDropdown: () => void;
     closeDropdown: () => void;
-}>) => void) | undefined, __VLS_setup?: Promise<{
+    focusSelector: () => void;
+}) => void) | undefined, __VLS_setup?: Promise<{
     props: {
+        isError?: boolean | undefined;
+        isRequired?: boolean | undefined;
         isDisabled?: boolean | undefined;
         modelValue?: import('./types').QuesoDropdownOptionValues | undefined;
-        multiple?: boolean | undefined;
-        "onDropdown:open"?: (() => any) | undefined;
-        "onDropdown:close"?: (() => any) | undefined;
+        readonly "onDropdown:open"?: (() => any) | undefined;
+        readonly "onDropdown:close"?: (() => any) | undefined;
         options: QuesoDropdownOptions<TOptionData>;
+        multiple?: boolean | undefined;
         stayOpenOnSelection?: boolean | undefined;
+        ariaLabel?: string | undefined;
+        ariaLabelledby?: string | undefined;
     } & import('vue').VNodeProps & import('vue').AllowedComponentProps & import('vue').ComponentCustomProps;
-    expose(exposed: import('vue').ShallowUnwrapRef<{
-        isDropdownOpen: import('vue').Ref<boolean>;
+    expose(exposed: {
+        isDropdownOpen: boolean;
         openDropdown: () => void;
         closeDropdown: () => void;
-    }>): void;
+        focusSelector: () => void;
+    }): void;
     attrs: any;
     slots: {
         selector?(_: {
@@ -108,6 +119,7 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
         }): any;
         popoverItem?(_: {
             isSelected: boolean;
+            isFocused: boolean;
             openDropdown: () => void;
             closeDropdown: () => void;
             value: string;
@@ -127,19 +139,24 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
 }> & {
     __ctx?: {
         props: {
+            isError?: boolean | undefined;
+            isRequired?: boolean | undefined;
             isDisabled?: boolean | undefined;
             modelValue?: import('./types').QuesoDropdownOptionValues | undefined;
-            multiple?: boolean | undefined;
-            "onDropdown:open"?: (() => any) | undefined;
-            "onDropdown:close"?: (() => any) | undefined;
+            readonly "onDropdown:open"?: (() => any) | undefined;
+            readonly "onDropdown:close"?: (() => any) | undefined;
             options: QuesoDropdownOptions<TOptionData>;
+            multiple?: boolean | undefined;
             stayOpenOnSelection?: boolean | undefined;
+            ariaLabel?: string | undefined;
+            ariaLabelledby?: string | undefined;
         } & import('vue').VNodeProps & import('vue').AllowedComponentProps & import('vue').ComponentCustomProps;
-        expose(exposed: import('vue').ShallowUnwrapRef<{
-            isDropdownOpen: import('vue').Ref<boolean>;
+        expose(exposed: {
+            isDropdownOpen: boolean;
             openDropdown: () => void;
             closeDropdown: () => void;
-        }>): void;
+            focusSelector: () => void;
+        }): void;
         attrs: any;
         slots: {
             selector?(_: {
@@ -173,6 +190,7 @@ declare const _default: <TOptionData extends Record<string, any> = Record<string
             }): any;
             popoverItem?(_: {
                 isSelected: boolean;
+                isFocused: boolean;
                 openDropdown: () => void;
                 closeDropdown: () => void;
                 value: string;

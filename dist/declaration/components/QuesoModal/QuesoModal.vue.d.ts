@@ -1,25 +1,25 @@
 import { QuesoModalProps, QuesoModalOpen, QuesoModalClose } from './types';
 
-declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<QuesoModalProps>, {
+declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<import('vue').ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<QuesoModalProps>, {
     hasOverlay: boolean;
     isScrollLocked: boolean;
-}>, {
+}>>, {
     isModalOpen: import('vue').ComputedRef<boolean>;
     openModal: QuesoModalOpen;
     closeModal: QuesoModalClose;
-}, unknown, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
+}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
     "modal:open": (...args: any[]) => void;
     "modal:close": (...args: any[]) => void;
 }, string, import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<QuesoModalProps>, {
     hasOverlay: boolean;
     isScrollLocked: boolean;
-}>>> & {
+}>>> & Readonly<{
     "onModal:open"?: ((...args: any[]) => any) | undefined;
     "onModal:close"?: ((...args: any[]) => any) | undefined;
-}, {
+}>, {
     hasOverlay: boolean;
     isScrollLocked: boolean;
-}, {}>, {
+}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>, {
     trigger?(_: {
         isModalOpen: boolean;
         openModal: QuesoModalOpen;

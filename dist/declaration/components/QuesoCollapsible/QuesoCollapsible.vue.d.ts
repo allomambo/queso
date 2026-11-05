@@ -1,19 +1,19 @@
 import { QuesoCollapsibleProps } from './types';
 
-declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<__VLS_TypePropsToRuntimeProps<QuesoCollapsibleProps>, {
-    isCollapsibleOpen: import('vue').Ref<boolean>;
+declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<import('vue').ExtractPropTypes<__VLS_TypePropsToRuntimeProps<QuesoCollapsibleProps>>, {
+    isCollapsibleOpen: import('vue').Ref<boolean, boolean>;
     open: () => void;
     close: () => void;
     toggle: () => void;
-}, unknown, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
+}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
     "collapsible:open": () => void;
     "collapsible:close": () => void;
     "collapsible:toggle": (args_0: boolean) => void;
-}, string, import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<__VLS_TypePropsToRuntimeProps<QuesoCollapsibleProps>>> & {
+}, string, import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<__VLS_TypePropsToRuntimeProps<QuesoCollapsibleProps>>> & Readonly<{
     "onCollapsible:open"?: (() => any) | undefined;
     "onCollapsible:close"?: (() => any) | undefined;
     "onCollapsible:toggle"?: ((args_0: boolean) => any) | undefined;
-}, {}, {}>, {
+}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>, {
     beforeHeader?(_: {}): any;
     header?(_: {
         isCollapsibleOpen: boolean;

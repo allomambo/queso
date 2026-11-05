@@ -1,4 +1,4 @@
-declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<{
+declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<import('vue').ExtractPropTypes<{
     modelValue: {
         required: true;
         type: import('vue').PropType<string>;
@@ -35,7 +35,7 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<{
     placeholder: {
         type: import('vue').PropType<string>;
     };
-}, {}, unknown, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<{
+}>, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<{
     modelValue: {
         required: true;
         type: import('vue').PropType<string>;
@@ -72,11 +72,12 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<{
     placeholder: {
         type: import('vue').PropType<string>;
     };
-}>>, {
+}>> & Readonly<{}>, {
     type: import('./types').QuesoTextFieldType;
-}, {}>, {
+}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>, {
     beforeLabel?(_: {
         fieldID: string;
+        fieldLabelID: string | undefined;
         fieldName: string;
         fieldLabel: string | undefined;
         isRequired: boolean;
@@ -90,6 +91,7 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<{
     }): any;
     label?(_: {
         fieldID: string;
+        fieldLabelID: string | undefined;
         fieldName: string;
         fieldLabel: string | undefined;
         isRequired: boolean;
@@ -103,6 +105,7 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<{
     }): any;
     required?(_: {
         fieldID: string;
+        fieldLabelID: string | undefined;
         fieldName: string;
         fieldLabel: string | undefined;
         isRequired: boolean;
@@ -116,6 +119,7 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<{
     }): any;
     afterLabel?(_: {
         fieldID: string;
+        fieldLabelID: string | undefined;
         fieldName: string;
         fieldLabel: string | undefined;
         isRequired: boolean;
@@ -129,6 +133,7 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<{
     }): any;
     beforeInput?(_: {
         fieldID: string;
+        fieldLabelID: string | undefined;
         fieldName: string;
         fieldLabel: string | undefined;
         isRequired: boolean;
@@ -142,6 +147,7 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<{
     }): any;
     beforeTextFieldInput?(_: {
         fieldID: string;
+        fieldLabelID: string | undefined;
         fieldName: string;
         fieldLabel: string | undefined;
         isRequired: boolean;
@@ -155,6 +161,7 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<{
     }): any;
     readOnly?(_: {
         fieldID: string;
+        fieldLabelID: string | undefined;
         fieldName: string;
         fieldLabel: string | undefined;
         isRequired: boolean;
@@ -168,6 +175,7 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<{
     }): any;
     afterTextFieldInput?(_: {
         fieldID: string;
+        fieldLabelID: string | undefined;
         fieldName: string;
         fieldLabel: string | undefined;
         isRequired: boolean;
@@ -181,6 +189,7 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<{
     }): any;
     afterInput?(_: {
         fieldID: string;
+        fieldLabelID: string | undefined;
         fieldName: string;
         fieldLabel: string | undefined;
         isRequired: boolean;
@@ -194,6 +203,7 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<{
     }): any;
     error?(_: {
         fieldID: string;
+        fieldLabelID: string | undefined;
         fieldName: string;
         fieldLabel: string | undefined;
         isRequired: boolean;

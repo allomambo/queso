@@ -4,6 +4,7 @@
 
         <div
             class="queso-collapsible__header"
+            role="button"
             :aria-expanded="isCollapsibleOpen"
             :aria-controls="uniqueId"
             tabindex="0"
@@ -36,7 +37,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, onBeforeMount, watch } from "vue";
+import { computed, ref, onMounted, useId, watch } from "vue";
 import { useElementBounding } from "@vueuse/core";
 
 import type { QuesoCollapsibleProps } from "./types";
@@ -52,13 +53,15 @@ const emit = defineEmits<{
 
 // Computeds
 const collapsibleContent = ref<HTMLElement>();
-const isCollapsibleOpen = ref<boolean>(false);
+const isCollapsibleOpen = ref<boolean>(props.expandOnMount);
 const isCollapsibleExpanded = ref<boolean>(props.expandOnMount);
-const uniqueId = "queso-collapsible__" + Math.random().toString(36).substring(2, 9);
+const uniqueId = "queso-collapsible__" + useId();
 
-onBeforeMount(() => {
-    if (isCollapsibleExpanded.value) {
-        isCollapsibleOpen.value = true;
+// Open state is set in setup so server and client render the same markup; events stay client-side
+onMounted(() => {
+    if (isCollapsibleOpen.value) {
+        emit("collapsible:open");
+        emit("collapsible:toggle", true);
     }
 });
 
@@ -100,7 +103,10 @@ const toggle = () => {
 };
 
 const handleKeydown = (event: KeyboardEvent) => {
-    if (event.key === " " || event.key === "Space") {
+    // Ignore keys typed in elements placed inside the header slot
+    if (event.target !== event.currentTarget) return;
+
+    if (event.key === "Enter" || event.key === " " || event.key === "Space") {
         event.preventDefault();
         toggle();
     }
