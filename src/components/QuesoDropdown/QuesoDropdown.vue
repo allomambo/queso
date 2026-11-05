@@ -1,12 +1,27 @@
 <template>
-    <div v-if="options.length > 0" ref="dropdown" class="queso-dropdown" :class="dropdownClasses">
+    <div
+        v-if="options.length > 0"
+        ref="dropdown"
+        class="queso-dropdown"
+        :class="dropdownClasses"
+        @focusout="handleFocusout($event)"
+    >
         <div
+            ref="selector"
             class="queso-dropdown__selector"
+            role="combobox"
+            aria-haspopup="listbox"
             :aria-expanded="isDropdownOpen"
-            :aria-controls="uniqueId"
-            :tabindex="props.isDisabled ? -1 : 0"
+            :aria-controls="listboxId"
+            :aria-activedescendant="activeDescendant"
+            :aria-label="ariaLabel"
+            :aria-labelledby="ariaLabelledby"
+            :aria-required="isRequired || undefined"
+            :aria-invalid="isError || undefined"
+            :aria-disabled="isDisabled || undefined"
+            :tabindex="isDisabled ? -1 : 0"
             @click="handleClickToggleDropdown()"
-            @keydown="handleKeydownToggleDropdown($event)"
+            @keydown="handleKeydown($event)"
         >
             <slot name="selector" v-bind="{ isDropdownOpen, options, activeOptions }">
                 <slot name="selectorBeforeText" v-bind="{ isDropdownOpen, options, activeOptions }"></slot>
@@ -27,24 +42,36 @@
             </slot>
         </div>
 
-        <div class="queso-dropdown__popover" :id="uniqueId">
+        <div class="queso-dropdown__popover" :inert="!isDropdownOpen">
             <div v-if="$slots.popoverHeader" class="queso-dropdown__popover__header">
                 <slot name="popoverHeader" v-bind="{ options, activeOptions }"></slot>
             </div>
             <div class="queso-dropdown__popover__scroll" :class="dropdownPopoverClasses">
-                <ul ref="dropdownPopover" class="queso-dropdown__popover__options-list">
+                <ul
+                    ref="dropdownPopover"
+                    class="queso-dropdown__popover__options-list"
+                    role="listbox"
+                    :id="listboxId"
+                    :aria-label="ariaLabel"
+                    :aria-labelledby="ariaLabelledby"
+                    :aria-multiselectable="multiple || undefined"
+                    tabindex="-1"
+                    @focus="focusSelector()"
+                    @mousedown.prevent
+                >
                     <li
                         v-for="(option, index) in options"
                         :key="option.value"
-                        ref="optionsRefs"
                         class="queso-dropdown__popover__options-list__item"
                         :class="{
                             'is-option-active': model.includes(option.value),
                             'is-option-selected': model.includes(option.value),
+                            'is-option-focused': isOptionFocused(index),
                         }"
-                        :tabindex="isDropdownOpen ? '0' : '-1'"
-                        @click="updateOption(option.value)"
-                        @keydown="handleKeydownUpdateOption(option.value, $event)"
+                        role="option"
+                        :id="getOptionId(index)"
+                        :aria-selected="model.includes(option.value)"
+                        @click="handleClickOption(index)"
                     >
                         <slot
                             name="popoverItem"
@@ -52,6 +79,7 @@
                                 index,
                                 ...option,
                                 isSelected: model.includes(option.value),
+                                isFocused: isOptionFocused(index),
                                 openDropdown,
                                 closeDropdown,
                             }"
@@ -71,12 +99,10 @@
 </template>
 
 <script setup lang="ts" generic="TOptionData extends Record<string, any> = Record<string, any>">
-import { computed, ref, toRefs, useId, watch } from "vue";
+import { computed, nextTick, ref, toRefs, useId, watch } from "vue";
 import { onClickOutside, useScroll } from "@vueuse/core";
-import { onKeyStroke } from "@vueuse/core";
-import { useFocusTrap } from "@vueuse/integrations/useFocusTrap";
 
-import { QuesoDropdownModel, QuesoDropdownProps, QuesoDropdownOptions, QuesoDropdownOptionValue } from "./types";
+import type { QuesoDropdownModel, QuesoDropdownProps, QuesoDropdownOptions } from "./types";
 
 // Props / Emits
 const props = defineProps<QuesoDropdownProps<TOptionData>>();
@@ -91,13 +117,14 @@ const model = defineModel<QuesoDropdownModel>({ default: () => [] });
 
 // Refs
 const dropdown = ref<HTMLElement | null>(null);
-const optionsRefs = ref<HTMLElement[]>([]);
+const selector = ref<HTMLElement | null>(null);
 const dropdownPopover = ref<HTMLElement | null>(null);
 const isDropdownOpen = ref<boolean>(false);
+const focusedIndex = ref<number>(-1);
 
 // Variables
 const { options } = toRefs(props);
-const uniqueId = "queso-dropdown__" + useId();
+const listboxId = "queso-dropdown__" + useId();
 const activeOptions = computed<QuesoDropdownOptions<TOptionData>>(() => {
     return options.value.filter((option) => model.value.includes(option.value));
 });
@@ -108,84 +135,107 @@ const dropdownClasses = computed(() => ({
     "is-disabled": props.isDisabled,
 }));
 
-// Focus Trap
-const { activate: activeFocus, deactivate: deactivateFocus } = useFocusTrap(dropdown);
-
 /**
- * ON OPTION CHANGE
+ * OPTIONS
  */
 
-const updateOption = (option: QuesoDropdownOptionValue) => {
+const getOptionId = (index: number): string => `${listboxId}-option-${index}`;
+
+const getSelectedIndex = (): number => options.value.findIndex((option) => model.value.includes(option.value));
+
+const isOptionFocused = (index: number): boolean => isDropdownOpen.value && focusedIndex.value === index;
+
+const activeDescendant = computed<string | undefined>(() => {
+    return isDropdownOpen.value && focusedIndex.value >= 0 ? getOptionId(focusedIndex.value) : undefined;
+});
+
+// Scroll the options list only, so the page itself never jumps
+const scrollOptionIntoView = (index: number) => {
+    const list = dropdownPopover.value;
+    const option = list?.querySelector<HTMLElement>(`[id="${getOptionId(index)}"]`);
+    if (!list || !option) return;
+
+    const listRect = list.getBoundingClientRect();
+    const optionRect = option.getBoundingClientRect();
+
+    if (optionRect.top < listRect.top) {
+        list.scrollTop -= listRect.top - optionRect.top;
+    } else if (optionRect.bottom > listRect.bottom) {
+        list.scrollTop += optionRect.bottom - listRect.bottom;
+    }
+};
+
+const setFocusedIndex = (index: number) => {
+    focusedIndex.value = Math.min(Math.max(index, 0), options.value.length - 1);
+    nextTick(() => scrollOptionIntoView(focusedIndex.value));
+};
+
+const selectOption = (index: number) => {
+    const option = options.value[index];
+    if (!option) return;
+
     if (props.multiple) {
         // If multiple: if option present in array remove it, otherwise add it
-        if (model.value.includes(option)) {
-            model.value = model.value.filter((value) => value !== option);
+        if (model.value.includes(option.value)) {
+            model.value = model.value.filter((value) => value !== option.value);
         } else {
-            model.value = [...model.value, option];
+            model.value = [...model.value, option.value];
         }
     } else {
         // If not multiple: just update completely the array
-        model.value = [option];
-    }
+        model.value = [option.value];
 
-    if (!props.multiple) {
         if (!props.stayOpenOnSelection) closeDropdown();
     }
 };
 
-// Navigate through options with keyboard
-const handleKeydownUpdateOption = (option: QuesoDropdownOptionValue, event: KeyboardEvent) => {
-    event.preventDefault();
-
-    const currentIndex = optionsRefs.value.findIndex((el) => el === event.target);
-    const nextIndex = (currentIndex + 1) % optionsRefs.value.length;
-    const prevIndex = (currentIndex - 1 + optionsRefs.value.length) % optionsRefs.value.length;
-    const optionNext = optionsRefs.value[nextIndex];
-    const optionPrev = optionsRefs.value[prevIndex];
-
-    if (event.key === "ArrowDown" || event.key === "ArrowRight") {
-        optionNext.focus();
-    } else if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
-        optionPrev.focus();
-    } else if (event.key === "Enter") {
-        updateOption(option);
-    } else if (event.key === " " || event.key === "Space") {
-        updateOption(option);
-    }
+const handleClickOption = (index: number) => {
+    focusedIndex.value = index;
+    selectOption(index);
 };
 
 /**
  * OPEN/CLOSE DROPDOWN
  */
 
-const scrollToTop = () => {
-    setTimeout(() => {
-        y.value = 0;
-    }, 210);
+let scrollResetTimeout: ReturnType<typeof setTimeout> | undefined;
+
+const focusSelector = () => {
+    selector.value?.focus();
 };
 
-const openDropdown = () => {
+const showDropdown = (index: number) => {
+    if (props.isDisabled) return;
+
+    setFocusedIndex(index);
+
+    if (isDropdownOpen.value) return;
+
+    clearTimeout(scrollResetTimeout);
     isDropdownOpen.value = true;
-    const option = optionsRefs.value[0];
-
-    activeFocus();
-    if (option) {
-        option.focus();
-    }
-
     emit("dropdown:open");
 };
 
-const closeDropdown = () => {
-    isDropdownOpen.value = false;
+const openDropdown = () => {
+    showDropdown(Math.max(getSelectedIndex(), 0));
+    focusSelector();
+};
 
-    deactivateFocus();
-    scrollToTop();
+const closeDropdown = () => {
+    if (!isDropdownOpen.value) return;
+
+    isDropdownOpen.value = false;
+    focusedIndex.value = -1;
+
+    // Reset the list scroll once the closing transition is over
+    scrollResetTimeout = setTimeout(() => {
+        y.value = 0;
+    }, 210);
 
     emit("dropdown:close");
 };
 
-const toggleDropdown = () => {
+const handleClickToggleDropdown = () => {
     if (isDropdownOpen.value) {
         closeDropdown();
     } else {
@@ -193,29 +243,133 @@ const toggleDropdown = () => {
     }
 };
 
-const handleClickToggleDropdown = () => {
-    if (!props.isDisabled) {
-        toggleDropdown();
+/**
+ * KEYBOARD
+ */
+
+const TYPEAHEAD_DELAY = 500;
+let typeaheadBuffer = "";
+let typeaheadTimeout: ReturnType<typeof setTimeout> | undefined;
+
+const matchesTypeahead = (label: string, search: string): boolean => {
+    const start = label.trim().slice(0, search.length);
+    return start.localeCompare(search, undefined, { sensitivity: "base" }) === 0;
+};
+
+// Focus the next option whose label starts with the typed characters
+const typeahead = (character: string) => {
+    clearTimeout(typeaheadTimeout);
+    typeaheadTimeout = setTimeout(() => {
+        typeaheadBuffer = "";
+    }, TYPEAHEAD_DELAY);
+
+    typeaheadBuffer += character.toLowerCase();
+
+    // Repeating the same character cycles through the options starting with it
+    const isRepeatedCharacter = [...typeaheadBuffer].every((char) => char === typeaheadBuffer[0]);
+    const search = isRepeatedCharacter ? typeaheadBuffer[0] : typeaheadBuffer;
+
+    const currentIndex = isDropdownOpen.value ? focusedIndex.value : getSelectedIndex();
+    const startIndex = Math.max(currentIndex + (search.length === 1 ? 1 : 0), 0);
+    const count = options.value.length;
+
+    for (let offset = 0; offset < count; offset++) {
+        const index = (startIndex + offset) % count;
+
+        if (matchesTypeahead(options.value[index].label, search)) {
+            showDropdown(index);
+            return;
+        }
     }
 };
 
-// Open dropdown on space key
-const handleKeydownToggleDropdown = (event: KeyboardEvent) => {
-    if (props.isDisabled) {
+const isPrintableCharacter = (event: KeyboardEvent): boolean => {
+    return event.key.length === 1 && !event.ctrlKey && !event.metaKey && !event.altKey;
+};
+
+const handleKeydown = (event: KeyboardEvent) => {
+    if (props.isDisabled) return;
+
+    const lastIndex = options.value.length - 1;
+
+    // A space typed while searching is part of the search
+    if (isPrintableCharacter(event) && (event.key !== " " || typeaheadBuffer !== "")) {
+        event.preventDefault();
+        typeahead(event.key);
         return;
     }
-    if (event.key === " " || event.key === "Space") {
-        event.preventDefault();
-        toggleDropdown();
+
+    if (!isDropdownOpen.value) {
+        switch (event.key) {
+            case "ArrowDown":
+            case "ArrowUp":
+            case "Enter":
+            case " ":
+                event.preventDefault();
+                showDropdown(Math.max(getSelectedIndex(), 0));
+                break;
+            case "Home":
+                event.preventDefault();
+                showDropdown(0);
+                break;
+            case "End":
+                event.preventDefault();
+                showDropdown(lastIndex);
+                break;
+        }
+        return;
+    }
+
+    switch (event.key) {
+        case "ArrowDown":
+            event.preventDefault();
+            if (!event.altKey) setFocusedIndex(focusedIndex.value + 1);
+            break;
+        case "ArrowUp":
+            event.preventDefault();
+            if (event.altKey) {
+                closeDropdown();
+            } else {
+                setFocusedIndex(focusedIndex.value - 1);
+            }
+            break;
+        case "Home":
+            event.preventDefault();
+            setFocusedIndex(0);
+            break;
+        case "End":
+            event.preventDefault();
+            setFocusedIndex(lastIndex);
+            break;
+        case "Enter":
+        case " ":
+            event.preventDefault();
+            selectOption(focusedIndex.value);
+            break;
+        case "Escape":
+            // Keep Escape from also closing a parent (e.g. a modal)
+            event.preventDefault();
+            event.stopPropagation();
+            closeDropdown();
+            break;
+        case "Tab":
+            closeDropdown();
+            break;
     }
 };
 
-// Close dropdown on space key
-onKeyStroke("Escape", () => {
-    if (isDropdownOpen.value) {
+/**
+ * CLOSE TRIGGERS
+ */
+
+// Close dropdown when focus leaves it
+const handleFocusout = (event: FocusEvent) => {
+    const nextFocused = event.relatedTarget as Node | null;
+
+    if (nextFocused && !dropdown.value?.contains(nextFocused)) {
         closeDropdown();
     }
-});
+};
 
 // Close dropdown on click outside
 onClickOutside(dropdown, () => closeDropdown());
@@ -226,6 +380,16 @@ watch(
     (isDisabled) => {
         if (isDisabled && isDropdownOpen.value) {
             closeDropdown();
+        }
+    },
+);
+
+// Keep the focused option in range when options change
+watch(
+    () => options.value.length,
+    (length) => {
+        if (focusedIndex.value >= length) {
+            focusedIndex.value = length - 1;
         }
     },
 );
@@ -255,7 +419,7 @@ const dropdownPopoverClasses = computed(() => ({
 /**
  * EXPOSE
  */
-defineExpose({ isDropdownOpen, openDropdown, closeDropdown });
+defineExpose({ isDropdownOpen, openDropdown, closeDropdown, focusSelector });
 </script>
 
 <style lang="scss">
