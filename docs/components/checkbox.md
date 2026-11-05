@@ -167,7 +167,7 @@ const subscribeNewsletter = ref<QuesoCheckboxModel>(false);
 
 ```html [Rendered HTML]
 <div class="queso-field">
-    <div class="queso-field__label">
+    <div id="newsletter-label" class="queso-field__label">
         <span class="queso-field__label__text">Email Preferences</span>
     </div>
     <div class="queso-field__input">
@@ -224,7 +224,7 @@ const acceptPrivacy = ref(false);
 
 ```html [Rendered HTML]
 <div class="queso-field">
-    <div class="queso-field__label">
+    <div id="privacy-label" class="queso-field__label">
         <span class="queso-field__label__text">Privacy Settings</span>
     </div>
     <div class="queso-field__input">
@@ -282,7 +282,7 @@ const allowMarketing = ref(false);
 
 ```html [Rendered HTML]
 <div class="queso-field">
-    <div class="queso-field__label">
+    <div id="marketing-label" class="queso-field__label">
         <span class="queso-field__label__text">Marketing Preferences</span>
     </div>
     <div class="queso-field__input">
@@ -336,7 +336,7 @@ const isVerified = ref(true);
 
 ```html [Rendered HTML]
 <div class="queso-field is-read-only">
-    <div class="queso-field__label">
+    <div id="verified-label" class="queso-field__label">
         <span class="queso-field__label__text">Account Status</span>
     </div>
     <div class="queso-field__input">
@@ -408,6 +408,7 @@ const isVerified = ref(true);
 ```typescript
 export interface ExposedData {
     fieldID: string;
+    fieldLabelID: string | undefined; // `${fieldID}-label` when a label is set
     fieldName: string;
     isRequired: boolean;
     isDisabled: boolean;

@@ -172,7 +172,7 @@ const username = ref<QuesoTextFieldModel>("");
 
 ```html [Rendered HTML]
 <div class="queso-field">
-    <label for="username" class="queso-field__label">
+    <label id="username-label" for="username" class="queso-field__label">
         <span class="queso-field__label__text">Username</span>
     </label>
     <div class="queso-field__input">
@@ -222,9 +222,9 @@ const email = ref("");
 
 ```html [Rendered HTML]
 <div class="queso-field is-error">
-    <label for="email" class="queso-field__label">
+    <label id="email-label" for="email" class="queso-field__label">
         <span class="queso-field__label__text">Email Address</span>
-        <span class="queso-field__label__required">*</span>
+        <span class="queso-field__label__required" aria-hidden="true">*</span>
     </label>
     <div class="queso-field__input">
         <div class="queso-text-field">
@@ -287,7 +287,7 @@ const clearSearch = () => {
 
 ```html [Rendered HTML]
 <div class="queso-field">
-    <label for="search" class="queso-field__label">
+    <label id="search-label" for="search" class="queso-field__label">
         <span class="queso-field__label__text">Search</span>
     </label>
     <div class="queso-field__input">
@@ -332,7 +332,7 @@ const userId = ref("USER-12345");
 
 ```html [Rendered HTML]
 <div class="queso-field is-read-only">
-    <label for="user-id" class="queso-field__label">
+    <label id="user-id-label" for="user-id" class="queso-field__label">
         <span class="queso-field__label__text">User ID</span>
     </label>
     <div class="queso-field__input">
@@ -378,7 +378,7 @@ const searchQuery = ref("");
 
 ```html [Rendered HTML]
 <div class="queso-field">
-    <label for="search" class="queso-field__label">
+    <label id="search-label" for="search" class="queso-field__label">
         <span class="queso-field__label__text">Search</span>
     </label>
     <div class="queso-field__input">
@@ -453,6 +453,7 @@ const searchQuery = ref("");
 ```typescript
 export interface ExposedData {
     fieldID: string;
+    fieldLabelID: string | undefined; // `${fieldID}-label` when a label is set
     fieldName: string;
     isRequired: boolean;
     isDisabled: boolean;

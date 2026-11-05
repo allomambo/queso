@@ -183,7 +183,7 @@ const skillChoices: QuesoCheckboxMultipleChoices = [
 
 ```html [Rendered HTML]
 <div class="queso-field">
-    <div class="queso-field__label">
+    <div id="skills-label" class="queso-field__label">
         <span class="queso-field__label__text">Skills</span>
     </div>
     <div class="queso-field__input">
@@ -285,9 +285,9 @@ const categoryChoices = [
 
 ```html [Rendered HTML]
 <div class="queso-field">
-    <div class="queso-field__label">
+    <div id="categories-label" class="queso-field__label">
         <span class="queso-field__label__text">Product Categories</span>
-        <span class="queso-field__label__required">*</span>
+        <span class="queso-field__label__required" aria-hidden="true">*</span>
     </div>
     <div class="queso-field__input">
         <label class="queso-checkbox" for="categories-electronics">
@@ -397,7 +397,7 @@ const permissionChoices = [
 
 ```html [Rendered HTML]
 <div class="queso-field">
-    <div class="queso-field__label">
+    <div id="permissions-label" class="queso-field__label">
         <span class="queso-field__label__text">User Permissions</span>
     </div>
     <div class="queso-field__input">
@@ -509,7 +509,7 @@ const roleChoices = [
 
 ```html [Rendered HTML]
 <div class="queso-field is-read-only">
-    <div class="queso-field__label">
+    <div id="roles-label" class="queso-field__label">
         <span class="queso-field__label__text">User Roles</span>
     </div>
     <div class="queso-field__input">
@@ -602,6 +602,7 @@ The styles for each individual checkbox come from the `QuesoCheckbox` component.
 ```typescript
 export interface ExposedData {
     fieldID: string;
+    fieldLabelID: string | undefined; // `${fieldID}-label` when a label is set
     fieldName: string;
     isRequired: boolean;
     isDisabled: boolean;

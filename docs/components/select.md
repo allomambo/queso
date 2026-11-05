@@ -89,7 +89,23 @@ const countryOptions = [
 
 -   **Type:** `Record<string, string>`
 -   **Required:** `false`
--   **Description:** Additional HTML attributes to apply to the select input element.
+-   **Description:** Additional HTML attributes to apply to the native `<select>` element (form data, autofill, test ids). This element is hidden from assistive technologies, so ARIA attributes set here are not announced.
+
+### `ariaLabel`
+
+-   **Type:** `string`
+-   **Required:** `false`
+-   **Description:** Accessible name of the combobox when the field has no `label`. Ignored when `label` is set.
+
+### `ariaLabelledby`
+
+-   **Type:** `string`
+-   **Required:** `false`
+-   **Description:** Id of an element naming the combobox when the field has no `label` (e.g. a heading or a visually hidden label elsewhere). Ignored when `label` is set.
+
+::: warning Accessible name
+A select needs a name. Set `label`, or `ariaLabel` / `ariaLabelledby` when the label is displayed elsewhere.
+:::
 
 ## Slots
 
@@ -135,8 +151,8 @@ const countryOptions = [
 
 ### `item`
 
--   **Props:** `ExposedData & { index: number, value: string, label: string, data?: TOptionData, isSelected: boolean }`
--   **Description:** Custom dropdown item content. Defaults to displaying the option label.
+-   **Props:** `ExposedData & { index: number, value: string, label: string, data?: TOptionData, isSelected: boolean, isFocused: boolean }`
+-   **Description:** Custom dropdown item content. Defaults to displaying the option label. `isFocused` is `true` for the option highlighted by the keyboard.
 
 ### `readOnly`
 
@@ -191,22 +207,55 @@ const languageOptions: QuesoSelectOptions = [
 ```
 
 ```html [Rendered HTML]
-<div class="queso-field">
-    <div class="queso-field__label">
+<div class="queso-field -select">
+    <label class="queso-field__label" id="language-label" for="language">
         <span class="queso-field__label__text">Programming Language</span>
-    </div>
+    </label>
     <div class="queso-field__input">
-        <div class="queso-dropdown queso-select">
-            <div class="queso-dropdown__selector">
-                <span class="queso-dropdown__selector__placeholder"
-                    >Choose a language</span
-                >
-                <span class="queso-dropdown__selector__icon">+</span>
+        <div class="queso-dropdown is-dropdown-close queso-select">
+            <div
+                class="queso-dropdown__selector"
+                role="combobox"
+                aria-haspopup="listbox"
+                aria-expanded="false"
+                aria-controls="queso-dropdown__v-0"
+                aria-labelledby="language-label"
+                tabindex="0"
+            >
+                <div class="queso-dropdown__selector__text">
+                    <div class="queso-dropdown__selector__text__placeholder">
+                        Choose a language
+                    </div>
+                </div>
+                <div class="queso-dropdown__selector__icon">+</div>
+            </div>
+            <div class="queso-dropdown__popover" inert>
+                <div class="queso-dropdown__popover__scroll">
+                    <ul
+                        class="queso-dropdown__popover__options-list"
+                        role="listbox"
+                        id="queso-dropdown__v-0"
+                        aria-labelledby="language-label"
+                        tabindex="-1"
+                    >
+                        <li
+                            class="queso-dropdown__popover__options-list__item"
+                            role="option"
+                            id="queso-dropdown__v-0-option-0"
+                            aria-selected="false"
+                        >
+                            <span class="text">JavaScript</span>
+                        </li>
+                        <!-- One li per option -->
+                    </ul>
+                </div>
             </div>
             <select
                 class="queso-select__select-native"
                 id="language"
                 name="language"
+                aria-hidden="true"
+                tabindex="-1"
             >
                 <option></option>
                 <option value="js">JavaScript</option>
@@ -262,19 +311,33 @@ const themeOptions = [
 ```
 
 ```html [Rendered HTML]
-<div class="queso-field">
-    <div class="queso-field__label">
+<div class="queso-field -select">
+    <label class="queso-field__label" id="theme-label" for="theme">
         <span class="queso-field__label__text">Theme</span>
-    </div>
+    </label>
     <div class="queso-field__input">
-        <div class="queso-dropdown queso-select">
-            <div class="queso-dropdown__selector">
+        <div class="queso-dropdown is-dropdown-close queso-select">
+            <div
+                class="queso-dropdown__selector"
+                role="combobox"
+                aria-haspopup="listbox"
+                aria-expanded="false"
+                aria-controls="queso-dropdown__v-0"
+                aria-labelledby="theme-label"
+                tabindex="0"
+            >
                 <div class="custom-selector">
                     <span class="placeholder-text">Select a theme</span>
                 </div>
-                <span class="custom-icon">+</span>
             </div>
-            <select class="queso-select__select-native" id="theme" name="theme">
+            <!-- Popover with the listbox, see the first example -->
+            <select
+                class="queso-select__select-native"
+                id="theme"
+                name="theme"
+                aria-hidden="true"
+                tabindex="-1"
+            >
                 <option></option>
                 <option value="light">Light</option>
                 <option value="dark">Dark</option>
@@ -301,12 +364,9 @@ const themeOptions = [
         v-model="selectedCategory"
         :extra-attributes="{
             'data-testid': 'category-select',
-            'aria-describedby': 'category-help',
+            autocomplete: 'off',
         }"
     />
-    <div id="category-help" class="help-text">
-        Select the category that best describes your product
-    </div>
 </template>
 
 <script setup>
@@ -324,24 +384,21 @@ const categoryOptions = [
 ```
 
 ```html [Rendered HTML]
-<div class="queso-field">
-    <div class="queso-field__label">
+<div class="queso-field -select">
+    <label class="queso-field__label" id="category-label" for="category">
         <span class="queso-field__label__text">Product Category</span>
-    </div>
+    </label>
     <div class="queso-field__input">
-        <div class="queso-dropdown queso-select">
-            <div class="queso-dropdown__selector">
-                <span class="queso-dropdown__selector__placeholder"
-                    >Choose a category</span
-                >
-                <span class="queso-dropdown__selector__icon">+</span>
-            </div>
+        <div class="queso-dropdown is-dropdown-close queso-select">
+            <!-- Combobox and popover, see the first example -->
             <select
                 class="queso-select__select-native"
                 id="category"
                 name="category"
+                aria-hidden="true"
+                tabindex="-1"
                 data-testid="category-select"
-                aria-describedby="category-help"
+                autocomplete="off"
             >
                 <option></option>
                 <option value="electronics">Electronics</option>
@@ -351,9 +408,6 @@ const categoryOptions = [
             </select>
         </div>
     </div>
-</div>
-<div id="category-help" class="help-text">
-    Select the category that best describes your product
 </div>
 ```
 
@@ -389,10 +443,10 @@ const statusOptions = [
 ```
 
 ```html [Rendered HTML]
-<div class="queso-field is-read-only">
-    <div class="queso-field__label">
+<div class="queso-field -select is-read-only">
+    <label class="queso-field__label" id="status-label" for="status">
         <span class="queso-field__label__text">Account Status</span>
-    </div>
+    </label>
     <div class="queso-field__input">
         <div class="queso-select__read-only">
             <span class="queso-select__read-only__label">Active</span>
@@ -403,24 +457,38 @@ const statusOptions = [
 
 :::
 
+### Without Visible Label
+
+When the label is displayed elsewhere (a filter heading, a sort bar…), name the combobox with `ariaLabel` or `ariaLabelledby`:
+
+```vue
+<template>
+    <span id="sort-label" class="visually-hidden">Sort by</span>
+    <queso-select
+        name="sort"
+        :options="sortOptions"
+        aria-labelledby="sort-label"
+        v-model="sort"
+    />
+</template>
+```
+
 ## Behavior
 
 -   **Two-way Data Binding**: Uses Vue 3's `defineModel` for seamless `v-model` integration
--   **Form Integration**: Designed to work seamlessly with HTML forms
+-   **Form Integration**: A hidden native `<select>` carries the value, `name`, `required` and `disabled` for form submission and validation
 -   **Single Selection**: Only one option can be selected at a time
 -   **Read-only Mode**: When `is-read-only` is true, displays the selected value as non-interactive text
 -   **Customizable Appearance**: Slots for customizing dropdown selector, icon, and item appearance
--   **Dropdown Integration**: Built on top of `QuesoDropdown` component for enhanced functionality
+-   **Dropdown Integration**: Built on top of `QuesoDropdown`, which follows the WAI-ARIA [select-only combobox pattern](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-select-only/) (see its keyboard support)
 
 ## Accessibility
 
--   **Label Association**: Uses proper `label` element with `for` attribute
--   **Required Indicator**: Displays visual indicator for required fields
--   **Error States**: Provides clear error messaging and styling
--   **Keyboard Navigation**: Full keyboard accessibility support
--   **Screen Reader Support**: Proper ARIA attributes and semantic structure
--   **State Management**: Tracks hover and focus states for accessibility
--   **Select Semantics**: Proper select semantics with native select element
+-   **Accessible Name**: The combobox and the listbox are labelled by the field label (`aria-labelledby="{fieldID}-label"`), or by `ariaLabel` / `ariaLabelledby` when there is no label
+-   **States**: `isRequired`, `isError` and `isDisabled` set `aria-required`, `aria-invalid` and `aria-disabled` on the combobox. The `*` required indicator is hidden from screen readers since `aria-required` already announces it
+-   **Native Select**: Hidden from assistive technologies (`aria-hidden="true"`, `tabindex="-1"`). The `label` still points to it with `for`, and focus reaching it (label click, form validation) moves to the combobox
+-   **Keyboard Navigation**: Arrow keys, Home/End, Enter/Space, Escape and type-to-select, with the highlighted option exposed through `aria-activedescendant`
+-   **Active State**: `.is-active` stays on the field while focus is anywhere inside the dropdown
 
 ## CSS Classes
 
@@ -454,6 +522,7 @@ const statusOptions = [
 ```typescript
 export interface ExposedData {
     fieldID: string;
+    fieldLabelID: string | undefined; // `${fieldID}-label` when a label is set
     fieldName: string;
     isRequired: boolean;
     isDisabled: boolean;
@@ -481,5 +550,7 @@ export interface QuesoSelectProps<TOptionData = Record<string, any>> {
     isReadOnly?: boolean;
     isError?: boolean;
     extraAttributes?: Record<string, string>;
+    ariaLabel?: string;
+    ariaLabelledby?: string;
 }
 ```

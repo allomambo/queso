@@ -25,11 +25,18 @@
 
             <queso-dropdown
                 v-else
+                ref="dropdown"
                 class="queso-select"
                 :options="options"
                 :is-disabled="exposedData.isDisabled"
+                :is-required="exposedData.isRequired"
+                :is-error="exposedData.isError"
+                :aria-label="exposedData.fieldLabelID ? undefined : ariaLabel"
+                :aria-labelledby="exposedData.fieldLabelID || ariaLabelledby"
                 @mouseover="exposedData.toggleIsHover(true)"
                 @mouseleave="exposedData.toggleIsHover(false)"
+                @focusin="!exposedData.isActive && exposedData.toggleIsActive(true)"
+                @focusout="handleDropdownFocusout($event, exposedData.toggleIsActive)"
                 v-model="dropdownModel"
             >
                 <template #selectorPlaceholder="exposedDropdownData">
@@ -59,11 +66,11 @@
                         :name="exposedData.fieldName"
                         :required="exposedData.isRequired"
                         :disabled="exposedData.isDisabled"
-                        @focus="exposedData.toggleIsActive(true)"
-                        @blur="exposedData.toggleIsActive(false)"
+                        aria-hidden="true"
+                        tabindex="-1"
+                        @focus="dropdown?.focusSelector()"
                         v-bind="extraAttributes"
                         v-model="model"
-                        tabindex="-1"
                     >
                         <option></option>
                         <option v-for="option in options" :key="option.value" :value="option.value">
@@ -84,7 +91,7 @@
 </template>
 
 <script setup lang="ts" generic="TOptionData extends Record<string, any> = Record<string, any>">
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { useExtendedFieldProps } from "@composables/fields";
 
 import type { QuesoSelectModel, QuesoSelectProps } from "./types";
@@ -97,6 +104,17 @@ const props = defineProps<QuesoSelectProps<TOptionData>>();
 const extendedProps = useExtendedFieldProps(props);
 
 const model = defineModel<QuesoSelectModel>({ required: true });
+
+const dropdown = ref<{ focusSelector: () => void } | null>(null);
+
+// The field stays active while focus moves inside the dropdown
+const handleDropdownFocusout = (event: FocusEvent, toggleIsActive: (bool?: boolean) => void) => {
+    const dropdownElement = event.currentTarget as HTMLElement;
+
+    if (!dropdownElement.contains(event.relatedTarget as Node | null)) {
+        toggleIsActive(false);
+    }
+};
 
 // Writable computed because QuesoDropdown expects an array
 const dropdownModel = computed<QuesoDropdownOptionValues>({

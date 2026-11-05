@@ -157,7 +157,7 @@ const bio = ref<QuesoTextAreaModel>("");
 
 ```html [Rendered HTML]
 <div class="queso-field">
-    <label for="bio" class="queso-field__label">
+    <label id="bio-label" for="bio" class="queso-field__label">
         <span class="queso-field__label__text">Biography</span>
     </label>
     <div class="queso-field__input">
@@ -204,9 +204,9 @@ const comment = ref("");
 
 ```html [Rendered HTML]
 <div class="queso-field">
-    <label for="comment" class="queso-field__label">
+    <label id="comment-label" for="comment" class="queso-field__label">
         <span class="queso-field__label__text">Comment</span>
-        <span class="queso-field__label__required">*</span>
+        <span class="queso-field__label__required" aria-hidden="true">*</span>
     </label>
     <div class="queso-field__input">
         <div class="queso-text-area">
@@ -258,7 +258,7 @@ const feedback = ref("");
 
 ```html [Rendered HTML]
 <div class="queso-field">
-    <label for="feedback" class="queso-field__label">
+    <label id="feedback-label" for="feedback" class="queso-field__label">
         <span class="queso-field__label__text">Feedback</span>
     </label>
     <div class="queso-field__input">
@@ -309,7 +309,7 @@ const terms = ref(
 
 ```html [Rendered HTML]
 <div class="queso-field is-read-only">
-    <label for="terms" class="queso-field__label">
+    <label id="terms-label" for="terms" class="queso-field__label">
         <span class="queso-field__label__text">Terms and Conditions</span>
     </label>
     <div class="queso-field__input">
@@ -375,6 +375,7 @@ const terms = ref(
 ```typescript
 export interface ExposedData {
     fieldID: string;
+    fieldLabelID: string | undefined; // `${fieldID}-label` when a label is set
     fieldName: string;
     isRequired: boolean;
     isDisabled: boolean;
