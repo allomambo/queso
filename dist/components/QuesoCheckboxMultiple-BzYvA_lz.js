@@ -1,6 +1,6 @@
-import { defineComponent as V, mergeModels as L, useModel as H, ref as y, reactive as R, computed as k, watch as h, openBlock as m, createBlock as g, unref as q, mergeProps as i, withCtx as t, renderSlot as o, normalizeProps as a, guardReactiveProps as u, createElementBlock as M, Fragment as S, renderList as O, resolveDynamicComponent as E, normalizeClass as N, withDirectives as P, vModelCheckbox as A, createCommentVNode as F, createElementVNode as f, createTextVNode as w } from "vue";
-import { u as x } from "./QuesoCheckbox-oMH7omFq.js";
-import { _ as T } from "./QuesoField-DYBEGM8C.js";
+import { defineComponent as V, mergeModels as L, useModel as H, ref as y, reactive as R, computed as h, watch as _, openBlock as f, createBlock as g, unref as M, mergeProps as i, withCtx as t, renderSlot as o, normalizeProps as u, guardReactiveProps as n, createElementBlock as q, Fragment as S, renderList as O, resolveDynamicComponent as E, normalizeClass as N, withDirectives as P, vModelCheckbox as A, createCommentVNode as x, createElementVNode as m, createTextVNode as F } from "vue";
+import { u as w } from "./QuesoCheckbox-DHwgNiJt.js";
+import { _ as T } from "./QuesoField-DQ3NyaNX.js";
 import '../assets/components/QuesoCheckboxMultiple.css';const z = ["id", "name", "required", "disabled", "onFocus", "onBlur", "onUpdate:modelValue"], J = { class: "queso-checkbox__box" }, U = { class: "queso-checkbox__box__symbol" }, Q = { class: "queso-checkbox__label" }, j = ["innerHTML"], X = /* @__PURE__ */ V({
   __name: "QuesoCheckboxMultiple",
   props: /* @__PURE__ */ L({
@@ -15,72 +15,72 @@ import '../assets/components/QuesoCheckboxMultiple.css';const z = ["id", "name",
     isReadOnly: { type: Boolean },
     extraAttributes: {}
   }, {
-    modelValue: { required: !0, default: [] },
+    modelValue: { default: () => [] },
     modelModifiers: {}
   }),
   emits: ["update:modelValue"],
-  setup(_) {
-    const c = _, I = x(c), v = H(_, "modelValue"), r = y(null), b = R(
+  setup(b) {
+    const c = b, I = w(c), v = H(b, "modelValue"), a = y(null), k = R(
       c.choices.map((l) => ({ isChecked: v.value.includes(l.value), ...l }))
-    ), p = k(
-      () => b.filter((l) => l.isChecked).map((l) => l.value)
+    ), p = h(
+      () => k.filter((l) => l.isChecked).map((l) => l.value)
     );
-    h(
+    _(
       p,
       (l) => {
         JSON.stringify(l) !== JSON.stringify(v.value) && (v.value = l);
       },
       { immediate: !0 }
-    ), h(
+    ), _(
       v,
       (l) => {
-        b.forEach((n) => {
-          n.isChecked = l.includes(n.value);
+        k.forEach((r) => {
+          r.isChecked = l.includes(r.value);
         });
       },
       { immediate: !0 }
     );
-    const C = y([]), $ = k(() => p.value.length > 0), B = k(() => c.isRequired && !$.value);
-    return h(
+    const C = y([]), $ = h(() => p.value.length > 0), B = h(() => c.isRequired && !$.value);
+    return _(
       B,
       (l) => {
-        C.value.forEach((n) => {
-          l ? n.setCustomValidity(c.validationMessage) : n.setCustomValidity("");
+        C.value.forEach((r) => {
+          l ? r.setCustomValidity(c.validationMessage) : r.setCustomValidity("");
         });
       },
       { immediate: !0 }
-    ), (l, n) => (m(), g(q(T), i({
+    ), (l, r) => (f(), g(M(T), i({
       class: "-checkbox-multiple",
       "has-static-label": ""
-    }, q(I)), {
+    }, M(I)), {
       beforeLabel: t((e) => [
-        o(l.$slots, "beforeLabel", a(u(e)))
+        o(l.$slots, "beforeLabel", u(n(e)))
       ]),
       label: t((e) => [
-        o(l.$slots, "label", a(u(e)))
+        o(l.$slots, "label", u(n(e)))
       ]),
       required: t((e) => [
-        o(l.$slots, "required", a(u(e)))
+        o(l.$slots, "required", u(n(e)))
       ]),
       afterLabel: t((e) => [
-        o(l.$slots, "afterLabel", a(u(e)))
+        o(l.$slots, "afterLabel", u(n(e)))
       ]),
       beforeInput: t((e) => [
-        o(l.$slots, "beforeInput", a(u(e)))
+        o(l.$slots, "beforeInput", u(n(e)))
       ]),
       input: t((e) => [
-        (m(!0), M(S, null, O(b, (s) => (m(), g(E(e.isReadOnly ? "div" : "label"), {
-          class: N(["queso-checkbox", { "is-checkbox-hover": r.value === s.value, "is-checked": s.isChecked }]),
+        (f(!0), q(S, null, O(k, (s) => (f(), g(E(e.isReadOnly ? "div" : "label"), {
+          class: N(["queso-checkbox", { "is-checkbox-hover": a.value === s.value, "is-checked": s.isChecked }]),
           for: e.isReadOnly ? null : `${e.fieldID}-${s.value}`,
           onMouseover: (d) => {
-            r.value = s.value, e.toggleIsHover(!0);
+            a.value = s.value, e.toggleIsHover(!0);
           },
           onMouseleave: (d) => {
-            r.value = null, e.toggleIsHover(!1);
+            a.value = null, e.toggleIsHover(!1);
           }
         }, {
           default: t(() => [
-            e.isReadOnly ? F("", !0) : P((m(), M("input", i({
+            e.isReadOnly ? x("", !0) : P((f(), q("input", i({
               key: 0,
               ref_for: !0,
               ref_key: "checkboxInputs",
@@ -93,7 +93,7 @@ import '../assets/components/QuesoCheckboxMultiple.css';const z = ["id", "name",
               disabled: e.isDisabled,
               onFocus: (d) => e.toggleIsActive(!0),
               onBlur: (d) => e.toggleIsActive(!1)
-            }, l.extraAttributes, {
+            }, { ref_for: !0 }, b.extraAttributes, {
               "onUpdate:modelValue": (d) => s.isChecked = d
             }), null, 16, z)), [
               [A, s.isChecked]
@@ -101,24 +101,24 @@ import '../assets/components/QuesoCheckboxMultiple.css';const z = ["id", "name",
             o(l.$slots, "checkbox", i({ ref_for: !0 }, {
               ...e,
               ...s,
-              isHovered: r.value === s.value,
+              isHovered: a.value === s.value,
               isSelected: s.isChecked
             }), () => [
               o(l.$slots, "checkboxBox", i({ ref_for: !0 }, {
                 ...e,
                 ...s,
-                isHovered: r.value === s.value,
+                isHovered: a.value === s.value,
                 isSelected: s.isChecked
               }), () => [
-                f("span", J, [
-                  f("span", U, [
+                m("span", J, [
+                  m("span", U, [
                     o(l.$slots, "checkboxBoxSymbol", i({ ref_for: !0 }, {
                       ...e,
                       ...s,
-                      isHovered: r.value === s.value,
+                      isHovered: a.value === s.value,
                       isSelected: s.isChecked
                     }), () => [
-                      w("✔︎")
+                      r[0] || (r[0] = F("✔︎", -1))
                     ])
                   ])
                 ])
@@ -126,11 +126,11 @@ import '../assets/components/QuesoCheckboxMultiple.css';const z = ["id", "name",
               o(l.$slots, "checkboxLabel", i({ ref_for: !0 }, {
                 ...e,
                 ...s,
-                isHovered: r.value === s.value,
+                isHovered: a.value === s.value,
                 isSelected: s.isChecked
               }), () => [
-                f("span", Q, [
-                  f("span", {
+                m("span", Q, [
+                  m("span", {
                     class: "queso-checkbox__label__text",
                     innerHTML: s.label
                   }, null, 8, j)
@@ -142,10 +142,10 @@ import '../assets/components/QuesoCheckboxMultiple.css';const z = ["id", "name",
         }, 1064, ["class", "for", "onMouseover", "onMouseleave"]))), 256))
       ]),
       afterInput: t((e) => [
-        o(l.$slots, "afterInput", a(u(e)))
+        o(l.$slots, "afterInput", u(n(e)))
       ]),
       error: t((e) => [
-        o(l.$slots, "error", a(u(e)))
+        o(l.$slots, "error", u(n(e)))
       ]),
       _: 3
     }, 16));

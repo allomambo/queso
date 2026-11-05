@@ -16,6 +16,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
     slots: {
         beforeLabel?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -29,6 +30,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
         }): any;
         label?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -42,6 +44,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
         }): any;
         required?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -55,6 +58,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
         }): any;
         afterLabel?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -68,6 +72,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
         }): any;
         beforeInput?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -86,6 +91,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
             value: string;
             data?: TChoiceData | undefined;
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -104,6 +110,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
             value: string;
             data?: TChoiceData | undefined;
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -122,6 +129,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
             value: string;
             data?: TChoiceData | undefined;
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -140,6 +148,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
             value: string;
             data?: TChoiceData | undefined;
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -153,6 +162,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
         }): any;
         afterInput?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -166,6 +176,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
         }): any;
         error?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -197,6 +208,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
     slots: {
         beforeLabel?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -210,6 +222,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
         }): any;
         label?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -223,6 +236,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
         }): any;
         required?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -236,6 +250,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
         }): any;
         afterLabel?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -249,6 +264,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
         }): any;
         beforeInput?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -267,6 +283,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
             value: string;
             data?: TChoiceData | undefined;
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -285,6 +302,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
             value: string;
             data?: TChoiceData | undefined;
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -303,6 +321,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
             value: string;
             data?: TChoiceData | undefined;
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -321,6 +340,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
             value: string;
             data?: TChoiceData | undefined;
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -334,6 +354,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
         }): any;
         afterInput?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -347,6 +368,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
         }): any;
         error?(_: {
             fieldID: string;
+            fieldLabelID: string | undefined;
             fieldName: string;
             fieldLabel: string | undefined;
             isRequired: boolean;
@@ -381,6 +403,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
         slots: {
             beforeLabel?(_: {
                 fieldID: string;
+                fieldLabelID: string | undefined;
                 fieldName: string;
                 fieldLabel: string | undefined;
                 isRequired: boolean;
@@ -394,6 +417,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
             }): any;
             label?(_: {
                 fieldID: string;
+                fieldLabelID: string | undefined;
                 fieldName: string;
                 fieldLabel: string | undefined;
                 isRequired: boolean;
@@ -407,6 +431,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
             }): any;
             required?(_: {
                 fieldID: string;
+                fieldLabelID: string | undefined;
                 fieldName: string;
                 fieldLabel: string | undefined;
                 isRequired: boolean;
@@ -420,6 +445,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
             }): any;
             afterLabel?(_: {
                 fieldID: string;
+                fieldLabelID: string | undefined;
                 fieldName: string;
                 fieldLabel: string | undefined;
                 isRequired: boolean;
@@ -433,6 +459,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
             }): any;
             beforeInput?(_: {
                 fieldID: string;
+                fieldLabelID: string | undefined;
                 fieldName: string;
                 fieldLabel: string | undefined;
                 isRequired: boolean;
@@ -451,6 +478,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
                 value: string;
                 data?: TChoiceData | undefined;
                 fieldID: string;
+                fieldLabelID: string | undefined;
                 fieldName: string;
                 fieldLabel: string | undefined;
                 isRequired: boolean;
@@ -469,6 +497,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
                 value: string;
                 data?: TChoiceData | undefined;
                 fieldID: string;
+                fieldLabelID: string | undefined;
                 fieldName: string;
                 fieldLabel: string | undefined;
                 isRequired: boolean;
@@ -487,6 +516,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
                 value: string;
                 data?: TChoiceData | undefined;
                 fieldID: string;
+                fieldLabelID: string | undefined;
                 fieldName: string;
                 fieldLabel: string | undefined;
                 isRequired: boolean;
@@ -505,6 +535,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
                 value: string;
                 data?: TChoiceData | undefined;
                 fieldID: string;
+                fieldLabelID: string | undefined;
                 fieldName: string;
                 fieldLabel: string | undefined;
                 isRequired: boolean;
@@ -518,6 +549,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
             }): any;
             afterInput?(_: {
                 fieldID: string;
+                fieldLabelID: string | undefined;
                 fieldName: string;
                 fieldLabel: string | undefined;
                 isRequired: boolean;
@@ -531,6 +563,7 @@ declare const _default: <TChoiceData extends Record<string, any> = Record<string
             }): any;
             error?(_: {
                 fieldID: string;
+                fieldLabelID: string | undefined;
                 fieldName: string;
                 fieldLabel: string | undefined;
                 isRequired: boolean;
