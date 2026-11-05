@@ -173,7 +173,7 @@ const password = ref<QuesoPasswordModel>("");
 
 ```html [Rendered HTML]
 <div class="queso-field">
-    <label for="password" class="queso-field__label">
+    <label id="password-label" for="password" class="queso-field__label">
         <span class="queso-field__label__text">Password</span>
     </label>
     <div class="queso-field__input">
@@ -232,7 +232,7 @@ const password = ref("");
 
 ```html [Rendered HTML]
 <div class="queso-field">
-    <label for="password" class="queso-field__label">
+    <label id="password-label" for="password" class="queso-field__label">
         <span class="queso-field__label__text">Password</span>
     </label>
     <div class="queso-field__input">
@@ -287,7 +287,7 @@ const password = ref("");
 
 ```html [Rendered HTML]
 <div class="queso-field">
-    <label for="password" class="queso-field__label">
+    <label id="password-label" for="password" class="queso-field__label">
         <span class="queso-field__label__text">Password</span>
     </label>
     <div class="queso-field__input">
@@ -338,7 +338,11 @@ const currentPassword = ref("••••••••");
 
 ```html [Rendered HTML]
 <div class="queso-field is-read-only">
-    <label for="current-password" class="queso-field__label">
+    <label
+        id="current-password-label"
+        for="current-password"
+        class="queso-field__label"
+    >
         <span class="queso-field__label__text">Current Password</span>
     </label>
     <div class="queso-field__input">
@@ -403,6 +407,7 @@ const currentPassword = ref("••••••••");
 ```typescript
 export interface ExposedData {
     fieldID: string;
+    fieldLabelID: string | undefined; // `${fieldID}-label` when a label is set
     fieldName: string;
     isRequired: boolean;
     isDisabled: boolean;
