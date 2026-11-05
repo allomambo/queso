@@ -143,7 +143,7 @@ const options = [
     <div
         class="queso-dropdown__selector"
         aria-expanded="false"
-        aria-controls="queso-dropdown__abc123"
+        aria-controls="queso-dropdown__v-0"
         tabindex="0"
     >
         <div class="queso-dropdown__selector__text">
@@ -153,7 +153,7 @@ const options = [
         </div>
         <div class="queso-dropdown__selector__icon">↓</div>
     </div>
-    <div class="queso-dropdown__popover" id="queso-dropdown__abc123">
+    <div class="queso-dropdown__popover" id="queso-dropdown__v-0">
         <div class="queso-dropdown__popover__scroll">
             <ul class="queso-dropdown__popover__options-list">
                 <li
@@ -253,7 +253,7 @@ const options = [
     <div
         class="queso-dropdown__selector"
         aria-expanded="false"
-        aria-controls="queso-dropdown__abc123"
+        aria-controls="queso-dropdown__v-0"
         tabindex="0"
     >
         <div class="custom-selector">
@@ -262,7 +262,7 @@ const options = [
             <span class="arrow">▼</span>
         </div>
     </div>
-    <div class="queso-dropdown__popover" id="queso-dropdown__abc123">
+    <div class="queso-dropdown__popover" id="queso-dropdown__v-0">
         <div class="queso-dropdown__popover__scroll">
             <ul class="queso-dropdown__popover__options-list">
                 <li

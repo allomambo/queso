@@ -5,7 +5,7 @@ Unstyled Vue components library. Build custom interfaces with a minimal, flexibl
 #### Required
 
 -   Node 20.10.0
--   VueJS 3.2.37
+-   VueJS 3.5.0 or higher
 
 ## 📚 Documentation
 
