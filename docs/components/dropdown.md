@@ -469,6 +469,7 @@ Reactive boolean indicating the current open state.
 ## Behavior
 
 -   **Focus Management:** Focus always stays on the selector. The highlighted option is shown with `.is-option-focused` and announced with `aria-activedescendant`. There is no focus trap: Tab leaves the dropdown and closes it
+-   **Pointer:** Moving the pointer over an option highlights it too, so a single option looks highlighted
 -   **Click Outside:** Automatically closes when clicking outside or when focus leaves the dropdown
 -   **Scroll Management:** The options list scrolls to keep the highlighted option visible without moving the page, and scrolls back to the top after closing
 -   **Multiple Selection:** Toggle selection in multiple mode, replace in single mode

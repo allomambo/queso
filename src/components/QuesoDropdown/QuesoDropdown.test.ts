@@ -466,6 +466,23 @@ describe("QuesoDropdown", () => {
             expect(isOpen(wrapper)).toBe(false);
         });
 
+        test("moving the pointer over an option focuses it while open", async () => {
+            const wrapper = mountDropdown();
+            const items = wrapper.findAll('[role="option"]');
+
+            await items[2].trigger("pointermove");
+            expect(getFocusedIndex(wrapper)).toBeNull();
+            expect(items[2].classes()).not.toContain("is-option-focused");
+
+            await getSelector(wrapper).trigger("click");
+            await items[2].trigger("pointermove");
+
+            expect(getFocusedIndex(wrapper)).toBe(2);
+            expect(items[2].classes()).toContain("is-option-focused");
+            expect(items[0].classes()).not.toContain("is-option-focused");
+            expect(getSelector(wrapper).attributes("aria-activedescendant")).toBe(items[2].attributes("id"));
+        });
+
         test("pressing the list does not move focus away from the combobox", () => {
             const wrapper = mountDropdown();
             const event = new MouseEvent("mousedown", { bubbles: true, cancelable: true });

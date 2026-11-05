@@ -72,6 +72,7 @@
                         :id="getOptionId(index)"
                         :aria-selected="model.includes(option.value)"
                         @click="handleClickOption(index)"
+                        @pointermove="handlePointerMoveOption(index)"
                     >
                         <slot
                             name="popoverItem"
@@ -192,6 +193,11 @@ const selectOption = (index: number) => {
 const handleClickOption = (index: number) => {
     focusedIndex.value = index;
     selectOption(index);
+};
+
+// The pointer moves the highlight too, so only one option looks highlighted (no scroll: the option is visible)
+const handlePointerMoveOption = (index: number) => {
+    if (isDropdownOpen.value) focusedIndex.value = index;
 };
 
 /**
