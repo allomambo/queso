@@ -1,5 +1,5 @@
 import { defineComponent as y, useSlots as B, ref as h, computed as o, watchEffect as q, onMounted as A, nextTick as C, openBlock as r, createElementBlock as n, normalizeClass as c, renderSlot as i, createCommentVNode as _, createElementVNode as S } from "vue";
-import { u as E, b as T } from "./QuesoCollapsible-BAoVzf7E.js";
+import { u as E, b as T } from "./QuesoCollapsible-ddhTDc1c.js";
 import '../assets/components/QuesoScrollable.css';const V = /* @__PURE__ */ y({
   __name: "QuesoScrollable",
   props: {

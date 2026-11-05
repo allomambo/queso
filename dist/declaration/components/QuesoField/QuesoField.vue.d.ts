@@ -1,7 +1,8 @@
 import { QuesoFieldPrivateProps } from './types';
 
-declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<__VLS_TypePropsToRuntimeProps<QuesoFieldPrivateProps>, {
+declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<import('vue').ExtractPropTypes<__VLS_TypePropsToRuntimeProps<QuesoFieldPrivateProps>>, {
     fieldID: string;
+    fieldLabelID: string | undefined;
     fieldName: string;
     fieldLabel: string | undefined;
     isRequired: boolean;
@@ -12,23 +13,24 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<__
     isReadOnly: boolean;
     toggleIsActive: (bool?: boolean) => void;
     toggleIsHover: (bool?: boolean) => void;
-}, unknown, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
+}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
     "input:hover": (args_0: boolean) => void;
     "input:hover:enter": () => void;
     "input:hover:leave": () => void;
     "input:active": (args_0: boolean) => void;
     "input:active:focus": () => void;
     "input:active:blur": () => void;
-}, string, import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<__VLS_TypePropsToRuntimeProps<QuesoFieldPrivateProps>>> & {
+}, string, import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<__VLS_TypePropsToRuntimeProps<QuesoFieldPrivateProps>>> & Readonly<{
     "onInput:hover"?: ((args_0: boolean) => any) | undefined;
     "onInput:hover:enter"?: (() => any) | undefined;
     "onInput:hover:leave"?: (() => any) | undefined;
     "onInput:active"?: ((args_0: boolean) => any) | undefined;
     "onInput:active:focus"?: (() => any) | undefined;
     "onInput:active:blur"?: (() => any) | undefined;
-}, {}, {}>, {
+}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>, {
     beforeLabel?(_: {
         fieldID: string;
+        fieldLabelID: string | undefined;
         fieldName: string;
         fieldLabel: string | undefined;
         isRequired: boolean;
@@ -42,6 +44,7 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<__
     }): any;
     label?(_: {
         fieldID: string;
+        fieldLabelID: string | undefined;
         fieldName: string;
         fieldLabel: string | undefined;
         isRequired: boolean;
@@ -55,6 +58,7 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<__
     }): any;
     required?(_: {
         fieldID: string;
+        fieldLabelID: string | undefined;
         fieldName: string;
         fieldLabel: string | undefined;
         isRequired: boolean;
@@ -68,6 +72,7 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<__
     }): any;
     afterLabel?(_: {
         fieldID: string;
+        fieldLabelID: string | undefined;
         fieldName: string;
         fieldLabel: string | undefined;
         isRequired: boolean;
@@ -81,6 +86,7 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<__
     }): any;
     beforeInput?(_: {
         fieldID: string;
+        fieldLabelID: string | undefined;
         fieldName: string;
         fieldLabel: string | undefined;
         isRequired: boolean;
@@ -94,6 +100,7 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<__
     }): any;
     input?(_: {
         fieldID: string;
+        fieldLabelID: string | undefined;
         fieldName: string;
         fieldLabel: string | undefined;
         isRequired: boolean;
@@ -107,6 +114,7 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<__
     }): any;
     afterInput?(_: {
         fieldID: string;
+        fieldLabelID: string | undefined;
         fieldName: string;
         fieldLabel: string | undefined;
         isRequired: boolean;
@@ -120,6 +128,7 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<__
     }): any;
     error?(_: {
         fieldID: string;
+        fieldLabelID: string | undefined;
         fieldName: string;
         fieldLabel: string | undefined;
         isRequired: boolean;
