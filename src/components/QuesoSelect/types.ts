@@ -9,4 +9,6 @@ export type QuesoSelectModel = QuesoDropdownOptionValue;
 export interface QuesoSelectProps<TOptionData = Record<string, any>> extends QuesoFieldProps, QuesoFieldBase {
     options: QuesoSelectOptions<TOptionData>;
     placeholder?: string;
+    ariaLabel?: string;
+    ariaLabelledby?: string;
 }

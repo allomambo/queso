@@ -1,5 +1,6 @@
 import { mount } from "@vue/test-utils";
 import { describe, expect, test } from "vitest";
+import { describeSelectAccessibility } from "../../../tests/select-a11y";
 import { renderAndHydrate } from "../../../tests/ssr";
 import QuesoSelect from "./QuesoSelect.vue";
 
@@ -51,6 +52,8 @@ describe("QuesoSelect", () => {
 
         unmount();
     });
+
+    describeSelectAccessibility(QuesoSelect, props);
 
     // Hiding it for now
     // test("renders correctly the label", () => {
