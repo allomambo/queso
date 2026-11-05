@@ -15,7 +15,7 @@ Queso is built with Vue 3 Composition API and TypeScript. While TypeScript is no
 
 ## Server-side rendering
 
-Queso works with server-side rendering (Nuxt, Vite SSR). Components that link elements together, such as `QuesoDropdown` and `QuesoCollapsible`, build their ids with Vue's [`useId()`](https://vuejs.org/api/composition-api-helpers.html#useid), so the server HTML and the hydrated DOM get the same ids (`queso-dropdown__v-0`, `queso-collapsible__v-1`…).
+Queso works with Vue server-side rendering. Components that link elements together, such as `QuesoDropdown` and `QuesoCollapsible`, build their ids with Vue's [`useId()`](https://vuejs.org/api/composition-api-helpers.html#useid), so the server HTML and the hydrated DOM get the same ids (`queso-dropdown__v-0`, `queso-collapsible__v-1`…).
 
 If several Vue apps render on the same page, give each one its own prefix to keep ids unique:
 
